@@ -58,13 +58,13 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 ### Fase 4: Publicación
 **Objetivo:** que Juanjo lo abra desde cualquier parte.
 **Criterio de éxito:** `https://jalzam.github.io/nefrona-interactiva/` carga con HTTPS, funciona en celular y en proyector, README completo.
-**Estado:** [~] En progreso 2026-10-23
+**Estado:** [x] Completada 2026-10-23 (falta solo la prueba en celular por Juanjo)
 **Tareas:**
 - [x] Sección de referencias y aviso de limitaciones del modelo (D4) al pie
 - [x] README.md técnico (estructura, cómo probar, cómo publicar, historial)
-- [ ] Repo GitHub `JalZam/nefrona-interactiva` (gh), rama main, Pages activado
-- [ ] Pruebas en Chrome de escritorio y celular (Claude in Chrome) y corrección de lo que falle
-- [ ] Actualizar `~/.claude/proyectos.json`, memoria y CLAUDE.md del proyecto
+- [x] Repo GitHub `JalZam/nefrona-interactiva` (público), rama main, Pages activado; verificado con curl: HTTP 200 en la página y los 7 archivos
+- [x] Pruebas en Chrome de escritorio (las 4 vistas, Addison y amilorida a 14 días); celular pendiente de Juanjo
+- [x] Actualizar `~/.claude/proyectos.json`, memoria y CLAUDE.md del proyecto
 
 ### Después de v1 (fuera de este plan)
 - ATR tipo 1 (célula α: H⁺-ATPasa, AE1) y ATR tipo 2 (túbulo proximal: NHE3, NBCe1, anhidrasa carbónica).
