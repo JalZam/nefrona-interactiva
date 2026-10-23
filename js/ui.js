@@ -12,6 +12,9 @@
   let ultimo = null;
   let ultimoRender = 0;
   let seleccion = null;
+  let vista = 'principal';
+  const escenas = NI.escenas.iniciar();
+  let ultimoTick = null;
 
   // ---------- Deslizadores ----------
   document.querySelectorAll('.causa[data-causa]').forEach(div => {
@@ -74,6 +77,27 @@
     if (ts - ultimoRender > 50) { ultimoRender = ts; pintar(false); }
     requestAnimationFrame(bucle);
   }
+  // Bucle de animación de partículas: corre siempre (aunque la simulación esté en pausa)
+  function animar(ts) {
+    if (ultimoTick !== null) {
+      const dt = Math.min(0.05, (ts - ultimoTick) / 1000);
+      NI.escenas.tick(dt, vista);
+    }
+    ultimoTick = ts;
+    requestAnimationFrame(animar);
+  }
+  requestAnimationFrame(animar);
+
+  // ---------- Pestañas / vistas ----------
+  function elegirVista(v) {
+    vista = v;
+    document.querySelectorAll('.tab').forEach(b => b.classList.toggle('activo', b.dataset.vista === v));
+    document.querySelectorAll('.vista').forEach(svg => svg.classList.toggle('oculta', svg.dataset.vista !== v));
+    document.querySelectorAll('.seg').forEach(g => g.classList.toggle('seleccionado', g.dataset.vista === v));
+    pintar(true);
+  }
+  document.querySelectorAll('.tab, .seg').forEach(el => el.addEventListener('click', () => elegirVista(el.dataset.vista)));
+  NI.elegirVista = elegirVista;
 
   // ---------- Laboratorio ----------
   // rangos: [bajoRojo, bajoAmbar, altoAmbar, altoRojo]
@@ -96,10 +120,10 @@
   }
   function renderLabs(d, s) {
     const S = $('labs-sangre'), O = $('labs-orina');
-    const sangre = [['Na', d.Na, 0], ['K', s.K, 1], ['Cl', d.Cl, 0], ['HCO3', s.HCO3, 0], ['pH', d.pH, 2], ['pCO2', d.pCO2, 0], ['AG', NI.model.P.anionGap, 0], ['aldo', d.aldoNgdl, 0], ['renina', d.reninaNgmlh, 1]];
+    const sangre = [['Na', d.Na, 0], ['K', d.Kp, 1], ['Cl', d.Cl, 0], ['HCO3', s.HCO3, 0], ['pH', d.pH, 2], ['pCO2', d.pCO2, 0], ['AG', NI.model.P.anionGap, 0], ['aldo', d.aldoNgdl, 0], ['renina', d.reninaNgmlh, 1]];
     sangre.forEach(([k, v, dec]) => { const [c, f] = clasificar(k, v); filaLab(S, k, v, dec, c, f); });
     // Orina: interpretación contextual
-    const acidosis = s.HCO3 < 22, hiperK = s.K > 5.0;
+    const acidosis = s.HCO3 < 22, hiperK = d.Kp > 5.0;
     filaLab(O, 'pHu', d.pHu, 2, acidosis ? (d.pHu < 5.5 ? 'ok' : 'alto') : '', acidosis ? (d.pHu < 5.5 ? '✓' : '↑') : '');
     filaLab(O, 'nh4u', d.nh4u, 0, acidosis ? (d.nh4u < 60 ? 'bajo' : 'ok') : '', acidosis ? (d.nh4u < 60 ? '↓' : '✓') : '');
     filaLab(O, 'Ku', d.Ku, 0, '', '');
@@ -141,9 +165,9 @@
   function renderCascada(d, s) {
     const pasos = {
       aldo: d.mr < 0.75, enac: Math.min(d.actENaC, d.exprENaC) < 0.75, volt: Math.abs(d.voltaje) < 32,
-      k: s.K > 5.0, nh4: d.mK < 0.75, hco3: s.HCO3 < 22
+      k: d.Kp > 5.0, nh4: d.mK < 0.75, hco3: s.HCO3 < 22
     };
-    const fuerte = { aldo: d.mr < 0.35, enac: Math.min(d.actENaC, d.exprENaC) < 0.35, volt: Math.abs(d.voltaje) < 18, k: s.K > 6.0, nh4: d.mK < 0.5, hco3: s.HCO3 < 18 };
+    const fuerte = { aldo: d.mr < 0.35, enac: Math.min(d.actENaC, d.exprENaC) < 0.35, volt: Math.abs(d.voltaje) < 18, k: d.Kp > 6.0, nh4: d.mK < 0.5, hco3: s.HCO3 < 18 };
     document.querySelectorAll('#cascada li').forEach(li => {
       const p = li.dataset.paso;
       li.classList.toggle('activo', !!pasos[p]);
@@ -170,7 +194,8 @@
   function pintar(forzar) {
     const d = sim.derivado(); const s = sim.s;
     d.exprENaC = s.exprENaC;
-    NI.svg.render(d, s);
+    NI.svg.render(d, s, sim.e, vista);
+    NI.escenas.actualizar(d);
     renderLabs(d, s);
     renderSparks();
     renderCascada(d, s);

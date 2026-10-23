@@ -104,6 +104,108 @@
       refs: [12, 13],
       estado: (d) => `Objetivo de expresión ${pct(d.objExpr)}`
     },
+    paracelular: {
+      titulo: 'Vía paracelular — Cl⁻ sigue al Na⁺',
+      texto: 'Entre célula y célula (unión estrecha) el Cl⁻ pasa de la luz a la sangre empujado por el mismo voltaje luminal negativo que genera ENaC. Es el acompañante que hace eléctricamente neutra la reabsorción de NaCl. Cuando ENaC cae, también cae el Cl⁻ paracelular y queda más NaCl en la orina (natriuresis leve).',
+      refs: [17, 21, 35],
+      estado: (d) => `Flujo paracelular ≈ ${pct(d.actENaC)} del normal`
+    },
+    hatpasa: {
+      titulo: 'H⁺-ATPasa vacuolar — bomba de protones (apical)',
+      texto: 'Bomba electrogénica que saca H⁺ a la luz consumiendo ATP. Es el principal mecanismo de acidificación distal. La activan la acidosis sistémica (inserta más bombas en la membrana), la angiotensina II y la aldosterona (vía genómica por MR y vía rápida no genómica por PKC, en minutos). El voltaje luminal negativo generado por ENaC en la célula principal vecina le facilita el trabajo; sin voltaje (amilorida) la bomba no logra el gradiente y el pH urinario no baja de 5,5.',
+      refs: [9, 10, 11, 2],
+      estado: (d) => `Actividad ${pct(d.actHATP)} · secreción de H⁺ ${d.jH.toFixed(0)} mEq/día`
+    },
+    hkatpasa: {
+      titulo: 'H⁺/K⁺-ATPasa — bomba apical',
+      texto: 'Secreta H⁺ y reabsorbe K⁺ a cambio. Se induce cuando falta K⁺ (hipokalemia): por eso la depleción de K⁺ produce alcalosis. En hiperkalemia tiene poco papel. En el modelo es un flujo pequeño y constante.',
+      refs: [9, 21],
+      estado: (d) => d.Kp < 3.5 ? 'Inducida por hipokalemia' : 'Actividad basal'
+    },
+    rhcg: {
+      titulo: 'Rhcg / Rhbg — transportadores de amoniaco',
+      texto: 'Glicoproteínas Rhesus que transportan NH₃ (no NH₄⁺) a través de las membranas de la célula intercalada: Rhbg/Rhcg en la basolateral toman el NH₃ del intersticio medular y Rhcg en la apical lo pasa a la luz, donde se une al H⁺ secretado y queda atrapado como NH₄⁺ (no puede volver a difundir). Sin Rhcg la excreción de NH₄⁺ cae a la mitad. Lo que limita aquí no es el transportador sino cuánto NH₃ hay en el intersticio, y eso depende del túbulo proximal y del asa gruesa.',
+      refs: [5, 7, 8],
+      estado: (d) => `NH₃ disponible ${pct(d.nh3Disponible / 44)} del normal · NH₄⁺ atrapado ${d.nh4u.toFixed(0)} mEq/día`
+    },
+    ae1: {
+      titulo: 'AE1 (banda 3, SLC4A1) — intercambiador Cl⁻/HCO₃⁻ basolateral',
+      texto: 'Saca a la sangre el HCO₃⁻ "nuevo" que produce la anhidrasa carbónica por cada H⁺ secretado, a cambio de un Cl⁻ que entra. Es la ganancia neta de base del organismo: cada H⁺ que termina en la orina (como NH₄⁺ o acidez titulable) es un HCO₃⁻ que vuelve a la sangre. Las mutaciones de AE1 causan ATR distal tipo 1.',
+      refs: [9, 20, 35],
+      estado: (d) => `HCO₃⁻ nuevo ≈ excreción neta de ácido ${d.ena.toFixed(0)} mEq/día (la dieta produce ${NI.sim.e.cargaAcida})`
+    },
+    clc: {
+      titulo: 'Canal de cloro basolateral (ClC-Kb / barttina)',
+      texto: 'Deja salir a la sangre el Cl⁻ que entró por AE1 (célula α) o por NKCC2 (asa gruesa). Cierra el circuito del cloro. Las mutaciones de ClC-Kb causan síndrome de Bartter tipo 3.',
+      refs: [20, 35],
+      estado: () => 'Flujo acoplado al Cl⁻ que entra'
+    },
+    ca2: {
+      titulo: 'Anhidrasa carbónica II — fábrica de H⁺ y HCO₃⁻',
+      texto: 'Convierte CO₂ + H₂O en H⁺ + HCO₃⁻ dentro de la célula. El H⁺ se bombea a la luz y el HCO₃⁻ sale a la sangre: un par inseparable. Su déficit congénito causa ATR tipo 3 (mixta). La acetazolamida la inhibe.',
+      refs: [4, 9],
+      estado: (d) => `Produce H⁺ al ritmo de la bomba: ${d.jH.toFixed(0)} mEq/día`
+    },
+    glutaminasa: {
+      titulo: 'Amoniogénesis — glutaminasa (PDG), GDH y PEPCK',
+      texto: 'La glutamina entra a la mitocondria: la glutaminasa dependiente de fosfato libera el primer NH₄⁺ y la glutamato deshidrogenasa el segundo. El α-cetoglutarato restante se metaboliza (PEPCK → gluconeogénesis) y rinde 2 HCO₃⁻ nuevos. La acidosis aumenta estas enzimas varias veces en 2–3 días. La hiperkalemia las frena: el K⁺ entra a la célula a cambio de H⁺, el citosol se alcaliniza y la vía se apaga. Este es el eslabón central de la ATR4: la acidosis es consecuencia de la hiperkalemia.',
+      refs: [3, 5, 6, 8, 26],
+      estado: (d) => `Actividad ${pct(d.prodNH4 / 50)} · freno por K⁺ ${pct(d.mK)} · adaptación ×${(NI.sim.s.adapt).toFixed(1)}`
+    },
+    nhe3: {
+      titulo: 'NHE3 — intercambiador Na⁺/H⁺ apical',
+      texto: 'Reabsorbe Na⁺ a cambio de H⁺ (así se reabsorbe el 80 % del HCO₃⁻ filtrado). El NH₄⁺ puede ocupar el sitio del H⁺: es la principal vía de secreción del amonio al túbulo. La angiotensina II lo estimula. Su defecto contribuye a la ATR tipo 2 (proximal).',
+      refs: [5, 6, 17],
+      estado: (d) => `Secreta NH₄⁺ al ritmo de la producción: ${d.prodNH4.toFixed(0)} mEq/día`
+    },
+    nbce1: {
+      titulo: 'NBCe1 — cotransportador Na⁺·3HCO₃⁻ basolateral',
+      texto: 'Saca a la sangre el HCO₃⁻ reabsorbido y el HCO₃⁻ nuevo de la amoniogénesis. Sus mutaciones causan ATR tipo 2 con afectación ocular.',
+      refs: [4, 35],
+      estado: (d) => `HCO₃⁻ nuevo de la glutamina ≈ ${d.prodNH4.toFixed(0)} mEq/día`
+    },
+    snat3: {
+      titulo: 'SNAT3 (SLC38A3) — entrada de glutamina',
+      texto: 'Transportador basolateral de glutamina. La acidosis aumenta su expresión para alimentar la amoniogénesis. En hiperkalemia entra menos glutamina a la vía.',
+      refs: [5, 8],
+      estado: (d) => `Entrada de glutamina ${pct(d.prodNH4 / 50)} del normal`
+    },
+    nkcc2: {
+      titulo: 'NKCC2 — cotransportador Na⁺·K⁺·2Cl⁻ (apical, asa gruesa)',
+      texto: 'Reabsorbe Na⁺, K⁺ y 2 Cl⁻. El NH₄⁺ tiene el mismo tamaño hidratado que el K⁺ y ocupa su sitio: así se reabsorbe la mayor parte del NH₄⁺ que viene del proximal y se acumula en el intersticio medular (gradiente que luego alimenta al colector vía Rhcg). Cuando el K⁺ luminal está alto compite con el NH₄⁺ y se recicla menos amonio: segundo golpe de la hiperkalemia a la excreción de ácido. La furosemida lo bloquea.',
+      refs: [3, 5, 7],
+      estado: (d) => `Fracción de NH₄⁺ reabsorbida ${pct(d.talFrac)} (normal 75 %) · competencia por K⁺ ${pct(1 - d.pK)}`
+    },
+    romk_tal: {
+      titulo: 'ROMK en el asa gruesa — recicla K⁺ a la luz',
+      texto: 'Devuelve a la luz el K⁺ que entró por NKCC2 para que el cotransportador nunca se quede sin K⁺ luminal, y genera el voltaje luminal positivo que empuja la reabsorción paracelular de Ca²⁺ y Mg²⁺. Mutaciones: síndrome de Bartter tipo 2.',
+      refs: [16, 20],
+      estado: () => 'Reciclaje continuo'
+    },
+    nh4_salida: {
+      titulo: 'Salida basolateral de NH₄⁺ (NHE4, KCC4, Na⁺/K⁺-ATPasa)',
+      texto: 'El NH₄⁺ reabsorbido sale al intersticio medular por varias vías (NHE4, KCC4 y la propia Na⁺/K⁺-ATPasa, que lo acepta en lugar del K⁺). Allí se concentra y, como NH₃, difunde hacia el colector medular. El depósito medular es el "tanque" del que vive la excreción final de ácido.',
+      refs: [5, 7],
+      estado: (d) => `Depósito medular ${pct(NI.sim.s.nh3Medular / 37.5)} del normal`
+    },
+    renina: {
+      titulo: 'Renina — aparato yuxtaglomerular',
+      texto: 'Se libera ante baja perfusión, poca llegada de NaCl a la mácula densa y estímulo simpático; las prostaglandinas son necesarias para su secreción. Los AINES (sin prostaglandinas), la nefropatía diabética (daño del aparato yuxtaglomerular, hipoaldosteronismo hiporreninémico) y los inhibidores de calcineurina la reducen. Sube cuando cae la aldosterona o se pierde sal (Addison, espironolactona, amilorida).',
+      refs: [31, 32, 29],
+      estado: (d) => `Renina ${d.reninaNgmlh.toFixed(1)} ng/mL/h (normal ≈ 1,5)`
+    },
+    angii: {
+      titulo: 'Angiotensina II',
+      texto: 'Estimula la síntesis de aldosterona en la zona glomerulosa y, por sí misma, ENaC, la H⁺-ATPasa y la amoniogénesis proximal. Los IECA impiden formarla y los ARA2 bloquean su receptor AT1: en ambos casos cae la aldosterona aunque la renina suba.',
+      refs: [1, 12, 9],
+      estado: (d) => `AngII efectiva ${pct(d.angII)} del normal`
+    },
+    suprarrenal: {
+      titulo: 'Zona glomerulosa — síntesis de aldosterona',
+      texto: 'La aldosterona se sintetiza con dos estímulos independientes: la angiotensina II y el K⁺ plasmático (el K⁺ alto despolariza la célula glomerulosa y activa la aldosterona sintasa). Addison destruye la glándula (aldosterona ≈ 0 con renina muy alta). La heparina reduce el número y la afinidad de los receptores AT1 en la zona glomerulosa y la atrofia (días). En la nefropatía diabética la glándula también responde mal al K⁺.',
+      refs: [30, 32, 19],
+      estado: (d) => `Aldosterona ${d.aldoNgdl.toFixed(0)} ng/dL (normal ≈ 10)`
+    },
     voltaje: {
       titulo: 'Voltaje transepitelial luminal',
       texto: 'La entrada de Na⁺ por ENaC sin anión acompañante deja la luz negativa respecto a la sangre (unos −10 a −50 mV según el estado de la aldosterona). Ese voltaje empuja a los cationes hacia la luz: K⁺ por ROMK y H⁺ por la H⁺-ATPasa de la célula intercalada α. Cuando ENaC cae, el voltaje se pierde y ambas secreciones bajan a la vez: esa es la conexión que convierte un problema de sodio en un problema de potasio y de ácido. Si el bloqueo es directo sobre ENaC (amilorida) la bomba de H⁺ queda sin ayuda y el pH urinario no logra bajar de 5,5.',

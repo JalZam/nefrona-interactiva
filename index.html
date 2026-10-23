@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="header-right">
-      <span class="badge-version">v1 · célula principal</span>
+      <span class="badge-version">v1 · ATR tipo 4</span>
     </div>
   </div>
 </header>
@@ -113,154 +113,249 @@
       </div>
     </div>
 
+    <!-- Mapa del nefrón: siempre animado -->
     <div class="card svg-card">
-      <svg id="svg-principal" viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Célula principal del túbulo colector">
-        <defs>
-          <marker id="flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-            <path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/>
-          </marker>
-          <marker id="inhib" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-            <path d="M5 1 L5 9" stroke="context-stroke" stroke-width="2.5"/>
-          </marker>
-        </defs>
+      <div class="svg-titulo">Mapa del nefrón · el amonio viaja de célula en célula <span class="svg-ayuda">toca un segmento para verlo en grande</span></div>
+      <svg id="svg-nefron" viewBox="0 0 1400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa del nefrón">
+        <rect class="banda-luz" x="0" y="40" width="1400" height="44"/>
+        <rect class="banda-sangre" x="0" y="190" width="1400" height="50"/>
+        <rect class="intersticio" x="330" y="128" width="960" height="56" rx="8"/>
+        <text class="banda-titulo" x="12" y="30">LUZ TUBULAR →</text>
+        <text class="banda-titulo" x="12" y="220">SANGRE</text>
+        <text class="inter-titulo" x="340" y="146">INTERSTICIO MEDULAR · depósito de NH₃/NH₄⁺</text>
+        <rect id="inter-pool" class="inter-pool" x="340" y="152" width="940" height="26" rx="6"/>
+        <text id="inter-val" class="inter-val" x="810" y="170">NH₃ medular 100 %</text>
+        <text class="orina-titulo" x="1340" y="68">ORINA</text>
+        <!-- guías -->
+        <g class="guias">
+          <path id="o-nh4-prox" d="M190 62 L452 62"/>
+          <path id="o-nh4-inter" d="M452 62 L452 165"/>
+          <path id="o-nh4-sigue" d="M452 62 L1140 62"/>
+          <path id="o-nh3-cd" d="M1170 165 L1170 62"/>
+          <path id="o-nh4-orina" d="M1170 62 L1385 62"/>
+          <path id="o-k-cd" d="M720 214 L720 62"/>
+          <path id="o-k-orina" d="M720 62 L1385 62"/>
+          <path id="o-na-cd" d="M760 62 L760 214"/>
+          <path id="o-h-cd" d="M930 214 L930 62"/>
+          <path id="o-h-orina" d="M930 62 L1385 62"/>
+          <path id="o-k-prox" d="M250 214 L250 100"/>
+          <path id="o-k-tal" d="M500 214 L500 100"/>
+        </g>
+        <!-- segmentos -->
+        <g class="seg ok" id="seg-proximal" data-vista="proximal"><rect x="90" y="84" width="200" height="40" rx="8"/><text x="190" y="102">Túbulo proximal</text><text class="seg-sub" x="190" y="117">fabrica NH₄⁺ y HCO₃⁻</text></g>
+        <g class="seg ok" id="seg-asa" data-vista="asa"><rect x="360" y="84" width="200" height="40" rx="8"/><text x="460" y="102">Asa gruesa</text><text class="seg-sub" x="460" y="117">recicla NH₄⁺ al intersticio</text></g>
+        <g class="seg ok" id="seg-principal" data-vista="principal"><rect x="640" y="84" width="200" height="40" rx="8"/><text x="740" y="102">Célula principal</text><text class="seg-sub" x="740" y="117">Na⁺ entra · K⁺ sale</text></g>
+        <g class="seg ok" id="seg-alfa" data-vista="alfa"><rect x="850" y="84" width="200" height="40" rx="8"/><text x="950" y="102">Célula intercalada α</text><text class="seg-sub" x="950" y="117">secreta H⁺</text></g>
+        <g class="seg ok" id="seg-medular" data-vista="alfa"><rect x="1080" y="84" width="200" height="40" rx="8"/><text x="1180" y="102">Colector medular</text><text class="seg-sub" x="1180" y="117">atrapa NH₃ + H⁺ → NH₄⁺</text></g>
+        <text id="o-nota-k" class="o-nota" x="250" y="136">K⁺ alto frena la glutaminasa</text>
+        <text id="o-nota-tal" class="o-nota" x="500" y="136">K⁺ compite con NH₄⁺ en NKCC2</text>
+      </svg>
+    </div>
 
-        <!-- Luz y sangre -->
+    <!-- Eje RAAS -->
+    <div class="card svg-card">
+      <div class="svg-titulo">Eje renina → angiotensina II → aldosterona <span class="svg-ayuda">dónde actúa cada causa</span></div>
+      <svg id="svg-raas" viewBox="0 0 1400 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eje renina angiotensina aldosterona">
+        <g class="guias">
+          <path id="r-renina" d="M230 60 L470 60"/>
+          <path id="r-angii" d="M690 60 L930 60"/>
+          <path id="r-aldo" d="M1150 60 L1330 60"/>
+        </g>
+        <g class="caja raas" id="box-renina" data-porque="renina"><rect x="40" y="36" width="190" height="48" rx="10"/><text x="135" y="56">Riñón (yuxtaglomerular)</text><text class="caja-sub" x="135" y="74">renina</text></g>
+        <g class="caja raas" id="box-angii" data-porque="angii"><rect x="520" y="36" width="170" height="48" rx="10"/><text x="605" y="56">Angiotensina II</text><text class="caja-sub" x="605" y="74">AT1</text></g>
+        <g class="caja raas" id="box-suprarrenal" data-porque="suprarrenal"><rect x="980" y="36" width="170" height="48" rx="10"/><text x="1065" y="56">Suprarrenal</text><text class="caja-sub" x="1065" y="74">zona glomerulosa → aldosterona</text></g>
+        <g class="caja raas destino" id="box-destino"><rect x="1230" y="36" width="150" height="48" rx="10"/><text x="1305" y="56">Célula principal</text><text class="caja-sub" x="1305" y="74">receptor MR</text></g>
+        <g class="marca" id="m-aine"><text x="135" y="106">AINE ↓ · diabetes ↓ · calcineurina ↓</text></g>
+        <g class="marca" id="m-ieca"><text x="605" y="106">IECA bloquea la síntesis · ARA2 bloquea AT1</text></g>
+        <g class="marca" id="m-supra"><text x="1065" y="106">Addison ↓↓ · heparina ↓ · K⁺ alto ↑</text></g>
+        <g class="marca" id="m-mr"><text x="1305" y="106">espironolactona bloquea MR</text></g>
+        <text id="r-val-renina" class="r-val" x="350" y="48">renina 1,5</text>
+        <text id="r-val-angii" class="r-val" x="810" y="48">AngII 100 %</text>
+        <text id="r-val-aldo" class="r-val" x="1190" y="26">aldo 10 ng/dL</text>
+      </svg>
+    </div>
+
+    <!-- Pestañas de células -->
+    <div class="tabs">
+      <button class="tab" data-vista="proximal">1 · Túbulo proximal</button>
+      <button class="tab" data-vista="asa">2 · Asa gruesa</button>
+      <button class="tab activo" data-vista="principal">3 · Célula principal</button>
+      <button class="tab" data-vista="alfa">4 · Célula intercalada α</button>
+    </div>
+
+    <div class="card svg-card">
+      <!-- ══════════ VISTA 3: CÉLULA PRINCIPAL ══════════ -->
+      <svg id="svg-principal" class="vista" data-vista="principal" viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Célula principal del túbulo colector">
+        <defs>
+          <marker id="flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker>
+          <marker id="inhib" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M5 1 L5 9" stroke="context-stroke" stroke-width="2.5"/></marker>
+        </defs>
         <rect class="banda-luz" x="0" y="0" width="960" height="100"/>
         <rect class="banda-sangre" x="0" y="460" width="960" height="100"/>
         <text class="banda-titulo" x="18" y="26">LUZ TUBULAR · orina</text>
         <text class="banda-titulo" x="18" y="486">SANGRE · intersticio</text>
-        <g class="banda-valores" id="luz-valores">
-          <text x="18" y="54">Na⁺ <tspan id="l-na">100</tspan> mEq/L</text>
-          <text x="18" y="76">K⁺ <tspan id="l-k">48</tspan> mEq/L · pH <tspan id="l-ph">5,1</tspan></text>
-        </g>
-        <g class="banda-valores" id="sangre-valores">
-          <text x="18" y="514">K⁺ <tspan id="s-k">4,0</tspan> mEq/L · HCO₃⁻ <tspan id="s-hco3">24</tspan></text>
-          <text x="18" y="536">Aldosterona <tspan id="s-aldo">10</tspan> ng/dL</text>
-        </g>
-
-        <!-- Célula -->
+        <g class="banda-valores"><text x="18" y="54">Na⁺ <tspan id="l-na">100</tspan> mEq/L</text><text x="18" y="76">K⁺ <tspan id="l-k">48</tspan> mEq/L · pH <tspan id="l-ph">5,1</tspan></text></g>
+        <g class="banda-valores" id="sangre-valores"><text x="18" y="514">K⁺ <tspan id="s-k">4,0</tspan> mEq/L · HCO₃⁻ <tspan id="s-hco3">24</tspan></text><text x="18" y="536">Aldosterona <tspan id="s-aldo">10</tspan> ng/dL</text></g>
         <rect class="celula" x="140" y="100" width="680" height="360" rx="26"/>
         <text class="celula-titulo" x="480" y="128">Célula principal · túbulo colector cortical</text>
         <line class="membrana" x1="140" y1="100" x2="820" y2="100"/>
         <line class="membrana" x1="140" y1="460" x2="820" y2="460"/>
         <text class="membrana-label" x="150" y="116">membrana apical</text>
         <text class="membrana-label" x="150" y="452">membrana basolateral</text>
-
-        <!-- Flujos -->
-        <g class="flujos">
-          <path id="fl-na-apical" class="flujo na" d="M250 42 L250 168" marker-end="url(#flecha)"/>
-          <path id="fl-na-baso" class="flujo na" d="M250 190 C250 330 318 300 318 440 L318 518" marker-end="url(#flecha)"/>
-          <path id="fl-k-in" class="flujo k" d="M346 518 L346 440 C346 300 400 330 400 190" marker-end="url(#flecha)"/>
-          <path id="fl-k-romk" class="flujo k" d="M400 168 L400 42" marker-end="url(#flecha)"/>
-          <path id="fl-k-bk" class="flujo k" d="M520 168 L520 42" marker-end="url(#flecha)"/>
-          <path id="fl-h2o" class="flujo agua" d="M660 42 L660 168" marker-end="url(#flecha)"/>
-          <text class="ion-label na" x="262" y="62">Na⁺</text>
-          <text class="ion-label k" x="412" y="62">K⁺</text>
-          <text class="ion-label k" x="532" y="62">K⁺</text>
-          <text class="ion-label agua" x="672" y="62">H₂O</text>
-          <text class="ion-label na" x="296" y="512">3 Na⁺</text>
-          <text class="ion-label k" x="354" y="512">2 K⁺</text>
+        <g class="guias">
+          <path id="g-na-ap" d="M250 28 L250 172"/>
+          <path id="g-na-bl" d="M250 182 C250 320 318 320 318 440 L318 538"/>
+          <path id="g-k-in" d="M346 538 L346 440 C346 320 400 320 400 182"/>
+          <path id="g-k-romk" d="M400 172 L400 28"/>
+          <path id="g-k-bk" d="M520 172 L520 28"/>
+          <path id="g-k-kir" d="M400 182 C400 320 600 320 600 440 L600 538"/>
+          <path id="g-cl-para" d="M125 28 L125 538"/>
+          <path id="g-aldo" d="M722 538 L722 404"/>
+          <path id="g-h2o" d="M660 28 L660 172"/>
         </g>
-
-        <!-- Canales apicales -->
-        <g class="canal ok" id="ch-enac" data-porque="enac" transform="translate(250,100)">
-          <rect class="hit" x="-34" y="-44" width="68" height="110"/>
-          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
-          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
-          <text class="x" x="0" y="7">✕</text>
-          <text class="canal-nombre" x="0" y="56">ENaC</text>
-        </g>
-        <g class="canal ok" id="ch-romk" data-porque="romk" transform="translate(400,100)">
-          <rect class="hit" x="-34" y="-44" width="68" height="110"/>
-          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
-          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
-          <text class="x" x="0" y="7">✕</text>
-          <text class="canal-nombre" x="0" y="56">ROMK</text>
-        </g>
-        <g class="canal ok" id="ch-bk" data-porque="bk" transform="translate(520,100)">
-          <rect class="hit" x="-34" y="-44" width="68" height="110"/>
-          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
-          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
-          <text class="x" x="0" y="7">✕</text>
-          <text class="canal-nombre" x="0" y="56">BK</text>
-        </g>
-        <g class="canal ok estatico" id="ch-aqp2" data-porque="aqp2" transform="translate(660,100)">
-          <rect class="hit" x="-34" y="-44" width="68" height="110"/>
-          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
-          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
-          <text class="canal-nombre" x="0" y="56">AQP2</text>
-        </g>
-
-        <!-- Basolaterales -->
-        <g class="bomba ok" id="ch-nak" data-porque="nak" transform="translate(332,460)">
-          <rect class="hit" x="-44" y="-58" width="88" height="90"/>
-          <circle class="sub" r="24"/>
-          <text class="bomba-atp" x="0" y="5">ATP</text>
-          <text class="canal-nombre" x="0" y="-36">Na⁺/K⁺-ATPasa</text>
-        </g>
-        <g class="canal ok estatico" id="ch-kir" data-porque="kir41" transform="translate(600,460)">
-          <rect class="hit" x="-34" y="-58" width="68" height="90"/>
-          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
-          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
-          <text class="canal-nombre" x="0" y="-30">Kir4.1/5.1</text>
-        </g>
-
-        <!-- Vía aldosterona → MR → SGK1 → Nedd4-2 ⊣ ENaC -->
-        <g id="aldo-dots" class="aldo-dots">
-          <circle cx="720" cy="500" r="5"/><circle cx="740" cy="520" r="5"/><circle cx="700" cy="530" r="5"/>
-          <circle cx="760" cy="496" r="5"/><circle cx="730" cy="544" r="5"/><circle cx="690" cy="506" r="5"/>
-        </g>
+        <text class="ion-label na" x="262" y="62">Na⁺</text><text class="ion-label k" x="412" y="62">K⁺</text><text class="ion-label k" x="532" y="62">K⁺</text><text class="ion-label agua" x="672" y="62">H₂O</text>
+        <text class="ion-label na" x="282" y="512">3 Na⁺</text><text class="ion-label k" x="354" y="512">2 K⁺</text><text class="ion-label k" x="612" y="512">K⁺ de vuelta</text>
+        <text class="ion-label cl" x="100" y="300" transform="rotate(-90 100 300)">Cl⁻ paracelular</text>
+        <g class="canal ok" id="ch-enac" data-porque="enac" transform="translate(250,100)"><rect class="hit" x="-34" y="-44" width="68" height="110"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="x" x="0" y="7">✕</text><text class="canal-nombre" x="0" y="56">ENaC</text></g>
+        <g class="canal ok" id="ch-romk" data-porque="romk" transform="translate(400,100)"><rect class="hit" x="-34" y="-44" width="68" height="110"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="x" x="0" y="7">✕</text><text class="canal-nombre" x="0" y="56">ROMK</text></g>
+        <g class="canal ok" id="ch-bk" data-porque="bk" transform="translate(520,100)"><rect class="hit" x="-34" y="-44" width="68" height="110"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="x" x="0" y="7">✕</text><text class="canal-nombre" x="0" y="56">BK</text></g>
+        <g class="canal ok estatico" id="ch-aqp2" data-porque="aqp2" transform="translate(660,100)"><rect class="hit" x="-34" y="-44" width="68" height="110"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="canal-nombre" x="0" y="56">AQP2</text></g>
+        <g class="bomba ok" id="ch-nak" data-porque="nak" transform="translate(332,460)"><rect class="hit" x="-44" y="-58" width="88" height="90"/><circle class="sub" r="24"/><text class="bomba-atp" x="0" y="5">ATP</text><text class="canal-nombre" x="0" y="-36">Na⁺/K⁺-ATPasa</text></g>
+        <g class="canal ok estatico" id="ch-kir" data-porque="kir41" transform="translate(600,460)"><rect class="hit" x="-34" y="-58" width="68" height="90"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="canal-nombre" x="0" y="-30">Kir4.1/5.1</text></g>
+        <g class="union" data-porque="paracelular"><rect class="hit" x="100" y="100" width="40" height="360"/><line x1="125" y1="100" x2="125" y2="460"/><text x="131" y="136" transform="rotate(90 131 136)">unión estrecha</text></g>
         <path id="fl-aldo" class="via" d="M722 470 L722 402" marker-end="url(#flecha)"/>
         <text class="via-label" x="734" y="440">aldosterona</text>
         <text class="via-nota" x="734" y="456">11β-HSD2 inactiva al cortisol</text>
-        <g class="caja" id="box-mr" data-porque="mr">
-          <rect class="hit" x="670" y="358" width="104" height="44"/>
-          <rect x="676" y="364" width="92" height="34" rx="8"/>
-          <text x="722" y="386">MR</text>
-        </g>
+        <g class="caja" id="box-mr" data-porque="mr"><rect class="hit" x="670" y="358" width="104" height="44"/><rect x="676" y="364" width="92" height="34" rx="8"/><text x="722" y="386">MR</text></g>
         <path id="fl-mr-nuc" class="via" d="M676 380 L640 352" marker-end="url(#flecha)"/>
-        <g class="nucleo" data-porque="nucleo">
-          <ellipse cx="560" cy="335" rx="84" ry="46"/>
-          <text x="560" y="330">Núcleo</text>
-          <text class="nucleo-sub" x="560" y="350">transcripción · días</text>
-        </g>
+        <g class="nucleo" data-porque="nucleo"><ellipse cx="560" cy="335" rx="84" ry="46"/><text x="560" y="330">Núcleo</text><text class="nucleo-sub" x="560" y="350">transcripción · días</text></g>
         <path id="fl-nuc-sgk" class="via" d="M528 292 L516 254" marker-end="url(#flecha)"/>
-        <g class="caja" id="box-sgk1" data-porque="sgk1">
-          <rect class="hit" x="464" y="210" width="96" height="44"/>
-          <rect x="470" y="216" width="84" height="34" rx="8"/>
-          <text x="512" y="238">SGK1</text>
-        </g>
+        <g class="caja" id="box-sgk1" data-porque="sgk1"><rect class="hit" x="464" y="210" width="96" height="44"/><rect x="470" y="216" width="84" height="34" rx="8"/><text x="512" y="238">SGK1</text></g>
         <path id="fl-sgk-nedd" class="via inhib" d="M470 233 L418 233" marker-end="url(#inhib)"/>
-        <g class="caja" id="box-nedd" data-porque="nedd" transform="translate(0,0)">
-          <rect class="hit" x="314" y="210" width="104" height="44"/>
-          <rect x="320" y="216" width="92" height="34" rx="8"/>
-          <text x="366" y="238">Nedd4-2</text>
-        </g>
+        <g class="caja" id="box-nedd" data-porque="nedd"><rect class="hit" x="314" y="210" width="104" height="44"/><rect x="320" y="216" width="92" height="34" rx="8"/><text x="366" y="238">Nedd4-2</text></g>
         <path id="fl-nedd-enac" class="via inhib" d="M338 216 L270 142" marker-end="url(#inhib)"/>
         <text class="via-label" id="nedd-estado" x="300" y="276">retira ENaC (inhibida)</text>
         <path id="fl-nuc-romk" class="via tenue" d="M500 300 C440 290 420 250 404 170" marker-end="url(#flecha)"/>
         <path id="fl-nuc-nak" class="via tenue" d="M520 378 C440 410 380 400 352 432" marker-end="url(#flecha)"/>
         <text class="via-nota" x="604" y="404">↑ ROMK y ↑ Na⁺/K⁺-ATPasa (horas–días)</text>
+        <g class="voltimetro" data-porque="voltaje"><rect class="hit" x="846" y="104" width="110" height="352"/><text class="volt-titulo" x="900" y="124">Voltaje luminal</text><rect class="volt-marco" x="884" y="136" width="32" height="270" rx="6"/><rect id="volt-barra" class="volt-barra" x="884" y="136" width="32" height="270" rx="6"/><text class="volt-tick" x="878" y="142">0</text><text class="volt-tick" x="878" y="274">−25</text><text class="volt-tick" x="878" y="406">−50 mV</text><text id="volt-val" class="volt-val" x="900" y="440">−40 mV</text></g>
+      </svg>
 
-        <!-- Voltímetro -->
-        <g class="voltimetro" data-porque="voltaje">
-          <rect class="hit" x="846" y="104" width="110" height="352"/>
-          <text class="volt-titulo" x="900" y="124">Voltaje luminal</text>
-          <rect class="volt-marco" x="884" y="136" width="32" height="270" rx="6"/>
-          <rect id="volt-barra" class="volt-barra" x="884" y="136" width="32" height="270" rx="6"/>
-          <text class="volt-tick" x="878" y="142">0</text>
-          <text class="volt-tick" x="878" y="274">−25</text>
-          <text class="volt-tick" x="878" y="406">−50 mV</text>
-          <text id="volt-val" class="volt-val" x="900" y="440">−40 mV</text>
+      <!-- ══════════ VISTA 4: CÉLULA INTERCALADA α ══════════ -->
+      <svg id="svg-alfa" class="vista oculta" data-vista="alfa" viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Célula intercalada alfa">
+        <rect class="banda-luz" x="0" y="0" width="960" height="100"/>
+        <rect class="banda-sangre" x="0" y="460" width="960" height="100"/>
+        <text class="banda-titulo" x="18" y="26">LUZ TUBULAR · orina →</text>
+        <text class="banda-titulo" x="18" y="486">SANGRE · intersticio medular</text>
+        <g class="banda-valores"><text x="18" y="54">pH <tspan id="a-ph">5,1</tspan> · NH₄⁺ <tspan id="a-nh4">40</tspan> mEq/día</text><text x="18" y="76">NH₃ que llega: <tspan id="a-nh3">100</tspan> %</text></g>
+        <g class="banda-valores" id="sangre-valores-a"><text x="18" y="514">HCO₃⁻ <tspan id="a-hco3">24</tspan> · K⁺ <tspan id="a-k">4,0</tspan></text><text x="18" y="536">NH₃ medular <tspan id="a-pool">100</tspan> %</text></g>
+        <rect class="celula alfa" x="140" y="100" width="680" height="360" rx="26"/>
+        <text class="celula-titulo" x="480" y="128">Célula intercalada α · túbulo colector (cortical y medular)</text>
+        <line class="membrana" x1="140" y1="100" x2="820" y2="100"/>
+        <line class="membrana" x1="140" y1="460" x2="820" y2="460"/>
+        <text class="membrana-label" x="150" y="116">membrana apical</text>
+        <text class="membrana-label" x="150" y="452">membrana basolateral</text>
+        <g class="guias">
+          <path id="g-co2" d="M300 538 L300 440 L300 336"/>
+          <path id="g-h-ap" d="M300 264 L300 28"/>
+          <path id="g-h-fade" d="M300 24 L300 -20"/>
+          <path id="g-hco3-bl" d="M360 336 L360 440 L360 538"/>
+          <path id="g-cl-ae1" d="M392 538 L392 410 C392 380 440 380 440 410 L440 538"/>
+          <path id="g-nh3" d="M640 538 L640 440 L640 172 L640 28"/>
+          <path id="g-nh4-orina" d="M640 24 L940 24"/>
+          <path id="g-nh3-escapa" d="M640 24 L470 24"/>
+          <path id="g-k-hk" d="M470 28 L470 172"/>
+          <path id="g-h-hk" d="M500 172 L500 28"/>
         </g>
+        <text class="ion-label h" x="312" y="62">H⁺</text><text class="ion-label nh3" x="652" y="62">NH₃ + H⁺ → NH₄⁺</text>
+        <text class="ion-label hco3" x="372" y="512">HCO₃⁻ nuevo</text><text class="ion-label cl" x="452" y="512">Cl⁻</text><text class="ion-label co2" x="250" y="512">CO₂</text><text class="ion-label nh3" x="652" y="512">NH₃</text>
+        <g class="bomba ok" id="ch-hatp" data-porque="hatpasa" transform="translate(300,100)"><rect class="hit" x="-44" y="-44" width="88" height="100"/><circle class="sub roja" r="24"/><text class="bomba-atp" x="0" y="5">ATP</text><text class="canal-nombre" x="0" y="52">H⁺-ATPasa</text></g>
+        <g class="bomba ok estatico" id="ch-hk" data-porque="hkatpasa" transform="translate(485,100)"><rect class="hit" x="-44" y="-44" width="88" height="100"/><circle class="sub" r="22"/><text class="bomba-atp" x="0" y="5">ATP</text><text class="canal-nombre" x="0" y="52">H⁺/K⁺-ATPasa</text></g>
+        <g class="canal ok" id="ch-rhcg-ap" data-porque="rhcg" transform="translate(640,100)"><rect class="hit" x="-34" y="-44" width="68" height="110"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="x" x="0" y="7">✕</text><text class="canal-nombre" x="0" y="56">Rhcg</text></g>
+        <g class="canal ok" id="ch-rhcg-bl" data-porque="rhcg" transform="translate(640,460)"><rect class="hit" x="-34" y="-58" width="68" height="90"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="canal-nombre" x="0" y="-30">Rhcg / Rhbg</text></g>
+        <g class="bomba ok" id="ch-ae1" data-porque="ae1" transform="translate(376,460)"><rect class="hit" x="-50" y="-58" width="100" height="90"/><circle class="sub verdeazul" r="24"/><text class="bomba-atp" x="0" y="5">⇅</text><text class="canal-nombre" x="0" y="-36">AE1 (Cl⁻/HCO₃⁻)</text></g>
+        <g class="canal ok estatico" id="ch-clc" data-porque="clc" transform="translate(440,460)"><rect class="hit" x="-30" y="-58" width="60" height="90"/><rect class="sub" x="-20" y="-18" width="14" height="36" rx="4"/><rect class="sub" x="6" y="-18" width="14" height="36" rx="4"/><text class="canal-nombre" x="30" y="-36">ClC</text></g>
+        <g class="caja ca" id="box-ca" data-porque="ca2"><rect class="hit" x="200" y="264" width="280" height="76"/><rect x="206" y="270" width="268" height="64" rx="10"/><text x="340" y="294">CO₂ + H₂O → H⁺ + HCO₃⁻</text><text class="caja-sub" x="340" y="316">anhidrasa carbónica II</text></g>
+        <text class="via-nota" x="540" y="300">El H⁺ sale por la H⁺-ATPasa</text>
+        <text class="via-nota" x="540" y="316">(ayudada por el voltaje negativo luminal)</text>
+        <text class="via-nota" x="540" y="332">El HCO₃⁻ nuevo sale a la sangre por AE1</text>
+        <g class="voltimetro" data-porque="voltaje"><rect class="hit" x="846" y="104" width="110" height="352"/><text class="volt-titulo" x="900" y="124">Voltaje luminal</text><rect class="volt-marco" x="884" y="136" width="32" height="270" rx="6"/><rect id="volt-barra-a" class="volt-barra" x="884" y="136" width="32" height="270" rx="6"/><text class="volt-tick" x="878" y="142">0</text><text class="volt-tick" x="878" y="274">−25</text><text class="volt-tick" x="878" y="406">−50 mV</text><text id="volt-val-a" class="volt-val" x="900" y="440">−40 mV</text></g>
+      </svg>
+
+      <!-- ══════════ VISTA 1: TÚBULO PROXIMAL ══════════ -->
+      <svg id="svg-proximal" class="vista oculta" data-vista="proximal" viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Célula del túbulo proximal">
+        <rect class="banda-luz" x="0" y="0" width="960" height="100"/>
+        <rect class="banda-sangre" x="0" y="460" width="960" height="100"/>
+        <text class="banda-titulo" x="18" y="26">LUZ TUBULAR · hacia el asa →</text>
+        <text class="banda-titulo" x="18" y="486">SANGRE · capilar peritubular</text>
+        <g class="banda-valores"><text x="18" y="54">NH₄⁺ producido: <tspan id="p-prod">50</tspan> mEq/día</text><text x="18" y="76">(<tspan id="p-pct">100</tspan> % de lo normal)</text></g>
+        <g class="banda-valores" id="sangre-valores-p"><text x="18" y="514">K⁺ <tspan id="p-k">4,0</tspan> mEq/L · HCO₃⁻ <tspan id="p-hco3">24</tspan></text><text x="18" y="536">glutamina ⇢ 2 NH₄⁺ + 2 HCO₃⁻</text></g>
+        <rect class="celula proximal" x="140" y="100" width="680" height="360" rx="26"/>
+        <text class="celula-titulo" x="480" y="128">Célula del túbulo proximal · amoniogénesis</text>
+        <line class="membrana" x1="140" y1="100" x2="820" y2="100"/>
+        <line class="membrana" x1="140" y1="460" x2="820" y2="460"/>
+        <text class="membrana-label" x="150" y="116">membrana apical (ribete en cepillo)</text>
+        <text class="membrana-label" x="150" y="452">membrana basolateral</text>
+        <g class="guias">
+          <path id="g-gln" d="M640 538 L640 440 L640 346"/>
+          <path id="g-nh4-ap" d="M520 244 C520 200 300 200 300 172 L300 28"/>
+          <path id="g-nh4-lumen" d="M300 24 L940 24"/>
+          <path id="g-na-nhe3" d="M330 28 L330 172"/>
+          <path id="g-hco3-nbc" d="M520 344 C520 400 330 400 330 440 L330 538"/>
+          <path id="g-k-prox" d="M480 538 L480 440 L480 352"/>
+          <path id="g-h-nhe3" d="M270 172 L270 28"/>
+        </g>
+        <text class="ion-label nh4" x="312" y="62">NH₄⁺ (en lugar de H⁺)</text><text class="ion-label na" x="342" y="150">Na⁺</text>
+        <text class="ion-label hco3" x="342" y="512">HCO₃⁻ nuevo</text><text class="ion-label gln" x="652" y="512">glutamina</text><text class="ion-label k" x="492" y="512">K⁺</text>
+        <g class="bomba ok" id="ch-nhe3" data-porque="nhe3" transform="translate(300,100)"><rect class="hit" x="-50" y="-44" width="100" height="100"/><circle class="sub" r="24"/><text class="bomba-atp" x="0" y="5">⇅</text><text class="canal-nombre" x="0" y="52">NHE3 (Na⁺/H⁺)</text></g>
+        <g class="bomba ok" id="ch-nbc" data-porque="nbce1" transform="translate(330,460)"><rect class="hit" x="-50" y="-58" width="100" height="90"/><circle class="sub verdeazul" r="24"/><text class="bomba-atp" x="0" y="5">⇅</text><text class="canal-nombre" x="0" y="-36">NBCe1 (Na⁺·3HCO₃⁻)</text></g>
+        <g class="canal ok" id="ch-snat3" data-porque="snat3" transform="translate(640,460)"><rect class="hit" x="-34" y="-58" width="68" height="90"/><rect class="sub marron" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub marron" x="8" y="-18" width="16" height="36" rx="4"/><text class="canal-nombre" x="0" y="-30">SNAT3</text></g>
+        <g class="bomba ok estatico" id="ch-nak-p" data-porque="nak" transform="translate(760,460)"><rect class="hit" x="-44" y="-58" width="88" height="90"/><circle class="sub" r="20"/><text class="bomba-atp" x="0" y="5">ATP</text><text class="canal-nombre" x="0" y="-32">Na⁺/K⁺-ATPasa</text></g>
+        <g class="caja mito" id="box-mito" data-porque="glutaminasa"><rect class="hit" x="400" y="238" width="360" height="112"/><rect x="406" y="244" width="348" height="100" rx="14"/><text x="580" y="270">Glutamina → glutaminasa (PDG) → GDH</text><text class="caja-sub" x="580" y="290">→ α-cetoglutarato → PEPCK → glucosa</text><text class="caja-sub" x="580" y="310">= 2 NH₄⁺ + 2 HCO₃⁻ por glutamina</text><text id="mito-estado" class="caja-estado" x="580" y="334">actividad 100 %</text></g>
+        <text id="p-nota-k" class="via-label alerta oculta" x="470" y="400">K⁺ alto entra, alcaliniza la célula y frena la glutaminasa</text>
+      </svg>
+
+      <!-- ══════════ VISTA 2: ASA GRUESA ASCENDENTE ══════════ -->
+      <svg id="svg-asa" class="vista oculta" data-vista="asa" viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Célula del asa gruesa ascendente">
+        <rect class="banda-luz" x="0" y="0" width="960" height="100"/>
+        <rect class="banda-sangre" x="0" y="460" width="960" height="100"/>
+        <text class="banda-titulo" x="18" y="94">LUZ TUBULAR · viene del proximal →</text>
+        <text class="banda-titulo" x="18" y="486">INTERSTICIO MEDULAR · depósito de NH₃/NH₄⁺</text>
+        <g class="banda-valores"><text x="620" y="54">NH₄⁺ que llega: <tspan id="t-llega">50</tspan> mEq/día</text><text x="620" y="76">reabsorbido en NKCC2: <tspan id="t-pct">75</tspan> %</text></g>
+        <g class="banda-valores" id="sangre-valores-t"><text x="18" y="514">NH₃ medular <tspan id="t-pool">100</tspan> %</text><text x="18" y="536">K⁺ plasma <tspan id="t-k">4,0</tspan> mEq/L</text></g>
+        <rect id="t-deposito" class="deposito" x="660" y="470" width="280" height="80" rx="10"/>
+        <text class="deposito-txt" x="800" y="515">NH₃ / NH₄⁺</text>
+        <rect class="celula asa" x="140" y="100" width="680" height="360" rx="26"/>
+        <text class="celula-titulo" x="480" y="128">Célula del asa gruesa ascendente · reciclaje de NH₄⁺</text>
+        <line class="membrana" x1="140" y1="100" x2="820" y2="100"/>
+        <line class="membrana" x1="140" y1="460" x2="820" y2="460"/>
+        <text class="membrana-label" x="150" y="116">membrana apical</text>
+        <text class="membrana-label" x="150" y="452">membrana basolateral</text>
+        <g class="guias">
+          <path id="g-nh4-llega" d="M20 24 L300 24"/>
+          <path id="g-nh4-cell" d="M300 28 L300 172 C300 320 600 320 600 440 L600 538"/>
+          <path id="g-nh4-sigue" d="M300 24 L940 24"/>
+          <path id="g-k-llega" d="M20 70 L300 70"/>
+          <path id="g-k-cell" d="M330 28 L330 172"/>
+          <path id="g-k-recicla" d="M330 182 C330 240 480 240 480 172 L480 28"/>
+          <path id="g-na-asa" d="M270 28 L270 172 C270 320 300 320 300 440 L300 538"/>
+          <path id="g-cl-asa" d="M240 28 L240 172 C240 320 420 320 420 440 L420 538"/>
+        </g>
+        <text class="ion-label nh4" x="320" y="48">NH₄⁺ ocupa el sitio del K⁺</text>
+        <text class="ion-label na" x="260" y="512">Na⁺</text><text class="ion-label cl" x="432" y="512">Cl⁻</text><text class="ion-label nh4" x="612" y="512">NH₄⁺ al intersticio</text>
+        <g class="bomba ok" id="ch-nkcc2" data-porque="nkcc2" transform="translate(285,100)"><rect class="hit" x="-70" y="-44" width="140" height="100"/><rect class="sub ancho" x="-62" y="-20" width="124" height="40" rx="10"/><text class="bomba-atp" x="0" y="-2">NKCC2</text><text class="bomba-sub" x="0" y="12">Na⁺ · K⁺/NH₄⁺ · 2Cl⁻</text><text class="canal-nombre" x="0" y="56">NKCC2 (furosemida)</text></g>
+        <g class="canal ok" id="ch-romk-t" data-porque="romk_tal" transform="translate(480,100)"><rect class="hit" x="-34" y="-44" width="68" height="110"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="canal-nombre" x="0" y="56">ROMK (recicla K⁺)</text></g>
+        <g class="bomba ok estatico" id="ch-nak-t" data-porque="nak" transform="translate(300,460)"><rect class="hit" x="-44" y="-58" width="88" height="90"/><circle class="sub" r="22"/><text class="bomba-atp" x="0" y="5">ATP</text><text class="canal-nombre" x="0" y="-34">Na⁺/K⁺-ATPasa</text></g>
+        <g class="canal ok estatico" id="ch-clckb" data-porque="clc" transform="translate(420,460)"><rect class="hit" x="-34" y="-58" width="68" height="90"/><rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/><text class="canal-nombre" x="0" y="-30">ClC-Kb</text></g>
+        <g class="canal ok" id="ch-nh4-salida" data-porque="nh4_salida" transform="translate(600,460)"><rect class="hit" x="-44" y="-58" width="88" height="90"/><rect class="sub naranja" x="-24" y="-18" width="16" height="36" rx="4"/><rect class="sub naranja" x="8" y="-18" width="16" height="36" rx="4"/><text class="canal-nombre" x="0" y="-30">salida de NH₄⁺ (NHE4 / KCC4)</text></g>
+        <text id="t-nota-k" class="via-label alerta oculta" x="430" y="300">K⁺ luminal alto compite con el NH₄⁺ por NKCC2</text>
+        <text class="via-nota" x="430" y="340">Lo que no se reabsorbe sigue por la luz sin construir el gradiente medular</text>
       </svg>
 
       <div class="leyenda">
-        <span><i class="sw ok"></i> normal</span>
-        <span><i class="sw parcial"></i> parcial</span>
-        <span><i class="sw off"></i> apagado</span>
-        <span class="leyenda-sep">grosor de flecha = flujo</span>
-        <span class="leyenda-sep">toca un canal para ver qué lo activa</span>
+        <span><i class="sw ok"></i> normal</span><span><i class="sw parcial"></i> parcial</span><span><i class="sw off"></i> apagado</span>
+        <span class="leyenda-sep">bolitas por segundo = flujo · ✕ = bloqueado</span>
+        <span class="leyenda-sep">toca un canal, bomba o caja para ver qué lo activa</span>
       </div>
     </div>
 
@@ -276,7 +371,7 @@
         <li data-paso="enac">Nedd4-2 retira ENaC</li>
         <li data-paso="volt">Se pierde el voltaje luminal</li>
         <li data-paso="k">Baja la secreción de K⁺ → sube el K⁺ en sangre</li>
-        <li data-paso="nh4">La hiperkalemia frena el NH₄⁺ (túbulo proximal, fase 3)</li>
+        <li data-paso="nh4">La hiperkalemia frena el NH₄⁺ (proximal y asa)</li>
         <li data-paso="hco3">Cae la excreción de ácido → baja el HCO₃⁻</li>
       </ol>
     </div>
@@ -327,7 +422,9 @@
 </footer>
 
 <script src="js/model.js"></script>
+<script src="js/particulas.js"></script>
 <script src="js/refs.js"></script>
+<script src="js/escenas.js"></script>
 <script src="js/svg-nefrona.js"></script>
 <script src="js/ui.js"></script>
 </body>

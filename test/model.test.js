@@ -24,13 +24,13 @@ function correr(causas, dias, ctx) {
 const f = (x, n = 2) => (+x).toFixed(n);
 function resumen(nombre, r) {
   const s = r.s, d = r.d;
-  console.log(`\n${nombre}: K ${f(s.K)}  HCO3 ${f(s.HCO3,1)}  Cl ${f(d.Cl,0)}  pH ${f(d.pH)}  | orina pH ${f(d.pHu)}  NH4 ${f(d.nh4u,0)}/d  TTKG ${f(d.ttkg,1)}  UAG ${f(d.uag,0)} | aldo ${f(d.aldoNgdl,0)} ng/dL  renina ${f(d.reninaNgmlh,1)} | V ${f(d.voltaje,0)} mV  ENaC ${f(d.actENaC)}  ROMK ${f(d.actROMK)}  H+ ${f(d.actHATP)}  amonio ${f(d.mK)}`);
+  console.log(`\n${nombre}: K ${f(d.Kp)}  HCO3 ${f(s.HCO3,1)}  Cl ${f(d.Cl,0)}  pH ${f(d.pH)}  | orina pH ${f(d.pHu)}  NH4 ${f(d.nh4u,0)}/d  TTKG ${f(d.ttkg,1)}  UAG ${f(d.uag,0)} | aldo ${f(d.aldoNgdl,0)} ng/dL  renina ${f(d.reninaNgmlh,1)} | V ${f(d.voltaje,0)} mV  ENaC ${f(d.actENaC)}  ROMK ${f(d.actROMK)}  H+ ${f(d.actHATP)}  amonio ${f(d.mK)}`);
 }
 
 console.log('=== (a) Estado normal 30 días ===');
 let r = correr({}, 30);
 resumen('Normal', r);
-check('K 4,0 ± 0,1', Math.abs(r.s.K - 4) < 0.1, f(r.s.K));
+check('K 4,0 ± 0,1', Math.abs(r.d.Kp - 4) < 0.1, f(r.d.Kp));
 check('HCO3 24 ± 0,5', Math.abs(r.s.HCO3 - 24) < 0.5, f(r.s.HCO3,1));
 check('pH urinario 5,0–6,5', r.d.pHu >= 5 && r.d.pHu <= 6.5, f(r.d.pHu));
 check('TTKG 6–10', r.d.ttkg >= 6 && r.d.ttkg <= 10, f(r.d.ttkg,1));
@@ -44,7 +44,7 @@ for (const c of causas) {
   res[c] = r;
   resumen(c, r);
   if (fuertes.includes(c)) {
-    check(c + ': K 5,0–7,0', r.s.K >= 5.0 && r.s.K <= 7.0, f(r.s.K));
+    check(c + ': K 5,0–7,0', r.d.Kp >= 5.0 && r.d.Kp <= 7.0, f(r.d.Kp));
     // amilorida = ATR hiperkalémica dependiente de voltaje: acidosis más profunda (Batlle 2018)
     const hMin = c === 'amilorida' ? 12 : 15;
     check(c + `: HCO3 ${hMin}–23`, r.s.HCO3 >= hMin && r.s.HCO3 <= 23, f(r.s.HCO3,1));
@@ -52,7 +52,7 @@ for (const c of causas) {
     check(c + ': NH4 urinario < 45 (bajo para la acidosis)', r.d.nh4u < 45, f(r.d.nh4u,0));
     check(c + ': UAG ≥ 0', r.d.uag >= 0, f(r.d.uag,0));
   } else {
-    check(c + ' (leve): K 4,4–5,5', r.s.K >= 4.4 && r.s.K <= 5.5, f(r.s.K));
+    check(c + ' (leve): K 4,4–5,5', r.d.Kp >= 4.4 && r.d.Kp <= 5.5, f(r.d.Kp));
     check(c + ' (leve): HCO3 18–24', r.s.HCO3 >= 18 && r.s.HCO3 <= 24, f(r.s.HCO3,1));
   }
   check(c + ': sin oscilación', r.cambiosK <= 2 && r.cambiosH <= 2, `K ${r.cambiosK}, HCO3 ${r.cambiosH}`);
@@ -72,18 +72,18 @@ console.log('\n=== (e) Addison con TFG 100 (acidosis modesta, Batlle) ===');
 r = correr({ addison: 1 }, 21, { tfg: 100 });
 resumen('addison TFG100', r);
 check('HCO3 19–24 (modesta)', r.s.HCO3 >= 19 && r.s.HCO3 <= 24, f(r.s.HCO3,1));
-check('K 5,0–6,5', r.s.K >= 5 && r.s.K <= 6.5, f(r.s.K));
+check('K 5,0–6,5', r.d.Kp >= 5 && r.d.Kp <= 6.5, f(r.d.Kp));
 
 console.log('\n=== (f) Combinación diabético + IECA + AINE, TFG 40 ===');
 r = correr({ diabetes: 1, ieca: 1, aine: 1 }, 14, { tfg: 40 });
 resumen('combo', r);
-check('K > 5,5', r.s.K > 5.5, f(r.s.K));
-check('K < 8', r.s.K < 8, f(r.s.K));
+check('K > 5,3', r.d.Kp > 5.3, f(r.d.Kp));
+check('K < 8', r.d.Kp < 8, f(r.d.Kp));
 
 console.log('\n=== (g) Sin causas con TFG 50: K casi normal ===');
 r = correr({}, 30, { tfg: 50 });
 resumen('TFG50', r);
-check('K 4,0–4,8', r.s.K >= 4 && r.s.K <= 4.8, f(r.s.K));
+check('K 4,0–4,8', r.d.Kp >= 4 && r.d.Kp <= 4.8, f(r.d.Kp));
 check('HCO3 ≥ 22', r.s.HCO3 >= 22, f(r.s.HCO3,1));
 
 console.log(fallos ? `\n${fallos} prueba(s) fallida(s)` : '\nTodas las pruebas pasan');

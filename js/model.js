@@ -24,13 +24,13 @@
     // expresión genómica mínima (independiente de aldosterona) y τ (días)
     exprMin: 0.30,            // ENaC/ROMK/NaK
     exprMinHATP: 0.70,        // la H⁺-ATPasa depende poco de aldosterona (más de acidosis)
-    kExprK: 0.30,             // inducción directa de expresión por K⁺ (por mEq/L, tope 0,45)
+    kExprK: 0.20,             // inducción directa de expresión por K⁺ (por mEq/L, tope 0,3)
     tauENaC: 0.5, tauNaK: 1.5, tauROMK: 1.5, tauHATP: 1.5,
     tauAdapt: 2.5,            // adaptación de la amoniogénesis a la acidosis
     tauNH3: 1.0,              // depósito de NH₃ medular
     // flujos máximos normales (mEq/día)
     jKmax: 72,                // secreción de K⁺ con todo = 1 (ingesta 80 − colon 8)
-    gKporMEq: 0.55,            // efecto directo del K⁺ plasmático sobre la secreción
+    gKporMEq: 0.9,            // efecto directo del K⁺ plasmático sobre la secreción
     jHmax: 110,               // capacidad de secreción de H⁺ (célula α)
     prodNH4: 50,              // amoniogénesis proximal basal
     taBase: 30,               // acidez titulable basal
@@ -74,6 +74,10 @@
   // ---------- Cálculo de variables derivadas a partir del estado ----------
   function derivar(s, e) {
     const d = {};
+    // Acidosis → sale K⁺ de las células (intercambio H⁺/K⁺): círculo vicioso hiperkalemia ↔ acidosis
+    d.desplazK = 0.3 * clamp((24 - s.HCO3) / 6, 0, 2);
+    const K = s.K + d.desplazK;        // K⁺ plasmático efectivo (el que se mide y el que actúa)
+    d.Kp = K;
     // (20) escala de masa nefronal para amoniogénesis/H⁺/acidez titulable: plana hasta TFG ≈ 60, cae por debajo
     const fTFG = 0.35 + 0.65 * Math.min(1, clamp(e.tfg, 5, 150) / 60);
     const tfgEf = e.tfg * (1 - 0.15 * e.aine);                 // AINE baja algo la TFG
@@ -89,20 +93,20 @@
     // (2) angiotensina II efectiva
     d.angII = d.renina * (1 - 0.9 * e.ieca);
     // (3) aldosterona: capacidad de síntesis × (AngII + K⁺ + basal)
-    d.aldo = capacidad * (0.55 * d.angII + 0.45 + 0.3 * Math.max(0, s.K - 4));
+    d.aldo = capacidad * (0.55 * d.angII + 0.45 + 0.3 * Math.max(0, K - 4));
     // (4) ocupación del receptor mineralocorticoide
     d.mr = d.aldo * (1 - 0.95 * e.espironolactona);
     // (5) objetivos de expresión genómica
-    const indK = Math.min(0.40, P.kExprK * Math.max(0, s.K - 4));   // el K⁺ alto induce ENaC/ROMK/NaK por sí mismo
+    const indK = Math.min(0.30, P.kExprK * Math.max(0, K - 4));   // el K⁺ alto induce ENaC/ROMK/NaK por sí mismo
     d.objExpr = clamp(P.exprMin + (1 - P.exprMin) * fMR(d.mr) + indK, 0, 1.3);
     d.objExprHATP = clamp(P.exprMinHATP + (1 - P.exprMinHATP) * fMR(d.mr), 0, 1.2);
     // (6) actividad de ENaC
-    d.actENaC = enacPre * (0.8 + 0.2 * clamp(d.angII, 0, 2));
+    d.actENaC = enacPre * (0.9 + 0.1 * clamp(d.angII, 0, 2));
     // (7) voltaje luminal (mV, negativo)
     d.voltaje = -P.vMax * Math.pow(clamp(d.actENaC, 0, 1.3), 0.7);   // casi proporcional a ENaC
     const hV = Math.min(1.1, Math.abs(d.voltaje) / P.vMax);
     // (8) secreción de K⁺
-    const gK = Math.max(0.2, 1 + P.gKporMEq * (s.K - 4));       // efecto directo del K⁺ plasmático
+    const gK = Math.max(0.2, 1 + P.gKporMEq * (K - 4));       // efecto directo del K⁺ plasmático
     const jKmaxEf = P.jKmax * (0.25 + 0.75 * tfgEf / 100) * (1 - 0.2 * e.diabetes);   // nefropatía diabética: daño tubulointersticial
     d.actROMK = s.exprROMK;
     d.actNaK = s.exprNaK * (1 - 0.2 * e.calcineurina);
@@ -112,7 +116,7 @@
     d.jKbk = jKmaxEf * 0.22 * d.actBK * gK;
     d.jK = d.jKromk + d.jKbk;
     d.jK = Math.max(0, d.jK);
-    d.colonK = P.colonBase * (1 + 0.3 * (s.K - 4)) * (1 + 1.5 * Math.max(0, 1 - tfgEf / 100));
+    d.colonK = P.colonBase * (1 + 0.3 * (K - 4)) * (1 + 1.5 * Math.max(0, 1 - tfgEf / 100));
 
     // --- Célula intercalada α ---
     d.acidosis = clamp((24 - s.HCO3) / 6, -0.5, 2);            // 1 cuando HCO₃⁻ = 18
@@ -123,11 +127,11 @@
 
     // --- Túbulo proximal y TAL ---
     // (11) amoniogénesis
-    d.mK = mK(s.K);
+    d.mK = mK(K);
     d.prodNH4 = P.prodNH4 * fTFG * s.adapt * d.mK * (0.9 + 0.1 * clamp(d.angII, 0, 2));
     d.objAdapt = 1 + 1.6 * d.acidosis;
     // (12) reabsorción en TAL → NH₃ medular
-    d.pK = pK(s.K);
+    d.pK = pK(K);
     d.talFrac = P.talFrac * d.pK;
     d.objNH3 = d.prodNH4 * d.talFrac;
     const nh4Directo = 0.25 * d.prodNH4 * (1 - d.talFrac);   // parte que llega sin pasar por el reciclaje
@@ -157,7 +161,7 @@
 
     // --- Orina derivada (19) ---
     d.Ku = d.jK / P.volumenOrina;
-    d.ttkg = (d.Ku / s.K) / (P.osmOrina / P.osmPlasma);
+    d.ttkg = (d.Ku / K) / (P.osmOrina / P.osmPlasma);
     d.nh4uL = d.nh4u / P.volumenOrina;
     d.uag = 30 - 1.0 * d.nh4uL;
     d.Nau = 100 + 60 * Math.max(0, 1 - d.actENaC);  // natriuresis leve si cae ENaC (ilustrativo)
@@ -198,7 +202,7 @@
     sim.reset = function () { sim.s = estadoNormal(); sim.historial = []; sim._acum = 0; sim.muestrear(); };
     sim.muestrear = function () {
       const d = derivar(sim.s, sim.e);
-      sim.historial.push({ t: sim.s.t, K: sim.s.K, HCO3: sim.s.HCO3, nh4u: d.nh4u, pHu: d.pHu, Cl: d.Cl, aldo: d.aldo, voltaje: d.voltaje });
+      sim.historial.push({ t: sim.s.t, K: d.Kp, HCO3: sim.s.HCO3, nh4u: d.nh4u, pHu: d.pHu, Cl: d.Cl, aldo: d.aldo, voltaje: d.voltaje });
       while (sim.historial.length && sim.historial[0].t < sim.s.t - sim.maxDias) sim.historial.shift();
     };
     sim.avanzar = function (dias) {
