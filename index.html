@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nefrona Interactiva — Fisiología celular y ATR tipo 4</title>
+  <meta name="description" content="Simulador educativo: fisiología del túbulo colector y acidosis tubular renal tipo 4 a nivel celular, con resultados de sangre y orina en tiempo real." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M8 6 C8 6 8 34 20 34 C32 34 32 6 32 6" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="8" cy="6" r="3.5" fill="#2563eb"/><circle cx="32" cy="6" r="3.5" fill="#0ea5e9"/>
+        <circle cx="20" cy="22" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+      </svg>
+      <div>
+        <div class="logo-title">Nefrona Interactiva</div>
+        <div class="logo-sub">Fisiología celular · Acidosis tubular renal tipo 4 · Simulación</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="badge-version">v1 · célula principal</span>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- ───────── Columna izquierda: causas ───────── -->
+  <aside class="panel panel-causas">
+    <h2 class="panel-title">Causas de ATR4</h2>
+    <p class="panel-hint">Mueve una causa de 0 a 100 %. Se pueden combinar. El tiempo empieza a correr solo.</p>
+
+    <div class="causa" data-causa="espironolactona">
+      <label><span>Espironolactona / eplerenona</span><b>0 %</b></label>
+      <input type="range" min="0" max="100" value="0" />
+      <small>Bloquea el receptor mineralocorticoide</small>
+    </div>
+    <div class="causa" data-causa="amilorida">
+      <label><span>Amilorida / trimetoprim</span><b>0 %</b></label>
+      <input type="range" min="0" max="100" value="0" />
+      <small>Tapa el canal ENaC directamente</small>
+    </div>
+    <div class="causa" data-causa="ieca">
+      <label><span>IECA / ARA2</span><b>0 %</b></label>
+      <input type="range" min="0" max="100" value="0" />
+      <small>Quita la angiotensina II → menos aldosterona</small>
+    </div>
+    <div class="causa" data-causa="aine">
+      <label><span>AINES</span><b>0 %</b></label>
+      <input type="range" min="0" max="100" value="0" />
+      <small>Sin prostaglandinas cae la renina</small>
+    </div>
+    <div class="causa" data-causa="heparina">
+      <label><span>Heparina</span><b>0 %</b></label>
+      <input type="range" min="0" max="100" value="0" />
+      <small>Frena la síntesis de aldosterona en la suprarrenal</small>
+    </div>
+    <div class="causa" data-causa="diabetes">
+      <label><span>Nefropatía diabética</span><b>0 %</b></label>
+      <input type="range" min="0" max="100" value="0" />
+      <small>Hipoaldosteronismo hiporreninémico</small>
+    </div>
+    <div class="causa" data-causa="addison">
+      <label><span>Addison</span><b>0 %</b></label>
+      <input type="range" min="0" max="100" value="0" />
+      <small>Sin aldosterona (solo aldosterona en v1)</small>
+    </div>
+    <div class="causa" data-causa="calcineurina">
+      <label><span>Tacrolimus / ciclosporina</span><b>0 %</b></label>
+      <input type="range" min="0" max="100" value="0" />
+      <small>Activa NCC: menos Na⁺ llega al colector; menos renina</small>
+    </div>
+
+    <h3 class="panel-subtitle">Contexto</h3>
+    <div class="causa contexto" data-ctx="tfg">
+      <label><span>TFG</span><b>100 mL/min</b></label>
+      <input type="range" min="15" max="120" value="100" />
+    </div>
+    <div class="causa contexto" data-ctx="ingestaK">
+      <label><span>Ingesta de K⁺</span><b>80 mEq/día</b></label>
+      <input type="range" min="40" max="150" value="80" />
+    </div>
+    <div class="causa contexto" data-ctx="cargaAcida">
+      <label><span>Carga ácida de la dieta</span><b>70 mEq/día</b></label>
+      <input type="range" min="40" max="100" value="70" />
+    </div>
+
+    <button id="btn-normal" class="btn btn-secondary">Todo a normal</button>
+  </aside>
+
+  <!-- ───────── Centro: nefrona ───────── -->
+  <section class="centro">
+
+    <div class="reloj card">
+      <div class="reloj-dia"><span class="reloj-label">Día simulado</span><span id="dia">0,0</span></div>
+      <div class="reloj-barra"><div id="dia-barra"></div></div>
+      <div class="reloj-botones">
+        <button id="btn-play" class="btn btn-primary" title="Reproducir / pausar">▶ Reproducir</button>
+        <div class="velocidad">
+          <button class="btn-vel activo" data-vel="0.25">×1</button>
+          <button class="btn-vel" data-vel="1.25">×5</button>
+          <button class="btn-vel" data-vel="5">×20</button>
+        </div>
+        <button id="btn-reiniciar" class="btn btn-secondary" title="Vuelve al día 0 con las causas actuales">Día 0</button>
+      </div>
+    </div>
+
+    <div class="card svg-card">
+      <svg id="svg-principal" viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Célula principal del túbulo colector">
+        <defs>
+          <marker id="flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/>
+          </marker>
+          <marker id="inhib" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M5 1 L5 9" stroke="context-stroke" stroke-width="2.5"/>
+          </marker>
+        </defs>
+
+        <!-- Luz y sangre -->
+        <rect class="banda-luz" x="0" y="0" width="960" height="100"/>
+        <rect class="banda-sangre" x="0" y="460" width="960" height="100"/>
+        <text class="banda-titulo" x="18" y="26">LUZ TUBULAR · orina</text>
+        <text class="banda-titulo" x="18" y="486">SANGRE · intersticio</text>
+        <g class="banda-valores" id="luz-valores">
+          <text x="18" y="54">Na⁺ <tspan id="l-na">100</tspan> mEq/L</text>
+          <text x="18" y="76">K⁺ <tspan id="l-k">48</tspan> mEq/L · pH <tspan id="l-ph">5,1</tspan></text>
+        </g>
+        <g class="banda-valores" id="sangre-valores">
+          <text x="18" y="514">K⁺ <tspan id="s-k">4,0</tspan> mEq/L · HCO₃⁻ <tspan id="s-hco3">24</tspan></text>
+          <text x="18" y="536">Aldosterona <tspan id="s-aldo">10</tspan> ng/dL</text>
+        </g>
+
+        <!-- Célula -->
+        <rect class="celula" x="140" y="100" width="680" height="360" rx="26"/>
+        <text class="celula-titulo" x="480" y="128">Célula principal · túbulo colector cortical</text>
+        <line class="membrana" x1="140" y1="100" x2="820" y2="100"/>
+        <line class="membrana" x1="140" y1="460" x2="820" y2="460"/>
+        <text class="membrana-label" x="150" y="116">membrana apical</text>
+        <text class="membrana-label" x="150" y="452">membrana basolateral</text>
+
+        <!-- Flujos -->
+        <g class="flujos">
+          <path id="fl-na-apical" class="flujo na" d="M250 42 L250 168" marker-end="url(#flecha)"/>
+          <path id="fl-na-baso" class="flujo na" d="M250 190 C250 330 318 300 318 440 L318 518" marker-end="url(#flecha)"/>
+          <path id="fl-k-in" class="flujo k" d="M346 518 L346 440 C346 300 400 330 400 190" marker-end="url(#flecha)"/>
+          <path id="fl-k-romk" class="flujo k" d="M400 168 L400 42" marker-end="url(#flecha)"/>
+          <path id="fl-k-bk" class="flujo k" d="M520 168 L520 42" marker-end="url(#flecha)"/>
+          <path id="fl-h2o" class="flujo agua" d="M660 42 L660 168" marker-end="url(#flecha)"/>
+          <text class="ion-label na" x="262" y="62">Na⁺</text>
+          <text class="ion-label k" x="412" y="62">K⁺</text>
+          <text class="ion-label k" x="532" y="62">K⁺</text>
+          <text class="ion-label agua" x="672" y="62">H₂O</text>
+          <text class="ion-label na" x="296" y="512">3 Na⁺</text>
+          <text class="ion-label k" x="354" y="512">2 K⁺</text>
+        </g>
+
+        <!-- Canales apicales -->
+        <g class="canal ok" id="ch-enac" data-porque="enac" transform="translate(250,100)">
+          <rect class="hit" x="-34" y="-44" width="68" height="110"/>
+          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
+          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
+          <text class="x" x="0" y="7">✕</text>
+          <text class="canal-nombre" x="0" y="56">ENaC</text>
+        </g>
+        <g class="canal ok" id="ch-romk" data-porque="romk" transform="translate(400,100)">
+          <rect class="hit" x="-34" y="-44" width="68" height="110"/>
+          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
+          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
+          <text class="x" x="0" y="7">✕</text>
+          <text class="canal-nombre" x="0" y="56">ROMK</text>
+        </g>
+        <g class="canal ok" id="ch-bk" data-porque="bk" transform="translate(520,100)">
+          <rect class="hit" x="-34" y="-44" width="68" height="110"/>
+          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
+          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
+          <text class="x" x="0" y="7">✕</text>
+          <text class="canal-nombre" x="0" y="56">BK</text>
+        </g>
+        <g class="canal ok estatico" id="ch-aqp2" data-porque="aqp2" transform="translate(660,100)">
+          <rect class="hit" x="-34" y="-44" width="68" height="110"/>
+          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
+          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
+          <text class="canal-nombre" x="0" y="56">AQP2</text>
+        </g>
+
+        <!-- Basolaterales -->
+        <g class="bomba ok" id="ch-nak" data-porque="nak" transform="translate(332,460)">
+          <rect class="hit" x="-44" y="-58" width="88" height="90"/>
+          <circle class="sub" r="24"/>
+          <text class="bomba-atp" x="0" y="5">ATP</text>
+          <text class="canal-nombre" x="0" y="-36">Na⁺/K⁺-ATPasa</text>
+        </g>
+        <g class="canal ok estatico" id="ch-kir" data-porque="kir41" transform="translate(600,460)">
+          <rect class="hit" x="-34" y="-58" width="68" height="90"/>
+          <rect class="sub" x="-24" y="-18" width="16" height="36" rx="4"/>
+          <rect class="sub" x="8" y="-18" width="16" height="36" rx="4"/>
+          <text class="canal-nombre" x="0" y="-30">Kir4.1/5.1</text>
+        </g>
+
+        <!-- Vía aldosterona → MR → SGK1 → Nedd4-2 ⊣ ENaC -->
+        <g id="aldo-dots" class="aldo-dots">
+          <circle cx="720" cy="500" r="5"/><circle cx="740" cy="520" r="5"/><circle cx="700" cy="530" r="5"/>
+          <circle cx="760" cy="496" r="5"/><circle cx="730" cy="544" r="5"/><circle cx="690" cy="506" r="5"/>
+        </g>
+        <path id="fl-aldo" class="via" d="M722 470 L722 402" marker-end="url(#flecha)"/>
+        <text class="via-label" x="734" y="440">aldosterona</text>
+        <text class="via-nota" x="734" y="456">11β-HSD2 inactiva al cortisol</text>
+        <g class="caja" id="box-mr" data-porque="mr">
+          <rect class="hit" x="670" y="358" width="104" height="44"/>
+          <rect x="676" y="364" width="92" height="34" rx="8"/>
+          <text x="722" y="386">MR</text>
+        </g>
+        <path id="fl-mr-nuc" class="via" d="M676 380 L640 352" marker-end="url(#flecha)"/>
+        <g class="nucleo" data-porque="nucleo">
+          <ellipse cx="560" cy="335" rx="84" ry="46"/>
+          <text x="560" y="330">Núcleo</text>
+          <text class="nucleo-sub" x="560" y="350">transcripción · días</text>
+        </g>
+        <path id="fl-nuc-sgk" class="via" d="M528 292 L516 254" marker-end="url(#flecha)"/>
+        <g class="caja" id="box-sgk1" data-porque="sgk1">
+          <rect class="hit" x="464" y="210" width="96" height="44"/>
+          <rect x="470" y="216" width="84" height="34" rx="8"/>
+          <text x="512" y="238">SGK1</text>
+        </g>
+        <path id="fl-sgk-nedd" class="via inhib" d="M470 233 L418 233" marker-end="url(#inhib)"/>
+        <g class="caja" id="box-nedd" data-porque="nedd" transform="translate(0,0)">
+          <rect class="hit" x="314" y="210" width="104" height="44"/>
+          <rect x="320" y="216" width="92" height="34" rx="8"/>
+          <text x="366" y="238">Nedd4-2</text>
+        </g>
+        <path id="fl-nedd-enac" class="via inhib" d="M338 216 L270 142" marker-end="url(#inhib)"/>
+        <text class="via-label" id="nedd-estado" x="300" y="276">retira ENaC (inhibida)</text>
+        <path id="fl-nuc-romk" class="via tenue" d="M500 300 C440 290 420 250 404 170" marker-end="url(#flecha)"/>
+        <path id="fl-nuc-nak" class="via tenue" d="M520 378 C440 410 380 400 352 432" marker-end="url(#flecha)"/>
+        <text class="via-nota" x="604" y="404">↑ ROMK y ↑ Na⁺/K⁺-ATPasa (horas–días)</text>
+
+        <!-- Voltímetro -->
+        <g class="voltimetro" data-porque="voltaje">
+          <rect class="hit" x="846" y="104" width="110" height="352"/>
+          <text class="volt-titulo" x="900" y="124">Voltaje luminal</text>
+          <rect class="volt-marco" x="884" y="136" width="32" height="270" rx="6"/>
+          <rect id="volt-barra" class="volt-barra" x="884" y="136" width="32" height="270" rx="6"/>
+          <text class="volt-tick" x="878" y="142">0</text>
+          <text class="volt-tick" x="878" y="274">−25</text>
+          <text class="volt-tick" x="878" y="406">−50 mV</text>
+          <text id="volt-val" class="volt-val" x="900" y="440">−40 mV</text>
+        </g>
+      </svg>
+
+      <div class="leyenda">
+        <span><i class="sw ok"></i> normal</span>
+        <span><i class="sw parcial"></i> parcial</span>
+        <span><i class="sw off"></i> apagado</span>
+        <span class="leyenda-sep">grosor de flecha = flujo</span>
+        <span class="leyenda-sep">toca un canal para ver qué lo activa</span>
+      </div>
+    </div>
+
+    <div id="tarjeta" class="card tarjeta">
+      <div class="tarjeta-titulo">¿Por qué?</div>
+      <p class="tarjeta-texto">Toca cualquier canal, bomba o caja del esquema para ver qué lo activa, qué lo apaga y la referencia.</p>
+    </div>
+
+    <div class="card cascada" id="cascada">
+      <div class="cascada-titulo">La cascada</div>
+      <ol class="cascada-pasos">
+        <li data-paso="aldo">Cae la aldosterona efectiva</li>
+        <li data-paso="enac">Nedd4-2 retira ENaC</li>
+        <li data-paso="volt">Se pierde el voltaje luminal</li>
+        <li data-paso="k">Baja la secreción de K⁺ → sube el K⁺ en sangre</li>
+        <li data-paso="nh4">La hiperkalemia frena el NH₄⁺ (túbulo proximal, fase 3)</li>
+        <li data-paso="hco3">Cae la excreción de ácido → baja el HCO₃⁻</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ───────── Columna derecha: laboratorio ───────── -->
+  <aside class="panel panel-labs">
+    <h2 class="panel-title">Sangre</h2>
+    <table class="labs" id="labs-sangre">
+      <tr data-k="Na"><td>Na⁺</td><td class="val"></td><td class="unit">mEq/L</td><td class="flag"></td></tr>
+      <tr data-k="K"><td>K⁺</td><td class="val"></td><td class="unit">mEq/L</td><td class="flag"></td></tr>
+      <tr data-k="Cl"><td>Cl⁻</td><td class="val"></td><td class="unit">mEq/L</td><td class="flag"></td></tr>
+      <tr data-k="HCO3"><td>HCO₃⁻</td><td class="val"></td><td class="unit">mEq/L</td><td class="flag"></td></tr>
+      <tr data-k="pH"><td>pH</td><td class="val"></td><td class="unit"></td><td class="flag"></td></tr>
+      <tr data-k="pCO2"><td>pCO₂</td><td class="val"></td><td class="unit">mmHg</td><td class="flag"></td></tr>
+      <tr data-k="AG"><td>Anion gap</td><td class="val"></td><td class="unit">mEq/L</td><td class="flag"></td></tr>
+      <tr data-k="aldo"><td>Aldosterona</td><td class="val"></td><td class="unit">ng/dL</td><td class="flag"></td></tr>
+      <tr data-k="renina"><td>Renina</td><td class="val"></td><td class="unit">ng/mL/h</td><td class="flag"></td></tr>
+    </table>
+    <div class="spark"><div class="spark-label">K⁺ plasmático · 14 días</div><svg id="sp-K" viewBox="0 0 300 50" preserveAspectRatio="none"></svg></div>
+    <div class="spark"><div class="spark-label">HCO₃⁻ plasmático · 14 días</div><svg id="sp-HCO3" viewBox="0 0 300 50" preserveAspectRatio="none"></svg></div>
+
+    <h2 class="panel-title">Orina</h2>
+    <table class="labs" id="labs-orina">
+      <tr data-k="pHu"><td>pH urinario</td><td class="val"></td><td class="unit"></td><td class="flag"></td></tr>
+      <tr data-k="nh4u"><td>NH₄⁺</td><td class="val"></td><td class="unit">mEq/día</td><td class="flag"></td></tr>
+      <tr data-k="Ku"><td>K⁺</td><td class="val"></td><td class="unit">mEq/L</td><td class="flag"></td></tr>
+      <tr data-k="ttkg"><td>TTKG</td><td class="val"></td><td class="unit"></td><td class="flag"></td></tr>
+      <tr data-k="uag"><td>Brecha aniónica</td><td class="val"></td><td class="unit">mEq/L</td><td class="flag"></td></tr>
+      <tr data-k="Nau"><td>Na⁺</td><td class="val"></td><td class="unit">mEq/L</td><td class="flag"></td></tr>
+    </table>
+    <div class="spark"><div class="spark-label">NH₄⁺ urinario · 14 días</div><svg id="sp-nh4u" viewBox="0 0 300 50" preserveAspectRatio="none"></svg></div>
+    <div class="spark"><div class="spark-label">pH urinario · 14 días</div><svg id="sp-pHu" viewBox="0 0 300 50" preserveAspectRatio="none"></svg></div>
+    <p class="labs-nota" id="labs-nota"></p>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <details class="refs">
+    <summary>Referencias</summary>
+    <ol id="lista-refs"></ol>
+  </details>
+  <details class="limites">
+    <summary>Qué simula y qué no</summary>
+    <p>El modelo es semi-mecanicista: cada canal tiene una actividad (1 = normal) que se combina en flujos de mEq/día; los flujos cambian el K⁺ y el HCO₃⁻ por balance de masa y estos retroalimentan a hormonas y canales. Los números son plausibles y están calibrados a rangos clínicos publicados; <strong>no son predicciones para un paciente</strong>. Fuera de la versión 1: volumen extracelular y Na⁺ plasmático dinámicos, insulina y catecolaminas, célula intercalada β (pendrina), fosfato y citrato urinarios, hiperkalemia aguda.</p>
+  </details>
+  <p class="footer-firma">Nefrona Interactiva · Herramienta educativa · CiMedical · Todo el cálculo ocurre en el navegador; no se envía ni guarda ningún dato.</p>
+</footer>
+
+<script src="js/model.js"></script>
+<script src="js/refs.js"></script>
+<script src="js/svg-nefrona.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>

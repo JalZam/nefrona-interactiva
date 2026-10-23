@@ -15,18 +15,18 @@ Publicar en GitHub Pages una página que muestre la fisiología celular normal d
 ### Fase 1: Modelo cuantitativo y pruebas
 **Objetivo:** tener el motor (`js/model.js`) funcionando y calibrado antes de dibujar nada.
 **Criterio de éxito:** un script de pruebas en Node (`test/model.test.js`) confirma que: (a) estado normal estable 30 días sin deriva (K⁺ 4,0 ± 0,1, HCO₃⁻ 24 ± 0,5); (b) cada causa al 100 % con TFG 50 cae dentro de los rangos de la tabla B de INVESTIGATION.md a los 14 días; (c) amilorida 100 % → pH urinario > 5,5 y Addison 100 % → pH urinario < 5,5; (d) espironolactona → aldosterona alta, nefropatía diabética → aldosterona y renina bajas; (e) sin oscilaciones (ninguna variable cambia de signo de pendiente más de 2 veces).
-**Estado:** [ ] Pendiente
+**Estado:** [x] Completada 2026-10-23
 **Tareas:**
-- [ ] Estructura del estado, parámetros y entradas (causas, TFG, dieta) con nombres en español
-- [ ] Ecuaciones D3 (1–20) con constantes de tiempo
-- [ ] Función `step(dt)` y `reset()`; historial de 14 días para las gráficas
-- [ ] Script de pruebas en Node con los 5 criterios
-- [ ] Calibración iterativa hasta pasar las pruebas; documentar constantes en el propio archivo
+- [x] Estructura del estado, parámetros y entradas (causas, TFG, dieta) con nombres en español
+- [x] Ecuaciones D3 (1–20) con constantes de tiempo
+- [x] `avanzar(dias)` y `reset()`; historial de 14 días para las gráficas
+- [x] Script de pruebas en Node (40 comprobaciones)
+- [x] Calibración en 4 rondas. Ajustes respecto a INVESTIGATION.md: curva K⁺→amoniogénesis quedó K 5 ≈ 0,68 / 6 ≈ 0,44 / 7 ≈ 0,31; 20 % de la secreción de K⁺ va por BK (independiente del voltaje) para que amilorida no dispare el K⁺ al infinito; H⁺-ATPasa con mínimo 0,7 independiente de aldosterona; nefropatía diabética reduce 20 % la capacidad distal de secretar K⁺; escala de masa nefronal plana hasta TFG 60
 
 ### Fase 2: Célula principal + interfaz base
 **Objetivo:** validar el estilo visual y la interacción con una sola célula antes de dibujar las demás.
 **Criterio de éxito:** Juanjo abre `index.html`, mueve un deslizador y ve ENaC/ROMK/Na⁺/K⁺-ATPasa cambiar de color y grosor, el voltaje moverse, y K⁺ plasmático subir día a día en el panel de sangre y en su mini-gráfica.
-**Estado:** [ ] Pendiente
+**Estado:** [~] En progreso
 **Tareas:**
 - [ ] `index.html` + `style.css` con la paleta y tipografías del Velocímetro
 - [ ] Panel izquierdo: 8 causas (deslizadores 0–100 %), TFG, ingesta de K⁺, carga ácida, botón "Normal" (reinicia)

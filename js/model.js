@@ -81,7 +81,7 @@
     // --- Expresiones y actividades de la célula principal ---
     // (6) actividad de ENaC. angII se calcula abajo; usamos una estimación previa para evitar circularidad
     // Primero renina/angII dependen de ENaC (volumen) → resolvemos con la expresión (no la actividad instantánea)
-    const enacPre = s.exprENaC * (1 - 0.97 * e.amilorida) * (1 - 0.5 * e.calcineurina);
+    const enacPre = s.exprENaC * (1 - 0.95 * e.amilorida) * (1 - 0.5 * e.calcineurina);
     // (1) renina: factores hiporreninémicos × señal de natriuresis (menos ENaC → más renina)
     const hiporenina = (1 - 0.8 * e.aine) * (1 - 0.8 * e.diabetes) * (1 - 0.4 * e.calcineurina);
     const capacidad = (1 - e.addison) * (1 - 0.7 * e.heparina) * (1 - 0.75 * e.diabetes);
@@ -99,17 +99,17 @@
     // (6) actividad de ENaC
     d.actENaC = enacPre * (0.8 + 0.2 * clamp(d.angII, 0, 2));
     // (7) voltaje luminal (mV, negativo)
-    d.voltaje = -P.vMax * 1.25 * d.actENaC / (d.actENaC + 0.25);
+    d.voltaje = -P.vMax * Math.pow(clamp(d.actENaC, 0, 1.3), 0.7);   // casi proporcional a ENaC
     const hV = Math.min(1.1, Math.abs(d.voltaje) / P.vMax);
     // (8) secreción de K⁺
     const gK = Math.max(0.2, 1 + P.gKporMEq * (s.K - 4));       // efecto directo del K⁺ plasmático
     const jKmaxEf = P.jKmax * (0.25 + 0.75 * tfgEf / 100) * (1 - 0.2 * e.diabetes);   // nefropatía diabética: daño tubulointersticial
     d.actROMK = s.exprROMK;
     d.actNaK = s.exprNaK * (1 - 0.2 * e.calcineurina);
-    // 80 % por ROMK (depende del voltaje) + 20 % por BK (depende del flujo, no del voltaje)
+    // 78 % por ROMK (depende del voltaje) + 22 % por BK (depende del flujo, no del voltaje)
     d.actBK = s.exprROMK;
-    d.jKromk = jKmaxEf * 0.8 * s.exprROMK * Math.sqrt(d.actNaK) * hV * gK;
-    d.jKbk = jKmaxEf * 0.2 * d.actBK * gK;
+    d.jKromk = jKmaxEf * 0.78 * s.exprROMK * Math.sqrt(d.actNaK) * hV * gK;
+    d.jKbk = jKmaxEf * 0.22 * d.actBK * gK;
     d.jK = d.jKromk + d.jKbk;
     d.jK = Math.max(0, d.jK);
     d.colonK = P.colonBase * (1 + 0.3 * (s.K - 4)) * (1 + 1.5 * Math.max(0, 1 - tfgEf / 100));
@@ -137,9 +137,9 @@
     // (18) pH urinario: límite por voltaje + exceso de H⁺ sobre amortiguadores
     const taPot = P.taBase * fTFG;
     const r = d.jH / (d.nh3Disponible + taPot + 5);
-    const pHexceso = 7.3 - 1.5 * r;
+    const pHexceso = 7.4 - 1.5 * r;
     const pHmin = 4.4 + 1.6 * (1 - hV);                        // sin voltaje la bomba no logra gradiente
-    d.pHu = clamp(Math.max(pHmin, pHexceso), 4.5, 7.5);
+    d.pHu = clamp(Math.max(pHmin, pHexceso), 4.6, 7.5);
     // (14) acidez titulable
     const tf = clamp((6.8 - d.pHu) / 1.3, 0.2, 1);
     d.ta = taPot * tf;

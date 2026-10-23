@@ -4,7 +4,7 @@
 <!-- initialized: 2026-10-23 -->
 <!-- version: 1.0 -->
 <!-- status: active -->
-<!-- last-completed-step: claude-md -->
+<!-- last-completed-step: phase-1 -->
 
 ## ¿Qué es este proyecto?
 Página web estática (HTML + CSS + JS puro + SVG) para **aprender viendo** la fisiología celular del nefrón y cómo se rompe en la **acidosis tubular renal tipo 4 (ATR4)**. Muestra el funcionamiento normal (canales, transportadores, qué los activa) y permite aplicar causas (medicamentos o enfermedades que bajan la aldosterona o bloquean su acción) y ver, **en tiempo real y con dinámica en días**, cómo cambian los canales de cada célula y los resultados de sangre y orina.
@@ -12,8 +12,8 @@ Página web estática (HTML + CSS + JS puro + SVG) para **aprender viendo** la f
 Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje; más adelante docencia. Visión futura: ATR 1 y 2, y un "riñón continuo" simulable.
 
 ## Estado Actual
-**Fase activa:** Fase 1 — Modelo cuantitativo y pruebas
-**Progreso general:** 0 de 4 fases completadas
+**Fase activa:** Fase 2 — Célula principal + interfaz base
+**Progreso general:** 1 de 4 fases completadas
 
 ## Stack Técnico
 - HTML + CSS + JavaScript puro. SVG inline dibujado a mano. Sin framework, sin dependencias, sin compilación.
