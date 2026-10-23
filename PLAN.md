@@ -40,26 +40,28 @@ Publicar en GitHub Pages una página que muestre la fisiología celular normal d
 
 Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuando la pestaña no está visible; por eso la simulación solo avanza con la página en primer plano (comportamiento esperado, no es un error).
 
-### Fase 3: Célula α, túbulo proximal, TAL y RAAS
-**Objetivo:** completar la cascada visual.
+### Fase 3: Célula α, túbulo proximal, TAL y RAAS — con animación de partículas
+**Objetivo:** completar la cascada visual. **Cambio de alcance 2026-10-23 (pedido de Juanjo):** los iones se animan como partículas que viajan por los canales, con dependencias encadenadas (un movimiento dispara el siguiente y se detiene cuando falla el anterior). Afectó a la Fase 2 (la célula principal pasó de flechas estáticas a partículas) y a esta fase.
 **Criterio de éxito:** al aplicar una causa se ve en orden: RAAS → célula principal → voltaje → célula α → K⁺ en sangre → túbulo proximal/TAL → NH₄⁺ en orina → HCO₃⁻ en sangre. Cada canal tiene su tarjeta "¿por qué?" con referencia numerada.
-**Estado:** [ ] Pendiente
+**Estado:** [x] Completada 2026-10-23
 **Tareas:**
-- [ ] SVG célula intercalada α: H⁺-ATPasa, H⁺/K⁺-ATPasa, Rhcg, AE1, anhidrasa carbónica II; atrapamiento NH₃ + H⁺ → NH₄⁺ en la luz
-- [ ] SVG túbulo proximal: glutamina → PDG → GDH → 2 NH₄⁺ + 2 HCO₃⁻; NHE3 apical; salida de HCO₃⁻ basolateral; indicador de pH intracelular (hiperkalemia → alcalinización)
-- [ ] Bloque TAL: NKCC2 con competencia K⁺/NH₄⁺; "NH₃ medular" como depósito
-- [ ] Bloque RAAS: renina → AngII → aldosterona, con los puntos donde actúan IECA/ARA2, AINE, heparina, Addison, calcineurina
-- [ ] Flechas de flujo con grosor proporcional; estados apagado/parcial/normal
-- [ ] Tarjetas "¿por qué?" (js/refs.js) con las 33 referencias numeradas
-- [ ] Resaltado de la cascada: cada paso se ilumina cuando su variable cruza el umbral
+- [x] Motor de partículas (`js/particulas.js`): corrientes por tasa o por cadena, rebotes "✕" para bloqueos
+- [x] Célula principal con partículas: Na⁺ → bomba → K⁺ → ROMK (si hay voltaje) o Kir4.1 (si no); Cl⁻ paracelular; aldosterona rebotando en MR con espironolactona
+- [x] Célula intercalada α: H⁺-ATPasa, H⁺/K⁺-ATPasa, Rhcg apical y basolateral, AE1, ClC, anhidrasa carbónica II; NH₃ + H⁺ → NH₄⁺ solo si hay H⁺, si no el NH₃ escapa
+- [x] Túbulo proximal: SNAT3, mitocondria (PDG/GDH/PEPCK), NHE3, NBCe1; glutamina → 2 NH₄⁺ + 2 HCO₃⁻; K⁺ alto entra y frena la vía; texto "produce X · sin el freno produciría Y"
+- [x] Asa gruesa: NKCC2 con competencia K⁺/NH₄⁺ (rebote ✕), ROMK, Na⁺/K⁺-ATPasa, ClC-Kb, salida de NH₄⁺; depósito medular con opacidad ∝ NH₃
+- [x] Mapa del nefrón siempre animado (segmentos coloreados por estado, clic para abrir la célula)
+- [x] Eje RAAS con partículas renina → AngII → aldosterona y bloqueos por causa
+- [x] 28 tarjetas "¿por qué?" (js/refs.js) con 36 referencias
+- [x] Modelo: desplazamiento transcelular de K⁺ por acidosis (círculo vicioso del documento de Juanjo); recalibrado (gK 0,9; inducción de ENaC por K⁺ más leve para que el voltaje baje en Addison)
 
 ### Fase 4: Publicación
 **Objetivo:** que Juanjo lo abra desde cualquier parte.
 **Criterio de éxito:** `https://jalzam.github.io/nefrona-interactiva/` carga con HTTPS, funciona en celular y en proyector, README completo.
-**Estado:** [ ] Pendiente
+**Estado:** [~] En progreso 2026-10-23
 **Tareas:**
-- [ ] Sección de referencias y aviso de limitaciones del modelo (D4) al pie
-- [ ] README.md técnico (estructura, cómo probar, cómo publicar, historial)
+- [x] Sección de referencias y aviso de limitaciones del modelo (D4) al pie
+- [x] README.md técnico (estructura, cómo probar, cómo publicar, historial)
 - [ ] Repo GitHub `JalZam/nefrona-interactiva` (gh), rama main, Pages activado
 - [ ] Pruebas en Chrome de escritorio y celular (Claude in Chrome) y corrección de lo que falle
 - [ ] Actualizar `~/.claude/proyectos.json`, memoria y CLAUDE.md del proyecto
@@ -81,3 +83,4 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 
 ## Cambios al Plan
 - 2026-10-23: plan inicial.
+- 2026-10-23: Juanjo pide animación de partículas con dependencias encadenadas y las cuatro células con imagen; se amplía la Fase 3 y se rehace la célula principal con partículas. Las tarjetas y la cascada se habían adelantado en Fase 2.
