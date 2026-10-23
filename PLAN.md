@@ -26,15 +26,19 @@ Publicar en GitHub Pages una página que muestre la fisiología celular normal d
 ### Fase 2: Célula principal + interfaz base
 **Objetivo:** validar el estilo visual y la interacción con una sola célula antes de dibujar las demás.
 **Criterio de éxito:** Juanjo abre `index.html`, mueve un deslizador y ve ENaC/ROMK/Na⁺/K⁺-ATPasa cambiar de color y grosor, el voltaje moverse, y K⁺ plasmático subir día a día en el panel de sangre y en su mini-gráfica.
-**Estado:** [~] En progreso
+**Estado:** [~] Construida 2026-10-23, pendiente de revisión visual por Juanjo
 **Tareas:**
-- [ ] `index.html` + `style.css` con la paleta y tipografías del Velocímetro
-- [ ] Panel izquierdo: 8 causas (deslizadores 0–100 %), TFG, ingesta de K⁺, carga ácida, botón "Normal" (reinicia)
-- [ ] Reloj de simulación: días simulados, velocidad (×1, ×5, ×20), pausa, reinicio
-- [ ] SVG de la célula principal: luz arriba, sangre abajo, ENaC, ROMK, BK, AQP2, Na⁺/K⁺-ATPasa, Kir4.1, MR→SGK1→Nedd4-2 dentro de la célula, indicador de voltaje
-- [ ] Panel derecho: sangre (Na⁺, K⁺, Cl⁻, HCO₃⁻, pH, pCO₂, anion gap, renina, aldosterona) y orina (pH, NH₄⁺, K⁺, TTKG, brecha aniónica urinaria) con flechas y colores por rango
-- [ ] Mini-gráficas de 14 días (sparklines SVG) para K⁺, HCO₃⁻, NH₄⁺ urinario, pH urinario
+- [x] `index.html` + `style.css` con la paleta y tipografías del Velocímetro
+- [x] Panel izquierdo: 8 causas (deslizadores 0–100 %), TFG, ingesta de K⁺, carga ácida, botón "Todo a normal"
+- [x] Reloj de simulación: días simulados, velocidad (×1, ×5, ×20), pausa, "Día 0"
+- [x] SVG de la célula principal: luz arriba, sangre abajo, ENaC, ROMK, BK, AQP2, Na⁺/K⁺-ATPasa, Kir4.1, MR→SGK1→Nedd4-2 dentro de la célula, voltímetro
+- [x] Panel derecho: sangre y orina con flechas, colores por rango y nota interpretativa
+- [x] Mini-gráficas de 14 días (K⁺, HCO₃⁻, NH₄⁺ urinario, pH urinario)
+- [x] Tarjetas "¿por qué?" ya funcionando para los 10 elementos de la célula principal (adelantado de Fase 3)
+- [x] Tira "La cascada" con 6 pasos que se iluminan (adelantado de Fase 3)
 - [ ] Revisión visual con Juanjo (pantalla grande y celular)
+
+Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuando la pestaña no está visible; por eso la simulación solo avanza con la página en primer plano (comportamiento esperado, no es un error).
 
 ### Fase 3: Célula α, túbulo proximal, TAL y RAAS
 **Objetivo:** completar la cascada visual.
