@@ -28,7 +28,7 @@
     claseEstado($('ch-nak'), d.actNaK);
     claseEstado($('ch-bk'), d.actBK);
     voltimetro('volt-barra', 'volt-val', d.voltaje);
-    $('fl-aldo').style.opacity = 0.25 + 0.75 * clamp(d.aldo, 0, 1);
+    $('g-aldo').style.opacity = 0.25 + 0.75 * clamp(d.aldo, 0, 1);
     $('box-mr').classList.toggle('apagada', d.mr < 0.35);
     $('box-sgk1').classList.toggle('apagada', d.mr < 0.35);
     ['fl-mr-nuc', 'fl-nuc-sgk', 'fl-sgk-nedd'].forEach(id => { $(id).style.opacity = 0.2 + 0.8 * clamp(d.mr, 0, 1); });

@@ -29,6 +29,7 @@ Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje
 index.html          estructura: cabecera, panel de causas, nefrona SVG, paneles sangre/orina, referencias
 style.css           estilos (paleta y tipografías del Velocímetro Renal), estados de canales
 js/model.js         el modelo: estado, parámetros, causas, step(dt), reset(), historial 14 días
+js/celulas.js       dibuja las 4 células (estilo esquema clásico: luz izq., célula arena, intersticio der.) desde especificaciones; las flechas son los caminos de partículas
 js/particulas.js    motor de partículas (iones que viajan por caminos SVG; cadenas de dependencia)
 js/escenas.js       corrientes de cada vista/mapa/RAAS acopladas al modelo
 js/svg-nefrona.js   estados de canales, voltímetros y textos de los 6 SVG; render(d, s, e, vista)
@@ -41,6 +42,7 @@ PLAN.md             fases y estado
 
 ## Decisiones Técnicas Importantes
 - **Modelo cuantitativo en tiempo real** (no cualitativo por pasos), por decisión de Juanjo. Los números son plausibles y calibrados a rangos clínicos publicados, no predicciones para un paciente; se declara en pantalla.
+- **Estilo visual de las células** (pedido de Juanjo 2026-10-23, referencia: Fig. 1 de Palmer 2021 / Comprehensive Clinical Nephrology): luz a la izquierda, célula color arena con borde derecho redondeado, intersticio a la derecha, círculos azules = transporte pasivo, verdes con ATP = activo, rayitas = canal, flechas negras finas con el ion. Todo en `js/celulas.js`.
 - **4 células dibujadas en v1** (pedido de Juanjo 2026-10-23): túbulo proximal, asa gruesa, célula principal, célula intercalada α, cada una con partículas animadas y dependencias encadenadas. Mapa del nefrón y eje RAAS siempre animados.
 - **8 causas → 5 entradas** del modelo (síntesis de aldosterona, renina, bloqueo MR, bloqueo ENaC, entrega distal de Na⁺) + TFG + dieta. Combinables.
 - El modelo debe mostrar que con **bloqueo directo de ENaC (amilorida/trimetoprim) el pH urinario sube (>5,5)** y con **deficiencia de aldosterona baja (<5,5)**. Es el punto de enseñanza más delicado.

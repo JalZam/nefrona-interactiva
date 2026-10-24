@@ -31,7 +31,7 @@
     e.agregar('k_kir', { path: 'g-k-kir', ion: 'k', modo: 'cadena' });
     e.agregar('cl', { path: 'g-cl-para', ion: 'cl', tasa: 1.2, pequeno: true });
     e.agregar('aldo', { path: 'g-aldo', ion: 'aldo', tasa: 1.4, alLlegar: (esc) => {
-      if (azar() < NI.sim.e.espironolactona * 0.95) esc.rebote(722, 396, 'aldo');
+      if (azar() < NI.sim.e.espironolactona * 0.95) esc.rebote(736, 416, 'aldo');
     }});
     e.agregar('h2o', { path: 'g-h2o', ion: 'h2o', tasa: 0.6, pequeno: true });
     e.actualizar = () => {
@@ -77,7 +77,8 @@
       esc.emitir('hco3_nbc'); setTimeout(() => esc.emitir('hco3_nbc'), 350);
     }});
     e.agregar('nh4_ap', { path: 'g-nh4-ap', ion: 'nh4', modo: 'cadena', alLlegar: (esc) => { esc.emitir('na_nhe3'); esc.emitir('nh4_lumen'); } });
-    e.agregar('na_nhe3', { path: 'g-na-nhe3', ion: 'na', modo: 'cadena', pequeno: true, desvanecer: 40 });
+    e.agregar('na_nhe3', { path: 'g-na-nhe3', ion: 'na', modo: 'cadena', pequeno: true, alLlegar: (esc) => esc.emitir('na_nak') });
+    e.agregar('na_nak', { path: 'g-na-nak', ion: 'na', modo: 'cadena', pequeno: true });
     e.agregar('nh4_lumen', { path: 'g-nh4-lumen', ion: 'nh4', modo: 'cadena', desvanecer: 80 });
     e.agregar('hco3_nbc', { path: 'g-hco3-nbc', ion: 'hco3', modo: 'cadena' });
     e.agregar('k_prox', { path: 'g-k-prox', ion: 'k', tasa: 1.6, desvanecer: 70, flujo: 0 });
@@ -93,7 +94,7 @@
     const e = P.crearEscena(svg, { radio: 10, fuente: 8 });
     e.agregar('nh4_llega', { path: 'g-nh4-llega', ion: 'nh4', tasa: 2.0, alLlegar: (esc) => {
       // compite con el K⁺ por NKCC2
-      if (azar() < D.pK) esc.emitir('nh4_cell'); else { esc.rebote(285, 70, 'nh4'); esc.emitir('nh4_sigue'); }
+      if (azar() < D.pK) esc.emitir('nh4_cell'); else { esc.rebote(160, 150, 'nh4'); esc.emitir('nh4_sigue'); }
     }});
     e.agregar('nh4_cell', { path: 'g-nh4-cell', ion: 'nh4', modo: 'cadena' });
     e.agregar('nh4_sigue', { path: 'g-nh4-sigue', ion: 'nh4', modo: 'cadena', desvanecer: 150 });

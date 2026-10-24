@@ -37,6 +37,7 @@ index.html          cabecera, panel de causas, reloj, mapa del nefrón, eje RAAS
 style.css           estilos (misma línea visual que Velocímetro Renal)
 js/model.js         modelo: parámetros, derivar(), paso(), crearSimulador(); ecuaciones numeradas según
                     INVESTIGATION.md Parte D
+js/celulas.js       dibuja las 4 células desde especificaciones (estilo esquema clásico de fisiología renal)
 js/particulas.js    motor de partículas (corrientes por tasa o por cadena, rebotes "✕")
 js/escenas.js       corrientes de cada vista y del mapa; actualizar(d) las acopla al modelo
 js/svg-nefrona.js   estados de canales, voltímetros, textos y colores de cada SVG
@@ -71,6 +72,8 @@ sirve las tipografías.
 
 - **2026-10-23** — Kickoff, investigación (33 artículos de PubMed + 3 libros), plan, modelo calibrado,
   célula principal, animación de partículas, cuatro células, mapa del nefrón, eje RAAS, publicación.
+  Rediseño de las células al estilo de los esquemas clásicos (luz izquierda, célula arena, intersticio
+  derecha, círculos azul/verde, canales como rayitas).
 
 ## Pendiente / futuro
 

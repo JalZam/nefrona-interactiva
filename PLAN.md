@@ -84,3 +84,4 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 ## Cambios al Plan
 - 2026-10-23: plan inicial.
 - 2026-10-23: Juanjo pide animación de partículas con dependencias encadenadas y las cuatro células con imagen; se amplía la Fase 3 y se rehace la célula principal con partículas. Las tarjetas y la cascada se habían adelantado en Fase 2.
+- 2026-10-23 (noche): Juanjo pide que las células se vean como la Fig. 1 de Palmer 2021 (Adv Ther; original de Comprehensive Clinical Nephrology): luz a la izquierda, célula color arena, intersticio a la derecha, transportadores como círculos (azul pasivo / verde activo con ATP), canales como rayitas, flechas negras finas. Se crea `js/celulas.js` que dibuja las 4 células desde una especificación con esa convención (dibujo propio, no se copia la figura); las flechas son los caminos de las partículas. Los 4 SVG de `index.html` quedan como cascarones.

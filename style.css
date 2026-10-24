@@ -257,3 +257,52 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .deposito { fill: #fb923c; opacity: .5; transition: opacity .4s; stroke: #c2410c; }
 .deposito-txt { font-size: 14px; font-weight: 800; fill: #7c2d12; text-anchor: middle; }
 .rebote-x { pointer-events: none; }
+
+/* ── Estilo esquema clásico (luz izquierda, célula arena, intersticio derecha) ── */
+.zona-luz { fill: #fffbea; }
+.zona-inter { fill: #fdf2f2; }
+.zona-titulo { font-size: 13px; font-weight: 800; letter-spacing: .6px; fill: #6b4f3a; text-anchor: middle; }
+.celula-cuerpo { fill: #ead9c9; stroke: #1f2937; stroke-width: 3.5; }
+.vista .celula-titulo { font-size: 15px; }
+.vista .valor { font-size: 12px; font-weight: 600; fill: #4b3a2d; }
+.vista .valor tspan { font-weight: 800; }
+.flecha { fill: none; stroke: #1f2937; stroke-width: 1.8; }
+.flecha.tenue { stroke: #9ca3af; stroke-dasharray: 4 4; }
+.flecha.via { stroke: #7c3aed; stroke-width: 2.2; transition: opacity .3s; }
+.flecha.via.inhib { stroke: #dc2626; marker-end: url(#punta-inhib) !important; }
+.ion-txt { font-size: 12px; font-weight: 800; fill: #1f2937; }
+.ion-txt.na { fill: var(--na); } .ion-txt.k { fill: var(--k); } .ion-txt.h { fill: var(--rojo); } .ion-txt.hco3 { fill: #0d9488; } .ion-txt.cl { fill: #6366f1; } .ion-txt.nh3, .ion-txt.nh4 { fill: #ea580c; } .ion-txt.gln { fill: #92400e; } .ion-txt.co2 { fill: #64748b; } .ion-txt.agua { fill: var(--agua); }
+.reaccion { font-size: 12px; font-weight: 700; fill: #4b3a2d; }
+.glifo { cursor: pointer; }
+.glifo.bomba .sub { stroke: #1f2937; stroke-width: 2; transition: fill .3s; }
+.glifo.bomba.pasivo .sub { fill: #6b9bd8; }
+.glifo.bomba.activo .sub { fill: #cfe3a6; }
+.glifo.bomba.parcial .sub { fill: #f6c35c !important; }
+.glifo.bomba.off .sub { fill: #cbd5e1 !important; }
+.glifo-txt { font-size: 11px; font-weight: 800; fill: #1f2937; text-anchor: middle; }
+.glifo.pasivo .glifo-txt { fill: #fff; }
+.glifo-atp { font-size: 8px; font-weight: 800; fill: #3f6212; text-anchor: middle; }
+.glifo-nombre { font-size: 11px; font-weight: 700; fill: #1f2937; text-anchor: middle; }
+.glifo.canal .sub { stroke: #1f2937; stroke-width: 3; stroke-linecap: round; }
+.glifo.canal.parcial .sub { stroke: #d97706; }
+.glifo.canal.off .sub { stroke: #94a3b8; }
+.canal-hueco { fill: #ead9c9; }
+.glifo.canal .x { display: none; font-size: 16px; font-weight: 900; fill: var(--rojo); text-anchor: middle; }
+.glifo.canal.off .x { display: block; }
+.glifo.seleccionado .glifo-nombre, .glifo.seleccionado .glifo-txt { text-decoration: underline; }
+.vista .caja rect:not(.hit) { fill: #efe6f9; stroke: #7c3aed; }
+.vista .caja.ca rect:not(.hit) { fill: #e8e2f3; stroke: #8b7bb5; }
+.vista .caja.ca text { fill: #3b2a66; font-size: 12px; }
+.vista .caja.mito rect:not(.hit) { fill: #e3efd3; stroke: #4d7c0f; }
+.vista .caja.mito text { fill: #1f3a0a; font-size: 12px; }
+.vista .caja.mito.parcial rect:not(.hit) { fill: #fdf3d7; stroke: #d97706; }
+.vista .caja.mito.off rect:not(.hit) { fill: #e5e7eb; stroke: #94a3b8; }
+.vista .caja .caja-estado { font-size: 11.5px; font-weight: 800; }
+.vista .nucleo ellipse { fill: #f5ede4; stroke: #8b6b4f; }
+.vista .nucleo text { fill: #4b3a2d; }
+.deposito-sub { font-size: 10px; fill: #7c2d12; text-anchor: middle; }
+.vista .deposito { opacity: .5; }
+.vista .union line { stroke: #1f2937; stroke-width: 2; stroke-dasharray: 4 4; }
+.sw.circ { border-radius: 50%; border: 1.5px solid #1f2937; }
+.sw.circ.pasivo { background: #6b9bd8; } .sw.circ.activo { background: #cfe3a6; }
+.sw.canalito { background: linear-gradient(#1f2937 0 25%, transparent 25% 75%, #1f2937 75% 100%); border-radius: 0; }
