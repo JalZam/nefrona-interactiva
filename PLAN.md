@@ -71,6 +71,17 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 - "Riñón continuo": un solo nefrón de glomérulo a colector con daños combinables.
 - Dominio propio.
 
+### Fase 5: Animación paso a paso (página principal)
+**Objetivo (pedido de Juanjo 2026-10-24):** una página solo con la animación, sin deslizadores ni laboratorio, con las 4 células en paralelo conectadas por la luz (arriba, hacia la orina) y la sangre (abajo), y un recorrido paso a paso por mecanismo.
+**Criterio de éxito:** elegir "Antagonista del receptor MR" o "ARA2", pulsar "Siguiente" y ver, paso por paso, cómo cada movimiento se detiene y qué se acumula (Na⁺ en la orina, K⁺ en la sangre, ácido retenido, depósito de NH₃ vacío, carga luminal perdida).
+**Estado:** [x] Construida y publicada 2026-10-24; pendiente revisión de Juanjo
+**Tareas:**
+- [x] `index.html` nuevo (animación) y el simulador movido a `simulador.html`, con navegación entre ambos
+- [x] `js/nefron-paralelo.js`: 4 células en fila, luz continua arriba (Na⁺ baja y entra por NHE3 / NKCC2 / ENaC según la célula, o sigue a la orina), sangre abajo con eje RAAS; partículas encadenadas; pilas de acumulación; indicador de carga luminal; depósito medular
+- [x] `js/pasos.js`: mecanismos "Funcionamiento normal" (6 pasos), "Antagonista del receptor MR" (9) y "ARA2" (10) con estado objetivo por paso, transición suave, resaltado de los elementos del paso y texto explicativo; flechas del teclado
+- [x] Letras más grandes en animación y simulador
+- [ ] Revisión de Juanjo (pantalla grande); ajustar textos de los pasos si lo pide
+
 ## Decisiones Técnicas
 - JS puro, scripts clásicos (no ES modules) para que abra desde `file://`; un solo objeto global `NI`.
 - SVG inline dibujado a mano; sin D3.
@@ -84,4 +95,5 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 ## Cambios al Plan
 - 2026-10-23: plan inicial.
 - 2026-10-23: Juanjo pide animación de partículas con dependencias encadenadas y las cuatro células con imagen; se amplía la Fase 3 y se rehace la célula principal con partículas. Las tarjetas y la cascada se habían adelantado en Fase 2.
+- 2026-10-24: Juanjo pide una página principal solo de animación, con las 4 células en paralelo unidas por la luz y la sangre, acumulaciones visibles y recorrido paso a paso para 2 causas (antagonista MR y ARA2). Se agrega la Fase 5; para que la luz sea un conducto continuo las células quedan con la apical arriba y la basolateral abajo (se conserva el resto del estilo clásico).
 - 2026-10-23 (noche): Juanjo pide que las células se vean como la Fig. 1 de Palmer 2021 (Adv Ther; original de Comprehensive Clinical Nephrology): luz a la izquierda, célula color arena, intersticio a la derecha, transportadores como círculos (azul pasivo / verde activo con ATP), canales como rayitas, flechas negras finas. Se crea `js/celulas.js` que dibuja las 4 células desde una especificación con esa convención (dibujo propio, no se copia la figura); las flechas son los caminos de las partículas. Los 4 SVG de `index.html` quedan como cascarones.

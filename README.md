@@ -11,7 +11,12 @@ orina.
 
 Herramienta de aprendizaje; no es una calculadora clínica. Responsable: **Juan José Jaller (CiMedical)**.
 
-## Qué hace
+## Dos páginas
+
+- **`index.html` — Animación paso a paso (principal).** Las cuatro células en fila, unidas por la luz tubular (arriba, hacia la orina) y la sangre (abajo). Se elige un mecanismo (funcionamiento normal, antagonista del receptor MR, ARA2) y se avanza con "Siguiente": cada paso apaga un canal, muestra qué deja de moverse y qué se acumula (Na⁺ en la orina, K⁺ en la sangre, ácido retenido, depósito medular de NH₃ vacío, carga luminal perdida).
+- **`simulador.html` — Simulador cuantitativo.** Las 8 causas con deslizadores, modelo con dinámica en días, mapa del nefrón, eje RAAS, cuatro vistas de célula y laboratorio.
+
+## Qué hace el simulador
 
 - **8 causas combinables** (0–100 %): espironolactona/eplerenona, amilorida/trimetoprim, IECA/ARA2, AINES,
   heparina, nefropatía diabética, Addison, inhibidores de calcineurina. Más TFG, ingesta de K⁺ y carga ácida.
@@ -37,7 +42,9 @@ index.html          cabecera, panel de causas, reloj, mapa del nefrón, eje RAAS
 style.css           estilos (misma línea visual que Velocímetro Renal)
 js/model.js         modelo: parámetros, derivar(), paso(), crearSimulador(); ecuaciones numeradas según
                     INVESTIGATION.md Parte D
-js/celulas.js       dibuja las 4 células desde especificaciones (estilo esquema clásico de fisiología renal)
+js/nefron-paralelo.js  animación principal: 4 células en fila, luz/sangre continuas, pilas de acumulación
+js/pasos.js         mecanismos y pasos de la animación principal
+js/celulas.js       dibuja las 4 células del simulador desde especificaciones (estilo esquema clásico)
 js/particulas.js    motor de partículas (corrientes por tasa o por cadena, rebotes "✕")
 js/escenas.js       corrientes de cada vista y del mapa; actualizar(d) las acopla al modelo
 js/svg-nefrona.js   estados de canales, voltímetros, textos y colores de cada SVG
@@ -69,6 +76,8 @@ Todo ocurre en el navegador. No hay cookies, almacenamiento, analítica ni enví
 sirve las tipografías.
 
 ## Historial
+
+- **2026-10-24** — Página principal de animación paso a paso (normal / antagonista MR / ARA2) con las 4 células en paralelo; el simulador pasa a `simulador.html`. Letras más grandes.
 
 - **2026-10-23** — Kickoff, investigación (33 artículos de PubMed + 3 libros), plan, modelo calibrado,
   célula principal, animación de partículas, cuatro células, mapa del nefrón, eje RAAS, publicación.

@@ -4,7 +4,7 @@
 <!-- initialized: 2026-10-23 -->
 <!-- version: 1.0 -->
 <!-- status: active -->
-<!-- last-completed-step: phase-4 -->
+<!-- last-completed-step: phase-5 -->
 
 ## ¿Qué es este proyecto?
 Página web estática (HTML + CSS + JS puro + SVG) para **aprender viendo** la fisiología celular del nefrón y cómo se rompe en la **acidosis tubular renal tipo 4 (ATR4)**. Muestra el funcionamiento normal (canales, transportadores, qué los activa) y permite aplicar causas (medicamentos o enfermedades que bajan la aldosterona o bloquean su acción) y ver, **en tiempo real y con dinámica en días**, cómo cambian los canales de cada célula y los resultados de sangre y orina.
@@ -12,8 +12,8 @@ Página web estática (HTML + CSS + JS puro + SVG) para **aprender viendo** la f
 Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje; más adelante docencia. Visión futura: ATR 1 y 2, y un "riñón continuo" simulable.
 
 ## Estado Actual
-**Fase activa:** v1 publicada en https://jalzam.github.io/nefrona-interactiva/ (2026-10-23). Pendiente revisión de Juanjo en pantalla grande y celular.
-**Progreso general:** 4 de 4 fases completadas
+**Fase activa:** Fase 5 construida (animación paso a paso como página principal, 2026-10-24). Pendiente revisión de Juanjo.
+**Progreso general:** 5 de 5 fases construidas
 
 ## Stack Técnico
 - HTML + CSS + JavaScript puro. SVG inline dibujado a mano. Sin framework, sin dependencias, sin compilación.
@@ -26,7 +26,10 @@ Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje
 
 ## Estructura de Archivos Clave
 ```
-index.html          estructura: cabecera, panel de causas, nefrona SVG, paneles sangre/orina, referencias
+index.html          PÁGINA PRINCIPAL: animación paso a paso (controles de mecanismo, tarjeta del paso, nefrón en paralelo)
+simulador.html      simulador cuantitativo (causas con deslizadores, mapa, RAAS, 4 vistas, laboratorio)
+js/nefron-paralelo.js  4 células en fila + luz/sangre continuas, partículas encadenadas, pilas, carga luminal; render(E)
+js/pasos.js         mecanismos y pasos (normal / antagonista MR / ARA2), motor de transición y resaltado
 style.css           estilos (paleta y tipografías del Velocímetro Renal), estados de canales
 js/model.js         el modelo: estado, parámetros, causas, step(dt), reset(), historial 14 días
 js/celulas.js       dibuja las 4 células (estilo esquema clásico: luz izq., célula arena, intersticio der.) desde especificaciones; las flechas son los caminos de partículas
