@@ -103,7 +103,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .via.inhib { stroke: var(--rojo); }
 .via.tenue { stroke-dasharray: 5 5; opacity: .5; }
 .via-label { font-size: 11px; font-weight: 700; fill: #6d28d9; }
-.via-nota { font-size: 9.5px; fill: var(--text-muted); }
+.via-nota { font-size: 11px; fill: var(--text-muted); }
 .caja rect:not(.hit) { fill: #ede9fe; stroke: #7c3aed; stroke-width: 2; transition: opacity .3s; }
 .caja text { font-size: 13px; font-weight: 800; fill: #4c1d95; text-anchor: middle; }
 .caja.apagada rect:not(.hit) { fill: #f1f5f9; stroke: var(--off); }
@@ -215,7 +215,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .seg rect { fill: var(--white); stroke: var(--ok); stroke-width: 2.5; transition: stroke .3s, fill .3s; }
 .seg.parcial rect { stroke: var(--parcial); fill: #fffbeb; }
 .seg.off rect { stroke: var(--rojo); fill: #fef2f2; }
-.seg text { font-size: 13px; font-weight: 700; fill: var(--dark); text-anchor: middle; }
+.seg text { font-size: 14px; font-weight: 700; fill: var(--dark); text-anchor: middle; }
 .seg .seg-sub { font-size: 10px; font-weight: 500; fill: var(--text-secondary); }
 .seg:hover rect { filter: brightness(.97); }
 .seg.seleccionado rect { stroke-width: 4; }
@@ -264,25 +264,25 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .zona-titulo { font-size: 13px; font-weight: 800; letter-spacing: .6px; fill: #6b4f3a; text-anchor: middle; }
 .celula-cuerpo { fill: #ead9c9; stroke: #1f2937; stroke-width: 3.5; }
 .vista .celula-titulo { font-size: 15px; }
-.vista .valor { font-size: 12px; font-weight: 600; fill: #4b3a2d; }
+.vista .valor { font-size: 13px; font-weight: 600; fill: #4b3a2d; }
 .vista .valor tspan { font-weight: 800; }
 .flecha { fill: none; stroke: #1f2937; stroke-width: 1.8; }
 .flecha.tenue { stroke: #9ca3af; stroke-dasharray: 4 4; }
 .flecha.via { stroke: #7c3aed; stroke-width: 2.2; transition: opacity .3s; }
 .flecha.via.inhib { stroke: #dc2626; marker-end: url(#punta-inhib) !important; }
-.ion-txt { font-size: 12px; font-weight: 800; fill: #1f2937; }
+.ion-txt { font-size: 14px; font-weight: 800; fill: #1f2937; }
 .ion-txt.na { fill: var(--na); } .ion-txt.k { fill: var(--k); } .ion-txt.h { fill: var(--rojo); } .ion-txt.hco3 { fill: #0d9488; } .ion-txt.cl { fill: #6366f1; } .ion-txt.nh3, .ion-txt.nh4 { fill: #ea580c; } .ion-txt.gln { fill: #92400e; } .ion-txt.co2 { fill: #64748b; } .ion-txt.agua { fill: var(--agua); }
-.reaccion { font-size: 12px; font-weight: 700; fill: #4b3a2d; }
+.reaccion { font-size: 13px; font-weight: 700; fill: #4b3a2d; }
 .glifo { cursor: pointer; }
 .glifo.bomba .sub { stroke: #1f2937; stroke-width: 2; transition: fill .3s; }
 .glifo.bomba.pasivo .sub { fill: #6b9bd8; }
 .glifo.bomba.activo .sub { fill: #cfe3a6; }
 .glifo.bomba.parcial .sub { fill: #f6c35c !important; }
 .glifo.bomba.off .sub { fill: #cbd5e1 !important; }
-.glifo-txt { font-size: 11px; font-weight: 800; fill: #1f2937; text-anchor: middle; }
+.glifo-txt { font-size: 12px; font-weight: 800; fill: #1f2937; text-anchor: middle; }
 .glifo.pasivo .glifo-txt { fill: #fff; }
 .glifo-atp { font-size: 8px; font-weight: 800; fill: #3f6212; text-anchor: middle; }
-.glifo-nombre { font-size: 11px; font-weight: 700; fill: #1f2937; text-anchor: middle; }
+.glifo-nombre { font-size: 13px; font-weight: 700; fill: #1f2937; text-anchor: middle; }
 .glifo.canal .sub { stroke: #1f2937; stroke-width: 3; stroke-linecap: round; }
 .glifo.canal.parcial .sub { stroke: #d97706; }
 .glifo.canal.off .sub { stroke: #94a3b8; }

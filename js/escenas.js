@@ -11,7 +11,7 @@
 
   // ───────── Célula principal ─────────
   function principal(svg) {
-    const e = P.crearEscena(svg, { radio: 10, fuente: 8 });
+    const e = P.crearEscena(svg, { radio: 15, fuente: 11.5 });
     e.agregar('na_ap', { path: 'g-na-ap', ion: 'na', tasa: 2.4, alLlegar: (esc) => {
       esc.emitir('na_bl');
       // la bomba mete K⁺ a cambio del Na⁺ que sale
@@ -44,7 +44,7 @@
 
   // ───────── Célula intercalada α ─────────
   function alfa(svg) {
-    const e = P.crearEscena(svg, { radio: 10, fuente: 8 });
+    const e = P.crearEscena(svg, { radio: 15, fuente: 11.5 });
     e.agregar('co2', { path: 'g-co2', ion: 'co2', tasa: 2.2, pequeno: true, alLlegar: (esc) => {
       esc.emitir('h_ap'); esc.emitir('hco3_bl'); esc.emitir('cl_ae1');
     }});
@@ -71,7 +71,7 @@
 
   // ───────── Túbulo proximal ─────────
   function proximal(svg) {
-    const e = P.crearEscena(svg, { radio: 10, fuente: 8 });
+    const e = P.crearEscena(svg, { radio: 15, fuente: 11.5 });
     e.agregar('gln', { path: 'g-gln', ion: 'gln', tasa: 1.4, alLlegar: (esc) => {
       esc.emitir('nh4_ap'); setTimeout(() => esc.emitir('nh4_ap'), 350);
       esc.emitir('hco3_nbc'); setTimeout(() => esc.emitir('hco3_nbc'), 350);
@@ -91,7 +91,7 @@
 
   // ───────── Asa gruesa ascendente ─────────
   function asa(svg) {
-    const e = P.crearEscena(svg, { radio: 10, fuente: 8 });
+    const e = P.crearEscena(svg, { radio: 15, fuente: 11.5 });
     e.agregar('nh4_llega', { path: 'g-nh4-llega', ion: 'nh4', tasa: 2.0, alLlegar: (esc) => {
       // compite con el K⁺ por NKCC2
       if (azar() < D.pK) esc.emitir('nh4_cell'); else { esc.rebote(160, 150, 'nh4'); esc.emitir('nh4_sigue'); }
@@ -112,7 +112,7 @@
 
   // ───────── Mapa del nefrón ─────────
   function nefron(svg) {
-    const e = P.crearEscena(svg, { radio: 8, fuente: 7, maxParticulas: 120 });
+    const e = P.crearEscena(svg, { radio: 11, fuente: 9, maxParticulas: 120 });
     e.agregar('nh4_prox', { path: 'o-nh4-prox', ion: 'nh4', tasa: 1.6, velocidad: 110, alLlegar: (esc) => {
       if (azar() < D.pK) esc.emitir('nh4_inter'); else esc.emitir('nh4_sigue');
     }});
@@ -141,7 +141,7 @@
 
   // ───────── Eje RAAS ─────────
   function raas(svg) {
-    const e = P.crearEscena(svg, { radio: 8, fuente: 7 });
+    const e = P.crearEscena(svg, { radio: 11, fuente: 9 });
     e.agregar('renina', { path: 'r-renina', ion: 'renina', tasa: 1.2, velocidad: 120, alLlegar: (esc) => {
       if (azar() < 0.9 * NI.sim.e.ieca) esc.rebote(500, 60, 'renina'); else esc.emitir('angii');
     }});

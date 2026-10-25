@@ -64,7 +64,7 @@
       if (!c.pequeno) {
         const t = document.createElementNS(SVGNS, 'text');
         t.setAttribute('font-size', esc.fuente); t.setAttribute('fill', ion.texto);
-        t.setAttribute('text-anchor', 'middle'); t.setAttribute('dy', '2.6');
+        t.setAttribute('text-anchor', 'middle'); t.setAttribute('dy', esc.fuente >= 11 ? '4' : '3');
         t.setAttribute('font-weight', '800');
         t.textContent = c.etiqueta || ion.etiqueta;
         g.appendChild(t);
