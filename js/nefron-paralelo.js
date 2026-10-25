@@ -93,6 +93,7 @@
     flecha(svg, 'g-na-enac', `M870 68 L870 ${AP + 30} C870 320 900 420 900 ${BL} L900 612`, '');
     flecha(svg, 'g-na3', 'M870 68 L1548 68', '');
     // K⁺ en la célula principal: entra por la bomba, sale por ROMK o vuelve por Kir4.1
+    flecha(svg, 'g-k-sangre', 'M900 668 L930 668 L930 614', '', true);
     flecha(svg, 'g-k-in', `M930 612 L930 ${BL} C930 430 990 300 990 200`, '');
     flecha(svg, 'g-k-romk', `M990 200 L990 ${AP} L990 94`, '');
     flecha(svg, 'g-k-luz', 'M990 94 L1548 94', '');
@@ -113,7 +114,9 @@
     flecha(svg, 'g-k-prox', `M350 612 L350 ${BL} L350 440`, 'tenue');
     // célula α
     flecha(svg, 'g-co2', `M1270 612 L1270 ${BL} L1270 352`, '');
-    flecha(svg, 'g-h-ap', `M1262 296 C1270 240 1270 200 1270 ${AP + 30} L1270 86`, '');
+    flecha(svg, 'g-h-ap1', `M1262 296 C1270 240 1270 200 1270 ${AP + 36}`, '', true);
+    flecha(svg, 'g-h-ap2', `M1270 ${AP + 30} L1270 86`, '');
+    flecha(svg, 'g-h-vuelve', `M1250 ${AP + 40} C1225 300 1225 450 1236 ${BL} L1236 612`, 'tenue');
     flecha(svg, 'g-h-luz', 'M1270 82 L1420 82', 'tenue', true);
     flecha(svg, 'g-hco3-a', `M1300 352 L1300 ${BL} L1300 612`, '');
     flecha(svg, 'g-cl-a', `M1340 612 L1340 ${BL} L1340 420`, '');
@@ -205,7 +208,9 @@
     e.agregar('na2', { path: 'g-na2', ion: 'na', modo: 'cadena', velocidad: 120, alLlegar: () => {
       if (azar() < 0.85 * E.enac) e.emitir('na_enac'); else { if (E.enac < 0.5) reb(870, 100, 'na'); e.emitir('na3'); }
     }});
-    e.agregar('na_enac', { path: 'g-na-enac', ion: 'na', modo: 'cadena', desvanecer: 30, alLlegar: () => { if (azar() < E.nak) e.emitir('k_in'); } });
+    e.agregar('na_enac', { path: 'g-na-enac', ion: 'na', modo: 'cadena', desvanecer: 30 });
+    // K⁺ llega desde la sangre a la bomba: entra solo si la bomba trabaja (si no, rebota y se acumula)
+    e.agregar('k_sangre', { path: 'g-k-sangre', ion: 'k', tasa: 1.6, velocidad: 100, alLlegar: () => { if (azar() < E.nak) e.emitir('k_in'); else reb(930, 600, 'k'); } });
     e.agregar('na3', { path: 'g-na3', ion: 'na', modo: 'cadena', velocidad: 140, desvanecer: 40 });
     // K⁺ en la célula principal
     e.agregar('k_in', { path: 'g-k-in', ion: 'k', modo: 'cadena', alLlegar: () => { if (azar() < E.romk * E.volt) e.emitir('k_romk'); else { if (E.volt < 0.5) reb(990, 170, 'k'); e.emitir('k_kir'); } } });
@@ -218,7 +223,10 @@
     e.agregar('k_recicla', { path: 'g-k-recicla', ion: 'k', modo: 'cadena', alLlegar: () => e.emitir('k_luz1') });
     e.agregar('k_luz1', { path: 'g-k-luz1', ion: 'k', modo: 'cadena', velocidad: 120, desvanecer: 60 });
     // amonio
-    e.agregar('gln', { path: 'g-gln', ion: 'gln', tasa: 1.3, alLlegar: () => { e.emitir('nh4_ap'); setTimeout(() => e.emitir('nh4_ap'), 300); e.emitir('hco3_p'); setTimeout(() => e.emitir('hco3_p'), 300); } });
+    e.agregar('gln', { path: 'g-gln', ion: 'gln', tasa: 1.3, alLlegar: () => {
+      if (azar() < E.glut) { e.emitir('nh4_ap'); setTimeout(() => e.emitir('nh4_ap'), 300); e.emitir('hco3_p'); setTimeout(() => e.emitir('hco3_p'), 300); }
+      else reb(300, 436, 'gln');
+    }});
     e.agregar('nh4_ap', { path: 'g-nh4-ap', ion: 'nh4', modo: 'cadena', alLlegar: () => e.emitir('nh4_luz0') });
     e.agregar('nh4_luz0', { path: 'g-nh4-luz0', ion: 'nh4', modo: 'cadena', velocidad: 120, alLlegar: () => { if (azar() < E.pK) e.emitir('nh4_tal'); else { if (E.pK < 0.6) reb(520, 100, 'nh4'); e.emitir('nh4_sigue'); } } });
     e.agregar('nh4_tal', { path: 'g-nh4-tal', ion: 'nh4', modo: 'cadena', alLlegar: () => e.emitir('nh4_dep') });
@@ -227,8 +235,13 @@
     e.agregar('hco3_p', { path: 'g-hco3-p', ion: 'hco3', modo: 'cadena', desvanecer: 40 });
     e.agregar('k_prox', { path: 'g-k-prox', ion: 'k', tasa: 1.4, desvanecer: 60, flujo: 0 });
     // célula α
-    e.agregar('co2', { path: 'g-co2', ion: 'co2', tasa: 1.8, pequeno: true, alLlegar: () => { e.emitir('h_ap'); e.emitir('hco3_a'); e.emitir('cl_a'); } });
-    e.agregar('h_ap', { path: 'g-h-ap', ion: 'h', modo: 'cadena', alLlegar: () => e.emitir('h_luz') });
+    e.agregar('co2', { path: 'g-co2', ion: 'co2', tasa: 1.8, pequeno: true, alLlegar: () => e.emitir('h_ap1') });
+    e.agregar('h_ap1', { path: 'g-h-ap1', ion: 'h', modo: 'cadena', alLlegar: () => {
+      if (azar() < E.hatp) { e.emitir('h_ap2'); e.emitir('hco3_a'); e.emitir('cl_a'); }
+      else { reb(1270, 172, 'h'); e.emitir('h_vuelve'); }
+    }});
+    e.agregar('h_ap2', { path: 'g-h-ap2', ion: 'h', modo: 'cadena', alLlegar: () => e.emitir('h_luz') });
+    e.agregar('h_vuelve', { path: 'g-h-vuelve', ion: 'h', modo: 'cadena', desvanecer: 40 });
     e.agregar('h_luz', { path: 'g-h-luz', ion: 'h', modo: 'cadena', desvanecer: 70 });
     e.agregar('hco3_a', { path: 'g-hco3-a', ion: 'hco3', modo: 'cadena', desvanecer: 40 });
     e.agregar('cl_a', { path: 'g-cl-a', ion: 'cl', modo: 'cadena', pequeno: true, desvanecer: 40 });
@@ -242,10 +255,11 @@
     e.agregar('aldo_k', { path: 'g-aldo', ion: 'aldo', tasa: 1.0, flujo: 0, alLlegar: () => { if (E.mrBlock > 0.5) reb(1062, 486, 'aldo'); } });
     e.actualizar = () => {
       e.setFlujo('na0', 1);
-      e.setFlujo('k_luz0', 0.8);
-      e.setFlujo('gln', E.glut);
+      e.setFlujo('k_luz0', 0.8 + 1.6 * clamp((E.K - 4) / 2, 0, 1));
+      e.setFlujo('gln', 1);
+      e.setFlujo('k_sangre', 1);
       e.setFlujo('k_prox', clamp((E.K - 4.5) / 1.5, 0, 1.2));
-      e.setFlujo('co2', E.hatp);
+      e.setFlujo('co2', 1);
       e.setFlujo('nh3', E.nh3);
       e.setFlujo('renina', E.renina);
       e.setFlujo('aldo_k', E.aldoK || 0);
