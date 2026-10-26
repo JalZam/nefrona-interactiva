@@ -79,7 +79,7 @@
           texto: 'Bomba apical de la célula α que saca 1 H⁺ y recupera 1 K⁺ de la luz. Con K⁺ normal trabaja poco (círculo naranja); se induce cuando falta K⁺. Por eso la hipokalemia, por sí sola, aumenta la secreción de H⁺ (y la amoniogénesis) y tiende a la alcalosis, y la hiperkalemia hace lo contrario.',
           estado: {}, resaltar: ['ch-hk'] },
         { titulo: 'El balance: excreción neta de ácido = NH₄⁺ + acidez titulable − HCO₃⁻ urinario',
-          texto: 'La dieta produce unos 70 mEq de ácido al día (1 mEq/kg). Para mantener el HCO₃⁻ en 24 el riñón tiene que excretar la misma cantidad: unos 40 como NH₄⁺, unos 30 como acidez titulable y casi nada de HCO₃⁻ en la orina. Cada H⁺ excretado es un HCO₃⁻ nuevo que vuelve a la sangre. En el cajón de orina, «ENA» resume ese balance; en la sangre, el Cl⁻ sube lo mismo que baja el HCO₃⁻ cuando la acidosis es sin anion gap.',
+          texto: 'La dieta produce unos 70 mEq de ácido al día (1 mEq/kg). Para mantener el HCO₃⁻ en 24 el riñón tiene que excretar la misma cantidad: unos 40 como NH₄⁺, unos 30 como acidez titulable y casi nada de HCO₃⁻ en la orina. Cada H⁺ excretado es un HCO₃⁻ nuevo que vuelve a la sangre. En el cajón de orina y en la franja de laboratorio, la «excreción neta de ácido» resume ese balance; en la sangre, el Cl⁻ sube lo mismo que baja el HCO₃⁻ cuando la acidosis es sin anion gap.',
           estado: {}, resaltar: ['pila-nh4o', 'pila-ato', 'orina-ena', 'pila-h'] }
       ]
     },
@@ -108,7 +108,7 @@
           estado: { trap: 1, phOrina: 5.0 }, resaltar: ['pila-nh4o', 'orina-nh4', 'orina-ena', 'orina-ph'] },
         { titulo: 'Se pierde K⁺ y la H⁺/K⁺-ATPasa se activa',
           texto: 'Las heces diarreicas llevan K⁺ y la aldosterona alta aumenta la secreción renal: hipokalemia. La H⁺/K⁺-ATPasa de la célula α se induce y recupera K⁺ de la luz a cambio de más H⁺. Contraste con la ATR 4: allí el K⁺ alto frena la amoniogénesis; aquí el K⁺ bajo la estimula.',
-          estado: { K: 3.3, hk: 0.8, kOrina: 0.4 }, resaltar: ['pila-k', 'ch-hk', 'pila-heces'] },
+          estado: { K: 3.3, hk: 0.8 }, resaltar: ['pila-k', 'ch-hk', 'pila-heces'] },
         { titulo: 'Resultado: acidosis por diarrea con riñón sano',
           texto: 'HCO₃⁻ bajo y Cl⁻ alto con anion gap normal, K⁺ bajo, pH urinario < 5,3, NH₄⁺ urinario alto (> 40 mEq/L en orina aislada) y brecha aniónica urinaria negativa; excreción neta de ácido alta. Ojo: con hipokalemia grave y mucho NH₃, el pH urinario puede subir por encima de 5,5 sin que haya ATR (sobra amortiguador, no falta H⁺); por eso se mira el NH₄⁺, no solo el pH. Se trata reponiendo volumen, K⁺ y bicarbonato.',
           estado: {}, resaltar: ['pila-h', 'pila-k', 'pila-nh4o', 'orina-ena'] }

@@ -67,4 +67,4 @@ PLAN.md             fases y estado
 
 ## Deuda Técnica Activa
 - Fuera de v1: volumen extracelular y Na⁺ dinámicos, insulina, célula β/pendrina, fosfato/citrato, hiperkalemia aguda.
-- Añadidos 2026-10-26 (solo en la fila, no en columna.html): opción "diarrea con riñón sano", H⁺/K⁺-ATPasa, caja aldosterona/acidosis → H⁺-ATPasa, acidez titulable (fosfato en la luz del colector), Cl⁻ plasmático, cajón de heces, ENA en la orina. Siguen fuera: BK, pendrina/célula β, acuaporina-2.
+- Añadidos 2026-10-26 (solo en la fila, no en columna.html): opción "diarrea con riñón sano", H⁺/K⁺-ATPasa, caja aldosterona/acidosis → H⁺-ATPasa, acidez titulable (fosfato en la luz del colector), Cl⁻ plasmático, cajón de heces, excreción neta de ácido en la orina, franja de laboratorio bajo el dibujo (sangre: Na⁺ fijo 140, K⁺, Cl⁻ = 128 − HCO₃⁻, HCO₃⁻, anion gap; orina: pH, Na⁺, K⁺, Cl⁻ por electroneutralidad, brecha aniónica urinaria, NH₄⁺, ENA; valores ilustrativos derivados del estado). Siguen fuera: BK, pendrina/célula β, acuaporina-2.

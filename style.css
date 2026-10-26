@@ -424,3 +424,19 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .atr-pasos li.activo:hover { background: var(--primary-light); }
 .atr-ayuda { font-size: .7rem; color: var(--text-muted); margin-top: .5rem; }
 .tarjeta.abierta .tarjeta-cerrar { display: inline-block; }
+
+/* ── franja de laboratorio ── */
+.lab-franja { display: grid; gap: .3rem; padding: .4rem .5rem .2rem; border-top: 1px solid var(--border); }
+.lab-fila { display: flex; align-items: stretch; gap: .35rem; }
+.lab-titulo { width: 58px; flex: 0 0 58px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: .8rem; color: var(--dark); align-self: center; text-transform: uppercase; letter-spacing: .4px; }
+.lab-fila:first-child .lab-titulo { color: #991b1b; } .lab-fila:last-child .lab-titulo { color: #92400e; }
+.lab-celdas { display: flex; flex-wrap: wrap; gap: .3rem; flex: 1; }
+.lab-c { border: 1px solid var(--border); border-radius: 8px; padding: .15rem .5rem .2rem; background: var(--white); min-width: 74px; cursor: default; }
+.lab-c.ancha { min-width: 150px; }
+.lab-c b { display: block; font-size: .7rem; font-weight: 700; color: var(--text-secondary); }
+.lab-c span { font-size: 1rem; font-weight: 800; color: var(--dark); font-variant-numeric: tabular-nums; }
+.lab-c i { font-style: normal; font-size: .66rem; color: var(--text-muted); margin-left: .25rem; }
+.lab-c.alto, .lab-c.bajo { border-color: #fca5a5; background: #fef2f2; }
+.lab-c.alto span, .lab-c.bajo span { color: var(--rojo); }
+.lab-c.bien { border-color: #86efac; background: #f0fdf4; }
+.lab-c.bien span { color: #15803d; }
