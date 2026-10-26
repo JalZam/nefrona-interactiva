@@ -77,6 +77,7 @@ sirve las tipografías.
 
 ## Historial
 
+- **2026-10-26 (noche)** — Dominio propio nefrona-interactiva.com; reorganización de rótulos para que ningún texto quede bajo un camino de partículas (detector de solapamientos: 0 choques); H₂O visible junto a la anhidrasa carbónica.
 - **2026-10-26 (tarde)** — Bombas Na⁺/K⁺ 3 : 2 también en asa y proximal, NBCe1 1 Na⁺ : 3 HCO₃⁻, ClC-Kb en la célula α, reciclaje de K⁺ por Kir4.1; diseño en dos columnas con el panel de paso y explicación fijo al lado de la animación.
 - **2026-10-26** — Colas de espera con estequiometría en la animación (bomba 3 Na⁺ : 2 K⁺, NKCC2 con 2 Cl⁻ y ClC-Kb, AE1 1 : 1, NHE3), voltaje luminal medido a partir del Na⁺ que entra por ENaC, y etiquetas en todas las partículas (Cl⁻, CO₂) y canales.
 - **2026-10-24** — Página principal de animación paso a paso (normal / antagonista MR / ARA2) con las 4 células en paralelo; el simulador pasa a `simulador.html`. Letras más grandes.
