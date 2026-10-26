@@ -315,11 +315,11 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .nav-link.activo { background: var(--primary); color: var(--white); border-color: var(--primary); }
 
 /* ── Página de animación paso a paso ── */
-.anim-layout { max-width: 1700px; margin: 0 auto; padding: 1rem 1.25rem 2rem; display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr) 400px; align-items: start; }
-.anim-panel { position: sticky; top: 70px; display: grid; gap: 1rem; max-height: calc(100vh - 86px); overflow-y: auto; }
-.anim-controles { padding: .9rem 1.1rem; display: grid; gap: .7rem; }
+.anim-layout { max-width: 1900px; margin: 0 auto; padding: .8rem 1rem 2rem; display: grid; gap: .8rem; grid-template-columns: minmax(0, 1fr) 460px; align-items: start; }
+.anim-panel { position: sticky; top: 66px; display: flex; flex-direction: column; gap: .6rem; max-height: calc(100vh - 80px); }
+.anim-controles { padding: .55rem .8rem; display: grid; gap: .4rem; }
 .mecanismos { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
-.mec-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .4px; color: var(--text-muted); font-weight: 700; width: 100%; }
+.mec-label { font-size: .68rem; line-height: 1.3; text-transform: uppercase; letter-spacing: .4px; color: var(--text-muted); font-weight: 700; width: 100%; }
 .mec { font: inherit; font-size: .84rem; font-weight: 600; padding: .45rem .8rem; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--white); color: var(--dark); cursor: pointer; text-align: left; }
 .mec:hover { border-color: var(--primary-mid); background: var(--primary-light); }
 .mec.activo { background: var(--primary); color: var(--white); border-color: var(--primary); }
@@ -336,12 +336,24 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .tarjeta-cerrar { display: none; position: absolute; top: .5rem; right: .6rem; font: inherit; font-size: 1rem; font-weight: 700; border: 1px solid var(--border); background: var(--white); border-radius: 999px; width: 30px; height: 30px; cursor: pointer; color: var(--text-secondary); }
 .leyenda .sw.espera { border: 2px dashed #111827; background: #2563eb; }
 .anim-card { padding: .5rem; }
-#svg-nefron-paralelo { width: 100%; height: auto; display: block; font-family: 'Inter', system-ui, sans-serif; }
+/* alto fijado para que se vean al menos tres células a la vez; el ancho sale de la proporción */
+#svg-nefron { width: 100%; height: auto; display: block; margin: 0 auto; font-family: 'Inter', system-ui, sans-serif; }
+.anim-card.columna #svg-nefron { height: calc((100vh - 140px) / 0.69); width: auto; max-width: 100%; }
+.anim-card.columna[data-ver="2"] #svg-nefron { height: calc((100vh - 140px) / 0.48); }
+.anim-card.columna[data-ver="4"] #svg-nefron { height: auto; width: 100%; max-width: 980px; }
+.ver-barra { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; padding: .2rem .4rem .5rem; font-size: .78rem; color: var(--text-secondary); }
+.ver-label { font-weight: 700; text-transform: uppercase; letter-spacing: .4px; font-size: .7rem; color: var(--text-muted); }
+.ver-btn { font: inherit; font-size: .78rem; font-weight: 600; padding: .3rem .7rem; border-radius: 999px; border: 1px solid var(--border); background: var(--white); color: var(--dark); cursor: pointer; }
+.ver-btn.activo { background: var(--primary); color: var(--white); border-color: var(--primary); }
+.ver-nota { font-size: .7rem; color: var(--text-muted); }
 .leyenda.grande { font-size: .85rem; }
-.pagina-animacion .tarjeta-texto { font-size: 1rem; }
+.pagina-animacion .tarjeta-texto { font-size: .9rem; }
+.pagina-animacion .tarjeta { padding: .55rem .9rem; min-height: 0; margin-top: 0; }
+.tarjeta-pista { font-size: .8rem !important; color: var(--text-secondary); }
 
 /* esquema paralelo */
-.np-luz { fill: #fffbea; } .np-sangre { fill: #fdf2f2; }
+.np-luz { fill: #fffbea; } .np-sangre { fill: #fdf2f2; } .np-orina { fill: #fef3c7; }
+.np-banda-titulo.celulas { fill: #57534e; font-size: 15px; letter-spacing: .5px; }
 .np-banda-titulo { font-size: 18px; font-weight: 800; letter-spacing: 1px; fill: #92400e; }
 .np-banda-titulo.sangre { fill: #991b1b; }
 .np-celula { fill: #ead9c9; stroke: #1f2937; stroke-width: 3.5; }
@@ -355,14 +367,14 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .np-nota { font-size: 14px; fill: #57534e; }
 .np-reaccion { font-size: 15px; font-weight: 700; fill: #4b3a2d; }
 .np-union { stroke: #1f2937; stroke-width: 2; stroke-dasharray: 5 5; }
-#svg-nefron-paralelo .glifo-nombre { font-size: 17px; }
-#svg-nefron-paralelo .glifo-txt { font-size: 14px; }
-#svg-nefron-paralelo .glifo-atp { font-size: 10px; }
-#svg-nefron-paralelo .caja text { font-size: 16px; }
-#svg-nefron-paralelo .caja .caja-sub { font-size: 13px; }
-#svg-nefron-paralelo .nucleo text { font-size: 16px; }
-#svg-nefron-paralelo .nucleo .nucleo-sub { font-size: 12px; }
-#svg-nefron-paralelo .canal-hueco { fill: #ead9c9; }
+#svg-nefron .glifo-nombre { font-size: 17px; }
+#svg-nefron .glifo-txt { font-size: 14px; }
+#svg-nefron .glifo-atp { font-size: 10px; }
+#svg-nefron .caja text { font-size: 16px; }
+#svg-nefron .caja .caja-sub { font-size: 13px; }
+#svg-nefron .nucleo text { font-size: 16px; }
+#svg-nefron .nucleo .nucleo-sub { font-size: 12px; }
+#svg-nefron .canal-hueco { fill: #ead9c9; }
 .np-carga { font-size: 20px; font-weight: 900; fill: #1d4ed8; letter-spacing: 4px; }
 .np-carga.perdida { fill: #9ca3af; }
 .np-carga-txt { font-size: 15px; font-weight: 700; fill: #1e3a8a; }
@@ -387,3 +399,28 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   .tarjeta.abierta { position: fixed; left: .5rem; right: .5rem; bottom: .5rem; z-index: 60; max-height: 38vh; overflow-y: auto; box-shadow: 0 -4px 24px rgba(0,0,0,.18); }
   .tarjeta.abierta .tarjeta-cerrar { display: inline-block; }
 }
+
+/* ── panel de acidosis tubulares ── */
+.atr-botones { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .25rem; }
+.atr-botones .atr-btn:first-child { grid-column: 1 / -1; }
+.atr-btn { font: inherit; font-size: .76rem; font-weight: 600; padding: .4rem .5rem; line-height: 1.2; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--white); color: var(--dark); cursor: pointer; text-align: left; }
+.atr-btn:hover { border-color: var(--primary-mid); background: var(--primary-light); }
+.atr-btn.activo { background: var(--primary); color: var(--white); border-color: var(--primary); }
+.atr-card { padding: .55rem .8rem; position: relative; overflow-y: auto; min-height: 0; flex: 1 1 auto; }
+.anim-controles { flex: 0 0 auto; }
+.tarjeta { flex: 0 0 auto; }
+.tarjeta.abierta { max-height: 30vh; overflow-y: auto; }
+.atr-causas { font-size: .78rem; color: var(--text-secondary); margin: .15rem 0 .5rem; line-height: 1.35; }
+.atr-pasos { margin: 0; padding: 0 0 0 1.4rem; display: grid; gap: .05rem; }
+.atr-pasos li { padding: .15rem .5rem .2rem .35rem; border-radius: var(--radius-md); border-left: 3px solid transparent; cursor: pointer; transition: background .2s, opacity .2s; }
+.atr-pasos li::marker { font-weight: 800; color: var(--primary-dark); }
+.atr-pasos li b { display: block; font-family: 'Outfit', sans-serif; font-size: .86rem; font-weight: 700; color: var(--dark); line-height: 1.18; }
+.atr-pasos li span { display: none; font-size: .83rem; color: var(--text); line-height: 1.35; margin-top: .2rem; }
+.atr-pasos li.pendiente { opacity: .55; }
+.atr-pasos li.hecho b { color: var(--text-secondary); }
+.atr-pasos li.activo { background: var(--primary-light); border-left-color: var(--primary); opacity: 1; }
+.atr-pasos li.activo span { display: block; }
+.atr-pasos li:hover { background: var(--bg); }
+.atr-pasos li.activo:hover { background: var(--primary-light); }
+.atr-ayuda { font-size: .7rem; color: var(--text-muted); margin-top: .5rem; }
+.tarjeta.abierta .tarjeta-cerrar { display: inline-block; }

@@ -12,7 +12,7 @@ Página web estática (HTML + CSS + JS puro + SVG) para **aprender viendo** la f
 Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje; más adelante docencia. Visión futura: ATR 1 y 2, y un "riñón continuo" simulable.
 
 ## Estado Actual
-**Fase activa:** Fase 5 construida (animación paso a paso como página principal, 2026-10-24); 2026-10-26 se añadió estequiometría con colas de espera y voltaje luminal medido. Pendiente revisión de Juanjo.
+**Fase activa:** 2026-10-26: página principal rediseñada con todas las ATR (1, 2, 3 y tres formas de 4), células en fila y panel de lista numerada sin temporizador; publicada. Siguiente: canales que faltan para acidosis sin anion gap (ver PLAN).
 **Progreso general:** 5 de 5 fases construidas
 
 ## Stack Técnico
@@ -26,10 +26,12 @@ Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje
 
 ## Estructura de Archivos Clave
 ```
-index.html          PÁGINA PRINCIPAL: animación paso a paso; dos columnas (animación izq., panel fijo der. con mecanismo, paso y tarjeta ¿por qué?; en <1180 px la tarjeta es un cajón fijo abajo)
+index.html          PÁGINA PRINCIPAL: animación en fila; panel derecho fijo con tarjeta ¿por qué? arriba, botones de las ATR y lista numerada completa
 simulador.html      simulador cuantitativo (causas con deslizadores, mapa, RAAS, 4 vistas, laboratorio)
-js/nefron-paralelo.js  4 células en fila + luz/sangre continuas, partículas encadenadas, pilas, carga luminal; render(E)
-js/pasos.js         mecanismos y pasos (normal / antagonista MR / ARA2), motor de transición y resaltado
+js/nefron-fila.js   PRINCIPAL: 4 células en fila (proximal→distal), luz arriba, sangre abajo, cajón de orina a la derecha; partículas, colas, pilas, carga luminal; render(E)
+js/nefron-columna.js  misma escena en columna (proximal arriba, distal abajo) para columna.html
+js/atr.js           las 7 opciones (normal, ATR 2, 1, 3, 4 hipoaldo, 4 antagonista MR, 4 bloqueo ENaC): lista numerada, cada punto se aplica al tocarlo (sin temporizador)
+columna.html        vista secundaria en columna con selector de 2 / 3 / todas las células
 style.css           estilos (paleta y tipografías del Velocímetro Renal), estados de canales
 js/model.js         el modelo: estado, parámetros, causas, step(dt), reset(), historial 14 días
 js/celulas.js       dibuja las 4 células (estilo esquema clásico: luz izq., célula arena, intersticio der.) desde especificaciones; las flechas son los caminos de partículas
@@ -65,3 +67,4 @@ PLAN.md             fases y estado
 
 ## Deuda Técnica Activa
 - Fuera de v1: volumen extracelular y Na⁺ dinámicos, insulina, célula β/pendrina, fosfato/citrato, hiperkalemia aguda.
+- Faltan en la animación (revisión 2026-10-26): control "diarrea con riñón sano", H⁺/K⁺-ATPasa, flecha aldosterona → H⁺-ATPasa y adaptación a la acidosis, acidez titulable (fosfato), Cl⁻ plasmático, BK, pendrina, acuaporina-2.

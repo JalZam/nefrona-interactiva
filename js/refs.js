@@ -39,7 +39,9 @@
     { n: 33, cita: 'Adachi M, et al. Classification of pseudohypoaldosteronism type II as type IV renal tubular acidosis. Endocr J. 2023;70(7):723-729.', doi: '10.1507/endocrj.EJ22-0607' },
     { n: 34, cita: 'Rose BD, Post TW. Clinical Physiology of Acid-Base and Electrolyte Disorders. 5.ª ed. McGraw-Hill; 2001.' },
     { n: 35, cita: 'Yu ASL, Chertow GM, Luyckx VA, Marsden PA, Skorecki K, Taal MW (eds). Brenner & Rector\'s The Kidney. 11.ª ed. Elsevier; 2020.' },
-    { n: 36, cita: 'Johnson RJ, Floege J, Tonelli M (eds). Comprehensive Clinical Nephrology. 7.ª ed. Elsevier; 2024.' }
+    { n: 36, cita: 'Johnson RJ, Floege J, Tonelli M (eds). Comprehensive Clinical Nephrology. 7.ª ed. Elsevier; 2024.' },
+    { n: 37, cita: 'Rodríguez Soriano J. Renal tubular acidosis: the clinical entity. J Am Soc Nephrol. 2002;13(8):2160-2170.', doi: '10.1097/01.asn.0000023430.92674.e5' },
+    { n: 38, cita: 'Karet FE. Inherited distal renal tubular acidosis. J Am Soc Nephrol. 2002;13(8):2178-2184.', doi: '10.1097/01.asn.0000023433.08833.88' }
   ];
 
   // Tarjetas: texto fijo + función estado(d, s) que devuelve una frase con lo que pasa ahora
@@ -139,6 +141,18 @@
       texto: 'Deja salir a la sangre el Cl⁻ que entró por AE1 (célula α) o por NKCC2 (asa gruesa). Cierra el circuito del cloro. Las mutaciones de ClC-Kb causan síndrome de Bartter tipo 3.',
       refs: [20, 35],
       estado: () => 'Flujo acoplado al Cl⁻ que entra'
+    },
+    ca4: {
+      titulo: 'Anhidrasa carbónica IV — la de la luz del túbulo proximal',
+      texto: 'Enzima anclada a la membrana apical, de cara a la luz. El H⁺ que secreta NHE3 se une al HCO₃⁻ filtrado y forma H₂CO₃; la CA IV lo deshidrata al instante en CO₂ + H₂O, que entran a la célula por difusión. Sin ella la reacción sería cientos de veces más lenta y el HCO₃⁻ pasaría de largo. La acetazolamida la inhibe (junto con la CA II del citoplasma): ATR proximal farmacológica.',
+      refs: [4, 37, 36],
+      estado: () => 'Convierte el HCO₃⁻ filtrado en CO₂ al ritmo de los H⁺ que llegan'
+    },
+    ca2p: {
+      titulo: 'Anhidrasa carbónica II del túbulo proximal',
+      texto: 'Dentro de la célula rehidrata el CO₂ que entró desde la luz y lo vuelve HCO₃⁻ (que sale por NBCe1) + H⁺ (que vuelve a salir por NHE3). Es el mismo ciclo que en la célula α, pero aquí su trabajo es recuperar el HCO₃⁻ filtrado (unos 4 000 mEq/día, el 80 % en este segmento), no fabricar HCO₃⁻ nuevo. En la luz la ayuda la anhidrasa carbónica IV (H⁺ + HCO₃⁻ → CO₂ + H₂O). Su déficit congénito causa la ATR tipo 3 (mixta: proximal + distal) con osteopetrosis; la acetazolamida la inhibe.',
+      refs: [4, 37, 9],
+      estado: () => 'Rehidrata el CO₂ que entra desde la luz'
     },
     ca2: {
       titulo: 'Anhidrasa carbónica II — fábrica de H⁺ y HCO₃⁻',

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nefrona Interactiva — Vista en columna (de proximal a distal)</title>
+  <meta name="description" content="Animación educativa: las cuatro células del nefrón de proximal a distal, los iones viajando por sus canales, y qué se daña (y en qué orden) en cada acidosis tubular renal: tipos 1, 2, 3 y 4." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="pagina-animacion">
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M8 6 C8 6 8 34 20 34 C32 34 32 6 32 6" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="8" cy="6" r="3.5" fill="#2563eb"/><circle cx="32" cy="6" r="3.5" fill="#0ea5e9"/>
+        <circle cx="20" cy="22" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+      </svg>
+      <div>
+        <div class="logo-title">Nefrona Interactiva</div>
+        <div class="logo-sub">Animación · Acidosis tubulares renales tipos 1, 2, 3 y 4</div>
+      </div>
+    </div>
+    <nav class="header-right nav">
+      <a class="nav-link" href="index.html">Animación</a>
+      <a class="nav-link activo" href="columna.html">Vista en columna</a>
+      <a class="nav-link" href="simulador.html">Simulador</a>
+      <span class="visit-counter" title="Visitas totales del sitio (hits.sh): cuenta cargas de página, no identifica personas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <img class="visit-badge" alt="visitas" src="https://hits.sh/nefrona-interactiva.com.svg?label=%20&amp;style=flat-square&amp;color=64748b"> visitas
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="anim-layout">
+
+  <section class="card anim-card columna" id="anim-card" data-ver="3">
+    <div class="ver-barra">
+      <span class="ver-label">Ver a la vez:</span>
+      <button class="ver-btn" data-ver="2">2 células</button>
+      <button class="ver-btn activo" data-ver="3">3 células</button>
+      <button class="ver-btn" data-ver="4">todo</button>
+      <span class="ver-nota">(la página se desplaza para ver el resto; el panel derecho queda fijo)</span>
+    </div>
+    <svg id="svg-nefron" viewBox="0 0 920 1720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Las cuatro células del nefrón en columna, de proximal a distal"></svg>
+    <div class="leyenda grande">
+      <span><i class="sw circ pasivo"></i> transporte pasivo</span><span><i class="sw circ activo"></i> transporte activo (ATP)</span><span><i class="sw canalito"></i> canal</span>
+      <span><i class="sw parcial"></i> parcial</span><span><i class="sw off"></i> apagado · ✕ bloqueado</span><span><i class="sw espera"></i> esperando a completar la cuenta</span>
+      <span class="leyenda-sep">toca un canal, bomba o caja para leer qué lo activa</span>
+    </div>
+  </section>
+
+  <aside class="anim-panel" id="anim-panel">
+    <section id="tarjeta" class="card tarjeta">
+      <p class="tarjeta-texto tarjeta-pista">¿Por qué? Toca un canal, bomba o caja del esquema y aquí sale qué lo activa, qué lo apaga y la referencia.</p>
+    </section>
+
+    <section class="anim-controles card">
+      <div class="mec-label">Acidosis tubulares renales · toca una · luego toca cada número en orden (o usa ← →)</div>
+      <div class="atr-botones">
+        <button class="atr-btn activo" data-atr="normal">Funcionamiento normal</button>
+        <button class="atr-btn" data-atr="atr2">ATR 2 · proximal</button>
+        <button class="atr-btn" data-atr="atr1">ATR 1 · distal</button>
+        <button class="atr-btn" data-atr="atr3">ATR 3 · mixta (CA II)</button>
+        <button class="atr-btn" data-atr="atr4h">ATR 4 · hipoaldo-steronismo</button>
+        <button class="atr-btn" data-atr="atr4r">ATR 4 · antagonista del MR</button>
+        <button class="atr-btn" data-atr="atr4v">ATR 4 · bloqueo de ENaC</button>
+      </div>
+    </section>
+
+    <section class="card atr-card" id="atr-card">
+      <div class="paso-num" id="atr-nombre">—</div>
+      <p class="atr-causas" id="atr-causas"></p>
+      <ol class="atr-pasos" id="atr-pasos"></ol>
+    </section>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <details class="refs">
+    <summary>Referencias</summary>
+    <ol id="lista-refs"></ol>
+  </details>
+  <p class="footer-firma">Nefrona Interactiva · Herramienta educativa · CiMedical · Esquemas dibujados según la convención de los textos clásicos de fisiología renal · Todo ocurre en el navegador; no se envía ni guarda ningún dato. Solo se cuenta el número de visitas (hits.sh), sin cookies ni identificación de personas.</p>
+</footer>
+
+<script src="js/particulas.js"></script>
+<script src="js/refs.js"></script>
+<script src="js/nefron-columna.js"></script>
+<script src="js/atr.js"></script>
+</body>
+</html>

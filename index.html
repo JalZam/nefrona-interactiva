@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nefrona Interactiva — Animación paso a paso de la ATR tipo 4</title>
-  <meta name="description" content="Animación educativa: las cuatro células del nefrón en paralelo, los iones viajando por sus canales, y la cascada paso a paso de la acidosis tubular renal tipo 4." />
+  <title>Nefrona Interactiva — Acidosis tubulares renales</title>
+  <meta name="description" content="Animación educativa: las cuatro células del nefrón de proximal a distal, los iones viajando por sus canales, y qué se daña (y en qué orden) en cada acidosis tubular renal: tipos 1, 2, 3 y 4." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
@@ -22,11 +22,12 @@
       </svg>
       <div>
         <div class="logo-title">Nefrona Interactiva</div>
-        <div class="logo-sub">Animación paso a paso · Acidosis tubular renal tipo 4</div>
+        <div class="logo-sub">Animación · Acidosis tubulares renales tipos 1, 2, 3 y 4</div>
       </div>
     </div>
     <nav class="header-right nav">
-      <a class="nav-link activo" href="index.html">Animación paso a paso</a>
+      <a class="nav-link activo" href="index.html">Animación</a>
+      <a class="nav-link" href="columna.html">Vista en columna</a>
       <a class="nav-link" href="simulador.html">Simulador</a>
       <span class="visit-counter" title="Visitas totales del sitio (hits.sh): cuenta cargas de página, no identifica personas">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -38,8 +39,8 @@
 
 <main class="anim-layout">
 
-  <section class="card anim-card">
-    <svg id="svg-nefron-paralelo" viewBox="0 0 1600 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Las cuatro células del nefrón en paralelo"></svg>
+  <section class="card anim-card" id="anim-card">
+    <svg id="svg-nefron" viewBox="0 0 1720 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Las cuatro células del nefrón en fila, de proximal a distal, con la luz tubular arriba y la sangre abajo"></svg>
     <div class="leyenda grande">
       <span><i class="sw circ pasivo"></i> transporte pasivo</span><span><i class="sw circ activo"></i> transporte activo (ATP)</span><span><i class="sw canalito"></i> canal</span>
       <span><i class="sw parcial"></i> parcial</span><span><i class="sw off"></i> apagado · ✕ bloqueado</span><span><i class="sw espera"></i> esperando a completar la cuenta</span>
@@ -47,31 +48,28 @@
     </div>
   </section>
 
-  <aside class="anim-panel">
+  <aside class="anim-panel" id="anim-panel">
+    <section id="tarjeta" class="card tarjeta">
+      <p class="tarjeta-texto tarjeta-pista">¿Por qué? Toca un canal, bomba o caja del esquema y aquí sale qué lo activa, qué lo apaga y la referencia.</p>
+    </section>
+
     <section class="anim-controles card">
-      <div class="mecanismos">
-        <span class="mec-label">Mecanismo:</span>
-        <button class="mec activo" data-mec="normal">Funcionamiento normal</button>
-        <button class="mec" data-mec="mr">Antagonista del receptor MR</button>
-        <button class="mec" data-mec="ara2">ARA2</button>
-      </div>
-      <div class="paso-botones">
-        <button id="btn-anterior" class="btn">← Anterior</button>
-        <button id="btn-siguiente" class="btn btn-primary">Siguiente →</button>
-        <button id="btn-inicio" class="btn">Reiniciar</button>
-      </div>
-      <div class="paso-progreso" id="paso-progreso"></div>
-      <div class="paso-card">
-        <div class="paso-num" id="paso-num">Paso 1 de 6</div>
-        <div class="paso-titulo" id="paso-titulo">—</div>
-        <p class="paso-texto" id="paso-texto">—</p>
+      <div class="mec-label">Acidosis tubulares renales · toca una (cada punto se aplica solo, en orden; toca un número para saltar)</div>
+      <div class="atr-botones">
+        <button class="atr-btn activo" data-atr="normal">Funcionamiento normal</button>
+        <button class="atr-btn" data-atr="atr2">ATR 2 · proximal</button>
+        <button class="atr-btn" data-atr="atr1">ATR 1 · distal</button>
+        <button class="atr-btn" data-atr="atr3">ATR 3 · mixta (CA II)</button>
+        <button class="atr-btn" data-atr="atr4h">ATR 4 · hipoaldo-steronismo</button>
+        <button class="atr-btn" data-atr="atr4r">ATR 4 · antagonista del MR</button>
+        <button class="atr-btn" data-atr="atr4v">ATR 4 · bloqueo de ENaC</button>
       </div>
     </section>
 
-    <section id="tarjeta" class="card tarjeta">
-      <button class="tarjeta-cerrar" id="tarjeta-cerrar" aria-label="Cerrar explicación">✕</button>
-      <div class="tarjeta-titulo">¿Por qué?</div>
-      <p class="tarjeta-texto">Toca cualquier canal, bomba o caja del esquema para ver qué lo activa, qué lo apaga y la referencia.</p>
+    <section class="card atr-card" id="atr-card">
+      <div class="paso-num" id="atr-nombre">—</div>
+      <p class="atr-causas" id="atr-causas"></p>
+      <ol class="atr-pasos" id="atr-pasos"></ol>
     </section>
   </aside>
 </main>
@@ -86,7 +84,7 @@
 
 <script src="js/particulas.js"></script>
 <script src="js/refs.js"></script>
-<script src="js/nefron-paralelo.js"></script>
-<script src="js/pasos.js"></script>
+<script src="js/nefron-fila.js"></script>
+<script src="js/atr.js"></script>
 </body>
 </html>

@@ -248,3 +248,5 @@ Artículos (recuperados de PubMed, 2026-10-23):
 31. Sousa AG, et al. Hyporeninemic hypoaldosteronism and diabetes mellitus: Pathophysiology assumptions, clinical aspects and implications for management. *World J Diabetes.* 2016;7(5):101-111. https://doi.org/10.4239/wjd.v7.i5.101
 32. Wilczynski C, Shaw C, Alimohammadi M. Selective hypoaldosteronism: a review. *Endocr Pract.* 2015;21(8):957-965. https://doi.org/10.4158/EP14551.RA
 33. Adachi M, et al. Classification of pseudohypoaldosteronism type II as type IV renal tubular acidosis. *Endocr J.* 2023;70(7):723-729. https://doi.org/10.1507/endocrj.EJ22-0607
+37. Rodríguez Soriano J. Renal tubular acidosis: the clinical entity. *J Am Soc Nephrol.* 2002;13(8):2160-2170. https://doi.org/10.1097/01.asn.0000023430.92674.e5
+38. Karet FE. Inherited distal renal tubular acidosis. *J Am Soc Nephrol.* 2002;13(8):2178-2184. https://doi.org/10.1097/01.asn.0000023433.08833.88

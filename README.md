@@ -13,7 +13,7 @@ Herramienta de aprendizaje; no es una calculadora clínica. Responsable: **Juan 
 
 ## Dos páginas
 
-- **`index.html` — Animación paso a paso (principal).** Las cuatro células en fila, unidas por la luz tubular (arriba, hacia la orina) y la sangre (abajo). Se elige un mecanismo (funcionamiento normal, antagonista del receptor MR, ARA2) y se avanza con "Siguiente": cada paso apaga un canal, muestra qué deja de moverse y qué se acumula (Na⁺ en la orina, K⁺ en la sangre, ácido retenido, depósito medular de NH₃ vacío, carga luminal perdida).
+- **`index.html` — Animación (principal).** Las cuatro células en fila, de proximal a distal, unidas por la luz tubular (arriba, hacia la orina) y la sangre (abajo), con un cajón de orina (pH, NH₄⁺, lo que se pierde). A la derecha, fijo: la explicación del canal tocado y las siete opciones (normal, ATR 2, ATR 1, ATR 3, ATR 4 por hipoaldosteronismo, por antagonista del MR y por bloqueo de ENaC). Cada una muestra la lista numerada de lo que se daña y en qué orden; cada punto se aplica al tocarlo y bloquea canales y acumula sustancias. `columna.html` muestra lo mismo en columna.
 - **`simulador.html` — Simulador cuantitativo.** Las 8 causas con deslizadores, modelo con dinámica en días, mapa del nefrón, eje RAAS, cuatro vistas de célula y laboratorio.
 
 ## Qué hace el simulador
@@ -42,8 +42,9 @@ index.html          cabecera, panel de causas, reloj, mapa del nefrón, eje RAAS
 style.css           estilos (misma línea visual que Velocímetro Renal)
 js/model.js         modelo: parámetros, derivar(), paso(), crearSimulador(); ecuaciones numeradas según
                     INVESTIGATION.md Parte D
-js/nefron-paralelo.js  animación principal: 4 células en fila, luz/sangre continuas, pilas de acumulación
-js/pasos.js         mecanismos y pasos de la animación principal
+js/nefron-fila.js   animación principal: 4 células en fila, luz/sangre continuas, cajón de orina
+js/nefron-columna.js  la misma escena en columna (columna.html)
+js/atr.js           las siete opciones y sus listas numeradas
 js/celulas.js       dibuja las 4 células del simulador desde especificaciones (estilo esquema clásico)
 js/particulas.js    motor de partículas (corrientes por tasa o por cadena, rebotes "✕")
 js/escenas.js       corrientes de cada vista y del mapa; actualizar(d) las acopla al modelo
@@ -77,6 +78,7 @@ sirve las tipografías.
 
 ## Historial
 
+- **2026-10-26** — Página principal con todas las ATR (1, 2, 3 y tres formas de 4) en lista numerada sin temporizador; células en fila con cajón de orina; recuperación proximal del HCO₃⁻ filtrado (CA IV, CA II, NBCe1); vista en columna aparte.
 - **2026-10-26 (noche)** — Dominio propio nefrona-interactiva.com; reorganización de rótulos para que ningún texto quede bajo un camino de partículas (detector de solapamientos: 0 choques); H₂O visible junto a la anhidrasa carbónica.
 - **2026-10-26 (tarde)** — Bombas Na⁺/K⁺ 3 : 2 también en asa y proximal, NBCe1 1 Na⁺ : 3 HCO₃⁻, ClC-Kb en la célula α, reciclaje de K⁺ por Kir4.1; diseño en dos columnas con el panel de paso y explicación fijo al lado de la animación.
 - **2026-10-26** — Colas de espera con estequiometría en la animación (bomba 3 Na⁺ : 2 K⁺, NKCC2 con 2 Cl⁻ y ClC-Kb, AE1 1 : 1, NHE3), voltaje luminal medido a partir del Na⁺ que entra por ENaC, y etiquetas en todas las partículas (Cl⁻, CO₂) y canales.
