@@ -19,7 +19,7 @@ Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje
 - HTML + CSS + JavaScript puro. SVG inline dibujado a mano. Sin framework, sin dependencias, sin compilación.
 - Scripts clásicos (`<script src>`), **no ES modules**, para que `index.html` abra desde `file://`. Un solo objeto global `NI`.
 - Pruebas del modelo en Node (sin dependencias): `node test/model.test.js`.
-- Publicación: GitHub Pages desde `main` del repo `JalZam/nefrona-interactiva`. **Commits y push los hace Claude** (decisión de Juanjo 2026-10-23).
+- Publicación: GitHub Pages desde `main` del repo `JalZam/nefrona-interactiva`, dominio propio **nefrona-interactiva.com** (GoDaddy DNS: 4 A @ → 185.199.108-111.153, CNAME www → jalzam.github.io; archivo `CNAME`; HTTPS forzado; conectado 2026-10-26). **Commits y push los hace Claude** (decisión de Juanjo 2026-10-23).
 
 ## Arquitectura
 `ui.js` lee deslizadores → `NI.model.step(dt)` en bucle `requestAnimationFrame` (dt = 0,05 días simulados por paso, velocidad ajustable) → `NI.svg.render(estado)` y `NI.ui.renderLabs(estado)`. El modelo es semi-mecanicista: actividades de canales 0–1 → flujos (mEq/día) → balance de masa de K⁺ y HCO₃⁻ → retroalimentación sobre canales y hormonas. Detalle de ecuaciones en `INVESTIGATION.md` Parte D y en comentarios de `js/model.js`.

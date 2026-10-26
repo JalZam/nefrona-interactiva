@@ -1,6 +1,6 @@
 # Nefrona Interactiva
 
-**https://jalzam.github.io/nefrona-interactiva/**
+**https://nefrona-interactiva.com/ (también https://jalzam.github.io/nefrona-interactiva/, que redirige)**
 
 Simulador educativo de la fisiología celular del nefrón y de la **acidosis tubular renal tipo 4 (ATR4)**.
 Muestra cuatro células (túbulo proximal, asa gruesa ascendente, célula principal y célula intercalada α
