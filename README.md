@@ -77,6 +77,7 @@ sirve las tipografías.
 
 ## Historial
 
+- **2026-10-26** — Colas de espera con estequiometría en la animación (bomba 3 Na⁺ : 2 K⁺, NKCC2 con 2 Cl⁻ y ClC-Kb, AE1 1 : 1, NHE3), voltaje luminal medido a partir del Na⁺ que entra por ENaC, y etiquetas en todas las partículas (Cl⁻, CO₂) y canales.
 - **2026-10-24** — Página principal de animación paso a paso (normal / antagonista MR / ARA2) con las 4 células en paralelo; el simulador pasa a `simulador.html`. Letras más grandes.
 
 - **2026-10-23** — Kickoff, investigación (33 artículos de PubMed + 3 libros), plan, modelo calibrado,
