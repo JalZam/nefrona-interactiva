@@ -20,6 +20,8 @@ html { scroll-behavior: smooth; }
 body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
 
 /* ── Cabecera ── */
+.visit-counter { display: inline-flex; align-items: center; gap: .3rem; font-size: .72rem; color: var(--text-muted); margin-left: .6rem; white-space: nowrap; }
+.visit-badge { height: 15px; width: auto; display: block; border-radius: 3px; }
 .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-card); }
 .header-inner { max-width: 1480px; margin: 0 auto; padding: .7rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .logo { display: flex; align-items: center; gap: .8rem; }

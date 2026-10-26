@@ -72,7 +72,7 @@ pruebas: revisar en local antes de subir. Commits y push los hace Claude Code (d
 
 ## Privacidad
 
-Todo ocurre en el navegador. No hay cookies, almacenamiento, analítica ni envío de datos. Google Fonts
+Todo ocurre en el navegador. No hay cookies, almacenamiento ni envío de datos. La única llamada externa es el contador de visitas de hits.sh (una imagen SVG en la cabecera, clave `nefrona-interactiva.com`, compartida por las dos páginas): cuenta cargas de página, no identifica personas. Google Fonts
 sirve las tipografías.
 
 ## Historial
