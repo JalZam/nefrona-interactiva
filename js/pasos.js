@@ -147,9 +147,13 @@
   document.querySelectorAll('[data-porque]').forEach(elm => elm.addEventListener('click', () => {
     const info = NI.porque[elm.dataset.porque]; if (!info) return;
     const t = $('tarjeta');
-    t.innerHTML = `<div class="tarjeta-titulo">${info.titulo}</div><p class="tarjeta-texto">${info.texto}</p>` +
+    t.innerHTML = `<button class="tarjeta-cerrar" id="tarjeta-cerrar" aria-label="Cerrar explicación">✕</button>` +
+      `<div class="tarjeta-titulo">${info.titulo}</div><p class="tarjeta-texto">${info.texto}</p>` +
       `<div class="tarjeta-refs">Referencias: ${info.refs.map(n => `<a href="#ref-${n}" title="${(NI.referencias[n - 1] || {}).cita || ''}">[${n}]</a>`).join(' ')}</div>`;
+    t.classList.add('abierta');
+    t.querySelector('.tarjeta-cerrar').addEventListener('click', () => t.classList.remove('abierta'));
   }));
+  $('tarjeta-cerrar').addEventListener('click', () => $('tarjeta').classList.remove('abierta'));
   NI.renderReferencias($('lista-refs'));
   document.querySelectorAll('#lista-refs li').forEach(li => { li.id = 'ref-' + li.getAttribute('value'); });
 

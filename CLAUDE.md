@@ -26,7 +26,7 @@ Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje
 
 ## Estructura de Archivos Clave
 ```
-index.html          PÁGINA PRINCIPAL: animación paso a paso (controles de mecanismo, tarjeta del paso, nefrón en paralelo)
+index.html          PÁGINA PRINCIPAL: animación paso a paso; dos columnas (animación izq., panel fijo der. con mecanismo, paso y tarjeta ¿por qué?; en <1180 px la tarjeta es un cajón fijo abajo)
 simulador.html      simulador cuantitativo (causas con deslizadores, mapa, RAAS, 4 vistas, laboratorio)
 js/nefron-paralelo.js  4 células en fila + luz/sangre continuas, partículas encadenadas, pilas, carga luminal; render(E)
 js/pasos.js         mecanismos y pasos (normal / antagonista MR / ARA2), motor de transición y resaltado
@@ -50,7 +50,7 @@ PLAN.md             fases y estado
 - **8 causas → 5 entradas** del modelo (síntesis de aldosterona, renina, bloqueo MR, bloqueo ENaC, entrega distal de Na⁺) + TFG + dieta. Combinables.
 - El modelo debe mostrar que con **bloqueo directo de ENaC (amilorida/trimetoprim) el pH urinario sube (>5,5)** y con **deficiencia de aldosterona baja (<5,5)**. Es el punto de enseñanza más delicado.
 - Hiperkalemia → amoniogénesis: K⁺ 6,0 ≈ 50 % de producción. Calcineurina: NCC↑ + hiporreninismo parcial. Addison: solo aldosterona.
-- **Estequiometría visible** (pedido de Juanjo 2026-10-26): los transportadores con cuenta fija esperan a tener todos sus sustratos aparcados (bomba 3 Na⁺ : 2 K⁺, NKCC2, AE1, NHE3) y el sobrante se acumula o rebota. El voltaje luminal de la animación se mide con los Na⁺ que entran por ENaC frente a los que pasan de largo (no es un valor fijado por el paso).
+- **Estequiometría visible** (pedido de Juanjo 2026-10-26): los transportadores con cuenta fija esperan a tener todos sus sustratos aparcados (las tres bombas Na⁺/K⁺ 3 : 2 —proximal, asa, principal—, NKCC2, NBCe1 1 Na⁺ : 3 HCO₃⁻, AE1 1 : 1, NHE3) y el sobrante se acumula o rebota; el Cl⁻ sale por ClC-Kb en asa y célula α, el K⁺ de las bombas se recicla por Kir4.1 / canal K⁺. El voltaje luminal de la animación se mide con los Na⁺ que entran por ENaC frente a los que pasan de largo (no es un valor fijado por el paso).
 - Sin publicidad, sin rastreo de valores, sin cookies.
 
 ## Cómo Correr el Proyecto

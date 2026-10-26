@@ -34,39 +34,42 @@
 
 <main class="anim-layout">
 
-  <section class="anim-controles card">
-    <div class="mecanismos">
-      <span class="mec-label">Mecanismo:</span>
-      <button class="mec activo" data-mec="normal">Funcionamiento normal</button>
-      <button class="mec" data-mec="mr">Antagonista del receptor MR</button>
-      <button class="mec" data-mec="ara2">ARA2</button>
-    </div>
-    <div class="paso-card">
-      <div class="paso-num" id="paso-num">Paso 1 de 6</div>
-      <div class="paso-titulo" id="paso-titulo">—</div>
-      <p class="paso-texto" id="paso-texto">—</p>
-    </div>
-    <div class="paso-botones">
-      <button id="btn-anterior" class="btn">← Anterior</button>
-      <button id="btn-siguiente" class="btn btn-primary">Siguiente →</button>
-      <button id="btn-inicio" class="btn">Reiniciar</button>
-    </div>
-    <div class="paso-progreso" id="paso-progreso"></div>
-  </section>
-
   <section class="card anim-card">
     <svg id="svg-nefron-paralelo" viewBox="0 0 1600 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Las cuatro células del nefrón en paralelo"></svg>
     <div class="leyenda grande">
       <span><i class="sw circ pasivo"></i> transporte pasivo</span><span><i class="sw circ activo"></i> transporte activo (ATP)</span><span><i class="sw canalito"></i> canal</span>
-      <span><i class="sw parcial"></i> parcial</span><span><i class="sw off"></i> apagado · ✕ bloqueado</span>
+      <span><i class="sw parcial"></i> parcial</span><span><i class="sw off"></i> apagado · ✕ bloqueado</span><span><i class="sw espera"></i> esperando a completar la cuenta</span>
       <span class="leyenda-sep">toca un canal, bomba o caja para leer qué lo activa</span>
     </div>
   </section>
 
-  <section id="tarjeta" class="card tarjeta">
-    <div class="tarjeta-titulo">¿Por qué?</div>
-    <p class="tarjeta-texto">Toca cualquier canal, bomba o caja del esquema para ver qué lo activa, qué lo apaga y la referencia.</p>
-  </section>
+  <aside class="anim-panel">
+    <section class="anim-controles card">
+      <div class="mecanismos">
+        <span class="mec-label">Mecanismo:</span>
+        <button class="mec activo" data-mec="normal">Funcionamiento normal</button>
+        <button class="mec" data-mec="mr">Antagonista del receptor MR</button>
+        <button class="mec" data-mec="ara2">ARA2</button>
+      </div>
+      <div class="paso-botones">
+        <button id="btn-anterior" class="btn">← Anterior</button>
+        <button id="btn-siguiente" class="btn btn-primary">Siguiente →</button>
+        <button id="btn-inicio" class="btn">Reiniciar</button>
+      </div>
+      <div class="paso-progreso" id="paso-progreso"></div>
+      <div class="paso-card">
+        <div class="paso-num" id="paso-num">Paso 1 de 6</div>
+        <div class="paso-titulo" id="paso-titulo">—</div>
+        <p class="paso-texto" id="paso-texto">—</p>
+      </div>
+    </section>
+
+    <section id="tarjeta" class="card tarjeta">
+      <button class="tarjeta-cerrar" id="tarjeta-cerrar" aria-label="Cerrar explicación">✕</button>
+      <div class="tarjeta-titulo">¿Por qué?</div>
+      <p class="tarjeta-texto">Toca cualquier canal, bomba o caja del esquema para ver qué lo activa, qué lo apaga y la referencia.</p>
+    </section>
+  </aside>
 </main>
 
 <footer class="site-footer">

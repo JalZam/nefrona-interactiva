@@ -313,22 +313,26 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .nav-link.activo { background: var(--primary); color: var(--white); border-color: var(--primary); }
 
 /* ── Página de animación paso a paso ── */
-.anim-layout { max-width: 1600px; margin: 0 auto; padding: 1rem 1.25rem 2rem; display: grid; gap: 1rem; }
-.anim-controles { padding: .9rem 1.2rem; display: grid; grid-template-columns: auto 1fr auto; gap: 1rem 1.5rem; align-items: center; }
-.mecanismos { display: flex; flex-direction: column; gap: .4rem; }
-.mec-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .4px; color: var(--text-muted); font-weight: 700; }
-.mec { font: inherit; font-size: .9rem; font-weight: 600; padding: .5rem .9rem; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--white); color: var(--dark); cursor: pointer; text-align: left; }
+.anim-layout { max-width: 1700px; margin: 0 auto; padding: 1rem 1.25rem 2rem; display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr) 400px; align-items: start; }
+.anim-panel { position: sticky; top: 70px; display: grid; gap: 1rem; max-height: calc(100vh - 86px); overflow-y: auto; }
+.anim-controles { padding: .9rem 1.1rem; display: grid; gap: .7rem; }
+.mecanismos { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
+.mec-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .4px; color: var(--text-muted); font-weight: 700; width: 100%; }
+.mec { font: inherit; font-size: .84rem; font-weight: 600; padding: .45rem .8rem; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--white); color: var(--dark); cursor: pointer; text-align: left; }
 .mec:hover { border-color: var(--primary-mid); background: var(--primary-light); }
 .mec.activo { background: var(--primary); color: var(--white); border-color: var(--primary); }
 .paso-card { min-height: 90px; }
 .paso-num { font-size: .72rem; text-transform: uppercase; letter-spacing: .4px; color: var(--primary-dark); font-weight: 700; }
-.paso-titulo { font-family: 'Outfit', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--dark); line-height: 1.2; margin: .15rem 0 .3rem; }
-.paso-texto { font-size: 1rem; color: var(--text); line-height: 1.45; }
-.paso-botones { display: flex; flex-direction: column; gap: .4rem; }
-.paso-botones .btn { font-size: 1rem; padding: .6rem 1.1rem; }
-.paso-progreso { grid-column: 1 / -1; display: flex; gap: .3rem; }
+.paso-titulo { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--dark); line-height: 1.2; margin: .15rem 0 .3rem; }
+.paso-texto { font-size: .98rem; color: var(--text); line-height: 1.45; }
+.paso-botones { display: flex; gap: .4rem; }
+.paso-botones .btn { font-size: .95rem; padding: .55rem .9rem; flex: 1; white-space: nowrap; }
+.paso-progreso { display: flex; gap: .3rem; }
 .paso-progreso i { flex: 1; height: 6px; border-radius: 999px; background: var(--border); }
 .paso-progreso i.hecho { background: var(--primary); }
+.tarjeta { position: relative; }
+.tarjeta-cerrar { display: none; position: absolute; top: .5rem; right: .6rem; font: inherit; font-size: 1rem; font-weight: 700; border: 1px solid var(--border); background: var(--white); border-radius: 999px; width: 30px; height: 30px; cursor: pointer; color: var(--text-secondary); }
+.leyenda .sw.espera { border: 2px dashed #111827; background: #2563eb; }
 .anim-card { padding: .5rem; }
 #svg-nefron-paralelo { width: 100%; height: auto; display: block; font-family: 'Inter', system-ui, sans-serif; }
 .leyenda.grande { font-size: .85rem; }
@@ -372,8 +376,12 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .np-halo { fill: none; stroke: #2563eb; stroke-width: 4; stroke-dasharray: 10 6; opacity: 0; transition: opacity .3s; }
 .np-halo.visible { opacity: .9; animation: girar 6s linear infinite; }
 @keyframes girar { to { stroke-dashoffset: -64; } }
-@media (max-width: 980px) {
-  .anim-controles { grid-template-columns: 1fr; }
-  .mecanismos { flex-direction: row; flex-wrap: wrap; }
-  .paso-botones { flex-direction: row; }
+@media (max-width: 1180px) {
+  .anim-layout { grid-template-columns: 1fr; }
+  .anim-panel { position: static; max-height: none; overflow: visible; }
+  .anim-card { order: 2; }
+  .anim-panel { order: 1; }
+  /* en pantallas angostas la explicación del canal se abre como cajón fijo abajo, encima de la animación */
+  .tarjeta.abierta { position: fixed; left: .5rem; right: .5rem; bottom: .5rem; z-index: 60; max-height: 38vh; overflow-y: auto; box-shadow: 0 -4px 24px rgba(0,0,0,.18); }
+  .tarjeta.abierta .tarjeta-cerrar { display: inline-block; }
 }

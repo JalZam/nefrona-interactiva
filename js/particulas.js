@@ -51,10 +51,10 @@
     };
     esc.setFlujo = function (id, f) { const c = esc.corrientes[id]; if (c) c.flujo = Math.max(0, f); };
 
-    esc.emitir = function (id, extra) {
+    esc.emitir = function (id, extra, ionId) {
       const c = esc.corrientes[id]; if (!c) return null;
       if (esc.particulas.length >= esc.maxParticulas) return null;
-      const ion = NI.iones[c.ion];
+      const ion = NI.iones[ionId || c.ion];
       const g = document.createElementNS(SVGNS, 'g');
       g.setAttribute('class', 'particula');
       const r = c.pequeno ? esc.radio * 0.7 : esc.radio;
@@ -66,7 +66,7 @@
         t.setAttribute('font-size', esc.fuente); t.setAttribute('fill', ion.texto);
         t.setAttribute('text-anchor', 'middle'); t.setAttribute('dy', esc.fuente >= 11 ? '4' : '3');
         t.setAttribute('font-weight', '800');
-        t.textContent = c.etiqueta || ion.etiqueta;
+        t.textContent = (ionId ? null : c.etiqueta) || ion.etiqueta;
         g.appendChild(t);
       }
       capa.appendChild(g);
