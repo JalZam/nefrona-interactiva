@@ -107,7 +107,67 @@
       esc.particulas = vivas;
     };
 
-    esc.limpiar = function () { esc.particulas.forEach(p => p.el.remove()); esc.particulas = []; };
+    esc.limpiar = function () {
+      esc.particulas.forEach(p => p.el.remove()); esc.particulas = [];
+      for (const id in esc.colas) { const q = esc.colas[id]; for (const s in q.slots) { q.slots[s].aparcadas.forEach(a => a.el.remove()); q.slots[s].aparcadas = []; q.slots[s].reservas = 0; } }
+    };
+
+    // ── Colas de espera con estequiometría ──
+    // Un transportador que mueve, p. ej., 3 Na⁺ y 2 K⁺ por ciclo no hace nada hasta
+    // tener esa cantidad "aparcada" a cada lado. Las partículas que llegan se quedan
+    // esperando (visibles) y, cuando la cuenta está completa, se consumen todas y
+    // alCompletar emite las partículas de salida. Si un lado se llena (tope), el que
+    // llega no cabe: el que llama decide si rebota o sigue de largo.
+    esc.colas = {};
+    esc.cola = function (id, def) {
+      const slots = {};
+      for (const s in def.slots) slots[s] = Object.assign({ cols: 3, dx: -28, dy: -26, tope: 6, n: 1 }, def.slots[s], { aparcadas: [], reservas: 0 });
+      esc.colas[id] = { id, slots, alCompletar: def.alCompletar || null };
+    };
+    function posAparcada(sl, i) {
+      return { x: sl.x + (i % sl.cols) * sl.dx, y: sl.y + Math.floor(i / sl.cols) * sl.dy };
+    }
+    function reubicar(sl) {
+      sl.aparcadas.forEach((a, i) => { const q = posAparcada(sl, i); a.el.setAttribute('transform', `translate(${q.x},${q.y})`); });
+    }
+    // ¿hay sitio? (cuenta también las que vienen en camino con reserva)
+    esc.hayCupo = function (colaId, slot) {
+      const q = esc.colas[colaId]; if (!q) return false; const sl = q.slots[slot]; if (!sl) return false;
+      return sl.aparcadas.length + sl.reservas < sl.tope;
+    };
+    esc.reservar = function (colaId, slot) { const q = esc.colas[colaId]; if (q && q.slots[slot]) q.slots[slot].reservas++; };
+    esc.cuenta = function (colaId, slot) { const q = esc.colas[colaId]; return q && q.slots[slot] ? q.slots[slot].aparcadas.length : 0; };
+    // aparca una partícula (ya llegó); devuelve false si no cabe
+    esc.aparcar = function (colaId, slot, ionId, reservada) {
+      const q = esc.colas[colaId]; if (!q) return false; const sl = q.slots[slot]; if (!sl) return false;
+      if (reservada && sl.reservas > 0) sl.reservas--;
+      if (sl.aparcadas.length >= sl.tope) return false;
+      const ion = NI.iones[ionId];
+      const g = document.createElementNS(SVGNS, 'g');
+      g.setAttribute('class', 'particula aparcada');
+      g.innerHTML = `<circle r="${esc.radio}" fill="${ion.color}"/><text font-size="${esc.fuente}" fill="${ion.texto}" text-anchor="middle" dy="4" font-weight="800">${ion.etiqueta}</text>`;
+      capa.appendChild(g);
+      sl.aparcadas.push({ el: g, ion: ionId });
+      reubicar(sl);
+      esc.intentarCompletar(q);
+      return true;
+    };
+    esc.intentarCompletar = function (q) {
+      for (const s in q.slots) if (q.slots[s].aparcadas.length < q.slots[s].n) return false;
+      const consumidas = {};
+      for (const s in q.slots) {
+        const sl = q.slots[s];
+        consumidas[s] = sl.aparcadas.splice(0, sl.n).map(a => { desvanecerEl(a.el); return a.ion; });
+        reubicar(sl);
+      }
+      if (q.alCompletar) q.alCompletar(esc, consumidas);
+      return true;
+    };
+    function desvanecerEl(g) {
+      let t = 0;
+      const anim = () => { t += 0.12; g.style.opacity = Math.max(0, 1 - t); if (t < 1) requestAnimationFrame(anim); else g.remove(); };
+      requestAnimationFrame(anim);
+    }
     // Marca visual de "bloqueado": partícula que rebota (se dibuja en el inicio y se desvanece)
     esc.rebote = function (x, y, ionId, texto) {
       if (esc.particulas.length >= esc.maxParticulas) return;

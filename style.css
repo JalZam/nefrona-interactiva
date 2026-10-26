@@ -361,6 +361,8 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .np-carga.perdida { fill: #9ca3af; }
 .np-carga-txt { font-size: 15px; font-weight: 700; fill: #1e3a8a; }
 .np-pila-txt { font-size: 15px; font-weight: 800; fill: #1f2937; }
+.np-cola-txt { font-size: 13px; font-weight: 700; fill: #475569; }
+.particula.aparcada circle { stroke: #111827; stroke-width: 2; stroke-dasharray: 4 3; }
 .np-pila circle { stroke: #fff; stroke-width: 1.5; }
 .np-pila text { font-size: 11px; font-weight: 800; fill: #fff; text-anchor: middle; pointer-events: none; }
 .np-deposito { fill: #fb923c; stroke: #c2410c; stroke-width: 2; }

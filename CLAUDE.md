@@ -12,7 +12,7 @@ Página web estática (HTML + CSS + JS puro + SVG) para **aprender viendo** la f
 Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje; más adelante docencia. Visión futura: ATR 1 y 2, y un "riñón continuo" simulable.
 
 ## Estado Actual
-**Fase activa:** Fase 5 construida (animación paso a paso como página principal, 2026-10-24). Pendiente revisión de Juanjo.
+**Fase activa:** Fase 5 construida (animación paso a paso como página principal, 2026-10-24); 2026-10-26 se añadió estequiometría con colas de espera y voltaje luminal medido. Pendiente revisión de Juanjo.
 **Progreso general:** 5 de 5 fases construidas
 
 ## Stack Técnico
@@ -33,7 +33,7 @@ js/pasos.js         mecanismos y pasos (normal / antagonista MR / ARA2), motor d
 style.css           estilos (paleta y tipografías del Velocímetro Renal), estados de canales
 js/model.js         el modelo: estado, parámetros, causas, step(dt), reset(), historial 14 días
 js/celulas.js       dibuja las 4 células (estilo esquema clásico: luz izq., célula arena, intersticio der.) desde especificaciones; las flechas son los caminos de partículas
-js/particulas.js    motor de partículas (iones que viajan por caminos SVG; cadenas de dependencia)
+js/particulas.js    motor de partículas (iones que viajan por caminos SVG; cadenas de dependencia; colas de espera con estequiometría: cola/aparcar/hayCupo/reservar)
 js/escenas.js       corrientes de cada vista/mapa/RAAS acopladas al modelo
 js/svg-nefrona.js   estados de canales, voltímetros y textos de los 6 SVG; render(d, s, e, vista)
 js/ui.js            deslizadores, reloj de simulación, paneles de laboratorio, sparklines
@@ -50,6 +50,7 @@ PLAN.md             fases y estado
 - **8 causas → 5 entradas** del modelo (síntesis de aldosterona, renina, bloqueo MR, bloqueo ENaC, entrega distal de Na⁺) + TFG + dieta. Combinables.
 - El modelo debe mostrar que con **bloqueo directo de ENaC (amilorida/trimetoprim) el pH urinario sube (>5,5)** y con **deficiencia de aldosterona baja (<5,5)**. Es el punto de enseñanza más delicado.
 - Hiperkalemia → amoniogénesis: K⁺ 6,0 ≈ 50 % de producción. Calcineurina: NCC↑ + hiporreninismo parcial. Addison: solo aldosterona.
+- **Estequiometría visible** (pedido de Juanjo 2026-10-26): los transportadores con cuenta fija esperan a tener todos sus sustratos aparcados (bomba 3 Na⁺ : 2 K⁺, NKCC2, AE1, NHE3) y el sobrante se acumula o rebota. El voltaje luminal de la animación se mide con los Na⁺ que entran por ENaC frente a los que pasan de largo (no es un valor fijado por el paso).
 - Sin publicidad, sin rastreo de valores, sin cookies.
 
 ## Cómo Correr el Proyecto

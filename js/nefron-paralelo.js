@@ -62,9 +62,9 @@
   function flecha(svg, id, d, cls, sinPunta) {
     svg.appendChild(el('path', { id, class: `np-flecha ${cls || ''}`, d, 'marker-end': sinPunta ? null : 'url(#np-punta)' }));
   }
-  function pila(svg, id, cx, cy, etiquetaId, etiqueta) {
+  function pila(svg, id, cx, cy, etiquetaId, etiqueta, ty) {
     svg.appendChild(el('g', { id, class: 'np-pila', transform: `translate(${cx},${cy})` }));
-    svg.appendChild(txt(cx, cy + (cx > 1500 && cy < 200 ? -30 : 46), etiqueta, 'np-pila-txt', { id: etiquetaId, style: cx > 1500 ? 'text-anchor:end' : 'text-anchor:middle' }));
+    svg.appendChild(txt(cx, ty != null ? ty : cy + (cx > 1500 && cy < 200 ? -30 : 46), etiqueta, 'np-pila-txt', { id: etiquetaId, style: cx > 1500 ? 'text-anchor:end' : 'text-anchor:middle' }));
   }
 
   function construir(svg) {
@@ -87,28 +87,34 @@
     // luz: Na⁺ baja por la luz y entra a cada célula según su canal
     flecha(svg, 'g-na0', 'M0 68 L120 68', '', true);
     flecha(svg, 'g-na-nhe3', 'M120 68 L120 240', '');
+    flecha(svg, 'g-h-nhe3', `M120 ${AP} L120 96`, 'tenue', true);
     flecha(svg, 'g-na1', 'M120 68 L520 68', '', true);
-    flecha(svg, 'g-na-nkcc', `M520 68 L520 ${AP + 30} C520 300 520 420 520 ${BL} L520 612`, '');
+    flecha(svg, 'g-na-dock-t', `M520 68 L520 ${AP} L478 222`, '', true);
+    flecha(svg, 'g-na-nkcc', `M478 222 C490 320 520 420 520 ${BL} L520 612`, '');
+    flecha(svg, 'g-cl-tal', `M520 ${AP + 30} C540 300 610 420 610 ${BL} L610 612`, '');
     flecha(svg, 'g-na2', 'M520 68 L870 68', '', true);
-    flecha(svg, 'g-na-enac', `M870 68 L870 ${AP + 30} C870 320 900 420 900 ${BL} L900 612`, '');
+    flecha(svg, 'g-na-enac', `M870 68 L870 ${AP + 30} C870 320 866 420 860 500`, '');
+    flecha(svg, 'g-na-out', `M905 528 L905 614`, '');
     flecha(svg, 'g-na3', 'M870 68 L1548 68', '');
     // K⁺ en la célula principal: entra por la bomba, sale por ROMK o vuelve por Kir4.1
-    flecha(svg, 'g-k-sangre', 'M900 668 L930 668 L930 614', '', true);
-    flecha(svg, 'g-k-in', `M930 612 L930 ${BL} C930 430 990 300 990 200`, '');
+    flecha(svg, 'g-k-sangre', 'M760 676 L845 676 L845 616', '', true);
+    flecha(svg, 'g-k-in', `M845 612 C845 585 900 592 915 560 C940 480 990 300 990 200`, '');
     flecha(svg, 'g-k-romk', `M990 200 L990 ${AP} L990 94`, '');
     flecha(svg, 'g-k-luz', 'M990 94 L1548 94', '');
     flecha(svg, 'g-k-kir', `M990 200 C990 360 1080 440 1080 ${BL} L1080 612`, '');
     // K⁺ filtrado llega al asa: entra por NKCC2 y ROMK lo recicla
     flecha(svg, 'g-k-luz0', 'M0 94 L520 94', '', true);
-    flecha(svg, 'g-k-nkcc', `M520 94 L520 ${AP + 30} L560 200`, '', true);
-    flecha(svg, 'g-k-recicla', `M560 200 C560 260 620 260 620 ${AP} L620 94`, '');
+    flecha(svg, 'g-k-dock-t', `M520 94 L520 ${AP} L562 222`, '', true);
+    flecha(svg, 'g-nh4-dock-t', `M520 42 L520 ${AP} L562 222`, '', true);
+    flecha(svg, 'g-k-nkcc', `M562 222 C562 270 620 260 620 ${AP} L620 94`, '');
     flecha(svg, 'g-k-luz1', 'M620 94 L990 94', '', true);
     // amonio: glutamina → mitocondria → NH₄⁺ a la luz (NHE3), HCO₃⁻ a la sangre (NBCe1)
     flecha(svg, 'g-gln', `M300 612 L300 ${BL} L300 440`, '');
-    flecha(svg, 'g-nh4-ap', `M160 380 C120 380 108 250 120 ${AP + 30} L120 42`, '');
+    flecha(svg, 'g-nh4-ap', `M160 380 C130 380 170 300 186 232`, '', true);
+    flecha(svg, 'g-nh4-out', `M186 232 L120 ${AP + 30} L120 42`, '');
     flecha(svg, 'g-nh4-luz0', 'M120 42 L520 42', '', true);
-    flecha(svg, 'g-nh4-tal', `M520 42 L520 ${AP + 30} C520 300 700 400 700 ${BL} L700 612`, '');
-    flecha(svg, 'g-nh4-dep', 'M700 640 L700 664 L1236 664', '');
+    flecha(svg, 'g-nh4-tal', `M562 222 C560 320 700 400 700 ${BL} L700 612`, '');
+    flecha(svg, 'g-nh4-dep', 'M700 640 L700 672 L1214 672', '');
     flecha(svg, 'g-nh4-sigue', 'M520 42 L1548 42', 'tenue');
     flecha(svg, 'g-hco3-p', `M150 420 C120 420 120 500 120 ${BL} L120 612`, '');
     flecha(svg, 'g-k-prox', `M350 612 L350 ${BL} L350 440`, 'tenue');
@@ -118,8 +124,10 @@
     flecha(svg, 'g-h-ap2', `M1270 ${AP + 30} L1270 86`, '');
     flecha(svg, 'g-h-vuelve', `M1250 ${AP + 40} C1225 300 1225 450 1236 ${BL} L1236 612`, 'tenue');
     flecha(svg, 'g-h-luz', 'M1270 82 L1420 82', 'tenue', true);
-    flecha(svg, 'g-hco3-a', `M1300 352 L1300 ${BL} L1300 612`, '');
-    flecha(svg, 'g-cl-a', `M1340 612 L1340 ${BL} L1340 420`, '');
+    flecha(svg, 'g-hco3-a', `M1300 352 L1292 506`, '', true);
+    flecha(svg, 'g-hco3-out', `M1300 540 L1300 614`, '');
+    flecha(svg, 'g-cl-sangre', 'M1420 700 L1420 632 L1372 632 L1372 616', '', true);
+    flecha(svg, 'g-cl-in', `M1340 540 L1340 420`, '');
     flecha(svg, 'g-nh3', `M1480 612 L1480 ${BL} L1480 ${AP + 30} L1480 50`, '');
     flecha(svg, 'g-nh4-orina', 'M1480 42 L1548 42', '');
     flecha(svg, 'g-nh3-escapa', 'M1480 42 L1420 42', 'tenue', true);
@@ -138,15 +146,20 @@
     // ── rótulos de iones ──
     const iones = [
       [14, 60, 'Na⁺', 'na'], [14, 110, 'K⁺', 'k'], [130, 36, 'NH₄⁺', 'nh4'], [1000, 110, 'K⁺', 'k'], [1282, 76, 'H⁺', 'h'], [1486, 36, 'NH₄⁺', 'nh4'],
-      [132, 240, 'Na⁺', 'na'], [600, 236, 'Na⁺ · K⁺/NH₄⁺ · 2Cl⁻', 'nh4'], [1000, 216, 'K⁺', 'k'],
+      [132, 240, 'Na⁺', 'na'], [600, 268, 'Na⁺ · K⁺/NH₄⁺ · 2Cl⁻', 'nh4'], [1000, 216, 'K⁺', 'k'],
       [128, 632, 'HCO₃⁻ nuevo', 'hco3'], [222, 632, 'glutamina', 'gln'], [360, 632, 'K⁺', 'k'], [540, 632, 'Na⁺', 'na'], [708, 632, 'NH₄⁺', 'nh4'],
-      [908, 632, '3 Na⁺', 'na'], [938, 632, '2 K⁺', 'k'], [1086, 632, 'K⁺ de vuelta', 'k'], [1278, 632, 'CO₂', 'co2'], [1306, 632, 'HCO₃⁻', 'hco3'], [1346, 632, 'Cl⁻', 'cl'], [1488, 632, 'NH₃', 'nh4']
+      [612, 632, '2 Cl⁻', 'cl'],
+      [905, 640, '3 Na⁺', 'na'], [872, 664, '2 K⁺', 'k'], [1086, 632, 'K⁺ de vuelta', 'k'], [1240, 632, 'CO₂', 'co2'], [1300, 640, 'HCO₃⁻', 'hco3'], [1386, 654, 'Cl⁻', 'cl'], [1488, 632, 'NH₃', 'nh4']
     ];
     iones.forEach(([x, y, t, c]) => svg.appendChild(txt(x, y, t, 'np-ion ' + c)));
     svg.appendChild(txt(1255, 282, 'H₂O → H⁺ + OH⁻', 'np-reaccion'));
-    svg.appendChild(txt(630, 300, 'El NH₄⁺ ocupa el sitio del K⁺', 'np-nota'));
-    svg.appendChild(txt(630, 320, 'y pasa al intersticio', 'np-nota'));
+    svg.appendChild(txt(630, 318, 'El NH₄⁺ ocupa el sitio del K⁺', 'np-nota'));
+    svg.appendChild(txt(630, 338, 'y pasa al intersticio', 'np-nota'));
     svg.appendChild(txt(846, 278, 'retira ENaC', 'np-nota', { id: 'nedd-estado' }));
+    // contadores de las colas de espera (estequiometría)
+    svg.appendChild(txt(915, 500, '', 'np-cola-txt', { id: 'cola-nak-txt', style: 'text-anchor:middle' }));
+    svg.appendChild(txt(565, 292, '', 'np-cola-txt', { id: 'cola-nkcc2-txt', style: 'text-anchor:middle' }));
+    svg.appendChild(txt(1318, 500, '', 'np-cola-txt', { id: 'cola-ae1-txt', style: 'text-anchor:middle' }));
 
     // ── cajas ──
     caja(svg, { id: 'box-mito', x: 150, y: 330, w: 220, h: 110, clase: 'mito', porque: 'glutaminasa', lineas: ['Glutamina → PDG → GDH', '→ α-KG → PEPCK', '= 2 NH₄⁺ + 2 HCO₃⁻', { t: 'glutaminasa 100 %', cls: 'caja-estado', id: 'mito-estado' }] });
@@ -167,10 +180,11 @@
     circulo(svg, { id: 'ch-nhe3', x: 120, y: AP, clase: 'pasivo', etiqueta: ['NHE3'], porque: 'nhe3', r: 32 });
     circulo(svg, { id: 'ch-nbc', x: 120, y: BL, clase: 'pasivo', etiqueta: ['NBCe1'], porque: 'nbce1', r: 32 });
     canal(svg, { id: 'ch-snat3', x: 300, y: BL, nombre: 'SNAT3', porque: 'snat3' });
-    canal(svg, { id: 'ch-k-p', x: 350, y: BL, nombre: '', porque: 'glutaminasa', estatico: true });
+    canal(svg, { id: 'ch-k-p', x: 356, y: BL, nombre: 'K⁺', porque: 'glutaminasa', estatico: true });
     circulo(svg, { id: 'ch-nkcc2', x: 520, y: AP, clase: 'pasivo', etiqueta: ['NKCC2'], porque: 'nkcc2', r: 36 });
     canal(svg, { id: 'ch-romk-t', x: 620, y: AP, nombre: 'ROMK', porque: 'romk_tal' });
     circulo(svg, { id: 'ch-nak-t', x: 520, y: BL, clase: 'activo', etiqueta: ['Na⁺/K⁺', 'ATPasa'], porque: 'nak', estatico: true, r: 32 });
+    canal(svg, { id: 'ch-clc', x: 610, y: BL, nombre: 'ClC-Kb', porque: 'clc', estatico: true });
     circulo(svg, { id: 'ch-nh4-salida', x: 700, y: BL, clase: 'pasivo', etiqueta: ['NHE4', 'KCC4'], porque: 'nh4_salida', r: 30 });
     canal(svg, { id: 'ch-enac', x: 870, y: AP, nombre: 'ENaC', porque: 'enac' });
     canal(svg, { id: 'ch-romk', x: 990, y: AP, nombre: 'ROMK', porque: 'romk' });
@@ -184,82 +198,145 @@
     // ── carga luminal, pilas y depósito ──
     svg.appendChild(txt(1000, 20, '− − − − −', 'np-carga', { id: 'np-carga', 'text-anchor': 'middle' }));
     svg.appendChild(txt(1000, 118, 'luz negativa −40 mV', 'np-carga-txt', { id: 'np-carga-txt', 'text-anchor': 'middle' }));
-    pila(svg, 'pila-k', 1130, 652, 'pila-k-txt', 'K⁺ en sangre 4,0');
+    pila(svg, 'pila-k', 1120, 676, 'pila-k-txt', 'K⁺ sangre 4,0 mEq/L', 706);
     pila(svg, 'pila-na', 1578, 70, 'pila-na-txt', 'Na⁺');
-    svg.appendChild(el('rect', { id: 'np-deposito', class: 'np-deposito', x: 1236, y: 640, width: 150, height: 70, rx: 10, opacity: 0.6 }));
-    svg.appendChild(txt(1311, 672, 'NH₃ / NH₄⁺', 'np-deposito-txt'));
-    svg.appendChild(txt(1311, 692, 'depósito medular', 'np-deposito-txt', { style: 'font-size:12px;font-weight:600' }));
+    svg.appendChild(el('rect', { id: 'np-deposito', class: 'np-deposito', x: 1214, y: 650, width: 126, height: 64, rx: 10, opacity: 0.6 }));
+    svg.appendChild(txt(1277, 677, 'NH₃ / NH₄⁺', 'np-deposito-txt'));
+    svg.appendChild(txt(1277, 697, 'depósito medular', 'np-deposito-txt', { style: 'font-size:12px;font-weight:600' }));
     pila(svg, 'pila-h', 1480, 652, 'pila-h-txt', 'HCO₃⁻ 24');
   }
 
-  // ───────── Escena de partículas (dependencias encadenadas) ─────────
+  // ───────── Escena de partículas (dependencias encadenadas + colas con estequiometría) ─────────
   let E = null;   // estado actual (lo fija pasos.js)
+  let escActiva = null;
   const azar = Math.random;
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const luego = (ms, f) => setTimeout(f, ms);
   function crearEscena(svg) {
     const P = NI.particulas;
-    const e = P.crearEscena(svg, { radio: 16, fuente: 12, maxParticulas: 220 });
+    const e = P.crearEscena(svg, { radio: 16, fuente: 12, maxParticulas: 240 });
+    escActiva = e;
     const reb = (x, y, ion) => e.rebote(x, y, ion);
-    // Na⁺ por la luz
-    e.agregar('na0', { path: 'g-na0', ion: 'na', tasa: 2.6, velocidad: 120, alLlegar: () => { if (azar() < 0.55 * E.glut) e.emitir('na_nhe3'); else e.emitir('na1'); } });
-    e.agregar('na_nhe3', { path: 'g-na-nhe3', ion: 'na', modo: 'cadena', desvanecer: 60 });
-    e.agregar('na1', { path: 'g-na1', ion: 'na', modo: 'cadena', velocidad: 120, alLlegar: () => { if (azar() < 0.6) e.emitir('na_nkcc'); else e.emitir('na2'); } });
-    e.agregar('na_nkcc', { path: 'g-na-nkcc', ion: 'na', modo: 'cadena', desvanecer: 40 });
-    e.agregar('na2', { path: 'g-na2', ion: 'na', modo: 'cadena', velocidad: 120, alLlegar: () => {
-      if (azar() < 0.85 * E.enac) e.emitir('na_enac'); else { if (E.enac < 0.5) reb(870, 100, 'na'); e.emitir('na3'); }
+
+    // Voltaje luminal medido: depende de cuántos Na⁺ entran de verdad por ENaC
+    // (entrada de catión sin anión) frente a los que siguen de largo a la orina.
+    const med = { entra: 6, sigue: 1 };
+    e.voltaje = () => -40 * clamp((med.entra / Math.max(1e-6, med.entra + med.sigue)) / 0.85, 0, 1);
+    const voltF = () => clamp(-e.voltaje() / 40, 0, 1);
+
+    // ── colas de espera ──
+    // Bomba Na⁺/K⁺-ATPasa de la célula principal: 3 Na⁺ adentro + 2 K⁺ afuera por ciclo
+    e.cola('nak', {
+      slots: { na: { x: 860, y: 514, dx: -28, dy: -26, cols: 3, n: 3, tope: 6 }, k: { x: 845, y: 612, dx: -28, dy: 24, cols: 3, n: 2, tope: 6 } },
+      alCompletar: () => { [0, 110, 220].forEach(ms => luego(ms, () => e.emitir('na_out'))); [60, 260].forEach(ms => luego(ms, () => e.emitir('k_in'))); }
+    });
+    // NKCC2 del asa gruesa: 1 Na⁺ + 1 K⁺ (o NH₄⁺, que ocupa el mismo sitio) + 2 Cl⁻
+    e.cola('nkcc2', {
+      slots: { na: { x: 478, y: 222, dx: -28, dy: 24, cols: 2, n: 1, tope: 2 }, kx: { x: 562, y: 222, dx: 28, dy: 24, cols: 2, n: 1, tope: 2 } },
+      alCompletar: (esc, c) => {
+        e.emitir('na_nkcc');
+        if (c.kx[0] === 'nh4') e.emitir('nh4_tal'); else e.emitir('k_nkcc');
+        e.emitir('cl_tal'); luego(140, () => e.emitir('cl_tal'));
+      }
+    });
+    // AE1 de la célula α: 1 HCO₃⁻ sale a la sangre a cambio de 1 Cl⁻ que entra
+    e.cola('ae1', {
+      slots: { hco3: { x: 1290, y: 522, dx: -28, dy: -26, cols: 3, n: 1, tope: 3 }, cl: { x: 1372, y: 612, dx: 28, dy: 24, cols: 2, n: 1, tope: 2 } },
+      alCompletar: () => { e.emitir('hco3_out'); e.emitir('cl_in'); }
+    });
+    // NHE3 del proximal: 1 Na⁺ entra a cambio de 1 NH₄⁺ (si hay uno esperando) o de 1 H⁺
+    e.cola('nhe3', { slots: { nh4: { x: 186, y: 232, dx: 28, dy: 24, cols: 2, n: 99, tope: 4 } } });
+
+    // ── Na⁺ por la luz ──
+    e.agregar('na0', { path: 'g-na0', ion: 'na', tasa: 3.4, velocidad: 125, alLlegar: () => {
+      if (azar() < 0.4) {
+        e.emitir('na_nhe3');
+        const q = e.colas.nhe3.slots.nh4;
+        if (q.aparcadas.length) { const a = q.aparcadas.shift(); a.el.remove(); e.emitir('nh4_out'); e.colas.nhe3.slots.nh4.aparcadas.forEach((b, i) => b.el.setAttribute('transform', `translate(${186 + (i % 2) * 28},${232 + Math.floor(i / 2) * 24})`)); }
+        else e.emitir('h_nhe3');
+      } else e.emitir('na1');
     }});
-    e.agregar('na_enac', { path: 'g-na-enac', ion: 'na', modo: 'cadena', desvanecer: 30 });
-    // K⁺ llega desde la sangre a la bomba: entra solo si la bomba trabaja (si no, rebota y se acumula)
-    e.agregar('k_sangre', { path: 'g-k-sangre', ion: 'k', tasa: 1.6, velocidad: 100, alLlegar: () => { if (azar() < E.nak) e.emitir('k_in'); else reb(930, 600, 'k'); } });
+    e.agregar('na_nhe3', { path: 'g-na-nhe3', ion: 'na', modo: 'cadena', desvanecer: 60 });
+    e.agregar('h_nhe3', { path: 'g-h-nhe3', ion: 'h', modo: 'cadena', desvanecer: 24 });
+    e.agregar('na1', { path: 'g-na1', ion: 'na', modo: 'cadena', velocidad: 125, alLlegar: () => {
+      if (azar() < 0.5 && e.hayCupo('nkcc2', 'na')) { e.reservar('nkcc2', 'na'); e.emitir('na_dock_t'); } else e.emitir('na2');
+    }});
+    e.agregar('na_dock_t', { path: 'g-na-dock-t', ion: 'na', modo: 'cadena', alLlegar: () => e.aparcar('nkcc2', 'na', 'na', true) });
+    e.agregar('na_nkcc', { path: 'g-na-nkcc', ion: 'na', modo: 'cadena', desvanecer: 40 });
+    e.agregar('cl_tal', { path: 'g-cl-tal', ion: 'cl', modo: 'cadena', desvanecer: 40 });
+    e.agregar('na2', { path: 'g-na2', ion: 'na', modo: 'cadena', velocidad: 125, alLlegar: () => {
+      if (azar() < 0.85 * E.enac) { med.entra += 1; e.emitir('na_enac'); }
+      else { med.sigue += 1; if (E.enac < 0.5) reb(870, 100, 'na'); e.emitir('na3'); }
+    }});
+    e.agregar('na_enac', { path: 'g-na-enac', ion: 'na', modo: 'cadena', alLlegar: () => e.aparcar('nak', 'na', 'na') });
+    e.agregar('na_out', { path: 'g-na-out', ion: 'na', modo: 'cadena', desvanecer: 30 });
     e.agregar('na3', { path: 'g-na3', ion: 'na', modo: 'cadena', velocidad: 140, desvanecer: 40 });
-    // K⁺ en la célula principal
-    e.agregar('k_in', { path: 'g-k-in', ion: 'k', modo: 'cadena', alLlegar: () => { if (azar() < E.romk * E.volt) e.emitir('k_romk'); else { if (E.volt < 0.5) reb(990, 170, 'k'); e.emitir('k_kir'); } } });
+    // ── K⁺ en la célula principal ──
+    // llega desde la sangre a la bomba y espera; solo entra cuando la bomba completa 3 Na⁺ + 2 K⁺
+    e.agregar('k_sangre', { path: 'g-k-sangre', ion: 'k', tasa: 0.7, velocidad: 100, alLlegar: () => { if (!e.aparcar('nak', 'k', 'k')) reb(845, 596, 'k'); } });
+    e.agregar('k_in', { path: 'g-k-in', ion: 'k', modo: 'cadena', alLlegar: () => {
+      const v = voltF();
+      if (azar() < E.romk * v) e.emitir('k_romk'); else { if (v < 0.5) reb(990, 170, 'k'); e.emitir('k_kir'); }
+    }});
     e.agregar('k_romk', { path: 'g-k-romk', ion: 'k', modo: 'cadena', alLlegar: () => e.emitir('k_luz') });
     e.agregar('k_luz', { path: 'g-k-luz', ion: 'k', modo: 'cadena', velocidad: 140, desvanecer: 40 });
     e.agregar('k_kir', { path: 'g-k-kir', ion: 'k', modo: 'cadena', desvanecer: 30 });
-    // K⁺ filtrado y reciclaje en el asa
-    e.agregar('k_luz0', { path: 'g-k-luz0', ion: 'k', tasa: 0.8, velocidad: 120, alLlegar: () => e.emitir('k_nkcc') });
-    e.agregar('k_nkcc', { path: 'g-k-nkcc', ion: 'k', modo: 'cadena', alLlegar: () => e.emitir('k_recicla') });
-    e.agregar('k_recicla', { path: 'g-k-recicla', ion: 'k', modo: 'cadena', alLlegar: () => e.emitir('k_luz1') });
+    // ── K⁺ filtrado y reciclaje en el asa ──
+    e.agregar('k_luz0', { path: 'g-k-luz0', ion: 'k', tasa: 0.8, velocidad: 120, alLlegar: () => {
+      if (e.hayCupo('nkcc2', 'kx')) { e.reservar('nkcc2', 'kx'); e.emitir('k_dock_t'); } else e.emitir('k_luz1');
+    }});
+    e.agregar('k_dock_t', { path: 'g-k-dock-t', ion: 'k', modo: 'cadena', alLlegar: () => e.aparcar('nkcc2', 'kx', 'k', true) });
+    e.agregar('k_nkcc', { path: 'g-k-nkcc', ion: 'k', modo: 'cadena', alLlegar: () => e.emitir('k_luz1') });
     e.agregar('k_luz1', { path: 'g-k-luz1', ion: 'k', modo: 'cadena', velocidad: 120, desvanecer: 60 });
-    // amonio
-    e.agregar('gln', { path: 'g-gln', ion: 'gln', tasa: 1.3, alLlegar: () => {
-      if (azar() < E.glut) { e.emitir('nh4_ap'); setTimeout(() => e.emitir('nh4_ap'), 300); e.emitir('hco3_p'); setTimeout(() => e.emitir('hco3_p'), 300); }
+    // ── amonio ──
+    e.agregar('gln', { path: 'g-gln', ion: 'gln', tasa: 1.0, alLlegar: () => {
+      if (azar() < E.glut) { e.emitir('nh4_ap'); luego(300, () => e.emitir('nh4_ap')); e.emitir('hco3_p'); luego(300, () => e.emitir('hco3_p')); }
       else reb(300, 436, 'gln');
     }});
-    e.agregar('nh4_ap', { path: 'g-nh4-ap', ion: 'nh4', modo: 'cadena', alLlegar: () => e.emitir('nh4_luz0') });
-    e.agregar('nh4_luz0', { path: 'g-nh4-luz0', ion: 'nh4', modo: 'cadena', velocidad: 120, alLlegar: () => { if (azar() < E.pK) e.emitir('nh4_tal'); else { if (E.pK < 0.6) reb(520, 100, 'nh4'); e.emitir('nh4_sigue'); } } });
+    e.agregar('nh4_ap', { path: 'g-nh4-ap', ion: 'nh4', modo: 'cadena', alLlegar: () => { if (!e.aparcar('nhe3', 'nh4', 'nh4')) e.emitir('nh4_out'); } });
+    e.agregar('nh4_out', { path: 'g-nh4-out', ion: 'nh4', modo: 'cadena', alLlegar: () => e.emitir('nh4_luz0') });
+    e.agregar('nh4_luz0', { path: 'g-nh4-luz0', ion: 'nh4', modo: 'cadena', velocidad: 120, alLlegar: () => {
+      if (azar() < E.pK && e.hayCupo('nkcc2', 'kx')) { e.reservar('nkcc2', 'kx'); e.emitir('nh4_dock_t'); }
+      else { if (E.pK < 0.6) reb(520, 100, 'nh4'); e.emitir('nh4_sigue'); }
+    }});
+    e.agregar('nh4_dock_t', { path: 'g-nh4-dock-t', ion: 'nh4', modo: 'cadena', alLlegar: () => e.aparcar('nkcc2', 'kx', 'nh4', true) });
     e.agregar('nh4_tal', { path: 'g-nh4-tal', ion: 'nh4', modo: 'cadena', alLlegar: () => e.emitir('nh4_dep') });
     e.agregar('nh4_dep', { path: 'g-nh4-dep', ion: 'nh4', modo: 'cadena', velocidad: 150, desvanecer: 60 });
     e.agregar('nh4_sigue', { path: 'g-nh4-sigue', ion: 'nh4', modo: 'cadena', velocidad: 150, desvanecer: 300 });
     e.agregar('hco3_p', { path: 'g-hco3-p', ion: 'hco3', modo: 'cadena', desvanecer: 40 });
     e.agregar('k_prox', { path: 'g-k-prox', ion: 'k', tasa: 1.4, desvanecer: 60, flujo: 0 });
-    // célula α
-    e.agregar('co2', { path: 'g-co2', ion: 'co2', tasa: 1.8, pequeno: true, alLlegar: () => e.emitir('h_ap1') });
+    // ── célula α ──
+    e.agregar('co2', { path: 'g-co2', ion: 'co2', tasa: 1.6, alLlegar: () => e.emitir('h_ap1') });
     e.agregar('h_ap1', { path: 'g-h-ap1', ion: 'h', modo: 'cadena', alLlegar: () => {
-      if (azar() < E.hatp) { e.emitir('h_ap2'); e.emitir('hco3_a'); e.emitir('cl_a'); }
+      if (azar() < E.hatp * (0.35 + 0.65 * voltF())) { e.emitir('h_ap2'); e.emitir('hco3_a'); }
       else { reb(1270, 172, 'h'); e.emitir('h_vuelve'); }
     }});
     e.agregar('h_ap2', { path: 'g-h-ap2', ion: 'h', modo: 'cadena', alLlegar: () => e.emitir('h_luz') });
     e.agregar('h_vuelve', { path: 'g-h-vuelve', ion: 'h', modo: 'cadena', desvanecer: 40 });
     e.agregar('h_luz', { path: 'g-h-luz', ion: 'h', modo: 'cadena', desvanecer: 70 });
-    e.agregar('hco3_a', { path: 'g-hco3-a', ion: 'hco3', modo: 'cadena', desvanecer: 40 });
-    e.agregar('cl_a', { path: 'g-cl-a', ion: 'cl', modo: 'cadena', pequeno: true, desvanecer: 40 });
+    e.agregar('hco3_a', { path: 'g-hco3-a', ion: 'hco3', modo: 'cadena', alLlegar: () => e.aparcar('ae1', 'hco3', 'hco3') });
+    e.agregar('hco3_out', { path: 'g-hco3-out', ion: 'hco3', modo: 'cadena', desvanecer: 30 });
+    e.agregar('cl_sangre', { path: 'g-cl-sangre', ion: 'cl', tasa: 1.9, velocidad: 90, alLlegar: () => { if (!e.aparcar('ae1', 'cl', 'cl')) reb(1372, 596, 'cl'); } });
+    e.agregar('cl_in', { path: 'g-cl-in', ion: 'cl', modo: 'cadena', desvanecer: 40 });
     e.agregar('nh3', { path: 'g-nh3', ion: 'nh3', tasa: 1.8, alLlegar: () => { if (azar() < E.trap) e.emitir('nh4_orina'); else e.emitir('nh3_escapa'); } });
     e.agregar('nh4_orina', { path: 'g-nh4-orina', ion: 'nh4', modo: 'cadena', desvanecer: 30 });
     e.agregar('nh3_escapa', { path: 'g-nh3-escapa', ion: 'nh3', modo: 'cadena', desvanecer: 50 });
-    // RAAS
+    // ── RAAS ──
     e.agregar('renina', { path: 'g-renina', ion: 'renina', tasa: 1.0, velocidad: 110, alLlegar: () => e.emitir('angii') });
     e.agregar('angii', { path: 'g-angii', ion: 'angii', modo: 'cadena', velocidad: 160, alLlegar: () => { if (E.angiiBlock > 0.5) reb(838, 652, 'angii'); else if (azar() < E.aldo) e.emitir('aldo'); } });
     e.agregar('aldo', { path: 'g-aldo', ion: 'aldo', modo: 'cadena', alLlegar: () => { if (E.mrBlock > 0.5) reb(1062, 486, 'aldo'); } });
     e.agregar('aldo_k', { path: 'g-aldo', ion: 'aldo', tasa: 1.0, flujo: 0, alLlegar: () => { if (E.mrBlock > 0.5) reb(1062, 486, 'aldo'); } });
-    e.actualizar = () => {
+
+    e.actualizar = (dt) => {
+      // la medida del voltaje olvida lo viejo (constante de tiempo ~8 s)
+      const f = Math.exp(-(dt || 0.016) / 8); med.entra *= f; med.sigue *= f;
       e.setFlujo('na0', 1);
       e.setFlujo('k_luz0', 0.8 + 1.6 * clamp((E.K - 4) / 2, 0, 1));
       e.setFlujo('gln', 1);
-      e.setFlujo('k_sangre', 1);
+      e.setFlujo('k_sangre', 1 + 0.8 * clamp((E.K - 4) / 2, 0, 1));
       e.setFlujo('k_prox', clamp((E.K - 4.5) / 1.5, 0, 1.2));
       e.setFlujo('co2', 1);
+      e.setFlujo('cl_sangre', 1);
       e.setFlujo('nh3', E.nh3);
       e.setFlujo('renina', E.renina);
       e.setFlujo('aldo_k', E.aldoK || 0);
@@ -285,7 +362,9 @@
   }
   const fmt = (x, d = 1) => (+x).toFixed(d).replace('.', ',');
   function render(E) {
-    claseEstado('ch-enac', E.enac); claseEstado('ch-nak', E.nak); claseEstado('ch-romk', E.romk * E.volt);
+    const v = escActiva ? escActiva.voltaje() : E.voltaje;
+    const vf = clamp(-v / 40, 0, 1);
+    claseEstado('ch-enac', E.enac); claseEstado('ch-nak', E.nak); claseEstado('ch-romk', E.romk * vf);
     claseEstado('ch-hatp', E.hatp); claseEstado('ch-ae1', E.hatp);
     claseEstado('ch-nhe3', E.glut); claseEstado('ch-nbc', E.glut); claseEstado('ch-snat3', E.glut);
     claseEstado('ch-nkcc2', E.pK / 0.75); claseEstado('ch-nh4-salida', E.pK / 0.75);
@@ -303,15 +382,21 @@
     $('g-aldo').style.opacity = 0.3 + 0.7 * clamp(E.aldo, 0, 1);
     $('box-suprarrenal').classList.toggle('apagada', E.aldo < 0.35);
     $('box-angii').classList.toggle('apagada', E.angiiBlock > 0.5);
-    // carga luminal
-    const v = E.voltaje;
+    // carga luminal (medida a partir del Na⁺ que entra por ENaC)
     const n = clamp(Math.round(Math.abs(v) / 8), 0, 5);
     $('np-carga').textContent = '− '.repeat(n).trim() + (n < 5 ? ' ' + '· '.repeat(5 - n).trim() : '');
     $('np-carga').classList.toggle('perdida', Math.abs(v) < 20);
     $('np-carga-txt').textContent = Math.abs(v) >= 20 ? `luz negativa ${fmt(v, 0)} mV` : `luz casi neutra ${fmt(v, 0)} mV`;
+    // contadores de las colas
+    if (escActiva) {
+      const c = (q, s) => escActiva.cuenta(q, s);
+      $('cola-nak-txt').textContent = `espera: Na⁺ ${Math.min(3, c('nak', 'na'))}/3 · K⁺ ${Math.min(2, c('nak', 'k'))}/2`;
+      $('cola-nkcc2-txt').textContent = `espera: Na⁺ ${c('nkcc2', 'na')}/1 · K⁺/NH₄⁺ ${c('nkcc2', 'kx')}/1`;
+      $('cola-ae1-txt').textContent = `espera: HCO₃⁻ ${c('ae1', 'hco3')}/1 · Cl⁻ ${c('ae1', 'cl')}/1`;
+    }
     // pilas
-    pintarPila('pila-k', 'k', Math.round(clamp((E.K - 4) / 2.5, 0, 1) * 12), 4);
-    $('pila-k-txt').textContent = `K⁺ en sangre ${fmt(E.K)} mEq/L`;
+    pintarPila('pila-k', 'k', Math.round(clamp((E.K - 4) / 2.5, 0, 1) * 12), 6);
+    $('pila-k-txt').textContent = `K⁺ sangre ${fmt(E.K)} mEq/L`;
     pintarPila('pila-na', 'na', Math.round(E.naOrina * 6), 1);
     $('pila-na-txt').textContent = E.naOrina > 0.4 ? 'Na⁺ se pierde en la orina' : '';
     pintarPila('pila-h', 'h', Math.round(E.acido * 8), 4);

@@ -11,19 +11,19 @@
   function cascada(kFinal, hco3Final, extraTexto) {
     return [
       { titulo: 'Sin Na⁺ entrando, la bomba Na⁺/K⁺-ATPasa se frena',
-        texto: 'La bomba solo trabaja si tiene Na⁺ intracelular que sacar. Como ENaC ya no deja entrar Na⁺, la bomba baja su ritmo: el K⁺ que llega desde la sangre rebota en la bomba y se queda afuera. Empieza a acumularse en la sangre.',
+        texto: 'La bomba solo hace su ciclo cuando completa la cuenta: 3 Na⁺ adentro y 2 K⁺ afuera. Como ENaC ya no deja entrar Na⁺, la cuenta de Na⁺ nunca se completa: los K⁺ que llegan desde la sangre se quedan esperando en la bomba, y cuando ya no caben, rebotan y se acumulan en la sangre.',
         estado: { nak: 0.3, K: 4.6 }, resaltar: ['ch-nak', 'pila-k'] },
       { titulo: 'La luz pierde su carga negativa y ROMK se queda sin empuje',
-        texto: 'El voltaje luminal negativo lo creaba la entrada de Na⁺ sin anión. Sin ese voltaje, el K⁺ que llega a la célula no tiene fuerza para salir por ROMK: se devuelve a la sangre por Kir4.1. El Na⁺ que no se reabsorbió sigue en la luz y se pierde en la orina.',
+        texto: 'El voltaje luminal negativo lo creaba la entrada de Na⁺ sin anión: el medidor de la luz se calcula con los Na⁺ que de verdad entran por ENaC frente a los que siguen de largo. Ahora casi todo el Na⁺ pasa de largo, la luz se vuelve casi neutra y el poco K⁺ que entra a la célula no tiene fuerza para salir por ROMK: se devuelve a la sangre por Kir4.1. El Na⁺ no reabsorbido se pierde en la orina.',
         estado: { volt: 0.2, voltaje: -10, romk: 0.4, K: 5.5, naOrina: 0.7 }, resaltar: ['np-carga', 'ch-romk', 'ch-kir', 'pila-na'] },
       { titulo: 'La célula α pierde el empuje para secretar H⁺',
-        texto: 'La H⁺-ATPasa es electrogénica: la ayudaba el mismo voltaje negativo. Sin él, parte de los H⁺ rebotan en la bomba y se devuelven a la sangre; por cada H⁺ que no sale, tampoco nace un HCO₃⁻ nuevo ni entra un Cl⁻ por AE1. El ácido de la dieta empieza a retenerse.',
+        texto: 'La H⁺-ATPasa es electrogénica: la ayudaba el mismo voltaje negativo. Sin él, parte de los H⁺ rebotan en la bomba y se devuelven a la sangre. Por cada H⁺ que no sale, tampoco nace un HCO₃⁻ nuevo: AE1 se queda esperando con el Cl⁻ aparcado afuera y no hay intercambio. El ácido de la dieta empieza a retenerse.',
         estado: { hatp: 0.6, acido: 0.3, hco3: 22 }, resaltar: ['ch-hatp', 'ch-ae1', 'pila-h'] },
       { titulo: 'El K⁺ alto entra al túbulo proximal y frena la glutaminasa',
         texto: 'El K⁺ entra a la célula proximal a cambio de H⁺; el citosol se alcaliniza y la glutaminasa y la PEPCK bajan su actividad. La glutamina sigue llegando por SNAT3 pero rebota en la mitocondria sin procesarse: se fabrica menos NH₄⁺ y menos HCO₃⁻ nuevo. Este es el eslabón central de la ATR4: la acidosis es consecuencia de la hiperkalemia.',
         estado: { glut: 0.45, K: 5.8 }, resaltar: ['box-mito', 'ch-k-p', 'ch-nhe3'] },
       { titulo: 'En el asa gruesa el K⁺ compite con el NH₄⁺ por NKCC2',
-        texto: 'El NH₄⁺ y el K⁺ usan el mismo sitio del cotransportador. Con K⁺ luminal alto (mira cuántos K⁺ llegan ahora por la luz), el NH₄⁺ rebota en NKCC2 y sigue de largo sin construir el gradiente medular. Llega menos NH₄⁺ por NHE4/KCC4 al intersticio y el depósito de NH₃ se vacía.',
+        texto: 'El NH₄⁺ y el K⁺ usan el mismo sitio del cotransportador: NKCC2 solo tiene un puesto para K⁺ o NH₄⁺ por ciclo. Con K⁺ luminal alto (mira cuántos K⁺ llegan ahora por la luz) ese puesto casi siempre lo ocupa el K⁺: el NH₄⁺ rebota y sigue de largo sin construir el gradiente medular. Llega menos NH₄⁺ por NHE4/KCC4 al intersticio y el depósito de NH₃ se vacía.',
         estado: { pK: 0.4, nh3: 0.45 }, resaltar: ['ch-nkcc2', 'ch-nh4-salida', 'np-deposito'] },
       { titulo: 'Llega poco NH₃ al colector: se atrapa poco NH₄⁺',
         texto: 'Con el depósito medular vacío, Rhcg tiene poco NH₃ que pasar a la luz. Los pocos H⁺ secretados bajan el pH urinario (por eso es < 5,5) pero no hay amortiguador que los convierta en NH₄⁺: la excreción neta de ácido cae y el HCO₃⁻ plasmático baja día a día.',
@@ -39,16 +39,16 @@
       nombre: 'Funcionamiento normal',
       pasos: [
         { titulo: 'El Na⁺ baja por la luz tubular y entra a cada célula por su canal',
-          texto: 'El Na⁺ filtrado viaja por la luz de izquierda a derecha. En el túbulo proximal entra por NHE3 (a cambio de H⁺ o NH₄⁺), en el asa gruesa por NKCC2 (con K⁺ y 2 Cl⁻) y en el colector por ENaC. Lo que no se reabsorbe sale en la orina.',
+          texto: 'El Na⁺ filtrado viaja por la luz de izquierda a derecha. En el túbulo proximal entra por NHE3 (1 Na⁺ entra, 1 H⁺ o 1 NH₄⁺ sale), en el asa gruesa por NKCC2 (que espera a tener 1 Na⁺ y 1 K⁺ o NH₄⁺ para pasarlos junto con 2 Cl⁻; el Cl⁻ sale por ClC-Kb) y en el colector por ENaC. Lo que no se reabsorbe sale en la orina.',
           estado: {}, resaltar: ['ch-nhe3', 'ch-nkcc2', 'ch-enac'] },
         { titulo: 'La aldosterona enciende ENaC a través del receptor MR',
           texto: 'La renina del riñón genera angiotensina II; esta estimula a la suprarrenal, que libera aldosterona. La aldosterona entra a la célula principal, se une al MR, el MR enciende SGK1 en el núcleo y SGK1 inactiva a Nedd4-2, la enzima que retira ENaC de la membrana. Resultado: más ENaC en la membrana.',
           estado: {}, resaltar: ['box-renina', 'box-angii', 'box-suprarrenal', 'box-mr', 'box-sgk1', 'box-nedd', 'ch-enac'] },
         { titulo: 'La bomba Na⁺/K⁺-ATPasa saca el Na⁺ y mete K⁺; la luz queda negativa',
-          texto: 'Cada Na⁺ que entró por ENaC sale a la sangre por la bomba, que a cambio mete K⁺ a la célula. Como el Na⁺ entró sin anión, la luz tubular queda eléctricamente negativa (unos −40 mV).',
+          texto: 'La bomba trabaja por ciclos con una cuenta fija: espera a tener 3 Na⁺ adentro (los que entraron por ENaC) y 2 K⁺ afuera (de la sangre); solo entonces saca los 3 Na⁺ y mete los 2 K⁺. Mira cómo se van acumulando hasta completar la cuenta. Como el Na⁺ entró sin anión, la luz tubular queda eléctricamente negativa (unos −40 mV): el medidor de la luz se calcula con los Na⁺ que entran por ENaC.',
           estado: {}, resaltar: ['ch-nak', 'np-carga'] },
         { titulo: 'El voltaje negativo empuja el K⁺ por ROMK y el H⁺ por la H⁺-ATPasa',
-          texto: 'La luz negativa atrae cationes: el K⁺ de la célula principal sale por ROMK hacia la orina, y el H⁺ de la célula α vecina sale por la H⁺-ATPasa. Por cada H⁺ secretado, la anhidrasa carbónica deja un HCO₃⁻ nuevo que AE1 manda a la sangre.',
+          texto: 'La luz negativa atrae cationes: el K⁺ de la célula principal sale por ROMK hacia la orina, y el H⁺ de la célula α vecina sale por la H⁺-ATPasa. Por cada H⁺ secretado, la anhidrasa carbónica deja un HCO₃⁻ nuevo; AE1 lo saca a la sangre solo a cambio de un Cl⁻ que entra (intercambio 1 : 1, por eso espera a tener los dos).',
           estado: {}, resaltar: ['ch-romk', 'ch-hatp', 'ch-ae1', 'box-ca'] },
         { titulo: 'El túbulo proximal fabrica NH₄⁺ y el asa gruesa lo recicla',
           texto: 'La glutamina entra a la célula proximal: la glutaminasa y la PEPCK la convierten en 2 NH₄⁺ (que salen a la luz por NHE3) y 2 HCO₃⁻ (que salen a la sangre por NBCe1). En el asa gruesa el NH₄⁺ ocupa el sitio del K⁺ en NKCC2 y pasa al intersticio medular, donde se acumula como depósito de NH₃.',
@@ -134,7 +134,7 @@
       const dt = Math.min(0.05, (ts - ultimo) / 1000);
       const k = 1 - Math.exp(-dt * 1.6);
       for (const key in objetivo) actual[key] += (objetivo[key] - actual[key]) * k;
-      escena.actualizar();
+      escena.actualizar(dt);
       escena.tick(dt);
       NI.np.render(actual);
     }
