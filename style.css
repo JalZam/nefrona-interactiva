@@ -352,7 +352,8 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .tarjeta-pista { font-size: .8rem !important; color: var(--text-secondary); }
 
 /* esquema paralelo */
-.np-luz { fill: #fffbea; } .np-sangre { fill: #fdf2f2; } .np-orina { fill: #fef3c7; }
+.np-luz { fill: #fffbea; } .np-sangre { fill: #fdf2f2; } .np-orina { fill: #fef3c7; } .np-heces { fill: #efe4d6; }
+.np-banda-titulo.heces { fill: #78350f; }
 .np-banda-titulo.celulas { fill: #57534e; font-size: 15px; letter-spacing: .5px; }
 .np-banda-titulo { font-size: 18px; font-weight: 800; letter-spacing: 1px; fill: #92400e; }
 .np-banda-titulo.sangre { fill: #991b1b; }
@@ -402,7 +403,6 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 
 /* ── panel de acidosis tubulares ── */
 .atr-botones { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .25rem; }
-.atr-botones .atr-btn:first-child { grid-column: 1 / -1; }
 .atr-btn { font: inherit; font-size: .76rem; font-weight: 600; padding: .4rem .5rem; line-height: 1.2; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--white); color: var(--dark); cursor: pointer; text-align: left; }
 .atr-btn:hover { border-color: var(--primary-mid); background: var(--primary-light); }
 .atr-btn.activo { background: var(--primary); color: var(--white); border-color: var(--primary); }

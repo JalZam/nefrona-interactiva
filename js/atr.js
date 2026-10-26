@@ -11,7 +11,7 @@
   const NORMAL = {
     enac: 1, nak: 1, romk: 1, volt: 1, voltaje: -40, hatp: 1, ae1: 1, ca2a: 1,
     nhe3: 1, nbc: 1, ca4: 1, ca2p: 1, hco3Filt: 1, glut: 1, pK: 0.75, nh3: 1, trap: 1,
-    aldo: 1, aldoK: 0, renina: 1, angiiBlock: 0, mrBlock: 0,
+    aldo: 1, aldoK: 0, renina: 1, angiiBlock: 0, mrBlock: 0, hk: 0.2, diarrea: 0,
     K: 4.0, hco3: 24, acido: 0, naOrina: 0.15, hco3Orina: 0, kOrina: 0, phOrina: 5.8
   };
 
@@ -25,8 +25,8 @@
         texto: 'El voltaje luminal negativo lo creaba la entrada de Na⁺ sin anión: el medidor de la luz se calcula con los Na⁺ que de verdad entran por ENaC frente a los que siguen de largo. Ahora casi todo el Na⁺ pasa de largo, la luz se vuelve casi neutra y el poco K⁺ que entra a la célula no tiene fuerza para salir por ROMK: se devuelve a la sangre por Kir4.1. El Na⁺ no reabsorbido se pierde en la orina.',
         estado: { volt: 0.2, voltaje: -10, romk: 0.4, K: 5.5, naOrina: 0.7 }, resaltar: ['np-carga', 'ch-romk', 'ch-kir', 'pila-na'] },
       { titulo: 'La célula α pierde el empuje para secretar H⁺',
-        texto: 'La H⁺-ATPasa es electrogénica: la ayudaba el mismo voltaje negativo, y además la aldosterona la estimulaba directamente. Sin ninguno de los dos, parte de los H⁺ rebotan en la bomba y se devuelven a la sangre. Por cada H⁺ que no sale, tampoco nace un HCO₃⁻ nuevo: AE1 se queda esperando con el Cl⁻ aparcado afuera y no hay intercambio. El ácido de la dieta empieza a retenerse.',
-        estado: { hatp: 0.6, acido: 0.3, hco3: 22 }, resaltar: ['ch-hatp', 'ch-ae1', 'pila-h'] },
+        texto: 'La H⁺-ATPasa es electrogénica: la ayudaba el mismo voltaje negativo. Sin él, parte de los H⁺ rebotan en la bomba y se devuelven a la sangre (en el hipoaldosteronismo además se apaga el estímulo directo de la aldosterona sobre la bomba: mira la caja «Aldo · acidosis»). Por cada H⁺ que no sale, tampoco nace un HCO₃⁻ nuevo: AE1 se queda esperando con el Cl⁻ aparcado afuera y no hay intercambio. El ácido de la dieta empieza a retenerse.',
+        estado: { hatp: 0.6, acido: 0.3, hco3: 22 }, resaltar: ['ch-hatp', 'box-aldo-a', 'ch-ae1', 'pila-h'] },
       { titulo: 'El K⁺ alto entra al túbulo proximal y frena la glutaminasa',
         texto: 'El K⁺ entra a la célula proximal a cambio de H⁺; el citosol se alcaliniza y la glutaminasa y la PEPCK bajan su actividad. La glutamina sigue llegando por SNAT3 pero rebota en la mitocondria sin procesarse: se fabrica menos NH₄⁺ y menos HCO₃⁻ nuevo. Este es el eslabón central de la ATR4: la acidosis es consecuencia de la hiperkalemia.',
         estado: { glut: 0.45, K: 5.8 }, resaltar: ['box-mito', 'ch-k-p', 'ch-nhe3'] },
@@ -63,12 +63,55 @@
         { titulo: 'El voltaje negativo empuja el K⁺ por ROMK y el H⁺ por la H⁺-ATPasa',
           texto: 'La luz negativa atrae cationes: el K⁺ de la célula principal sale por ROMK hacia la orina, y el H⁺ de la célula α vecina sale por la H⁺-ATPasa. Por cada H⁺ secretado, la anhidrasa carbónica deja un HCO₃⁻ nuevo; AE1 lo saca a la sangre solo a cambio de un Cl⁻ que entra (intercambio 1 : 1, por eso espera a tener los dos).',
           estado: {}, resaltar: ['ch-romk', 'ch-hatp', 'ch-ae1', 'box-ca'] },
+        { titulo: 'La aldosterona y la acidosis estimulan directamente la bomba de H⁺',
+          texto: 'Además del voltaje, la H⁺-ATPasa tiene dos estímulos propios: la aldosterona (por una vía rápida, en minutos, a través de la proteína quinasa C) y la acidosis sistémica, que hace que la célula inserte en la membrana más bombas guardadas en vesículas. Por eso en una acidosis con riñón sano la secreción de H⁺ se multiplica.',
+          estado: {}, resaltar: ['box-aldo-a', 'ch-hatp'] },
         { titulo: 'El túbulo proximal fabrica NH₄⁺ y el asa gruesa lo recicla',
           texto: 'La glutamina entra a la célula proximal: la glutaminasa y la PEPCK la convierten en 2 NH₄⁺ (que salen a la luz por NHE3) y 2 HCO₃⁻ nuevos (que salen a la sangre por NBCe1). En el asa gruesa el NH₄⁺ ocupa el sitio del K⁺ en NKCC2 y pasa al intersticio medular, donde se acumula como depósito de NH₃.',
           estado: {}, resaltar: ['box-mito', 'ch-nhe3', 'ch-nkcc2', 'ch-nh4-salida', 'np-deposito'] },
         { titulo: 'En el colector NH₃ + H⁺ → NH₄⁺: así se excreta el ácido del día',
           texto: 'El NH₃ del depósito entra a la célula α por Rhbg y sale a la luz por Rhcg. Allí se une al H⁺ secretado y queda atrapado como NH₄⁺, que no puede volver a difundir y sale en la orina. Balance normal: se excreta el ácido de la dieta (pH urinario 5–6), el K⁺ de la dieta y el HCO₃⁻ plasmático se mantiene en 24.',
-          estado: {}, resaltar: ['ch-rhcg-bl', 'ch-rhcg-ap', 'pila-h', 'orina-ph'] }
+          estado: {}, resaltar: ['ch-rhcg-bl', 'ch-rhcg-ap', 'pila-nh4o', 'orina-ph'] },
+        { titulo: 'El H⁺ que no encuentra NH₃ se une al fosfato: acidez titulable',
+          texto: 'El fosfato filtrado que el túbulo proximal no reabsorbió llega como HPO₄²⁻ y espera en la luz del colector. Cada H⁺ secretado que lo encuentra lo convierte en H₂PO₄⁻, que sale en la orina. Es la "acidez titulable" (se mide titulando la orina hasta pH 7,4): unos 20–30 mEq/día, un tercio del ácido excretado. A diferencia del NH₄⁺, casi no puede aumentar en la acidosis porque depende del fosfato que se filtra.',
+          estado: {}, resaltar: ['pila-ato', 'ch-hatp'] },
+        { titulo: 'La H⁺/K⁺-ATPasa: otro H⁺ a la luz, un K⁺ de vuelta',
+          texto: 'Bomba apical de la célula α que saca 1 H⁺ y recupera 1 K⁺ de la luz. Con K⁺ normal trabaja poco (círculo naranja); se induce cuando falta K⁺. Por eso la hipokalemia, por sí sola, aumenta la secreción de H⁺ (y la amoniogénesis) y tiende a la alcalosis, y la hiperkalemia hace lo contrario.',
+          estado: {}, resaltar: ['ch-hk'] },
+        { titulo: 'El balance: excreción neta de ácido = NH₄⁺ + acidez titulable − HCO₃⁻ urinario',
+          texto: 'La dieta produce unos 70 mEq de ácido al día (1 mEq/kg). Para mantener el HCO₃⁻ en 24 el riñón tiene que excretar la misma cantidad: unos 40 como NH₄⁺, unos 30 como acidez titulable y casi nada de HCO₃⁻ en la orina. Cada H⁺ excretado es un HCO₃⁻ nuevo que vuelve a la sangre. En el cajón de orina, «ENA» resume ese balance; en la sangre, el Cl⁻ sube lo mismo que baja el HCO₃⁻ cuando la acidosis es sin anion gap.',
+          estado: {}, resaltar: ['pila-nh4o', 'pila-ato', 'orina-ena', 'pila-h'] }
+      ]
+    },
+
+    diarrea: {
+      nombre: 'Acidosis por diarrea · riñón sano (control)',
+      causas: 'Diarrea secretora, fístulas o drenajes intestinales y pancreáticos, ureterosigmoidostomía, laxantes. Es la comparación clave: la otra gran causa de acidosis sin anion gap, con un riñón que responde bien.',
+      pasos: [
+        { titulo: 'El intestino pierde HCO₃⁻ con las heces',
+          texto: 'Las secreciones intestinales y pancreáticas son ricas en HCO₃⁻, y en la diarrea el colon lo intercambia por Cl⁻. Se pierden 30–100 mEq de HCO₃⁻ al día por las heces (mira la flecha de la sangre a la caja «HECES»). El riñón todavía no ha hecho nada.',
+          estado: { diarrea: 1, hco3: 20, acido: 0.3, renina: 1.3 }, resaltar: ['pila-heces', 'pila-h'] },
+        { titulo: 'El Cl⁻ sube lo mismo que baja el HCO₃⁻: el anion gap no cambia',
+          texto: 'El Cl⁻ que el intestino reabsorbe a cambio del HCO₃⁻ ocupa su lugar en la sangre. Na⁺ − (Cl⁻ + HCO₃⁻) se mantiene en ≈ 12: acidosis hiperclorémica con anion gap normal, igual que en las ATR. El anion gap plasmático no distingue la causa; hay que mirar la orina.',
+          estado: { hco3: 17, acido: 0.5 }, resaltar: ['pila-h'] },
+        { titulo: 'La acidosis enciende la amoniogénesis del túbulo proximal',
+          texto: 'En 2–5 días la acidosis multiplica la glutaminasa, la GDH, la PEPCK y la entrada de glutamina por SNAT3. Mira cómo entra el doble de glutamina y salen el doble de NH₄⁺ a la luz por NHE3 y de HCO₃⁻ nuevo a la sangre por NBCe1. La hipokalemia que acompaña a la diarrea la estimula todavía más.',
+          estado: { glut: 2 }, resaltar: ['box-mito', 'ch-snat3', 'ch-nhe3', 'ch-nbc'] },
+        { titulo: 'El asa gruesa lleva más NH₄⁺ al intersticio',
+          texto: 'Con más NH₄⁺ en la luz y K⁺ bajo, NKCC2 toma NH₄⁺ en vez de K⁺ con más frecuencia y lo deja en el intersticio medular por NHE4/KCC4: el depósito de NH₃ se llena.',
+          estado: { pK: 0.9, nh3: 1.8 }, resaltar: ['ch-nkcc2', 'ch-nh4-salida', 'np-deposito'] },
+        { titulo: 'La célula α inserta más bombas de H⁺',
+          texto: 'La acidosis, y la aldosterona que sube porque la diarrea quita volumen, hacen que la célula α inserte más H⁺-ATPasas en la membrana. Sale más H⁺ a la luz y por cada uno nace un HCO₃⁻ nuevo que AE1 devuelve a la sangre.',
+          estado: { hatp: 1.6, aldo: 1.3 }, resaltar: ['box-aldo-a', 'ch-hatp', 'ch-ae1'] },
+        { titulo: 'El NH₄⁺ urinario se multiplica: brecha aniónica urinaria negativa',
+          texto: 'Con mucho NH₃ disponible, casi todo el H⁺ queda atrapado como NH₄⁺: la excreción sube de 40 a más de 100–200 mEq/día y el pH urinario baja de 5,3. El NH₄⁺ sale acompañado de Cl⁻, así que el Cl⁻ urinario supera a Na⁺ + K⁺: brecha aniónica urinaria negativa. Este es el dato que la separa de todas las ATR (en las que la brecha es positiva).',
+          estado: { trap: 1, phOrina: 5.0 }, resaltar: ['pila-nh4o', 'orina-nh4', 'orina-ena', 'orina-ph'] },
+        { titulo: 'Se pierde K⁺ y la H⁺/K⁺-ATPasa se activa',
+          texto: 'Las heces diarreicas llevan K⁺ y la aldosterona alta aumenta la secreción renal: hipokalemia. La H⁺/K⁺-ATPasa de la célula α se induce y recupera K⁺ de la luz a cambio de más H⁺. Contraste con la ATR 4: allí el K⁺ alto frena la amoniogénesis; aquí el K⁺ bajo la estimula.',
+          estado: { K: 3.3, hk: 0.8, kOrina: 0.4 }, resaltar: ['pila-k', 'ch-hk', 'pila-heces'] },
+        { titulo: 'Resultado: acidosis por diarrea con riñón sano',
+          texto: 'HCO₃⁻ bajo y Cl⁻ alto con anion gap normal, K⁺ bajo, pH urinario < 5,3, NH₄⁺ urinario alto (> 40 mEq/L en orina aislada) y brecha aniónica urinaria negativa; excreción neta de ácido alta. Ojo: con hipokalemia grave y mucho NH₃, el pH urinario puede subir por encima de 5,5 sin que haya ATR (sobra amortiguador, no falta H⁺); por eso se mira el NH₄⁺, no solo el pH. Se trata reponiendo volumen, K⁺ y bicarbonato.',
+          estado: {}, resaltar: ['pila-h', 'pila-k', 'pila-nh4o', 'orina-ena'] }
       ]
     },
 
@@ -93,7 +136,7 @@
           estado: { phOrina: 5.3, hco3Orina: 0.1 }, resaltar: ['ch-hatp', 'ch-rhcg-ap', 'orina-ph'] },
         { titulo: 'La pérdida de Na⁺ activa la aldosterona y se pierde K⁺',
           texto: 'El Na⁺ y el agua que escaparon con el HCO₃⁻ reducen el volumen: suben la renina y la aldosterona, ENaC trabaja más, la luz se hace más negativa y ROMK secreta más K⁺. Resultado: hipokalemia, que empeora al tratar con bicarbonato (llegan más HCO₃⁻ y Na⁺ al colector). Por eso se corrige con sales de K⁺ y, a veces, tiazidas.',
-          estado: { renina: 1.5, aldo: 1.3, romk: 1.4, K: 3.0, kOrina: 0.8 }, resaltar: ['box-suprarrenal', 'ch-enac', 'ch-romk', 'pila-k', 'pila-ko'] },
+          estado: { renina: 1.5, aldo: 1.3, romk: 1.4, K: 3.0, kOrina: 0.8, hk: 0.8 }, resaltar: ['box-suprarrenal', 'ch-enac', 'ch-romk', 'pila-k', 'pila-ko', 'ch-hk'] },
         { titulo: 'Resultado: ATR tipo 2',
           texto: 'Acidosis hiperclorémica moderada (HCO₃⁻ 15–18) con anion gap normal, hipokalemia, pH urinario variable (alto si el HCO₃⁻ plasmático está por encima del umbral; < 5,5 en estado estable), FE de HCO₃⁻ > 15 % tras cargar bicarbonato, NH₄⁺ urinario conservado. Si forma parte de un síndrome de Fanconi: glucosuria, fosfaturia, aminoaciduria y uricosuria. El citrato urinario es normal (la acidosis es leve), por eso casi nunca hay cálculos ni nefrocalcinosis; en niños, raquitismo y talla baja.',
           estado: {}, resaltar: ['pila-h', 'pila-k', 'orina-ph'] }
@@ -117,8 +160,8 @@
           texto: 'A diferencia de la ATR2, aquí no hay umbral de rescate: cada día se retienen los 50–100 mEq de ácido de la dieta y el HCO₃⁻ puede bajar de 10 mEq/L. Acidosis metabólica hiperclorémica con anion gap normal, a veces grave.',
           estado: { acido: 0.9, hco3: 12 }, resaltar: ['pila-h'] },
         { titulo: 'El Na⁺ que entra por ENaC ya no se acompaña de H⁺: se pierde K⁺',
-          texto: 'El voltaje negativo de la luz sigue intacto (ENaC funciona) pero ya no lo descarga la secreción de H⁺: todo el empuje recae sobre ROMK. Sumado al hiperaldosteronismo secundario por la pérdida de sal, el K⁺ se va a la orina: hipokalemia, a veces grave (parálisis). Al corregir la acidosis con bicarbonato la kaliuresis mejora.',
-          estado: { romk: 1.4, K: 2.9, kOrina: 0.8, aldo: 1.2, renina: 1.4 }, resaltar: ['ch-romk', 'pila-k', 'pila-ko'] },
+          texto: 'El voltaje negativo de la luz sigue intacto (ENaC funciona) pero ya no lo descarga la secreción de H⁺: todo el empuje recae sobre ROMK. Sumado al hiperaldosteronismo secundario por la pérdida de sal, el K⁺ se va a la orina: hipokalemia, a veces grave (parálisis). La H⁺/K⁺-ATPasa se induce y recupera algo de K⁺, pero no alcanza. Al corregir la acidosis con bicarbonato la kaliuresis mejora.',
+          estado: { romk: 1.4, K: 2.9, kOrina: 0.8, aldo: 1.2, renina: 1.4, hk: 0.9 }, resaltar: ['ch-romk', 'pila-k', 'pila-ko', 'ch-hk'] },
         { titulo: 'El hueso amortigua el ácido: calcio y citrato se van a la orina',
           texto: 'La acidosis crónica disuelve hueso (hipercalciuria) y aumenta la reabsorción proximal de citrato (hipocitraturia). Calcio alto, citrato bajo y orina alcalina: la receta de la nefrocalcinosis y de los cálculos de fosfato de calcio. En niños, raquitismo y retraso del crecimiento.',
           estado: {}, resaltar: ['orina-ph', 'pila-h'] },

@@ -30,7 +30,7 @@ index.html          PÁGINA PRINCIPAL: animación en fila; panel derecho fijo co
 simulador.html      simulador cuantitativo (causas con deslizadores, mapa, RAAS, 4 vistas, laboratorio)
 js/nefron-fila.js   PRINCIPAL: 4 células en fila (proximal→distal), luz arriba, sangre abajo, cajón de orina a la derecha; partículas, colas, pilas, carga luminal; render(E)
 js/nefron-columna.js  misma escena en columna (proximal arriba, distal abajo) para columna.html
-js/atr.js           las 7 opciones (normal, ATR 2, 1, 3, 4 hipoaldo, 4 antagonista MR, 4 bloqueo ENaC): lista numerada, cada punto se aplica al tocarlo (sin temporizador)
+js/atr.js           las 8 opciones (normal, diarrea con riñón sano, ATR 2, 1, 3, 4 hipoaldo, 4 antagonista MR, 4 bloqueo ENaC): lista numerada, cada punto se aplica al tocarlo (sin temporizador)
 columna.html        vista secundaria en columna con selector de 2 / 3 / todas las células
 style.css           estilos (paleta y tipografías del Velocímetro Renal), estados de canales
 js/model.js         el modelo: estado, parámetros, causas, step(dt), reset(), historial 14 días
@@ -67,4 +67,4 @@ PLAN.md             fases y estado
 
 ## Deuda Técnica Activa
 - Fuera de v1: volumen extracelular y Na⁺ dinámicos, insulina, célula β/pendrina, fosfato/citrato, hiperkalemia aguda.
-- Faltan en la animación (revisión 2026-10-26): control "diarrea con riñón sano", H⁺/K⁺-ATPasa, flecha aldosterona → H⁺-ATPasa y adaptación a la acidosis, acidez titulable (fosfato), Cl⁻ plasmático, BK, pendrina, acuaporina-2.
+- Añadidos 2026-10-26 (solo en la fila, no en columna.html): opción "diarrea con riñón sano", H⁺/K⁺-ATPasa, caja aldosterona/acidosis → H⁺-ATPasa, acidez titulable (fosfato en la luz del colector), Cl⁻ plasmático, cajón de heces, ENA en la orina. Siguen fuera: BK, pendrina/célula β, acuaporina-2.

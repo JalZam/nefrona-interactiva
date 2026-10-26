@@ -142,6 +142,24 @@
       refs: [20, 35],
       estado: () => 'Flujo acoplado al Cl⁻ que entra'
     },
+    fosfato: {
+      titulo: 'Acidez titulable — el fosfato como amortiguador',
+      texto: 'El HPO₄²⁻ filtrado que llega al colector toma un H⁺ y sale como H₂PO₄⁻ (pKa 6,8). Es la "acidez titulable": unos 20–30 mEq/día, un tercio de la excreción neta de ácido (ENA = NH₄⁺ + acidez titulable − HCO₃⁻ urinario). Casi no puede aumentar en la acidosis, porque depende del fosfato que se filtra; la respuesta adaptativa la da el NH₄⁺. En la ERC baja con la TFG.',
+      refs: [4, 23, 25],
+      estado: () => ''
+    },
+    estimulo_hatp: {
+      titulo: 'Estímulos directos de la H⁺-ATPasa: aldosterona y acidosis',
+      texto: 'La aldosterona activa la bomba de H⁺ de la célula α en minutos por una vía no genómica (proteína quinasa C, Ca²⁺), en parte independiente del receptor MR, y a largo plazo aumenta sus subunidades. La acidosis sistémica hace que la célula inserte en la membrana apical bombas guardadas en vesículas. La angiotensina II también la estimula. En el hipoaldosteronismo se pierde este estímulo además del voltaje.',
+      refs: [9, 10, 11],
+      estado: () => ''
+    },
+    diarrea: {
+      titulo: 'Pérdida intestinal de HCO₃⁻',
+      texto: 'Las secreciones del intestino delgado, el páncreas y la bilis son ricas en HCO₃⁻, y el colon lo intercambia por Cl⁻. En la diarrea se pierden 30–100 mEq/día: acidosis hiperclorémica con anion gap normal e hipokalemia. El riñón sano responde multiplicando la excreción de NH₄⁺: brecha aniónica urinaria negativa, a diferencia de las ATR.',
+      refs: [25, 23, 24],
+      estado: () => ''
+    },
     ca4: {
       titulo: 'Anhidrasa carbónica IV — la de la luz del túbulo proximal',
       texto: 'Enzima anclada a la membrana apical, de cara a la luz. El H⁺ que secreta NHE3 se une al HCO₃⁻ filtrado y forma H₂CO₃; la CA IV lo deshidrata al instante en CO₂ + H₂O, que entran a la célula por difusión. Sin ella la reacción sería cientos de veces más lenta y el HCO₃⁻ pasaría de largo. La acetazolamida la inhibe (junto con la CA II del citoplasma): ATR proximal farmacológica.',

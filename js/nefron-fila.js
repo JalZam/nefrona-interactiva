@@ -81,9 +81,10 @@
     svg.innerHTML = '<defs><marker id="np-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#1f2937"/></marker><marker id="np-inhib" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M5 1 L5 9" stroke="#dc2626" stroke-width="2.5"/></marker></defs>';
     svg.appendChild(el('rect', { class: 'np-luz', x: 0, y: 0, width: ORX, height: 120 }));
     svg.appendChild(el('rect', { class: 'np-sangre', x: 0, y: 580, width: ORX, height: 140 }));
-    svg.appendChild(el('rect', { class: 'np-orina', x: ORX, y: 0, width: W - ORX, height: H }));
+    svg.appendChild(el('rect', { class: 'np-orina', x: ORX, y: 0, width: W - ORX, height: 560 }));
+    svg.appendChild(el('rect', { class: 'np-heces', x: ORX, y: 560, width: W - ORX, height: H - 560 }));
     svg.appendChild(txt(560, 20, 'LUZ TUBULAR → hacia la orina', 'np-banda-titulo'));
-    svg.appendChild(txt(1420, 716, 'SANGRE · INTERSTICIO', 'np-banda-titulo sangre', { style: 'text-anchor:end' }));
+    svg.appendChild(txt(1390, 716, 'SANGRE · INTERSTICIO', 'np-banda-titulo sangre', { style: 'text-anchor:end' }));
     // uniones estrechas entre células
     [[390, 430], [780, 820], [1170, 1210]].forEach(([a, b]) => {
       svg.appendChild(el('line', { class: 'np-union', x1: (a + b) / 2, y1: AP, x2: (a + b) / 2, y2: BL }));
@@ -91,7 +92,7 @@
     celula(svg, ...CEL.prox, 'Túbulo proximal', 262, 166);
     celula(svg, ...CEL.asa, ['Asa gruesa', 'ascendente'], 700, 190);
     celula(svg, ...CEL.prin, ['Célula principal', '(colector)'], 1100, 190);
-    celula(svg, ...CEL.alfa, ['Célula intercalada α', '(colector)'], 1380, 190);
+    celula(svg, ...CEL.alfa, 'Intercalada α', 1392, 195);
 
     // ── caminos (flechas = guías de partículas) ──
     // luz: Na⁺ baja por la luz y entra a cada célula según su canal
@@ -125,7 +126,10 @@
     flecha(svg, 'g-k-sangre', 'M760 680 L845 680 L845 620', '', true);
     flecha(svg, 'g-k-in', `M845 616 C845 585 900 592 915 560 C935 500 1040 470 1040 380 C1040 300 1010 240 1010 200`, '');
     flecha(svg, 'g-k-romk', `M1010 200 L1010 ${AP} L1010 ${LN.k}`, '');
-    flecha(svg, 'g-k-luz', `M1010 ${LN.k} L1600 ${LN.k}`, '');
+    flecha(svg, 'g-k-luz', `M1010 ${LN.k} L1530 ${LN.k}`, '', true);
+    flecha(svg, 'g-k-luz2', `M1530 ${LN.k} L1600 ${LN.k}`, '');
+    flecha(svg, 'g-k-hk', `M1540 ${LN.k} L1540 260 L1540 440`, 'tenue');
+    flecha(svg, 'g-h-hk', `M1520 260 L1520 ${AP} L1520 92`, '');
     flecha(svg, 'g-k-kir', `M1010 200 C1010 340 1140 400 1140 ${BL} L1140 612`, '');
     // K⁺ filtrado llega al asa: entra por NKCC2 y ROMK lo recicla
     flecha(svg, 'g-k-luz0', `M68 ${LN.k} L520 ${LN.k}`, '', true);
@@ -148,7 +152,10 @@
     flecha(svg, 'g-h-ap1', `M1262 296 C1270 240 1270 200 1270 ${AP + 36}`, '', true);
     flecha(svg, 'g-h-ap2', `M1270 ${AP + 30} L1270 100`, '');
     flecha(svg, 'g-h-vuelve', `M1250 ${AP + 40} C1225 300 1225 450 1236 ${BL} L1236 612`, 'tenue');
-    flecha(svg, 'g-h-luz', 'M1270 96 L1420 96', 'tenue', true);
+    flecha(svg, 'g-h-luz', 'M1270 96 L1420 96 L1440 52', 'tenue', true);
+    flecha(svg, 'g-hpo4', `M400 ${LN.hco3} L1370 ${LN.hco3}`, 'tenue', true);
+    flecha(svg, 'g-hpo4-sigue', `M1370 ${LN.hco3} L1600 ${LN.hco3}`, 'tenue');
+    flecha(svg, 'g-h2po4', `M1440 ${LN.hco3} L1600 ${LN.hco3}`, '');
     flecha(svg, 'g-hco3-a', `M1300 352 L1292 506`, '', true);
     flecha(svg, 'g-hco3-out', `M1288 540 L1288 614`, '');
     flecha(svg, 'g-cl-sangre', 'M1440 688 L1440 622', '', true);
@@ -156,6 +163,7 @@
     flecha(svg, 'g-nh3', `M1480 612 L1480 ${BL} L1480 ${AP + 30} L1480 ${LN.nh4 + 8}`, '');
     flecha(svg, 'g-nh4-orina', `M1480 ${LN.nh4} L1600 ${LN.nh4}`, '');
     flecha(svg, 'g-nh3-escapa', `M1480 ${LN.nh4} L1420 ${LN.nh4}`, 'tenue', true);
+    flecha(svg, 'g-hco3-heces', 'M1540 596 L1690 596 L1690 630', '');
     // RAAS en la banda de sangre
     flecha(svg, 'g-renina', 'M212 700 L288 700', 'via');
     flecha(svg, 'g-angii', 'M442 700 L838 700', 'via');
@@ -165,6 +173,7 @@
     flecha(svg, 'fl-nuc-sgk', 'M930 358 L930 330', 'via');
     flecha(svg, 'fl-sgk-nedd', 'M935 292 L935 260', 'via inhib');
     flecha(svg, 'fl-nedd-enac', 'M872 224 L856 174', 'via inhib');
+    flecha(svg, 'fl-aldo-hatp', 'M1306 216 L1292 162', 'via');
     document.getElementById('fl-sgk-nedd').setAttribute('marker-end', 'url(#np-inhib)');
     document.getElementById('fl-nedd-enac').setAttribute('marker-end', 'url(#np-inhib)');
 
@@ -190,6 +199,7 @@
     caja(svg, { id: 'box-ca-p', x: 216, y: 182, w: 172, h: 50, clase: 'ca', porque: 'ca2p', lineas: ['CO₂ + OH⁻ → HCO₃⁻', 'anhidrasa carbónica II'] });
     caja(svg, { id: 'box-mito', x: 150, y: 330, w: 220, h: 118, esp: 19, clase: 'mito', porque: 'glutaminasa', lineas: ['Glutamina → PDG → GDH', '→ α-KG → PEPCK', '= 2 NH₄⁺ + 2 HCO₃⁻', { t: 'glutaminasa 100 %', cls: 'caja-estado', id: 'mito-estado' }] });
     caja(svg, { id: 'box-ca', x: 1240, y: 300, w: 240, h: 52, clase: 'ca', porque: 'ca2', lineas: ['CO₂ + OH⁻ → HCO₃⁻', 'anhidrasa carbónica II'] });
+    caja(svg, { id: 'box-aldo-a', x: 1300, y: 206, w: 172, h: 42, esp: 18, porque: 'estimulo_hatp', lineas: ['Aldo · acidosis', { t: '→ más bombas H⁺', cls: 'caja-sub', id: 'aldo-a-estado' }] });
     caja(svg, { id: 'box-nedd', x: 870, y: 222, w: 110, h: 34, lineas: ['Nedd4-2'], porque: 'nedd' });
     caja(svg, { id: 'box-sgk1', x: 892, y: 292, w: 86, h: 34, lineas: ['SGK1'], porque: 'sgk1' });
     caja(svg, { id: 'box-mr', x: 1040, y: 470, w: 80, h: 36, lineas: ['MR'], porque: 'mr' });
@@ -219,14 +229,15 @@
     circulo(svg, { id: 'ch-nak', x: 915, y: BL, clase: 'activo', etiqueta: ['Na⁺/K⁺', 'ATPasa'], porque: 'nak', r: 34 });
     canal(svg, { id: 'ch-kir', x: 1140, y: BL, nombre: 'Kir4.1', porque: 'kir41', estatico: true, lado: 'izq' });
     circulo(svg, { id: 'ch-hatp', x: 1270, y: AP, clase: 'activo', etiqueta: ['vH⁺-', 'ATPasa'], porque: 'hatpasa', r: 34 });
-    canal(svg, { id: 'ch-rhcg-ap', x: 1480, y: AP, nombre: 'Rhcg', porque: 'rhcg' });
+    canal(svg, { id: 'ch-rhcg-ap', x: 1480, y: AP, nombre: 'Rhcg', porque: 'rhcg', lado: 'izq', ny: 36 });
+    circulo(svg, { id: 'ch-hk', x: 1530, y: AP, clase: 'activo', etiqueta: ['H⁺/K⁺'], porque: 'hkatpasa', r: 28 });
     circulo(svg, { id: 'ch-ae1', x: 1306, y: BL, clase: 'pasivo', etiqueta: ['AE1'], porque: 'ae1', r: 32 });
     canal(svg, { id: 'ch-clc-a', x: 1412, y: BL, nombre: 'ClC-Kb', porque: 'clc', estatico: true, lado: 'izq', nx: -24 });
     canal(svg, { id: 'ch-rhcg-bl', x: 1480, y: BL, nombre: 'Rhbg', porque: 'rhcg' });
 
     // ── carga luminal, pilas, depósito y cajón de orina ──
-    svg.appendChild(txt(1100, 242, 'luz negativa −40 mV', 'np-carga-txt', { id: 'np-carga-txt', style: 'text-anchor:middle' }));
-    svg.appendChild(txt(1100, 266, '− − − − −', 'np-carga', { id: 'np-carga', style: 'text-anchor:middle' }));
+    svg.appendChild(txt(1108, 242, 'luz negativa −40 mV', 'np-carga-txt', { id: 'np-carga-txt', style: 'text-anchor:middle' }));
+    svg.appendChild(txt(1108, 266, '− − − − −', 'np-carga', { id: 'np-carga', style: 'text-anchor:middle' }));
     pila(svg, 'pila-k', 1132, 676, 'pila-k-txt', 'K⁺ sangre 4,0 mEq/L', 706);
     svg.appendChild(el('rect', { id: 'np-deposito', class: 'np-deposito', x: 1214, y: 648, width: 126, height: 60, rx: 10, opacity: 0.6 }));
     svg.appendChild(txt(1277, 673, 'NH₃ / NH₄⁺', 'np-deposito-txt'));
@@ -237,9 +248,15 @@
     svg.appendChild(txt(OX, 52, 'pH 5,8', 'np-pila-txt', { id: 'orina-ph', style: 'text-anchor:middle;font-size:17px' }));
     svg.appendChild(txt(OX, 74, 'NH₄⁺ normal', 'np-nota', { id: 'orina-nh4', style: 'text-anchor:middle;font-size:12px' }));
     svg.appendChild(txt(OX, 90, '', 'np-nota', { id: 'orina-nh4b', style: 'text-anchor:middle;font-size:11px' }));
-    pila(svg, 'pila-na', OX, 200, 'pila-na-txt', '', 226, 'middle', { style: 'text-anchor:middle;font-size:12px' });
-    pila(svg, 'pila-hco3o', OX, 330, 'pila-hco3o-txt', '', 356, 'middle', { style: 'text-anchor:middle;font-size:12px' });
-    pila(svg, 'pila-ko', OX, 460, 'pila-ko-txt', '', 486, 'middle', { style: 'text-anchor:middle;font-size:12px' });
+    const sub = { style: 'text-anchor:middle;font-size:12px' };
+    pila(svg, 'pila-nh4o', OX, 150, 'pila-nh4o-txt', 'NH₄⁺', 174, 'middle', Object.assign({ 'data-porque': 'rhcg' }, sub));
+    pila(svg, 'pila-ato', OX, 232, 'pila-ato-txt', 'acidez titulable', 256, 'middle', Object.assign({ 'data-porque': 'fosfato' }, sub));
+    svg.appendChild(txt(OX, 286, 'ENA normal', 'np-pila-txt', { id: 'orina-ena', 'data-porque': 'fosfato', style: 'text-anchor:middle;font-size:13px' }));
+    pila(svg, 'pila-hco3o', OX, 340, 'pila-hco3o-txt', '', 364, 'middle', sub);
+    pila(svg, 'pila-na', OX, 420, 'pila-na-txt', '', 444, 'middle', sub);
+    pila(svg, 'pila-ko', OX, 500, 'pila-ko-txt', '', 524, 'middle', sub);
+    svg.appendChild(txt(OX, 580, 'HECES', 'np-banda-titulo heces', { style: 'text-anchor:middle', 'data-porque': 'diarrea' }));
+    pila(svg, 'pila-heces', OX, 680, 'pila-heces-txt', '', 706, 'middle', sub);
   }
 
   // ───────── Escena de partículas (dependencias encadenadas + colas con estequiometría) ─────────
@@ -298,6 +315,8 @@
     // NHE3 del proximal: 1 Na⁺ entra a cambio de 1 NH₄⁺ (si hay uno esperando) o de 1 H⁺
     e.cola('nhe3', { slots: { nh4: { x: 170, y: 240, dx: 28, dy: 24, cols: 2, n: 99, tope: 4 } } });
     // Anhidrasa carbónica IV (luz del proximal): el HCO₃⁻ filtrado espera a que llegue un H⁺ de NHE3
+    // Fosfato filtrado (HPO₄²⁻) espera en la luz del colector a un H⁺: acidez titulable
+    e.cola('fosf', { slots: { hpo4: { x: 1440, y: LN.hco3, dx: -26, dy: 0, cols: 3, n: 99, tope: 3 } } });
     e.cola('ca4', { slots: { hco3: { x: 100, y: LN.hco3, dx: 30, dy: 0, cols: 3, n: 99, tope: 3 } } });
     const tomar = (colaId, slot) => { const q = e.colas[colaId].slots[slot]; const a = q.aparcadas.shift(); a.el.remove(); q.aparcadas.forEach((b, i) => b.el.setAttribute('transform', `translate(${q.x + (i % q.cols) * q.dx},${q.y + Math.floor(i / q.cols) * q.dy})`)); return a; };
 
@@ -358,7 +377,13 @@
       if (azar() < E.romk * v) e.emitir('k_romk'); else { if (v < 0.5) reb(1010, 170, 'k'); e.emitir('k_kir'); }
     }});
     e.agregar('k_romk', { path: 'g-k-romk', ion: 'k', modo: 'cadena', alLlegar: () => e.emitir('k_luz') });
-    e.agregar('k_luz', { path: 'g-k-luz', ion: 'k', modo: 'cadena', velocidad: 140, desvanecer: 40 });
+    e.agregar('k_luz', { path: 'g-k-luz', ion: 'k', modo: 'cadena', velocidad: 140, alLlegar: () => {
+      // H⁺/K⁺-ATPasa: 1 K⁺ de la luz entra a la célula α a cambio de 1 H⁺ que sale
+      if (azar() < 0.4 * E.hk) { e.emitir('k_hk'); e.emitir('h_hk'); } else e.emitir('k_luz2');
+    }});
+    e.agregar('k_luz2', { path: 'g-k-luz2', ion: 'k', modo: 'cadena', velocidad: 140, desvanecer: 40 });
+    e.agregar('k_hk', { path: 'g-k-hk', ion: 'k', modo: 'cadena', desvanecer: 60 });
+    e.agregar('h_hk', { path: 'g-h-hk', ion: 'h', modo: 'cadena', desvanecer: 30 });
     e.agregar('k_kir', { path: 'g-k-kir', ion: 'k', modo: 'cadena', desvanecer: 30 });
     // ── K⁺ filtrado y reciclaje en el asa ──
     e.agregar('k_luz0', { path: 'g-k-luz0', ion: 'k', tasa: 0.8, velocidad: 120, alLlegar: () => {
@@ -392,7 +417,14 @@
     }});
     e.agregar('h_ap2', { path: 'g-h-ap2', ion: 'h', modo: 'cadena', alLlegar: () => e.emitir('h_luz') });
     e.agregar('h_vuelve', { path: 'g-h-vuelve', ion: 'h', modo: 'cadena', desvanecer: 40 });
-    e.agregar('h_luz', { path: 'g-h-luz', ion: 'h', modo: 'cadena', desvanecer: 70 });
+    e.agregar('h_luz', { path: 'g-h-luz', ion: 'h', modo: 'cadena', alLlegar: () => {
+      // el H⁺ libre se une a un HPO₄²⁻ que espera (acidez titulable) o queda libre y baja el pH
+      if (e.cuenta('fosf', 'hpo4')) { tomar('fosf', 'hpo4'); e.emitir('h2po4'); }
+    }});
+    e.agregar('hpo4', { path: 'g-hpo4', ion: 'hpo4', tasa: 0.55, velocidad: 140, alLlegar: () => { if (!e.aparcar('fosf', 'hpo4', 'hpo4')) e.emitir('hpo4_sigue'); } });
+    e.agregar('hpo4_sigue', { path: 'g-hpo4-sigue', ion: 'hpo4', modo: 'cadena', velocidad: 140, desvanecer: 40 });
+    e.agregar('h2po4', { path: 'g-h2po4', ion: 'h2po4', modo: 'cadena', velocidad: 120, desvanecer: 40 });
+    e.agregar('hco3_heces', { path: 'g-hco3-heces', ion: 'hco3', tasa: 1.4, flujo: 0, desvanecer: 30 });
     e.agregar('hco3_a', { path: 'g-hco3-a', ion: 'hco3', modo: 'cadena', alLlegar: () => e.aparcar('ae1', 'hco3', 'hco3') });
     e.agregar('hco3_out', { path: 'g-hco3-out', ion: 'hco3', modo: 'cadena', desvanecer: 30 });
     e.agregar('cl_sangre', { path: 'g-cl-sangre', ion: 'cl', tasa: 1.9, velocidad: 90, alLlegar: () => { if (azar() > E.ae1 || !e.aparcar('ae1', 'cl', 'cl')) reb(1440, 598, 'cl'); } });
@@ -413,13 +445,14 @@
       e.setFlujo('na0', 1);
       e.setFlujo('hco3_luz0', E.hco3Filt == null ? 1 : E.hco3Filt);
       e.setFlujo('k_luz0', 0.8 + 1.6 * kAlto);
-      e.setFlujo('gln', 1);
+      e.setFlujo('gln', Math.max(1, E.glut));
+      e.setFlujo('hco3_heces', E.diarrea || 0);
       e.setFlujo('k_sangre', 1 + 0.8 * kAlto);
       e.setFlujo('k_sangre_t', 1 + 0.6 * kAlto);
       e.setFlujo('k_sangre_p', 1 + 0.6 * kAlto);
       e.setFlujo('k_prox', clamp((E.K - 4.5) / 1.5, 0, 1.2));
-      e.setFlujo('co2', 1);
-      e.setFlujo('cl_sangre', 1);
+      e.setFlujo('co2', Math.max(1, E.hatp));
+      e.setFlujo('cl_sangre', Math.max(1, E.hatp));
       e.setFlujo('nh3', E.nh3);
       e.setFlujo('renina', E.renina);
       e.setFlujo('aldo_k', E.aldoK || 0);
@@ -440,7 +473,7 @@
     for (let i = 0; i < n; i++) {
       const x = (i % cols) * 24 - (cols - 1) * 12, y = -Math.floor(i / cols) * 22;
       g.appendChild(el('circle', { cx: x, cy: y, r: 11, fill: col.color }));
-      g.appendChild(txt(x, y + 4, col.etiqueta, ''));
+      g.appendChild(txt(x, y + 4, col.corta || col.etiqueta, ''));
     }
   }
   const fmt = (x, d = 1) => (+x).toFixed(d).replace('.', ',');
@@ -458,7 +491,7 @@
     const mrOn = E.aldo * (1 - E.mrBlock) > 0.4;
     $('box-mr').classList.toggle('apagada', !mrOn); $('box-sgk1').classList.toggle('apagada', !mrOn);
     $('box-nedd').classList.toggle('apagada', mrOn);
-    $('nedd-estado').textContent = mrOn ? 'inhibida por SGK1' : 'ACTIVA: quita ENaC';
+    $('nedd-estado').textContent = mrOn ? 'inhibida por SGK1' : 'ACTIVA';
     $('nedd-estado').style.fill = mrOn ? '#57534e' : '#dc2626';
     ['fl-mr-nuc', 'fl-nuc-sgk', 'fl-sgk-nedd'].forEach(id => { $(id).style.opacity = mrOn ? 1 : 0.25; });
     $('fl-nedd-enac').style.opacity = mrOn ? 0.25 : 1;
@@ -469,18 +502,26 @@
     const n = clamp(Math.round(Math.abs(v) / 8), 0, 5);
     $('np-carga').textContent = '− '.repeat(n).trim() + (n < 5 ? ' ' + '· '.repeat(5 - n).trim() : '');
     $('np-carga').classList.toggle('perdida', Math.abs(v) < 20);
-    $('np-carga-txt').textContent = Math.abs(v) >= 20 ? `luz negativa ${fmt(v, 0)} mV` : `luz casi neutra ${fmt(v, 0)} mV`;
+    $('np-carga-txt').textContent = Math.abs(v) >= 20 ? `luz negativa ${fmt(v, 0)} mV` : `luz neutra ${fmt(v, 0)} mV`;
     if (escActiva) {
       const c = (q, s) => escActiva.cuenta(q, s);
       $('cola-ae1-txt').textContent = `AE1: HCO₃⁻ ${c('ae1', 'hco3')}/1 · Cl⁻ ${c('ae1', 'cl')}/1`;
     }
     // sangre
     pintarPila('pila-k', 'k', Math.round(clamp((E.K - 4) / 2.5, 0, 1) * 12), 6);
-    $('pila-k-txt').textContent = `K⁺ sangre ${fmt(E.K)} mEq/L` + (E.K < 3.5 ? ' ↓' : E.K > 5.2 ? ' ↑' : '');
+    $('pila-k-txt').textContent = `K⁺ ${fmt(E.K)} mEq/L` + (E.K < 3.5 ? ' ↓' : E.K > 5.2 ? ' ↑' : '');
     $('pila-k-txt').style.fill = E.K < 3.5 || E.K > 5.2 ? '#dc2626' : '#1f2937';
     pintarPila('pila-h', 'h', Math.round(E.acido * 8), 4);
-    $('pila-h-txt').textContent = E.acido > 0.2 ? `HCO₃⁻ ${fmt(E.hco3, 0)} · ácido ↑` : `HCO₃⁻ ${fmt(E.hco3, 0)} mEq/L`;
+    // Cl⁻ plasmático: con anion gap normal (≈ 12) sube lo mismo que baja el HCO₃⁻
+    const cl = Math.round(140 - 12 - E.hco3);
+    $('pila-h-txt').textContent = `HCO₃⁻ ${fmt(E.hco3, 0)}${E.hco3 < 22 ? ' ↓' : ''} · Cl⁻ ${cl}${cl > 107 ? ' ↑' : ''}`;
     $('pila-h-txt').style.fill = E.hco3 < 20 ? '#dc2626' : '#1f2937';
+    // estímulo directo de la H⁺-ATPasa: aldosterona (vía rápida, PKC) y acidosis (inserta bombas)
+    const acidosis = E.hco3 < 21, estim = E.aldo > 0.4 || acidosis;
+    $('box-aldo-a').classList.toggle('apagada', !estim);
+    $('aldo-a-estado').textContent = !estim ? 'sin estímulo' : acidosis && E.hatp > 1.2 ? '→ bombas ×1,6' : '→ más bombas H⁺';
+    $('fl-aldo-hatp').style.opacity = estim ? 1 : 0.2;
+    const hk = $('ch-hk'); hk.classList.remove('ok', 'parcial', 'off'); hk.classList.add(E.hk >= 0.6 ? 'ok' : 'parcial');
     $('np-deposito').setAttribute('opacity', (0.15 + 0.55 * clamp(E.nh3, 0, 1)).toFixed(2));
     // orina
     const ph = E.phOrina == null ? 5.8 : E.phOrina;
@@ -488,10 +529,19 @@
     $('orina-ph').textContent = `pH ${fmt(ph, 1)}` + (phAlto ? ' ↑' : '');
     $('orina-ph').style.fill = phAlto ? '#dc2626' : '#1f2937';
     const nh4u = E.trap * E.nh3;
-    $('orina-nh4').textContent = nh4u < 0.4 ? 'NH₄⁺ BAJO' : nh4u < 0.75 ? 'NH₄⁺ reducido' : 'NH₄⁺ normal';
-    $('orina-nh4').style.fill = nh4u < 0.75 ? '#dc2626' : '#57534e';
-    $('orina-nh4b').textContent = nh4u < 0.4 ? 'brecha urinaria +' : phAlto ? 'no baja de 5,5' : '';
-    $('orina-nh4b').style.fill = '#dc2626';
+    $('orina-nh4').textContent = nh4u > 1.3 ? 'NH₄⁺ ALTO' : nh4u < 0.4 ? 'NH₄⁺ BAJO' : nh4u < 0.75 ? 'NH₄⁺ reducido' : 'NH₄⁺ normal';
+    $('orina-nh4').style.fill = nh4u > 1.3 ? '#15803d' : nh4u < 0.75 ? '#dc2626' : '#57534e';
+    $('orina-nh4b').textContent = nh4u > 1.3 ? 'brecha urinaria −' : nh4u < 0.4 ? 'brecha urinaria +' : phAlto ? 'no baja de 5,5' : '';
+    $('orina-nh4b').style.fill = nh4u > 1.3 ? '#15803d' : '#dc2626';
+    // excreción neta de ácido = NH₄⁺ + acidez titulable − HCO₃⁻ urinario
+    const at = clamp(E.hatp * E.ca2a, 0, 1.5);
+    pintarPila('pila-nh4o', 'nh4', Math.round(clamp(nh4u, 0, 2.5) * 2), 3);
+    pintarPila('pila-ato', 'h2po4', Math.round(at * 2), 3);
+    const ena = 0.6 * nh4u + 0.4 * at - 0.8 * (E.hco3Orina || 0);
+    $('orina-ena').textContent = ena > 1.25 ? 'ENA ALTA' : ena > 0.7 ? 'ENA normal' : ena > 0.35 ? 'ENA baja' : 'ENA MUY BAJA';
+    $('orina-ena').style.fill = ena > 1.25 ? '#15803d' : ena > 0.7 ? '#1f2937' : '#dc2626';
+    pintarPila('pila-heces', 'hco3', Math.round((E.diarrea || 0) * 4), 2);
+    $('pila-heces-txt').textContent = (E.diarrea || 0) > 0.3 ? 'HCO₃⁻ perdido' : '';
     pintarPila('pila-na', 'na', E.naOrina > 0.4 ? Math.min(3, Math.round(E.naOrina * 4)) : 0, 3);
     $('pila-na-txt').textContent = E.naOrina > 0.4 ? 'Na⁺ perdido' : '';
     pintarPila('pila-hco3o', 'hco3', Math.min(4, Math.round((E.hco3Orina || 0) * 4)), 2);
