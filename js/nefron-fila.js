@@ -276,6 +276,8 @@
     const med = { entra: 6, sigue: 1 };
     e.voltaje = () => -40 * clamp((med.entra / Math.max(1e-6, med.entra + med.sigue)) / 0.85, 0, 1);
     const voltF = () => clamp(-e.voltaje() / 40, 0, 1);
+    // vuelve a cero la medida del voltaje (al cambiar de enfermedad)
+    e.reiniciarVoltaje = () => { med.entra = 6; med.sigue = 1; };
 
     // ── colas de espera ──
     // Bomba Na⁺/K⁺-ATPasa de la célula principal: 3 Na⁺ adentro + 2 K⁺ afuera por ciclo

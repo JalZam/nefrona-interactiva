@@ -89,8 +89,8 @@
       causas: 'Diarrea secretora, fístulas o drenajes intestinales y pancreáticos, ureterosigmoidostomía, laxantes. Es la comparación clave: la otra gran causa de acidosis sin anion gap, con un riñón que responde bien.',
       pasos: [
         { titulo: 'El intestino pierde HCO₃⁻ con las heces',
-          texto: 'Las secreciones intestinales y pancreáticas son ricas en HCO₃⁻, y en la diarrea el colon lo intercambia por Cl⁻. Se pierden 30–100 mEq de HCO₃⁻ al día por las heces (mira la flecha de la sangre a la caja «HECES»). El riñón todavía no ha hecho nada.',
-          estado: { diarrea: 1, hco3: 20, acido: 0.3, renina: 1.3 }, resaltar: ['pila-heces', 'pila-h'] },
+          texto: 'Las secreciones intestinales y pancreáticas son ricas en HCO₃⁻, y en la diarrea el colon lo intercambia por Cl⁻. Se pierden 30–100 mEq de HCO₃⁻ al día por las heces (mira la flecha de la sangre a la caja «HECES»). La orina ya empieza a acidificarse, pero el riñón todavía no ha puesto en marcha su respuesta grande, la del NH₄⁺.',
+          estado: { diarrea: 1, hco3: 20, acido: 0.3, renina: 1.3, phOrina: 5.4 }, resaltar: ['pila-heces', 'pila-h'] },
         { titulo: 'El Cl⁻ sube lo mismo que baja el HCO₃⁻: el anion gap no cambia',
           texto: 'El Cl⁻ que el intestino reabsorbe a cambio del HCO₃⁻ ocupa su lugar en la sangre. Na⁺ − (Cl⁻ + HCO₃⁻) se mantiene en ≈ 12: acidosis hiperclorémica con anion gap normal, igual que en las ATR. El anion gap plasmático no distingue la causa; hay que mirar la orina.',
           estado: { hco3: 17, acido: 0.5 }, resaltar: ['pila-h'] },
@@ -257,10 +257,18 @@
     for (let k = 0; k <= i; k++) Object.assign(o, ATR[id].pasos[k].estado || {});
     return o;
   }
+  // deja el estado y la escena exactamente en un punto, sin transición
+  function fijar(estado) {
+    for (const k in actual) delete actual[k];
+    Object.assign(actual, estado);
+  }
   function irA(i, manual) {
     const pasos = ATR[atrId].pasos;
+    const antes = paso;
     paso = Math.max(0, Math.min(pasos.length - 1, i));
     objetivo = estadoEnPaso(atrId, paso);
+    // al volver atrás dentro de la lista, se salta directo a ese punto (no se arrastra lo que venía después)
+    if (paso < antes) { fijar(estadoEnPaso(atrId, paso)); escena.limpiar(); if (escena.reiniciarVoltaje) escena.reiniciarVoltaje(); }
     const lis = $('atr-pasos').children;
     for (let k = 0; k < lis.length; k++) {
       lis[k].classList.toggle('hecho', k < paso);
@@ -278,6 +286,11 @@
   }
   function elegir(id) {
     atrId = id;
+    // reinicio completo: estado normal, sin partículas en espera, voltaje medido de nuevo
+    paso = 0;
+    fijar(NORMAL);
+    escena.limpiar();
+    if (escena.reiniciarVoltaje) escena.reiniciarVoltaje();
     const a = ATR[id];
     document.querySelectorAll('.atr-btn').forEach(b => b.classList.toggle('activo', b.dataset.atr === id));
     $('atr-nombre').textContent = a.nombre;
