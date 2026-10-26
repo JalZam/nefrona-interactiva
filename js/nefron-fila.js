@@ -251,7 +251,9 @@
     const sub = { style: 'text-anchor:middle;font-size:12px' };
     pila(svg, 'pila-nh4o', OX, 150, 'pila-nh4o-txt', 'NH₄⁺', 174, 'middle', Object.assign({ 'data-porque': 'rhcg' }, sub));
     pila(svg, 'pila-ato', OX, 232, 'pila-ato-txt', 'acidez titulable', 256, 'middle', Object.assign({ 'data-porque': 'fosfato' }, sub));
-    svg.appendChild(txt(OX, 286, 'ENA normal', 'np-pila-txt', { id: 'orina-ena', 'data-porque': 'fosfato', style: 'text-anchor:middle;font-size:13px' }));
+    svg.appendChild(txt(OX, 189, '40 mEq/día', 'np-nota', { id: 'nh4o-val', style: 'text-anchor:middle;font-size:12px;font-weight:700' }));
+    svg.appendChild(txt(OX, 271, '30 mEq/día', 'np-nota', { id: 'ato-val', style: 'text-anchor:middle;font-size:12px;font-weight:700' }));
+    svg.appendChild(txt(OX, 298, 'ENA normal', 'np-pila-txt', { id: 'orina-ena', 'data-porque': 'fosfato', style: 'text-anchor:middle;font-size:13px' }));
     pila(svg, 'pila-hco3o', OX, 340, 'pila-hco3o-txt', '', 364, 'middle', sub);
     pila(svg, 'pila-na', OX, 420, 'pila-na-txt', '', 444, 'middle', sub);
     pila(svg, 'pila-ko', OX, 500, 'pila-ko-txt', '', 524, 'middle', sub);
@@ -540,6 +542,13 @@
     pintarPila('pila-nh4o', 'nh4', Math.round(clamp(nh4u, 0, 2.5) * 2), 3);
     pintarPila('pila-ato', 'h2po4', Math.round(at * 2), 3);
     const ena = 0.6 * nh4u + 0.4 * at - 0.8 * (E.hco3Orina || 0);
+    // valores aproximados en mEq/día (normal: NH₄⁺ ≈ 40, acidez titulable ≈ 30)
+    // NH₄⁺: ≈ 40 normal, < 30 en las ATR, 100–200 cuando un riñón sano responde a la acidosis
+    const vNh4 = Math.round((nh4u >= 1 ? 40 + (nh4u - 1) * 120 : 40 * (0.3 + 0.7 * nh4u)) / 5) * 5, vAt = Math.round(30 * at / 5) * 5;
+    $('nh4o-val').textContent = `${vNh4} mEq/día`;
+    $('nh4o-val').style.fill = nh4u > 1.3 ? '#15803d' : nh4u < 0.75 ? '#dc2626' : '#1f2937';
+    $('ato-val').textContent = `${vAt} mEq/día`;
+    $('ato-val').style.fill = at < 0.6 ? '#dc2626' : '#1f2937';
     $('orina-ena').textContent = ena > 1.25 ? 'ENA ALTA' : ena > 0.7 ? 'ENA normal' : ena > 0.35 ? 'ENA baja' : 'ENA MUY BAJA';
     $('orina-ena').style.fill = ena > 1.25 ? '#15803d' : ena > 0.7 ? '#1f2937' : '#dc2626';
     pintarPila('pila-heces', 'hco3', Math.round((E.diarrea || 0) * 4), 2);
