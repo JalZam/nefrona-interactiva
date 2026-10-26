@@ -32,7 +32,9 @@
     opciones = opciones || {};
     const capa = document.createElementNS(SVGNS, 'g');
     capa.setAttribute('class', 'capa-particulas');
-    svg.appendChild(capa);
+    // si el dibujo marca un ancla, las partículas van debajo de lo que sigue (canales, nombres, cajas, textos)
+    const ancla = svg.querySelector('#capa-particulas-ancla');
+    if (ancla) svg.insertBefore(capa, ancla); else svg.appendChild(capa);
     const esc = {
       svg, capa, corrientes: {}, particulas: [], activa: true,
       maxParticulas: opciones.maxParticulas || 140,

@@ -440,3 +440,5 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .lab-c.alto span, .lab-c.bajo span { color: var(--rojo); }
 .lab-c.bien { border-color: #86efac; background: #f0fdf4; }
 .lab-c.bien span { color: #15803d; }
+
+.capa-particulas { pointer-events: none; }

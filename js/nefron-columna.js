@@ -173,6 +173,8 @@
     document.getElementById('fl-sgk-nedd').setAttribute('marker-end', 'url(#np-inhib)');
     document.getElementById('fl-nedd-enac').setAttribute('marker-end', 'url(#np-inhib)');
 
+    // las partículas se dibujan aquí: encima de células y caminos, debajo de rótulos, cajas y canales
+    svg.appendChild(el('g', { id: 'capa-particulas-ancla' }));
     // ── rótulos de iones y notas ──
     const iones = [
       [676, 180, 'Na⁺ · 3 HCO₃⁻', 'hco3'], [676, 258, '3 Na⁺', 'na'], [726, 308, '2 K⁺', 'k'], [656, 380, 'K⁺', 'k'], [676, 422, 'glutamina', 'gln'],

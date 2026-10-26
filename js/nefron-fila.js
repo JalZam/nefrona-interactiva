@@ -177,6 +177,8 @@
     document.getElementById('fl-sgk-nedd').setAttribute('marker-end', 'url(#np-inhib)');
     document.getElementById('fl-nedd-enac').setAttribute('marker-end', 'url(#np-inhib)');
 
+    // las partículas se dibujan aquí: encima de células y caminos, debajo de rótulos, cajas y canales
+    svg.appendChild(el('g', { id: 'capa-particulas-ancla' }));
     // ── rótulos de iones ──
     const iones = [
       [10, 42, 'HCO₃⁻', 'hco3'], [10, 90, 'Na⁺', 'na'], [10, 114, 'K⁺', 'k'],
