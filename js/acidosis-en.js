@@ -310,7 +310,7 @@ window.ACIDOSIS_EN = {
  "porque": {
   "enac": {
    "t": "ENaC — epithelial sodium channel (apical)",
-   "x": "Lets Na⁺ in from the lumen. It is the rate-limiting step for Na⁺ transport in the collecting duct. Aldosterone, via MR → SGK1, phosphorylates Nedd4-2 and so prevents ENaC from being retrieved from the membrane (hours); over the longer term it increases transcription of the α subunit (days). Angiotensin II also stimulates it directly. Amiloride, triamterene, trimethoprim and pentamidine block it from the lumen. Because Na⁺ enters without an anion, the lumen is left electrically negative: that voltage is what drives the secretion of K⁺ (ROMK) and of H⁺ (the neighboring type A cell)."
+   "x": "Lets Na⁺ in from the lumen. It is the rate-limiting step for Na⁺ transport in the collecting duct. Aldosterone, via MR → SGK1, phosphorylates Nedd4-2 and so prevents ENaC from being retrieved from the membrane (hours); over the longer term it increases transcription of the α subunit (hours to days). Angiotensin II also stimulates it directly. Amiloride, triamterene, trimethoprim and pentamidine block it from the lumen. Because Na⁺ enters without an anion, the lumen is left electrically negative: that voltage is what drives the secretion of K⁺ (ROMK) and of H⁺ (the neighboring type A cell)."
   },
   "romk": {
    "t": "ROMK (Kir1.1) — apical potassium channel",
@@ -318,7 +318,7 @@ window.ACIDOSIS_EN = {
   },
   "bk": {
    "t": "BK (maxi-K) — flow-activated potassium channel",
-   "x": "Second apical K⁺ channel. It opens with high tubular flow and with intracellular Ca²⁺. It explains why loop diuretics and a salt load increase K⁺ secretion even when aldosterone does not change. In the model it contributes 20% of K⁺ secretion and does not depend on voltage, which is why with amiloride K⁺ rises a lot but not without limit."
+   "x": "Second apical K⁺ channel. It opens with high tubular flow and with intracellular Ca²⁺. It explains why loop diuretics and a salt load increase K⁺ secretion even when aldosterone does not change. In the model it contributes 20% of K⁺ secretion and does not depend on the lumen-negative voltage that ENaC generates (it does depend on membrane voltage and on Ca²⁺, which are its own activators), which is why with amiloride K⁺ rises a lot but not without limit."
   },
   "aqp2": {
    "t": "Aquaporin-2 — water channel (apical)",
@@ -362,7 +362,7 @@ window.ACIDOSIS_EN = {
   },
   "rhcg": {
    "t": "Rhcg / Rhbg — ammonia transporters",
-   "x": "Rhesus glycoproteins that transport NH₃ (not NH₄⁺) across the membranes of the intercalated cell: Rhbg/Rhcg on the basolateral side take up the NH₃ from the medullary interstitium and Rhcg on the apical side passes it into the lumen, where it binds the secreted H⁺ and is trapped as NH₄⁺ (it cannot diffuse back). Without Rhcg, NH₄⁺ excretion falls by half. What limits things here is not the transporter but how much NH₃ there is in the interstitium, and that depends on the proximal tubule and the thick ascending limb."
+   "x": "Rhesus glycoproteins that transport mainly NH₃ across the membranes of the intercalated cell: Rhbg/Rhcg on the basolateral side take up the NH₃ from the medullary interstitium and Rhcg on the apical side passes it into the lumen, where it binds the secreted H⁺ and is trapped as NH₄⁺ (it cannot diffuse back). Under an acid load, without Rhcg NH₄⁺ excretion falls by about half. What limits things here is not the transporter but how much NH₃ there is in the interstitium, and that depends on the proximal tubule and the thick ascending limb."
   },
   "ae1": {
    "t": "AE1 (band 3, SLC4A1) — basolateral Cl⁻/HCO₃⁻ exchanger",
@@ -370,7 +370,7 @@ window.ACIDOSIS_EN = {
   },
   "clc": {
    "t": "Basolateral chloride channel (ClC-Kb / barttin)",
-   "x": "It lets out to the blood the Cl⁻ that entered through AE1 (type A cell) or through NKCC2 (thick ascending limb). It closes the chloride circuit. Mutations of ClC-Kb cause type 3 Bartter syndrome."
+   "x": "It lets out to the blood the Cl⁻ that entered through AE1 (type A cell) or through NKCC2 (thick ascending limb). It closes the chloride circuit. Mutations of ClC-Kb cause type 3 Bartter syndrome; mutations in its obligatory subunit, barttin, cause type 4, with sensorineural deafness."
   },
   "fosfato": {
    "t": "Titratable acid — phosphate as a buffer",
@@ -402,7 +402,7 @@ window.ACIDOSIS_EN = {
   },
   "nhe3": {
    "t": "NHE3 — apical Na⁺/H⁺ exchanger",
-   "x": "It reabsorbs Na⁺ in exchange for H⁺ (this is how 80% of the filtered HCO₃⁻ is reabsorbed). NH₄⁺ can occupy the H⁺ site: it is the main route of ammonium secretion into the tubule. Angiotensin II stimulates it. Its defect contributes to type 2 (proximal) RTA."
+   "x": "It reabsorbs Na⁺ in exchange for H⁺ (this is how 80% of the filtered HCO₃⁻ is reabsorbed). NH₄⁺ can occupy the H⁺ site: it is the main route of ammonium secretion into the tubule. Angiotensin II stimulates it. When it is inhibited or downregulated (Fanconi syndrome, acetazolamide) it contributes to proximal HCO₃⁻ wasting; in humans its mutations do not cause proximal RTA but congenital sodium diarrhea."
   },
   "nbce1": {
    "t": "NBCe1 — basolateral Na⁺·3HCO₃⁻ cotransporter",

@@ -48,7 +48,7 @@
   NI.porque = {
     enac: {
       titulo: 'ENaC — canal epitelial de sodio (apical)',
-      texto: 'Deja entrar Na⁺ desde la luz. Es el paso limitante del transporte de Na⁺ en el colector. La aldosterona, vía MR → SGK1, fosforila a Nedd4-2 y así evita que ENaC sea retirado de la membrana (horas); a más largo plazo aumenta la transcripción de la subunidad α (días). La angiotensina II también lo estimula directamente. Amilorida, triamtereno, trimetoprim y pentamidina lo tapan desde la luz. Al entrar Na⁺ sin anión, la luz queda eléctricamente negativa: ese voltaje es el que empuja la secreción de K⁺ (ROMK) y de H⁺ (célula α vecina).',
+      texto: 'Deja entrar Na⁺ desde la luz. Es el paso limitante del transporte de Na⁺ en el colector. La aldosterona, vía MR → SGK1, fosforila a Nedd4-2 y así evita que ENaC sea retirado de la membrana (horas); a más largo plazo aumenta la transcripción de la subunidad α (horas a días). La angiotensina II también lo estimula directamente. Amilorida, triamtereno, trimetoprim y pentamidina lo tapan desde la luz. Al entrar Na⁺ sin anión, la luz queda eléctricamente negativa: ese voltaje es el que empuja la secreción de K⁺ (ROMK) y de H⁺ (célula α vecina).',
       refs: [12, 14, 15, 27, 34],
       estado: (d) => `Actividad ${pct(d.actENaC)} · expresión ${pct(d.exprENaC)} · voltaje ${d.voltaje.toFixed(0)} mV`
     },
@@ -60,7 +60,7 @@
     },
     bk: {
       titulo: 'BK (maxi-K) — canal de potasio activado por flujo',
-      texto: 'Segundo canal de K⁺ apical. Se abre con el flujo tubular alto y con el Ca²⁺ intracelular. Explica por qué los diuréticos de asa y la carga de sal aumentan la secreción de K⁺ aunque la aldosterona no cambie. En el modelo aporta un 20 % de la secreción de K⁺ y no depende del voltaje, por eso con amilorida el K⁺ sube mucho pero no sin límite.',
+      texto: 'Segundo canal de K⁺ apical. Se abre con el flujo tubular alto y con el Ca²⁺ intracelular. Explica por qué los diuréticos de asa y la carga de sal aumentan la secreción de K⁺ aunque la aldosterona no cambie. En el modelo aporta un 20 % de la secreción de K⁺ y no depende del voltaje luminal que genera ENaC (sí del voltaje de membrana y del Ca²⁺, que son sus activadores propios), por eso con amilorida el K⁺ sube mucho pero no sin límite.',
       refs: [16, 20, 35],
       estado: (d) => `Secreción por BK ${d.jKbk.toFixed(0)} mEq/día`
     },
@@ -126,7 +126,7 @@
     },
     rhcg: {
       titulo: 'Rhcg / Rhbg — transportadores de amoniaco',
-      texto: 'Glicoproteínas Rhesus que transportan NH₃ (no NH₄⁺) a través de las membranas de la célula intercalada: Rhbg/Rhcg en la basolateral toman el NH₃ del intersticio medular y Rhcg en la apical lo pasa a la luz, donde se une al H⁺ secretado y queda atrapado como NH₄⁺ (no puede volver a difundir). Sin Rhcg la excreción de NH₄⁺ cae a la mitad. Lo que limita aquí no es el transportador sino cuánto NH₃ hay en el intersticio, y eso depende del túbulo proximal y del asa gruesa.',
+      texto: 'Glicoproteínas Rhesus que transportan sobre todo NH₃ a través de las membranas de la célula intercalada: Rhbg/Rhcg en la basolateral toman el NH₃ del intersticio medular y Rhcg en la apical lo pasa a la luz, donde se une al H⁺ secretado y queda atrapado como NH₄⁺ (no puede volver a difundir). Bajo carga ácida, sin Rhcg la excreción de NH₄⁺ cae alrededor de la mitad. Lo que limita aquí no es el transportador sino cuánto NH₃ hay en el intersticio, y eso depende del túbulo proximal y del asa gruesa.',
       refs: [5, 7, 8, 34, 35],
       estado: (d) => `NH₃ disponible ${pct(d.nh3Disponible / 44)} del normal · NH₄⁺ atrapado ${d.nh4u.toFixed(0)} mEq/día`
     },
@@ -138,7 +138,7 @@
     },
     clc: {
       titulo: 'Canal de cloro basolateral (ClC-Kb / barttina)',
-      texto: 'Deja salir a la sangre el Cl⁻ que entró por AE1 (célula α) o por NKCC2 (asa gruesa). Cierra el circuito del cloro. Las mutaciones de ClC-Kb causan síndrome de Bartter tipo 3.',
+      texto: 'Deja salir a la sangre el Cl⁻ que entró por AE1 (célula α) o por NKCC2 (asa gruesa). Cierra el circuito del cloro. Las mutaciones de ClC-Kb causan síndrome de Bartter tipo 3; las de su subunidad obligatoria, la barttina, causan el tipo 4, con sordera neurosensorial.',
       refs: [20, 35],
       estado: () => 'Flujo acoplado al Cl⁻ que entra'
     },
@@ -186,7 +186,7 @@
     },
     nhe3: {
       titulo: 'NHE3 — intercambiador Na⁺/H⁺ apical',
-      texto: 'Reabsorbe Na⁺ a cambio de H⁺ (así se reabsorbe el 80 % del HCO₃⁻ filtrado). El NH₄⁺ puede ocupar el sitio del H⁺: es la principal vía de secreción del amonio al túbulo. La angiotensina II lo estimula. Su defecto contribuye a la ATR tipo 2 (proximal).',
+      texto: 'Reabsorbe Na⁺ a cambio de H⁺ (así se reabsorbe el 80 % del HCO₃⁻ filtrado). El NH₄⁺ puede ocupar el sitio del H⁺: es la principal vía de secreción del amonio al túbulo. La angiotensina II lo estimula. Cuando se inhibe o se regula a la baja (síndrome de Fanconi, acetazolamida) contribuye a la pérdida proximal de HCO₃⁻; en humanos sus mutaciones no causan ATR proximal sino diarrea congénita por sodio.',
       refs: [5, 6, 17, 35],
       estado: (d) => `Secreta NH₄⁺ al ritmo de la producción: ${d.prodNH4.toFixed(0)} mEq/día`
     },
