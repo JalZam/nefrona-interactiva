@@ -510,3 +510,34 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   .dm-titulo { font-size: 1.2rem; }
 }
 .dm-rot-chico { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; fill: #b98a8a; }
+
+/* ── Diuréticos: acercamiento a la célula ── */
+.dz-barra { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
+  padding: .2rem 0 .7rem; border-bottom: 1px solid var(--border); margin-bottom: .6rem; }
+.dz-donde { flex: 1 1 auto; min-width: 180px; line-height: 1.25; }
+.dz-donde b { display: block; font-family: 'Outfit', sans-serif; font-size: .95rem; color: var(--dark); }
+.dz-donde span { font-size: .74rem; color: var(--text-muted); }
+.btn-rojo { background: var(--rojo); border-color: var(--rojo); color: #fff; }
+.btn-rojo:hover { background: #b91c1c; border-color: #b91c1c; color: #fff; }
+#dz-svg { width: 100%; height: auto; display: block; }
+#dm-vista-zoom.dz-entra { animation: dz-zoom .45s cubic-bezier(.22,.9,.3,1); }
+@keyframes dz-zoom { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: scale(1); } }
+.dz-pasos { margin: .2rem 0 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: .45rem; }
+.dz-pasos li { font-size: .8rem; line-height: 1.45; color: var(--text); }
+.dz-pasos li::marker { font-weight: 800; color: var(--primary); }
+.dz-pasos.bloqueo li::marker { color: var(--rojo); }
+.dz-pasos b { color: var(--dark); }
+.dm-pronto { font-size: .78rem; color: var(--text-muted); margin-top: .8rem;
+  padding-top: .7rem; border-top: 1px dashed var(--border); }
+.enzima .sub { fill: #dbeafe; stroke: #1f2937; stroke-width: 2.5; transition: fill .3s; }
+.enzima.parcial .sub { fill: #fde68a; } .enzima.off .sub { fill: #e2e8f0; }
+.enz-titulo { font-size: 17px; font-weight: 800; fill: #1e3a8a; text-anchor: middle; }
+.enz-sub { font-size: 11px; font-weight: 700; fill: #475569; text-anchor: middle; }
+.enzima.off .enz-titulo, .enzima.off .enz-sub { fill: #94a3b8; }
+.glifo .x { display: none; font-size: 26px; font-weight: 900; fill: var(--rojo); text-anchor: middle; }
+.glifo.off .x { display: block; }
+.dz-orina-l { font-size: 14px; font-weight: 700; fill: #78350f; }
+.np-pila.vacia .np-pila-txt { opacity: 0; }
+.np-pila .np-pila-txt { transition: opacity .3s; text-anchor: middle; }
+.np-pila text.np-pila-txt { fill: #1f2937; font-size: 14px; font-weight: 800; }
+.enzima .x { font-size: 30px; }

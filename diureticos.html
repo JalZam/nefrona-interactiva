@@ -45,11 +45,24 @@
         recorre el túbulo. Casi todo se reabsorbe y vuelve a la sangre; lo que queda sale como orina.</p>
     </div>
 
-    <svg id="dm-svg" viewBox="0 0 1240 820" role="img"
-         aria-label="Esquema animado de la nefrona con los puntos donde actúa cada clase de diurético"></svg>
+    <div id="dm-vista-mapa">
+      <svg id="dm-svg" viewBox="0 0 1240 820" role="img"
+           aria-label="Esquema animado de la nefrona con los puntos donde actúa cada clase de diurético"></svg>
 
-    <p class="dm-nota">Las partículas son ilustrativas, no una medida: en la realidad se filtran unos
-      180 litros al día y se reabsorbe más del 99 %.</p>
+      <p class="dm-nota">Las partículas son ilustrativas, no una medida: en la realidad se filtran unos
+        180 litros al día y se reabsorbe más del 99 %.</p>
+    </div>
+
+    <div id="dm-vista-zoom" hidden>
+      <div class="dz-barra">
+        <button class="btn" id="dz-volver">← Volver a la nefrona</button>
+        <div class="dz-donde"><b id="dz-titulo">—</b><span id="dz-farmaco"></span></div>
+        <button class="btn btn-primary" id="dz-toggle">Ver con el diurético</button>
+      </div>
+      <svg id="dz-svg" viewBox="0 0 1260 720" role="img"
+           aria-label="Acercamiento a la célula del segmento con sus canales"></svg>
+      <p class="dm-nota" id="dz-pie">Toca «Ver con el diurético» para ver qué se bloquea.</p>
+    </div>
   </section>
 
   <aside class="panel dm-panel">
@@ -58,6 +71,7 @@
       cambian cosas distintas en la sangre y en la orina.</p>
     <div id="dm-lista" class="dm-lista"></div>
     <div id="dm-detalle" class="dm-detalle"></div>
+    <ol id="dz-pasos" class="dz-pasos" hidden></ol>
   </aside>
 
 </main>
@@ -69,6 +83,8 @@
   <p>Todo ocurre en su navegador: sin cookies, sin registro, sin envío de datos.</p>
 </footer>
 
+<script src="js/particulas.js"></script>
+<script src="js/diu-zoom.js"></script>
 <script src="js/diureticos-mapa.js"></script>
 </body>
 </html>

@@ -107,7 +107,7 @@
     rutaSangre: [], rutaTubulo: [],
     paths: {},
     particulas: [],
-    sel: null,
+    sel: null, zoom: null, bloqueo: false,
     cuenta: { filtrado: 0, reab: 0, orina: 0 },
     ultimo: 0, acumSangre: 0,
     gotas: []
@@ -224,7 +224,7 @@
       const t = el('text', { x: pt.x.toFixed(1), y: (pt.y + 6).toFixed(1),
         'text-anchor': 'middle', class: 'dm-badge-n' }, g);
       t.textContent = c.n;
-      g.addEventListener('click', () => seleccionar(c.id));
+      g.addEventListener('click', () => { seleccionar(c.id); if (NI.diuZoom && NI.diuZoom.hay(c.id)) abrirZoom(c); });
     });
 
     /* --- Medir las rutas --- */
@@ -381,6 +381,7 @@
         'para ver qué diurético actúa ahí.</p>';
       return;
     }
+    const hayZoom = NI.diuZoom && NI.diuZoom.hay(c.id);
     caja.innerHTML =
       '<div class="dm-det-cab" style="border-color:' + c.color + '">' +
         '<span class="dm-clase-n" style="background:' + c.color + '">' + c.n + '</span>' +
@@ -392,7 +393,63 @@
         '<dt>Diana</dt><dd>' + c.diana + '</dd>' +
         '<dt>Potencia</dt><dd>' + c.potencia + '</dd>' +
         '<dt>Fármacos</dt><dd>' + c.farmacos.join(' · ') + '</dd>' +
-      '</dl>';
+      '</dl>' +
+      (hayZoom
+        ? '<button class="btn btn-primary btn-secondary" id="dm-ver-cerca">Ver de cerca la célula</button>'
+        : '<p class="dm-pronto">El acercamiento de esta clase todavía no está hecho.</p>');
+    const b = document.getElementById('dm-ver-cerca');
+    if (b) b.addEventListener('click', () => abrirZoom(c));
+  }
+
+  /* ---------- Acercamiento a la célula ---------- */
+
+  function abrirZoom(c) {
+    if (!NI.diuZoom || !NI.diuZoom.hay(c.id)) return;
+    const svg = document.getElementById('dz-svg');
+    if (!NI.diuZoom.construir(svg, c.id)) return;
+    E.zoom = c.id;
+    const info = NI.diuZoom.info(c.id);
+    document.getElementById('dz-titulo').textContent = info.titulo;
+    document.getElementById('dz-farmaco').textContent = info.farmaco + ' · ' + info.diana;
+    document.getElementById('dm-vista-mapa').hidden = true;
+    const v = document.getElementById('dm-vista-zoom');
+    v.hidden = false;
+    v.classList.remove('dz-entra'); void v.offsetWidth; v.classList.add('dz-entra');
+    pintarPasos(false);
+    botonToggle(false);
+  }
+
+  function cerrarZoom() {
+    if (NI.diuZoom) NI.diuZoom.cerrar();
+    E.zoom = null;
+    document.getElementById('dm-vista-zoom').hidden = true;
+    document.getElementById('dm-vista-mapa').hidden = false;
+    document.getElementById('dz-pasos').hidden = true;
+    document.getElementById('dm-detalle').hidden = false;
+  }
+
+  function botonToggle(b) {
+    const n = document.getElementById('dz-toggle');
+    n.textContent = b ? 'Ver el mecanismo normal' : 'Ver con el diurético';
+    n.classList.toggle('btn-rojo', !b);
+    document.getElementById('dz-pie').textContent = b
+      ? 'Los canales bloqueados se marcan con ✕ y las partículas rebotan y se acumulan.'
+      : 'Toca «Ver con el diurético» para ver qué se bloquea.';
+  }
+
+  function pintarPasos(b) {
+    const ol = document.getElementById('dz-pasos');
+    const det = document.getElementById('dm-detalle');
+    if (!E.zoom) return;
+    ol.innerHTML = '';
+    ol.className = 'dz-pasos' + (b ? ' bloqueo' : '');
+    NI.diuZoom.pasos(E.zoom, b).forEach(t => {
+      const li = document.createElement('li');
+      li.innerHTML = t;
+      ol.appendChild(li);
+    });
+    ol.hidden = false;
+    det.hidden = true;
   }
 
   /* ---------- Arranque ---------- */
@@ -411,10 +468,34 @@
     dibujar(svg);
     panel();
     seleccionar(null);
+
+    const volver = document.getElementById('dz-volver');
+    if (volver) volver.addEventListener('click', cerrarZoom);
+    const tog = document.getElementById('dz-toggle');
+    if (tog) tog.addEventListener('click', () => {
+      E.bloqueo = !E.bloqueo;
+      NI.diuZoom.setBloqueo(E.bloqueo);
+      botonToggle(E.bloqueo);
+      pintarPasos(E.bloqueo);
+    });
     if (location.hash === '#prueba') avanzar(40);
     // Enlace directo a una clase: diureticos.html?clase=tia
-    const q = new URLSearchParams(location.search).get('clase');
-    if (q && CLASES.some(c => c.id === q)) seleccionar(q);
+    const par = new URLSearchParams(location.search);
+    const q = par.get('clase');
+    const c = CLASES.find(x => x.id === q);
+    if (c) {
+      seleccionar(c.id);
+      // ...&zoom=1 abre el acercamiento; &bloqueo=1 lo abre ya con el diurético
+      if (par.get('zoom') === '1' && NI.diuZoom && NI.diuZoom.hay(c.id)) {
+        abrirZoom(c);
+        if (par.get('bloqueo') === '1') {
+          E.bloqueo = true;
+          NI.diuZoom.setBloqueo(true);
+          botonToggle(true);
+          pintarPasos(true);
+        }
+      }
+    }
     requestAnimationFrame(bucle);
   }
 
