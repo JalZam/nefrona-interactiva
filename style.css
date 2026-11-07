@@ -625,3 +625,6 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .dm-obra-redes a { display: inline-block; margin-right: .5rem; color: #92400e;
   font-weight: 700; text-decoration: none; border-bottom: 1px solid #fcd34d; }
 .dm-obra-redes a:hover { color: #7c2d12; border-bottom-color: #92400e; }
+/* Textos del esquema que abren su tarjeta «¿por qué?» */
+.clicable { cursor: pointer; }
+.clicable:hover { text-decoration: underline; }

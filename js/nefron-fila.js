@@ -191,7 +191,7 @@
     iones.forEach(([x, y, t, c, a]) => svg.appendChild(txt(x, y, t, 'np-ion ' + c, a ? { style: `text-anchor:${a}` } : null)));
     svg.appendChild(txt(1292, 276, 'H₂O → H⁺ + OH⁻', 'np-reaccion'));
     svg.appendChild(txt(222, 252, 'H⁺ + HCO₃⁻ → CO₂ + H₂O', 'np-nota', { style: 'font-size:12.5px' }));
-    svg.appendChild(txt(222, 268, 'en la luz: anhidrasa carbónica IV', 'np-nota', { style: 'font-size:12.5px' }));
+    svg.appendChild(txt(222, 268, 'en la luz: anhidrasa carbónica IV', 'np-nota clicable', { 'data-porque': 'ca4', style: 'font-size:12.5px' }));
     svg.appendChild(txt(654, 304, 'El NH₄⁺ ocupa el sitio', 'np-nota'));
     svg.appendChild(txt(654, 322, 'del K⁺ y pasa al', 'np-nota'));
     svg.appendChild(txt(654, 340, 'intersticio medular', 'np-nota'));
@@ -239,8 +239,8 @@
     canal(svg, { id: 'ch-rhcg-bl', x: 1480, y: BL, nombre: 'Rhbg', porque: 'rhcg' });
 
     // ── carga luminal, pilas, depósito y cajón de orina ──
-    svg.appendChild(txt(1108, 242, 'luz negativa −40 mV', 'np-carga-txt', { id: 'np-carga-txt', style: 'text-anchor:middle' }));
-    svg.appendChild(txt(1108, 266, '− − − − −', 'np-carga', { id: 'np-carga', style: 'text-anchor:middle' }));
+    svg.appendChild(txt(1108, 242, 'luz negativa −40 mV', 'np-carga-txt clicable', { id: 'np-carga-txt', 'data-porque': 'voltaje', style: 'text-anchor:middle' }));
+    svg.appendChild(txt(1108, 266, '− − − − −', 'np-carga clicable', { id: 'np-carga', 'data-porque': 'voltaje', style: 'text-anchor:middle' }));
     pila(svg, 'pila-k', 1132, 676, 'pila-k-txt', 'K⁺ sangre 4,0 mEq/L', 706);
     svg.appendChild(el('rect', { id: 'np-deposito', class: 'np-deposito', x: 1214, y: 648, width: 126, height: 60, rx: 10, opacity: 0.6 }));
     svg.appendChild(txt(1277, 673, 'NH₃ / NH₄⁺', 'np-deposito-txt'));
