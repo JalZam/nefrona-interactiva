@@ -382,6 +382,17 @@
       '<span>' + C(c, 'resumen') + '</span>';
   }
 
+  /* ---------- Referencias (las 23 de PubMed) ---------- */
+
+  function pintarRefs() {
+    const ol = document.getElementById('dm-lista-refs');
+    const R = window.DIU_REFS;
+    if (!ol || !R) return;
+    ol.innerHTML = R.map(r =>
+      '<li value="' + parseInt(r.n, 10) + '">' + r.cita +
+      ' <a href="' + r.doi + '" target="_blank" rel="noopener">DOI</a></li>').join('');
+  }
+
   /* ---------- Leyenda de colores ---------- */
 
   const LEYENDA = ['na', 'k', 'cl', 'h', 'hco3', 'co2', 'h2o'];
@@ -465,6 +476,7 @@
     seleccionar(null);
 
     leyenda();
+    pintarRefs();
     if (NI.i18n) {
       NI.i18n.pintarHTML();
       NI.i18n.alCambiar(() => {

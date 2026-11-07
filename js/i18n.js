@@ -42,8 +42,8 @@
     'det.pronto': 'El acercamiento de esta clase todavía no está hecho.',
     'pie.normal': 'Toca «Ver con el diurético» para ver qué se bloquea.',
     'pie.bloqueo': 'Los canales bloqueados se marcan con ✕ y las partículas rebotan y se acumulan.',
-    'foot.1': 'Herramienta de aprendizaje. No es una calculadora clínica ni una guía de prescripción. Dibujo propio; contenido basado en la investigación del repositorio',
-    'foot.2': '23 referencias de PubMed',
+    'foot.1': 'Herramienta de aprendizaje. No es una calculadora clínica ni una guía de prescripción. Dibujo propio.',
+    'refs.titulo': 'Referencias',
     'foot.3': 'Todo ocurre en su navegador: sin cookies, sin registro, sin envío de datos.',
 
     'leyenda.titulo': 'Leyendas · qué es cada bolita', 'leyenda.boton': 'Leyendas',
@@ -166,8 +166,8 @@
     'det.pronto': 'The close-up for this class has not been built yet.',
     'pie.normal': 'Tap “Show with the diuretic” to see what gets blocked.',
     'pie.bloqueo': 'Blocked channels are marked with ✕, and the particles bounce back and pile up.',
-    'foot.1': 'Learning tool. Not a clinical calculator and not prescribing guidance. Original drawing; content based on the research in this repository',
-    'foot.2': '23 PubMed references',
+    'foot.1': 'Learning tool. Not a clinical calculator and not prescribing guidance. Original drawing.',
+    'refs.titulo': 'References',
     'foot.3': 'Everything runs in your browser: no cookies, no sign-in, no data sent anywhere.',
 
     'leyenda.titulo': 'Legend · what each dot is', 'leyenda.boton': 'Legend',
