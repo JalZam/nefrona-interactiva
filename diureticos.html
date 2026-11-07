@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diuréticos en la Nefrona</title>
+  <title>Diuréticos en la nefrona</title>
   <meta name="description" content="Mapa animado de la nefrona: la sangre entra por la arteriola aferente, se filtra en el glomérulo, recorre el túbulo y sale como orina. Dónde actúa cada clase de diurético." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,15 +22,18 @@
       </svg>
       <div>
         <div class="logo-title">Nefrona Interactiva</div>
-        <div class="logo-sub">Diuréticos · dónde actúa cada uno</div>
+        <div class="logo-sub" data-i18n="logo.sub">Diuréticos · dónde actúa cada uno</div>
       </div>
     </div>
     <nav class="header-right nav">
-      <a class="nav-link" href="index.html">Acidosis</a>
-      <a class="nav-link activo" href="diureticos.html">Diuréticos</a>
-      <span class="visit-counter" title="Visitas totales del sitio (hits.sh): cuenta cargas de página, no identifica personas">
+      <a class="nav-link" href="index.html" data-i18n="nav.acidosis">Acidosis</a>
+      <a class="nav-link activo" href="diureticos.html" data-i18n="nav.diureticos">Diuréticos</a>
+      <button class="nav-link btn-lang" id="dm-lang" data-i18n="lang.boton"
+              data-i18n-title="lang.titulo" title="Switch to English">English</button>
+      <span class="visit-counter" data-i18n-title="nav.visitas"
+            title="Visitas totales del sitio: cuenta cargas de página, no identifica personas">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        <img class="visit-badge" alt="visitas" src="https://hits.sh/nefrona-interactiva.com.svg?label=%20&amp;style=flat-square&amp;color=64748b">
+        <img class="visit-badge" alt="" src="https://hits.sh/nefrona-interactiva.com.svg?label=%20&amp;style=flat-square&amp;color=64748b">
       </span>
     </nav>
   </div>
@@ -40,50 +43,62 @@
 
   <section class="card dm-card">
     <div class="dm-cab">
-      <h1 class="dm-titulo">Diuréticos en la nefrona</h1>
-      <p class="dm-sub">La sangre entra por la arteriola aferente, se filtra en el glomérulo y el filtrado
-        recorre el túbulo. Casi todo se reabsorbe y vuelve a la sangre; lo que queda sale como orina.</p>
+      <h1 class="dm-titulo" data-i18n="map.titulo">Diuréticos en la nefrona</h1>
+      <p class="dm-sub" data-i18n="map.sub">La sangre entra por la arteriola aferente, se filtra en el
+        glomérulo y el filtrado recorre el túbulo. Casi todo se reabsorbe y vuelve a la sangre; lo que
+        queda sale como orina.</p>
+      <div class="dm-resumen" id="dm-resumen" hidden></div>
     </div>
 
     <div id="dm-vista-mapa">
       <svg id="dm-svg" viewBox="0 0 1240 820" role="img"
            aria-label="Esquema animado de la nefrona con los puntos donde actúa cada clase de diurético"></svg>
 
-      <p class="dm-nota">Las partículas son ilustrativas, no una medida: en la realidad se filtran unos
-        180 litros al día y se reabsorbe más del 99 %.</p>
+      <p class="dm-nota" data-i18n="map.nota">Las partículas son ilustrativas, no una medida: en la
+        realidad se filtran unos 180 litros al día y se reabsorbe más del 99 %.</p>
     </div>
 
     <div id="dm-vista-zoom" hidden>
       <div class="dz-barra">
-        <button class="btn" id="dz-volver">← Volver a la nefrona</button>
+        <button class="btn" id="dz-volver" data-i18n="btn.volver">← Volver a la nefrona</button>
         <div class="dz-donde"><b id="dz-titulo">—</b><span id="dz-farmaco"></span></div>
-        <button class="btn btn-primary" id="dz-toggle">Ver con el diurético</button>
+        <button class="btn btn-primary" id="dz-toggle" data-i18n="btn.conDiuretico">Ver con el diurético</button>
       </div>
       <svg id="dz-svg" viewBox="0 0 1260 720" role="img"
            aria-label="Acercamiento a la célula del segmento con sus canales"></svg>
-      <p class="dm-nota" id="dz-pie">Toca «Ver con el diurético» para ver qué se bloquea.</p>
+      <p class="dm-nota" id="dz-pie" data-i18n="pie.normal">Toca «Ver con el diurético» para ver qué se bloquea.</p>
     </div>
   </section>
 
-  <aside class="panel dm-panel">
-    <h2 class="panel-title">Las seis clases</h2>
-    <p class="panel-hint">Cada una bloquea un transportador distinto, en un segmento distinto. Por eso
-      cambian cosas distintas en la sangre y en la orina.</p>
-    <div id="dm-lista" class="dm-lista"></div>
-    <div id="dm-detalle" class="dm-detalle"></div>
-    <ol id="dz-pasos" class="dz-pasos" hidden></ol>
+  <aside class="dm-col">
+    <div class="panel dm-panel">
+      <h2 class="panel-title" data-i18n="panel.titulo">Las seis clases</h2>
+      <p class="panel-hint" data-i18n="panel.hint">Cada una bloquea un transportador distinto, en un
+        segmento distinto. Por eso cambian cosas distintas en la sangre y en la orina.</p>
+      <div id="dm-lista" class="dm-lista"></div>
+      <div id="dm-detalle" class="dm-detalle"></div>
+      <ol id="dz-pasos" class="dz-pasos" hidden></ol>
+    </div>
+
+    <div class="panel dm-panel-ley">
+      <h2 class="panel-title" data-i18n="leyenda.titulo">Qué es cada bolita</h2>
+      <p class="panel-hint" data-i18n="leyenda.hint">Los colores y las siglas de las partículas del dibujo.</p>
+      <ul class="dm-leyenda" id="dm-leyenda"></ul>
+    </div>
   </aside>
 
 </main>
 
 <footer class="pie">
-  <p>Herramienta de aprendizaje. No es una calculadora clínica ni una guía de prescripción.
-     Dibujo propio; contenido basado en la investigación del repositorio
-     (<a href="INVESTIGACION_DIURETICOS.md">INVESTIGACION_DIURETICOS.md</a>, 23 referencias de PubMed).</p>
-  <p>Todo ocurre en su navegador: sin cookies, sin registro, sin envío de datos.</p>
+  <p><span data-i18n="foot.1">Herramienta de aprendizaje. No es una calculadora clínica ni una guía de
+     prescripción. Dibujo propio; contenido basado en la investigación del repositorio</span>
+     (<a href="INVESTIGACION_DIURETICOS.md">INVESTIGACION_DIURETICOS.md</a>,
+     <span data-i18n="foot.2">23 referencias de PubMed</span>).</p>
+  <p data-i18n="foot.3">Todo ocurre en su navegador: sin cookies, sin registro, sin envío de datos.</p>
 </footer>
 
 <script src="js/particulas.js"></script>
+<script src="js/diu-i18n.js"></script>
 <script src="js/diu-zoom.js"></script>
 <script src="js/diureticos-mapa.js"></script>
 </body>

@@ -9,6 +9,7 @@
   'use strict';
   const NI = global.NI || (global.NI = {});
   const NS = 'http://www.w3.org/2000/svg';
+  const t = k => (NI.i18n ? NI.i18n.t(k) : k);
 
   const W = 1260, H = 720;
   const AP = 170, BL = 520;              // membranas apical y basolateral
@@ -72,35 +73,17 @@
 
   const PROXIMAL = {
     id: 'iac',
-    titulo: 'Túbulo contorneado proximal',
-    farmaco: 'Acetazolamida',
-    diana: 'Anhidrasa carbónica (IV en el borde en cepillo, II dentro de la célula)',
+    get titulo() { return t('z.iac.titulo'); },
+    get farmaco() { return t('z.iac.farmaco'); },
+    get diana() { return t('cls.iac.diana'); },
 
-    normal: [
-      'El filtrado trae Na⁺ y el HCO₃⁻ que se filtró en el glomérulo.',
-      'El NHE3 mete Na⁺ a la célula y saca H⁺ a la luz.',
-      'En la luz, ese H⁺ se une al HCO₃⁻ y forma H₂CO₃. La <b>anhidrasa carbónica IV</b> lo parte en CO₂ y H₂O.',
-      'El CO₂ y el H₂O entran a la célula sin necesidad de transportador.',
-      'Dentro, la <b>anhidrasa carbónica II</b> los vuelve a juntar: H⁺ y HCO₃⁻ otra vez.',
-      'El H⁺ se recicla por el NHE3 y el HCO₃⁻ sale a la sangre por el NBCe1 (1 Na⁺ : 3 HCO₃⁻).',
-      'La bomba Na⁺/K⁺ mantiene el Na⁺ bajo dentro de la célula: es la que hace posible todo lo anterior.',
-      'Resultado: se recupera casi todo el HCO₃⁻ filtrado y la orina sale prácticamente sin bicarbonato.'
-    ],
-    bloqueo: [
-      'La acetazolamida bloquea las dos anhidrasas carbónicas, la IV de la luz y la II de dentro.',
-      'En la luz el H₂CO₃ ya no se parte: el <b>HCO₃⁻ se queda</b> y empieza a acumularse.',
-      'Sin CO₂ ni H₂O entrando, dentro de la célula no se fabrica H⁺.',
-      'Sin H⁺ que sacar, el <b>NHE3 se frena</b> y deja de meter Na⁺.',
-      'El Na⁺ y el HCO₃⁻ siguen de largo por el túbulo, y el <b>agua va detrás</b>: el paciente orina más.',
-      'Llega menos HCO₃⁻ a la sangre por el NBCe1.',
-      'En la orina: más bicarbonato, pH alcalino. En la sangre: baja el HCO₃⁻ y sube el Cl⁻ → <b>acidosis metabólica hiperclorémica</b>.',
-      'Es autolimitado: al bajar el HCO₃⁻ de la sangre se filtra menos, y el fármaco se queda sin sustrato.'
-    ],
+    get normal() { return [1,2,3,4,5,6,7,8].map(i => t('z.iac.n' + i)); },
+    get bloqueo() { return [1,2,3,4,5,6,7,8].map(i => t('z.iac.b' + i)); },
 
     dibujar(svg) {
-      banda(svg, 0, AP, 'np-luz', 'LUZ DEL TÚBULO  →  hacia la orina');
-      banda(svg, BL, H - BL, 'np-sangre', 'SANGRE / INTERSTICIO', 'sangre');
-      celula(svg, 150, 1010, ['Célula del túbulo', 'contorneado proximal'], 248, 410);
+      banda(svg, 0, AP, 'np-luz', t('z.luz'));
+      banda(svg, BL, H - BL, 'np-sangre', t('z.sangre'), 'sangre');
+      celula(svg, 150, 1010, [t('z.celula1'), t('z.celula2')], 248, 410);
 
       /* --- 1) Primero los caminos: las partículas viajan por ellos --- */
 
@@ -134,23 +117,23 @@
 
       /* --- 3) Canales, enzimas y rótulos: van por encima --- */
       bomba(svg, { id: 'dz-nhe3', x: 370, y: AP, clase: 'pasivo', etiqueta: ['Na⁺', 'H⁺'], nombre: 'NHE3' });
-      enzima(svg, { id: 'dz-ca4', x: 672, y: 108, nombre: 'AC IV', sub: 'H₂CO₃ → CO₂ + H₂O' });
-      enzima(svg, { id: 'dz-ca2', x: 680, y: 300, nombre: 'AC II', sub: 'CO₂ + H₂O → H⁺ + HCO₃⁻' });
+      enzima(svg, { id: 'dz-ca4', x: 672, y: 108, nombre: 'AC IV', sub: t('z.ac4sub') });
+      enzima(svg, { id: 'dz-ca2', x: 680, y: 300, nombre: 'AC II', sub: t('z.ac2sub') });
       bomba(svg, { id: 'dz-nbce1', x: 790, y: BL, clase: 'pasivo', r: 36,
         etiqueta: ['1 Na⁺', '3 HCO₃⁻'], nombre: 'NBCe1' });
       bomba(svg, { id: 'dz-nak', x: 330, y: BL, clase: 'activo', r: 38,
-        etiqueta: ['3 Na⁺', '2 K⁺'], nombre: 'Na⁺/K⁺-ATPasa' });
+        etiqueta: ['3 Na⁺', '2 K⁺'], nombre: t('z.nak') });
 
       // Cajón de orina
       svg.appendChild(el('rect', { x: 1072, y: 20, width: 172, height: 124, rx: 12, class: 'np-orina' }));
-      svg.appendChild(txt(1158, 46, 'ORINA', 'np-banda-titulo', { 'text-anchor': 'middle' }));
-      svg.appendChild(txt(1158, 76, 'HCO₃⁻: <tspan id="dz-u-hco3">casi nada</tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
-      svg.appendChild(txt(1158, 100, 'pH: <tspan id="dz-u-ph">ácido</tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
-      svg.appendChild(txt(1158, 124, 'Volumen: <tspan id="dz-u-vol">normal</tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
+      svg.appendChild(txt(1158, 46, t('z.orina'), 'np-banda-titulo', { 'text-anchor': 'middle' }));
+      svg.appendChild(txt(1158, 76, t('z.uHco3') + ' <tspan id="dz-u-hco3"></tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
+      svg.appendChild(txt(1158, 100, t('z.uPh') + ' <tspan id="dz-u-ph"></tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
+      svg.appendChild(txt(1158, 124, t('z.uVol') + ' <tspan id="dz-u-vol"></tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
 
       // Pilas de acumulación en la luz (solo se llenan con el bloqueo)
-      pila(svg, 'dz-pila-na', 930, 50, 'Na⁺ que sigue de largo');
-      pila(svg, 'dz-pila-hco3', 930, 134, 'HCO₃⁻ que se pierde');
+      pila(svg, 'dz-pila-na', 930, 50, t('z.pilaNa'));
+      pila(svg, 'dz-pila-hco3', 930, 134, t('z.pilaHco3'));
     },
 
     corrientes(esc) {
@@ -187,8 +170,8 @@
           'dz-nbce1': b ? 'parcial' : 'ok', 'dz-nak': 'ok'
         },
         orina: b
-          ? { hco3: 'mucho', ph: 'alcalino (> 6,5)', vol: 'aumentado' }
-          : { hco3: 'casi nada', ph: 'ácido', vol: 'normal' },
+          ? { hco3: t('z.v.mucho'), ph: t('z.v.alcalino'), vol: t('z.v.aumentado') }
+          : { hco3: t('z.v.casiNada'), ph: t('z.v.acido'), vol: t('z.v.normal') },
         rebotes: b ? [{ x: 620, y: 112, ion: 'hco3' }, { x: 410, y: 128, ion: 'h' }] : [],
         pilas: b ? { 'dz-pila-hco3': 'hco3', 'dz-pila-na': 'na' } : {}
       };
@@ -217,7 +200,7 @@
     defs.appendChild(m); svg.appendChild(defs);
 
     def.dibujar(svg);
-    Z.esc = NI.particulas.crearEscena(svg, { radio: 11, fuente: 9, maxParticulas: 150 });
+    Z.esc = NI.particulas.crearEscena(svg, { radio: 11, fuente: 9, maxParticulas: 150, escalaLarga: 1.38 });
     def.corrientes(Z.esc);
     aplicar(false);
 

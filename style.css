@@ -444,7 +444,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
    DIURÉTICOS — mapa de la nefrona (diureticos.html)
    ============================================================ */
 .dm-layout { max-width: 1480px; margin: 0 auto; padding: 1rem 1.25rem 2rem;
-  display: grid; grid-template-columns: minmax(0,1fr) 340px; gap: 1rem; align-items: start; }
+  display: grid; grid-template-columns: minmax(0,1fr) 345px; gap: 1rem; align-items: start; }
 .dm-card { padding: 1rem 1.1rem 1.2rem; }
 .dm-cab { margin-bottom: .4rem; }
 .dm-titulo { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800;
@@ -543,3 +543,30 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .enzima .x { font-size: 30px; }
 #dz-svg .np-pila text.np-pila-txt { paint-order: stroke; stroke: #fffbea; stroke-width: 5px;
   stroke-linejoin: round; fill: #78350f; }
+
+/* ── Diuréticos: resumen, leyenda y botón de idioma ── */
+.btn-lang { font: inherit; font-size: .8rem; font-weight: 600; padding: .4rem .8rem;
+  border-radius: 999px; border: 1px solid var(--border); background: var(--white);
+  color: var(--text-secondary); cursor: pointer; }
+.btn-lang:hover { border-color: var(--primary-mid); background: var(--primary-light); color: var(--primary-dark); }
+
+.dm-resumen { display: flex; gap: .6rem; align-items: flex-start; margin-top: .7rem;
+  padding: .7rem .85rem; background: var(--bg); border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0; font-size: .84rem; line-height: 1.55;
+  color: var(--text); }
+.dm-resumen .dm-clase-n { flex-shrink: 0; }
+.dm-resumen b { color: var(--dark); }
+
+.dm-col { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 72px; }
+.dm-col .dm-panel { position: static; max-height: none; }
+.dm-panel-ley { padding: .9rem 1rem; }
+.dm-leyenda { list-style: none; display: flex; flex-direction: column; gap: .35rem; }
+.dm-leyenda li { display: flex; align-items: center; gap: .55rem; font-size: .78rem; color: var(--text); }
+.dm-ley-bolita { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: .56rem; font-weight: 800; letter-spacing: -.2px; }
+.dm-ley-bolita.grande { width: 32px; height: 32px; font-size: .52rem; }
+
+@media (max-width: 1080px) {
+  .dm-col { position: static; }
+}

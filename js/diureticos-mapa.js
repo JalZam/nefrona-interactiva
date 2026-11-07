@@ -6,6 +6,7 @@
    ============================================================ */
 (function () {
   const NS = 'http://www.w3.org/2000/svg';
+  const t = k => (NI.i18n ? NI.i18n.t(k) : k);
   const el = (t, a, p) => {
     const n = document.createElementNS(NS, t);
     for (const k in a) n.setAttribute(k, a[k]);
@@ -56,49 +57,15 @@
   /* ---------- Las seis clases de diurético ---------- */
 
   const CLASES = [
-    { n: 1, id: 'iac', nombre: 'Inhibidores de la anhidrasa carbónica',
-      seg: ['prox'], color: '#0ea5e9', badge: { seg: 'prox', t: 0.5 },
-      segmento: 'Túbulo contorneado proximal',
-      farmacos: ['Acetazolamida', 'Dorzolamida (tópica, glaucoma)'],
-      diana: 'Anhidrasa carbónica II y IV',
-      corto: 'Sin anhidrasa carbónica el túbulo no puede recuperar el bicarbonato filtrado, y el Na⁺ se va con él.',
-      potencia: 'Débil y autolimitado' },
-    { n: 2, id: 'osm', nombre: 'Diuréticos osmóticos',
-      seg: ['prox', 'desc', 'asaU'], color: '#8b5cf6', badge: { seg: 'desc', t: 0.34 },
-      segmento: 'Túbulo proximal y rama descendente',
-      farmacos: ['Manitol', 'Glicerol'],
-      diana: 'Ninguna proteína: actúan por osmolaridad',
-      corto: 'No se reabsorben: se quedan en la luz y retienen agua con ellos.',
-      potencia: 'Variable; uso en presión intracraneal' },
-    { n: 3, id: 'asa', nombre: 'Diuréticos de asa',
-      seg: ['asc'], color: '#dc2626', badge: { seg: 'asc', t: 0.5 },
-      segmento: 'Rama ascendente gruesa',
-      farmacos: ['Furosemida', 'Bumetanida', 'Torasemida', 'Ácido etacrínico'],
-      diana: 'Cotransportador NKCC2 (1 Na⁺ : 1 K⁺ : 2 Cl⁻)',
-      corto: 'Bloquean el segmento que reabsorbe entre el 25 y el 30 % del Na⁺ filtrado: son los más potentes.',
-      potencia: 'Los más potentes' },
-    { n: 4, id: 'tia', nombre: 'Tiazídicos',
-      seg: ['dist'], color: '#16a34a', badge: { seg: 'dist', t: 0.5 },
-      segmento: 'Túbulo contorneado distal',
-      farmacos: ['Hidroclorotiazida', 'Clortalidona', 'Indapamida', 'Metolazona'],
-      diana: 'Cotransportador NCC (1 Na⁺ : 1 Cl⁻)',
-      corto: 'Bloquean el NCC: el Na⁺ se queda en la luz, arrastra agua y el paciente orina más.',
-      potencia: 'Moderada; antihipertensivo' },
-    { n: 5, id: 'ahk', nombre: 'Ahorradores de K⁺ y antialdosterónicos',
-      seg: ['colCort'], color: '#d97706', badge: { seg: 'colCort', t: 0.62 },
-      segmento: 'Túbulo colector cortical (célula principal)',
-      farmacos: ['Amilorida', 'Triamtereno', 'Espironolactona', 'Eplerenona', 'Finerenona'],
-      diana: 'Canal ENaC (directo) o receptor mineralocorticoide',
-      corto: 'Cierran el canal de Na⁺ del colector, por el poro o quitándole la orden de la aldosterona. Retienen K⁺.',
-      potencia: 'Débil como diurético' },
-    { n: 6, id: 'acu', nombre: 'Acuaréticos',
-      seg: ['colMed'], color: '#2563eb', badge: { seg: 'colMed', t: 0.5 },
-      segmento: 'Túbulo colector medular',
-      farmacos: ['Tolvaptán', 'Conivaptán'],
-      diana: 'Receptor V2 de la vasopresina',
-      corto: 'Sin la señal V2 no se pone la acuaporina-2: se pierde agua sola, sin sal. Sube el Na⁺ de la sangre.',
-      potencia: 'Solo agua; sube la natremia' }
+    { n: 1, id: 'iac', color: '#0ea5e9', seg: ['prox'], badge: { seg: 'prox', t: 0.5 } },
+    { n: 2, id: 'osm', color: '#8b5cf6', seg: ['prox', 'desc', 'asaU'], badge: { seg: 'desc', t: 0.34 } },
+    { n: 3, id: 'asa', color: '#dc2626', seg: ['asc'], badge: { seg: 'asc', t: 0.5 } },
+    { n: 4, id: 'tia', color: '#16a34a', seg: ['dist'], badge: { seg: 'dist', t: 0.5 } },
+    { n: 5, id: 'ahk', color: '#d97706', seg: ['colCort'], badge: { seg: 'colCort', t: 0.62 } },
+    { n: 6, id: 'acu', color: '#2563eb', seg: ['colMed'], badge: { seg: 'colMed', t: 0.5 } }
   ];
+  // Textos de cada clase, siempre en el idioma activo
+  const C = (c, campo) => t('cls.' + c.id + '.' + campo);
 
   /* ---------- Estado ---------- */
 
@@ -137,9 +104,9 @@
     el('line', { x1: 0, y1: 470, x2: 1240, y2: 470, stroke: '#e7e0d6',
       'stroke-width': 2, 'stroke-dasharray': '8 6' }, gFondo);
     el('text', { x: 1216, y: 452, class: 'dm-zona', 'text-anchor': 'end' }, gFondo)
-      .textContent = 'CORTEZA';
+      .textContent = t('map.corteza');
     el('text', { x: 1216, y: 498, class: 'dm-zona', 'text-anchor': 'end' }, gFondo)
-      .textContent = 'MÉDULA';
+      .textContent = t('map.medula');
 
     /* --- Vasos sanguíneos --- */
     const vaso = (id, d, color, ancho) => {
@@ -192,25 +159,25 @@
         n.textContent = t;
       });
     };
-    rot(336, 212, ['Túbulo contorneado', 'proximal']);
-    rot(538, 496, ['Rama', 'descendente'], 'end');
-    rot(690, 496, ['Rama ascendente', 'gruesa']);
-    rot(676, 176, ['Túbulo contorneado distal']);
-    rot(982, 330, ['Colector', 'cortical']);
-    rot(982, 596, ['Colector', 'medular']);
-    rot(610, 704, ['Asa de Henle'], 'middle');
-    el('text', { x: 104, y: 398, class: 'dm-rot' }, gRotulos).textContent = 'Glomérulo';
+    rot(336, 212, [t('map.prox1'), t('map.prox2')]);
+    rot(538, 496, [t('map.desc1'), t('map.desc2')], 'end');
+    rot(690, 496, [t('map.asc1'), t('map.asc2')]);
+    rot(676, 176, [t('map.dist')]);
+    rot(982, 330, [t('map.colCort1'), t('map.colCort2')]);
+    rot(982, 596, [t('map.colMed1'), t('map.colMed2')]);
+    rot(610, 704, [t('map.asa')], 'middle');
+    el('text', { x: 104, y: 398, class: 'dm-rot' }, gRotulos).textContent = t('map.glomerulo');
     el('text', { x: 244, y: 436, class: 'dm-rot-chico' }, gRotulos)
-      .textContent = 'Capilares peritubulares';
+      .textContent = t('map.capilares');
 
     /* --- Entrada de sangre y salida de orina --- */
-    el('text', { x: 22, y: 196, class: 'dm-io dm-io-rojo' }, gRotulos).textContent = 'ENTRA SANGRE';
-    el('text', { x: 22, y: 216, class: 'dm-io-sub' }, gRotulos).textContent = 'arteriola aferente';
-    el('text', { x: 22, y: 602, class: 'dm-io dm-io-azul' }, gRotulos).textContent = 'VUELVE LA SANGRE';
-    el('text', { x: 22, y: 622, class: 'dm-io-sub' }, gRotulos).textContent = 'con todo lo reabsorbido';
+    el('text', { x: 22, y: 196, class: 'dm-io dm-io-rojo' }, gRotulos).textContent = t('map.entraSangre');
+    el('text', { x: 22, y: 216, class: 'dm-io-sub' }, gRotulos).textContent = t('map.aferente');
+    el('text', { x: 22, y: 602, class: 'dm-io dm-io-azul' }, gRotulos).textContent = t('map.vuelveSangre');
+    el('text', { x: 22, y: 622, class: 'dm-io-sub' }, gRotulos).textContent = t('map.reabsorbido');
 
-    el('text', { x: 1012, y: 742, class: 'dm-io dm-io-ambar' }, gRotulos).textContent = 'SALE ORINA';
-    el('text', { x: 1012, y: 762, class: 'dm-io-sub' }, gRotulos).textContent = 'lo que no se reabsorbió';
+    el('text', { x: 1012, y: 742, class: 'dm-io dm-io-ambar' }, gRotulos).textContent = t('map.saleOrina');
+    el('text', { x: 1012, y: 762, class: 'dm-io-sub' }, gRotulos).textContent = t('map.noReabsorbio');
     el('path', { d: 'M 958 748 L 1002 748', stroke: '#64748b', 'stroke-width': 2.5,
       fill: 'none', 'marker-end': 'url(#dm-flecha)' }, gRotulos);
 
@@ -350,8 +317,8 @@
       d.innerHTML =
         '<span class="dm-clase-n" style="background:' + c.color + '">' + c.n + '</span>' +
         '<span class="dm-clase-txt">' +
-          '<b>' + c.nombre + '</b>' +
-          '<i>' + c.segmento + '</i>' +
+          '<b>' + C(c, 'nombre') + '</b>' +
+          '<i>' + C(c, 'seg') + '</i>' +
         '</span>';
       d.addEventListener('click', () => seleccionar(c.id));
       cont.appendChild(d);
@@ -377,28 +344,62 @@
     const caja = document.getElementById('dm-detalle');
     if (!caja) return;
     if (!c) {
-      caja.innerHTML = '<p class="dm-vacio">Toca un segmento del dibujo, o una clase de la lista, ' +
-        'para ver qué diurético actúa ahí.</p>';
+      caja.innerHTML = '<p class="dm-vacio">' + t('panel.vacio') + '</p>';
+      resumen(null);
       return;
     }
     const hayZoom = NI.diuZoom && NI.diuZoom.hay(c.id);
     caja.innerHTML =
       '<div class="dm-det-cab" style="border-color:' + c.color + '">' +
         '<span class="dm-clase-n" style="background:' + c.color + '">' + c.n + '</span>' +
-        '<b>' + c.nombre + '</b>' +
+        '<b>' + C(c, 'nombre') + '</b>' +
       '</div>' +
-      '<p class="dm-det-seg">' + c.segmento + '</p>' +
-      '<p class="dm-det-corto">' + c.corto + '</p>' +
+      '<p class="dm-det-seg">' + C(c, 'seg') + '</p>' +
+      '<p class="dm-det-corto">' + C(c, 'corto') + '</p>' +
       '<dl class="dm-det-datos">' +
-        '<dt>Diana</dt><dd>' + c.diana + '</dd>' +
-        '<dt>Potencia</dt><dd>' + c.potencia + '</dd>' +
-        '<dt>Fármacos</dt><dd>' + c.farmacos.join(' · ') + '</dd>' +
+        '<dt>' + t('det.diana') + '</dt><dd>' + C(c, 'diana') + '</dd>' +
+        '<dt>' + t('det.potencia') + '</dt><dd>' + C(c, 'pot') + '</dd>' +
+        '<dt>' + t('det.farmacos') + '</dt><dd>' + C(c, 'farm') + '</dd>' +
       '</dl>' +
       (hayZoom
-        ? '<button class="btn btn-primary btn-secondary" id="dm-ver-cerca">Ver de cerca la célula</button>'
-        : '<p class="dm-pronto">El acercamiento de esta clase todavía no está hecho.</p>');
+        ? '<button class="btn btn-primary btn-secondary" id="dm-ver-cerca">' + t('btn.verCerca') + '</button>'
+        : '<p class="dm-pronto">' + t('det.pronto') + '</p>');
+    resumen(c);
     const b = document.getElementById('dm-ver-cerca');
     if (b) b.addEventListener('click', () => abrirZoom(c));
+  }
+
+  /* ---------- Resumen del diurético (bajo el título) ---------- */
+
+  function resumen(c) {
+    const n = document.getElementById('dm-resumen');
+    if (!n) return;
+    if (!c) { n.hidden = true; n.innerHTML = ''; return; }
+    n.hidden = false;
+    n.style.borderColor = c.color;
+    n.innerHTML =
+      '<span class="dm-clase-n" style="background:' + c.color + '">' + c.n + '</span>' +
+      '<span>' + C(c, 'resumen') + '</span>';
+  }
+
+  /* ---------- Leyenda de colores ---------- */
+
+  const LEYENDA = ['na', 'k', 'cl', 'h', 'hco3', 'co2', 'h2o'];
+
+  function leyenda() {
+    const cont = document.getElementById('dm-leyenda');
+    if (!cont) return;
+    const fila = (color, sigla, nombre, grande) =>
+      '<li><span class="dm-ley-bolita' + (grande ? ' grande' : '') + '" style="background:' + color + '">' +
+      sigla + '</span>' + nombre + '</li>';
+    let h = '';
+    LEYENDA.forEach(id => {
+      const ion = NI.iones[id];
+      h += fila(ion.color, ion.etiqueta, t('leyenda.' + id), ion.etiqueta.length >= 4);
+    });
+    h += fila('#d93b3b', '', t('leyenda.sangre'));
+    h += fila('#c98a16', '', t('leyenda.filtrado'));
+    cont.innerHTML = h;
   }
 
   /* ---------- Acercamiento a la célula ---------- */
@@ -411,6 +412,7 @@
     const info = NI.diuZoom.info(c.id);
     document.getElementById('dz-titulo').textContent = info.titulo;
     document.getElementById('dz-farmaco').textContent = info.farmaco + ' · ' + info.diana;
+    resumen(c);
     document.getElementById('dm-vista-mapa').hidden = true;
     const v = document.getElementById('dm-vista-zoom');
     v.hidden = false;
@@ -430,11 +432,9 @@
 
   function botonToggle(b) {
     const n = document.getElementById('dz-toggle');
-    n.textContent = b ? 'Ver el mecanismo normal' : 'Ver con el diurético';
+    n.textContent = b ? t('btn.normal') : t('btn.conDiuretico');
     n.classList.toggle('btn-rojo', !b);
-    document.getElementById('dz-pie').textContent = b
-      ? 'Los canales bloqueados se marcan con ✕ y las partículas rebotan y se acumulan.'
-      : 'Toca «Ver con el diurético» para ver qué se bloquea.';
+    document.getElementById('dz-pie').textContent = b ? t('pie.bloqueo') : t('pie.normal');
   }
 
   function pintarPasos(b) {
@@ -468,6 +468,28 @@
     dibujar(svg);
     panel();
     seleccionar(null);
+
+    leyenda();
+    if (NI.i18n) {
+      NI.i18n.pintarHTML();
+      NI.i18n.alCambiar(() => {
+        const sel = E.sel, zm = E.zoom, bl = E.bloqueo;
+        NI.i18n.pintarHTML();
+        dibujar(document.getElementById('dm-svg'));
+        panel();
+        leyenda();
+        E.sel = null; seleccionar(sel);
+        if (zm) {
+          const c = CLASES.find(x => x.id === zm);
+          if (c) {
+            abrirZoom(c);
+            if (bl) { E.bloqueo = true; NI.diuZoom.setBloqueo(true); botonToggle(true); pintarPasos(true); }
+          }
+        }
+      });
+      const bl = document.getElementById('dm-lang');
+      if (bl) bl.addEventListener('click', () => NI.i18n.set(NI.i18n.lang === 'es' ? 'en' : 'es'));
+    }
 
     const volver = document.getElementById('dz-volver');
     if (volver) volver.addEventListener('click', cerrarZoom);

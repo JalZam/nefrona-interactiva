@@ -39,7 +39,8 @@
       svg, capa, corrientes: {}, particulas: [], activa: true,
       maxParticulas: opciones.maxParticulas || 140,
       radio: opciones.radio || 9,
-      fuente: opciones.fuente || 7.5
+      fuente: opciones.fuente || 7.5,
+      escalaLarga: opciones.escalaLarga || 1
     };
 
     esc.agregar = function (id, def) {
@@ -61,7 +62,10 @@
       const ion = NI.iones[ionId || c.ion];
       const g = document.createElementNS(SVGNS, 'g');
       g.setAttribute('class', 'particula');
-      const r = c.pequeno ? esc.radio * 0.7 : esc.radio;
+      // Las siglas largas (HCO₃⁻, H₂PO₄⁻…) piden una bolita algo más grande
+      const texto = (ionId ? null : c.etiqueta) || ion.etiqueta;
+      const largo = !c.pequeno && esc.escalaLarga !== 1 && texto && texto.length >= 4;
+      const r = c.pequeno ? esc.radio * 0.7 : esc.radio * (largo ? esc.escalaLarga : 1);
       const circ = document.createElementNS(SVGNS, 'circle');
       circ.setAttribute('r', r); circ.setAttribute('fill', ion.color);
       g.appendChild(circ);
@@ -70,7 +74,7 @@
         t.setAttribute('font-size', esc.fuente); t.setAttribute('fill', ion.texto);
         t.setAttribute('text-anchor', 'middle'); t.setAttribute('dy', esc.fuente >= 11 ? '4' : '3');
         t.setAttribute('font-weight', '800');
-        t.textContent = (ionId ? null : c.etiqueta) || ion.etiqueta;
+        t.textContent = texto;
         g.appendChild(t);
       }
       capa.appendChild(g);
