@@ -517,6 +517,3 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   .dm-titulo { font-size: 1.2rem; }
 }
 .dm-rot-chico { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; fill: #b98a8a; }
-.refs-nota { font-size: .76rem; color: var(--text-secondary); line-height: 1.55; margin: .5rem 0 .8rem;
-  padding: .6rem .75rem; background: var(--bg); border-left: 3px solid var(--border);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0; }

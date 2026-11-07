@@ -231,25 +231,19 @@ especie se obtuvo cada dato. Cada referencia lleva su etiqueta entre corchetes. 
 - El resto son revisiones indexadas a la vez en humanos y en animales: el marco es humano, pero el
   detalle molecular que citan procede en buena parte de roedor.
 
-**Lo que esto significa para la animación.** La *posición* exacta de cada canal y transportador (qué
-proteína en qué membrana de qué célula) se estableció sobre todo por inmunohistoquímica y micropunción en
-roedor; en humanos se confirma de forma indirecta, por las enfermedades genéticas que aparecen cuando esa
-proteína falla (por ejemplo las ATR distales hereditarias, referencia 38) y por la fisiología clínica. Esto
-es lo normal en fisiología renal: ese tipo de experimento no se puede hacer en personas sanas. La animación
-dibuja el consenso de los textos de fisiología renal humana (referencias 34 a 36), no un experimento
-concreto.
+**De dónde salen las posiciones de los canales.** La identidad de cada canal y transportador, y en qué
+membrana de qué célula va dibujado, sigue los libros de fisiología renal humana, que son la autoridad de
+este proyecto para la anatomía del esquema:
 
-**Puntos donde conviene tenerlo presente:**
+- **Rose BD, Post TW. _Clinical Physiology of Acid-Base and Electrolyte Disorders_** (ref. 34) — manejo
+  renal del ácido, el bicarbonato, el amonio y el potasio.
+- **Brenner & Rector. _The Kidney_** (ref. 35) — fisiología y anatomía del nefrón por segmentos.
+- **_Comprehensive Clinical Nephrology_** (ref. 36) — correlación clínica y los esquemas de célula cuyo
+  estilo sigue el dibujo.
 
-1. *La aldosterona estimula directamente la H⁺-ATPasa de la célula intercalada α* (la caja
-   «aldosterona/acidosis → H⁺-ATPasa» del dibujo). El trabajo original, la referencia 10, es solo de ratón;
-   pero la referencia 11, de los mismos autores, repitió el experimento **en túbulos colectores humanos** y
-   obtuvo lo mismo. Las dos tarjetas de la página que enseñan esto ya citan ambas.
-2. *SGK1 / Nedd4-2 insertan el ENaC, y la aldosterona también sube la Na⁺/K⁺-ATPasa* (referencias 13 y 15):
-   sin tejido humano. El mismo mecanismo se sostiene en humanos indirectamente, por el síndrome de Liddle
-   y por los pseudohipoaldosteronismos (referencia 33).
-3. *El trimetoprim bloquea el ENaC y baja el voltaje luminal* (referencia 27): la hiperkalemia se demostró
-   en 30 pacientes, pero la medida del voltaje, que es lo que dibuja la animación, se hizo en rata.
+Las 33 tarjetas «¿por qué?» de la página citan al menos uno de estos tres libros, además de los artículos.
+Los artículos se usan para el detalle de regulación y para los puntos discutidos, no para decidir dónde va
+cada canal.
 
 No se encontró ninguna afirmación de la página que dependa **únicamente** de datos de animales sin
 respaldo humano al menos indirecto.
