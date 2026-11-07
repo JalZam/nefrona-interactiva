@@ -67,7 +67,7 @@ Casi todos los diuréticos (salvo los antagonistas del receptor mineralocorticoi
 
 ## 4. Antagonistas del receptor mineralocorticoide y bloqueadores del ENaC
 
-Dos maneras distintas de llegar al mismo canal, con consecuencias distintas sobre el pH urinario. Este es el punto que la animación de la nefrona enseña.
+Dos maneras distintas de llegar al mismo canal (el ENaC), con consecuencias distintas sobre el pH urinario.
 
 **a) Antagonistas del receptor MR: espironolactona, eplerenona, finerenona.**
 Bloquean el receptor intracelular de la aldosterona. Sin la señal MR → SGK1 → Nedd4-2, el ENaC no se inserta ni se mantiene en la membrana. **Efecto tardío** (24–48 h): hay que esperar a que se degraden los canales ya puestos.
@@ -82,7 +82,7 @@ Tapan el poro del canal desde la luz. **Efecto inmediato**, no depende de la ald
 - Con **deficiencia o bloqueo de la aldosterona**, falla sobre todo la amoniogénesis (la hiperkalemia frena la producción proximal de NH₄⁺) y la bomba de H⁺ sigue trabajando: el **pH urinario baja de 5,5**.
 - Con **bloqueo directo del ENaC**, se pierde el voltaje luminal negativo que arrastra la secreción de H⁺: el **pH urinario no baja de 5,5**.
 
-Esa distinción es la que la página de Nefrona Interactiva enseña con el voltímetro luminal.
+Dicho de otro modo: el antagonista del MR deja intacta la máquina de acidificar (la H⁺-ATPasa de la célula intercalada α) y daña sobre todo el amortiguador urinario; el bloqueador del ENaC le quita a esa máquina la fuerza eléctrica que la impulsa. En ambos casos la excreción neta de ácido cae y aparece acidosis, pero el pH urinario los separa.
 
 ---
 
@@ -154,15 +154,19 @@ Wilcox, Testani y Pitt (2020) ordenan las causas en tres grupos. Es el esquema m
 
 ---
 
-## 10. Puntos de enseñanza que se prestan para una animación
+## 10. Cinco contrastes mecanísticos que explican casi toda la clínica
 
-Si en algún momento se quiere llevar esto a una página interactiva como la de la nefrona, estos son los contrastes que mejor se ven dibujados:
+Son los puntos donde dos clases hacen lo contrario, y donde el mecanismo explica el laboratorio sin necesidad de memorizarlo.
 
-1. **El mismo canal, dos puertas.** Espironolactona (receptor, lento, desde la sangre) vs. amilorida (poro, inmediato, desde la luz), con el voltímetro luminal mostrando por qué el pH urinario termina diferente.
-2. **Calcio al revés.** El de asa disipa el voltaje y pierde Ca²⁺; la tiazida lo retiene. Dos flechas opuestas en dos segmentos.
-3. **Hiponatremia solo con tiazidas.** El asa destruye el gradiente medular (no se concentra ni se diluye); el distal solo quita la dilución (se sigue concentrando bajo ADH).
-4. **La hipertrofia distal.** El segmento distal creciendo con el uso crónico del diurético de asa, y la tiazida que lo vuelve a bloquear: el bloqueo secuencial dibujado.
-5. **El rebote posdiurético.** Una curva de 24 h: el pico de natriuresis y las horas de avidez por el Na⁺ que lo anulan si la dieta es salada.
+1. **El mismo canal, dos puertas.** La espironolactona bloquea el *receptor* desde la sangre y tarda 24–48 h; la amilorida tapa el *poro* desde la luz y actúa de inmediato. El resultado sobre el K⁺ es parecido, pero el pH urinario los separa (ver sección 4).
+
+2. **El calcio va al revés.** El diurético de asa disipa el voltaje luminal positivo del asa gruesa, que es el que empuja el Ca²⁺ y el Mg²⁺ por la vía paracelular → **hipercalciuria**. La tiazida aumenta la reabsorción distal de Ca²⁺ → **hipocalciuria**. Por eso el de asa se usa en la hipercalcemia y la tiazida en la litiasis cálcica.
+
+3. **La hiponatremia es casi exclusiva de las tiazidas.** El asa destruye el gradiente osmótico medular: el riñón pierde a la vez la capacidad de concentrar y la de diluir, así que la natremia se mueve poco. El túbulo distal es un sitio de dilución puro: la tiazida quita la dilución pero deja intacta la concentración bajo ADH, y el agua se retiene.
+
+4. **La hipertrofia distal.** Con el uso crónico de un diurético de asa, el túbulo distal crece y sobreexpresa NCC y ENaC, recuperando el Na⁺ que el asa dejó pasar. Es adaptación estructural, no solo funcional, y es la razón fisiológica por la que añadir una tiazida vuelve a abrir la natriuresis.
+
+5. **El rebote posdiurético.** La vida media corta deja horas de avidez renal por el Na⁺ entre dosis. Con una sola dosis diaria y dieta salada libre, el balance a las 24 h puede ser cero: el paciente "no responde" aunque el fármaco funcionó. Se corrige subiendo la frecuencia y restringiendo la sal, no la dosis única.
 
 ---
 
