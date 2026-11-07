@@ -108,3 +108,48 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 - 2026-10-26 (noche 7): franja de laboratorio bajo el dibujo (sangre con anion gap; orina con Na⁺, K⁺, Cl⁻, brecha aniónica urinaria, NH₄⁺ y excreción neta de ácido con su fórmula y rangos normales). ENA con nombre completo y mEq/día en el cajón de orina.
 - 2026-10-26 (noche 8): las partículas pasan por debajo de canales, nombres, cajas y textos de orina/ENA (capa insertada antes de los rótulos mediante un ancla #capa-particulas-ancla; pointer-events: none), para leerlos y poder hacer clic.
 - 2026-11-06: Juanjo pide quitar el simulador y dejar solo el último trabajo (acidosis metabólica sin anion gap). Se borran simulador.html, columna.html, js/model.js, celulas.js, escenas.js, svg-nefrona.js, ui.js, nefron-columna.js y test/model.test.js; el menú de la cabecera queda solo con el contador de visitas. Recuperables desde git (commit 14605a3).
+
+## Sección de diuréticos y bilingüe (noviembre 2026)
+
+### Fase 6: Diuréticos — mapa de la nefrona
+**Estado:** [x] Completada 2026-11-06
+- [x] `diureticos.html` + `js/diureticos-mapa.js`: dibujo propio de la nefrona (glomérulo con ovillo
+      capilar, túbulo por segmentos, capilares peritubulares), sangre entrando y orina saliendo
+- [x] Las 6 clases con insignia sobre el túbulo, ficha con diana/potencia/fármacos y resumen del fármaco
+- [x] Enlace entre las dos páginas en la cabecera
+- [x] Quitada la franja de contadores (pedido de Juanjo)
+
+### Fase 7: Diuréticos — acercamiento a la célula
+**Estado:** [~] En curso. Hecho el túbulo proximal; faltan las otras 5 clases
+- [x] `js/diu-zoom.js`: célula del proximal con NHE3, AC IV, AC II, NBCe1, bomba Na⁺/K⁺ y canal de K⁺
+- [x] Botón que alterna mecanismo normal ↔ bloqueo por acetazolamida, con pasos numerados a la derecha
+- [x] **Estequiometría estricta** en todos los canales y enzimas (pedido de Juanjo): nada funciona sin su
+      cuenta completa; al bloquear no escapa ninguna partícula (verificado)
+- [x] Partículas por debajo de canales y rótulos; bolitas más grandes para las siglas largas
+- [ ] Osmóticos, de asa, tiazídicos, ahorradores de K⁺, acuaréticos
+
+### Fase 8: Bilingüe y presentación
+**Estado:** [x] Completada 2026-11-07
+- [x] `js/i18n.js` común a las dos páginas; interruptor ES|EN en la cabecera; `?lang=en`
+- [x] Diuréticos en inglés; acidosis en inglés (8 ATR, 64 pasos, 33 tarjetas, 70 rótulos, laboratorio)
+- [x] Terminología tomada de las referencias del proyecto; separador decimal según idioma
+- [x] Botón flotante «Guía» con el color y la sigla de cada bolita, en las dos páginas
+- [x] Aviso de «en construcción» con las redes para sugerencias
+- [x] Las 23 referencias de PubMed al pie de diuréticos
+
+### Fase 9: Revisión de exactitud
+**Estado:** [x] Completada 2026-11-07
+- [x] Especie de las 38 referencias de la acidosis etiquetada en INVESTIGATION.md
+- [x] Las 33 tarjetas citan los libros de fisiología para la posición de los canales
+- [x] Revisión de las 8 acidosis y sus 64 pasos: sin errores
+- [x] Verificación independiente de las 33 tarjetas contra PubMed: 2 errores corregidos
+      (BK «no depende del voltaje» → del voltaje luminal de ENaC; NHE3 «su defecto causa ATR 2» →
+      en humanos sus mutaciones dan diarrea congénita por sodio) + 4 precisiones
+- [x] Conectadas las tarjetas del voltaje y de la anhidrasa carbónica IV, que no se podían abrir
+
+## Cambios al Plan (continuación)
+- 2026-11-06: Juanjo pide quitar el simulador y dejar solo la acidosis; después pide la sección de
+  diuréticos a partir de una infografía de @ElDoctorEME (dibujo propio, no copia).
+- 2026-11-06: exige estequiometría estricta en canales, bombas y enzimas; al bloquear no debe pasar nada.
+- 2026-11-07: pide idioma inglés en toda la página, leyenda flotante (la llama «Guía») y revisión de
+  exactitud de las acidosis. Deja pendiente ampliar la tarjeta de la vía paracelular.

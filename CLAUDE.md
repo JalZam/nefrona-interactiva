@@ -2,58 +2,134 @@
 
 <!-- managed-by: instructivo-creacion-proyecto -->
 <!-- initialized: 2026-10-23 -->
-<!-- version: 1.0 -->
+<!-- version: 2.0 -->
 <!-- status: active -->
-<!-- last-completed-step: phase-5 -->
+<!-- last-completed-step: diureticos-proximal -->
 
 ## ¿Qué es este proyecto?
-Página web estática de una sola página (HTML + CSS + JS puro + SVG) para **aprender viendo** la **acidosis metabólica sin anion gap**: cómo el riñón maneja el ácido y el bicarbonato, y cómo falla en cada acidosis tubular renal. Muestra 4 células en fila (proximal, asa gruesa, principal, intercalada α) con sus canales y los iones como partículas, y 8 opciones (normal, diarrea con riñón sano, ATR 2, 1, 3 y tres formas de ATR 4) explicadas en una lista numerada; cada punto se aplica al tocarlo y cambia canales, sangre y orina.
+Sitio web estático (HTML + CSS + JS puro + SVG) para **aprender viendo** fisiología renal, con dos secciones:
 
-Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje; más adelante docencia. 
+1. **Acidosis** (`index.html`) — la **acidosis metabólica sin anion gap**: 4 células en fila (proximal, asa
+   gruesa, principal, intercalada α) con sus canales y los iones como partículas, y 8 opciones (normal,
+   diarrea con riñón sano, ATR 2, 1, 3 y tres formas de ATR 4) explicadas en una lista numerada; cada punto
+   se aplica al tocarlo y cambia canales, sangre y orina. **Terminada.**
+2. **Diuréticos** (`diureticos.html`) — mapa animado de la nefrona entera con las 6 clases de diurético, y
+   acercamiento a la célula de cada segmento con el mecanismo normal y el bloqueo del fármaco.
+   **EN CONSTRUCCIÓN:** solo está hecho el túbulo proximal (acetazolamida).
+
+Las dos están en **español e inglés**, con un interruptor ES|EN en la cabecera.
+
+Dueño: Juan José Jaller (nefrólogo). Uso: herramienta de aprendizaje y, más adelante, docencia.
 
 ## Estado Actual
-**Fase activa:** 2026-11-06: por decisión de Juanjo el sitio queda SOLO con la animación de la acidosis metabólica sin anion gap (index.html). Se quitaron el simulador cuantitativo y la vista en columna (recuperables desde git, commit 14605a3). Pendiente: revisión visual de Juanjo.
-**Progreso general:** 5 de 5 fases construidas; desde 2026-11-06 solo queda en el sitio la animación (antes Fase 5).
+**Fase activa:** sección de diuréticos. Hecho el acercamiento del **túbulo proximal / inhibidores de la
+anhidrasa carbónica**; faltan las otras cinco clases (osmóticos, de asa, tiazídicos, ahorradores de K⁺,
+acuaréticos). Juanjo revisa y corrige antes de pasar a la siguiente.
+**Acidosis:** terminada y revisada contra PubMed (2026-11-07).
 
 ## Stack Técnico
 - HTML + CSS + JavaScript puro. SVG inline dibujado a mano. Sin framework, sin dependencias, sin compilación.
-- Scripts clásicos (`<script src>`), **no ES modules**, para que `index.html` abra desde `file://`. Un solo objeto global `NI`.
-- Publicación: GitHub Pages desde `main` del repo `JalZam/nefrona-interactiva`, dominio propio **nefrona-interactiva.com** (GoDaddy DNS: 4 A @ → 185.199.108-111.153, CNAME www → jalzam.github.io; archivo `CNAME`; HTTPS forzado; conectado 2026-10-26). **Commits y push los hace Claude** (decisión de Juanjo 2026-10-23).
+- Scripts clásicos (`<script src>`), **no ES modules**, para que abra desde `file://`. Un solo objeto global `NI`.
+- Publicación: GitHub Pages desde `main` del repo `JalZam/nefrona-interactiva`, dominio propio
+  **nefrona-interactiva.com** (GoDaddy DNS: 4 A @ → 185.199.108-111.153, CNAME www → jalzam.github.io;
+  archivo `CNAME`; HTTPS forzado). **Commits y push los hace Claude** (decisión de Juanjo 2026-10-23).
+- Los `<script>` y el CSS llevan `?v=N`. **Subir ese número al publicar un cambio**: si no, el navegador de
+  Juanjo sirve la copia vieja y parece que el cambio "no funciona" (ya pasó con el botón de idioma).
 
 ## Arquitectura
-Una sola página. `js/atr.js` define las 8 opciones con su lista numerada; cada punto trae un `estado` (actividad de canales 0–1, valores ilustrativos de K⁺, HCO₃⁻, pH, etc.) que `js/nefron-fila.js` dibuja: bloquea canales, acumula sustancias en pilas y pinta la franja de laboratorio. `js/particulas.js` mueve los iones por caminos SVG con colas de estequiometría. Ya no hay modelo cuantitativo (el simulador con `js/model.js` se quitó 2026-11-06).
+
+**Acidosis.** `js/atr.js` define las 8 opciones con su lista numerada; cada punto trae un `estado`
+(actividad de canales 0–1, valores ilustrativos de K⁺, HCO₃⁻, pH…) que `js/nefron-fila.js` dibuja: bloquea
+canales, acumula sustancias en pilas y pinta la franja de laboratorio. `js/refs.js` tiene las 38 referencias
+y las 33 tarjetas «¿por qué?».
+
+**Diuréticos.** `js/diureticos-mapa.js` dibuja el mapa de la nefrona y las 6 clases; al tocar un segmento
+abre `js/diu-zoom.js`, el acercamiento a la célula, con un botón que alterna normal ↔ bloqueo.
+
+**Motor común.** `js/particulas.js` mueve los iones por caminos SVG con **colas de estequiometría**.
+
+**Idioma.** `js/i18n.js` es el módulo común (claves + `tx()` para literales). La acidosis añade sus textos
+con `js/acidosis-en.js` (traducción) y `js/acidosis-i18n.js` (los aplica en caliente).
 
 ## Estructura de Archivos Clave
 ```
-index.html          LA PÁGINA: animación en fila; panel derecho fijo con tarjeta ¿por qué? arriba, botones de las ATR y lista numerada completa; franja de laboratorio
-js/nefron-fila.js   4 células en fila (proximal→distal), luz arriba, sangre abajo, cajones de orina y heces; partículas, colas, pilas, carga luminal; laboratorio; render(E)
-js/atr.js           las 8 opciones (normal, diarrea con riñón sano, ATR 2, 1, 3, 4 hipoaldo, 4 antagonista MR, 4 bloqueo ENaC): lista numerada, cada punto se aplica al tocarlo
-js/particulas.js    motor de partículas (caminos SVG; cadenas de dependencia; colas de espera con estequiometría: cola/aparcar/hayCupo/reservar)
-js/refs.js          referencias numeradas y tarjetas "¿por qué?" (los campos `estado` que leen NI.sim son restos del simulador, no se usan)
-style.css           estilos (paleta y tipografías del Velocímetro Renal), estados de canales
-INVESTIGATION.md    fisiología, cascada, mapa de causas, modelo, 33 referencias
-PLAN.md             fases y estado
+index.html            ACIDOSIS: animación en fila, panel de ATR, laboratorio, referencias
+diureticos.html       DIURÉTICOS: mapa de la nefrona, panel de las 6 clases, acercamiento
+style.css             estilos de las dos páginas (paleta y tipografías del Velocímetro Renal)
+
+js/particulas.js      motor de partículas: caminos SVG, cadenas, COLAS con estequiometría
+                      (cola/aparcar/hayCupo/reservar/intentarCompletar) y rebotes ✕
+js/i18n.js            idioma común: t(), tx(), extender(), alCambiar(), pintarHTML()
+js/leyenda.js         botón flotante «Guía» con el color y la sigla de cada bolita
+
+js/nefron-fila.js     acidosis: las 4 células, cajones de orina y heces, laboratorio, render(E)
+js/atr.js             acidosis: las 8 opciones y sus listas numeradas
+js/refs.js            acidosis: 38 referencias + 33 tarjetas «¿por qué?»
+js/acidosis-en.js     acidosis: traducción al inglés (8 ATR, 64 pasos, 33 tarjetas, 70 rótulos)
+js/acidosis-i18n.js   acidosis: aplica el idioma en caliente sin perder la opción elegida
+
+js/diureticos-mapa.js diuréticos: mapa de la nefrona, 6 clases, resumen, enlace al acercamiento
+js/diu-zoom.js        diuréticos: acercamiento a la célula (hoy solo el proximal)
+js/diu-refs.js        diuréticos: las 23 referencias de PubMed del pie
+
+INVESTIGATION.md          acidosis: fisiología, cascada, 38 referencias con su especie
+INVESTIGACION_DIURETICOS.md  diuréticos: mecanismo por clase, resistencia, 23 referencias
+PLAN.md               fases y estado
 ```
 
 ## Decisiones Técnicas Importantes
-- **Solo la animación** (2026-11-06, decisión de Juanjo): se quitó el simulador cuantitativo en tiempo real y la vista en columna. Los valores de laboratorio de la página son ilustrativos, no predicciones para un paciente.
-- **Estilo visual de las células** (pedido de Juanjo 2026-10-23, referencia: Fig. 1 de Palmer 2021 / Comprehensive Clinical Nephrology): luz a la izquierda, célula color arena con borde derecho redondeado, intersticio a la derecha, círculos azules = transporte pasivo, verdes con ATP = activo, rayitas = canal, flechas negras finas con el ion. En la fila la luz quedó arriba y la sangre abajo para que la luz sea un conducto continuo; el resto del estilo se conserva. Todo en `js/nefron-fila.js`.
-- **4 células dibujadas en v1** (pedido de Juanjo 2026-10-23): túbulo proximal, asa gruesa, célula principal, célula intercalada α, cada una con partículas animadas y dependencias encadenadas. El eje RAAS (renina → angiotensina II → suprarrenal) va en la banda de sangre.
-- La animación debe mostrar que con **bloqueo directo de ENaC (amilorida/trimetoprim) el pH urinario sube (>5,5)** y con **deficiencia de aldosterona baja (<5,5)**. Es el punto de enseñanza más delicado.
-- Hiperkalemia → amoniogénesis: K⁺ alto frena la producción proximal de NH₄⁺ (eje de las ATR 4).
-- **Estequiometría visible** (pedido de Juanjo 2026-10-26): los transportadores con cuenta fija esperan a tener todos sus sustratos aparcados (las tres bombas Na⁺/K⁺ 3 : 2 —proximal, asa, principal—, NKCC2, NBCe1 1 Na⁺ : 3 HCO₃⁻, AE1 1 : 1, NHE3) y el sobrante se acumula o rebota; el Cl⁻ sale por ClC-Kb en asa y célula α, el K⁺ de las bombas se recicla por Kir4.1 / canal K⁺. El voltaje luminal de la animación se mide con los Na⁺ que entran por ENaC frente a los que pasan de largo (no es un valor fijado por el paso).
-- Sin publicidad, sin rastreo de valores, sin cookies. Contador de visitas hits.sh (imagen en la cabecera, una sola cuenta `nefrona-interactiva.com`; cuenta cargas, no personas; añadido 2026-10-26 a pedido de Juanjo). Si algún día quiere visitantes únicos: GoatCounter como en el Velocímetro.
 
-## Cómo Correr el Proyecto
-- Ver en local: abrir `index.html` en el navegador (doble clic) o `python3 -m http.server 8080` en la carpeta.
-- Publicar: `git add -A && git commit -m "..." && git push` (cada push a `main` actualiza el sitio en ~1 min; no hay ambiente de pruebas).
+- **REGLA DE ORO — estequiometría estricta** (exigida por Juanjo 2026-11-06). Ningún transportador ni
+  enzima funciona hasta completar su cuenta: la bomba espera 3 Na⁺ y 2 K⁺, el NBCe1 1 Na⁺ y 3 HCO₃⁻, el
+  NHE3 1 Na⁺ y 1 H⁺, la AC II 1 CO₂ y 1 H₂O **y entonces produce H⁺ Y HCO₃⁻ a la vez**. Lo que llega sin
+  pareja se queda aparcado a la vista. Consecuencia: al bloquear, la cadena se detiene **sola** y no debe
+  escapar ni una partícula (verificado: 0 en la célula y 0 en la sangre).
+  - Las salidas en ráfaga **no pueden usar `setTimeout`**: seguían disparando después de bloquear. Van por
+    `Z.salidas`, que se vacía en el tic.
+  - La cadena del proximal es un círculo (el NHE3 necesita el H⁺ que fabrica la AC II): hay que **sembrar**
+    un H⁺ o no arranca nunca.
+- **Las partículas van DEBAJO** de canales, enzimas y rótulos: el ancla `#capa-particulas-ancla` se inserta
+  en el SVG **antes** de dibujar los glifos. Si se dibuja después, las bolitas tapan los nombres.
+- **Estilo visual de las células** (pedido de Juanjo 2026-10-23, referencia: Fig. 1 de Palmer 2021 /
+  Comprehensive Clinical Nephrology): célula color arena, círculos azules = transporte pasivo, verdes con
+  ATP = activo, rayitas = canal, flechas negras finas con el ion. En la fila la luz va arriba y la sangre
+  abajo para que la luz sea un conducto continuo.
+- **Las posiciones de los canales las mandan los libros**, no los artículos: Rose & Post, Brenner & Rector
+  y Comprehensive Clinical Nephrology (refs. 34–36). Las 33 tarjetas citan al menos uno de los tres.
+- La animación debe mostrar que con **bloqueo directo de ENaC (amilorida/trimetoprim) el pH urinario sube
+  (> 5,5)** y con **deficiencia de aldosterona baja (< 5,5)**. Es el punto de enseñanza más delicado.
+- Hiperkalemia → amoniogénesis: el K⁺ alto frena la producción proximal de NH₄⁺ (eje de las ATR 4).
+- **Bilingüe**: todo texto visible pasa por `NI.i18n`. El separador decimal sigue al idioma (5,8 / 5.8).
+  La terminología inglesa se toma de las referencias del proyecto (revistas estadounidenses): *type 1–4
+  RTA, thick ascending limb, type A intercalated cell, lumen-negative voltage, ammoniagenesis, titratable
+  acid, net acid excretion, urine anion gap*; grafía americana.
+- Sin publicidad, sin rastreo, sin cookies. Contador hits.sh en la cabecera (cuenta cargas, no personas).
+
+## Cómo Correr y Probar
+- Local: `python3 -m http.server 8080` en la carpeta (o doble clic en el HTML).
+- Publicar: `git add -A && git commit -m "..." && git push`. Cada push actualiza el sitio en ~1 min; **no
+  hay ambiente de pruebas**. Subir el `?v=N` de los scripts.
+- **Enlaces de prueba** (sirven también para compartir):
+  `?lang=en` · `?clase=iac&zoom=1` · `?clase=iac&zoom=1&bloqueo=1` · `#prueba` adelanta la animación.
+- Chrome sin ventana congela `requestAnimationFrame`: usar `#prueba` (llama a `avanzar()`) para que la
+  captura muestre la animación en marcha.
+- **Un iframe de prueba debe servirse del MISMO puerto** que la página, o no puede guiarla (mismo origen).
 
 ## Documentos del Proyecto
-- `INVESTIGATION.md` — Investigación (fisiología, referencias; la Parte D describe el modelo del simulador ya quitado). Aprobada 2026-10-23.
-- `PLAN.md` — Plan de fases y estado. Aprobado 2026-10-23.
-- `CLAUDE.md` — Este archivo (contexto técnico).
+- `INVESTIGATION.md` — acidosis: fisiología y referencias, cada una **etiquetada con su especie**
+  (revisión 2026-11-06: de 35 artículos, 3 sin tejido humano y 2 mixtos; ninguna afirmación de la página
+  depende solo de animales).
+- `INVESTIGACION_DIURETICOS.md` — diuréticos: documento independiente, 23 referencias de PubMed.
+- `PLAN.md` — fases y estado. `CLAUDE.md` — este archivo.
 
 ## Deuda Técnica Activa
-- Fuera de la animación: volumen extracelular y Na⁺ dinámicos, insulina, fosfato/citrato más allá de la acidez titulable, hiperkalemia aguda.
-- Descartados por ahora por Juanjo: canal BK, pendrina/célula β, acuaporina-2.
-- `js/refs.js` conserva campos `estado` del simulador que leen `NI.sim` (no se llaman; limpiar si se toca el archivo).
+- **Diuréticos: faltan 5 de las 6 clases** (osmóticos, de asa, tiazídicos, ahorradores de K⁺, acuaréticos).
+- **Tarjeta `paracelular`**: se queda corta. La vía paracelular explica (a) por qué la acidosis es
+  hiperclorémica —el Cl⁻ sigue al HCO₃⁻ reabsorbido en el proximal— y (b) el **cortocircuito de cloro** que
+  disipa el voltaje y produce ATR 4 sin fallo de aldosterona (síndrome de Gordon / PHA2, uropatía
+  obstructiva; ref. 33). Juanjo lo dejó pendiente el 2026-11-07.
+- **3 tarjetas huérfanas** que nadie puede abrir: `bk`, `aqp2`, `paracelular` (las de `voltaje` y `ca4` ya
+  se conectaron). `bk` y `aqp2` son restos de canales que Juanjo descartó: borrar o conectar.
+- `js/refs.js` conserva campos `estado` que leen `NI.sim` (restos del simulador; no se llaman).
+- Fuera del alcance: volumen extracelular y Na⁺ dinámicos, insulina, pendrina/célula β, hiperkalemia aguda.
+- Pendiente de Juanjo: revisar la traducción al inglés (es mía) y confirmar los usuarios de las redes.
