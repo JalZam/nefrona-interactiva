@@ -215,38 +215,77 @@ Libros:
 - Johnson RJ, Floege J, Tonelli M (eds). *Comprehensive Clinical Nephrology.* 7.ª ed. Elsevier; 2024. (Capítulos de trastornos del K⁺ y acidosis metabólica.)
 
 Artículos (recuperados de PubMed, 2026-10-23):
-1. Palmer BF, Kelepouris E, Clegg DJ. Renal Tubular Acidosis and Management Strategies: A Narrative Review. *Adv Ther.* 2021;38(2):949-968. https://doi.org/10.1007/s12325-020-01587-5
-2. Batlle D, Arruda J. Hyperkalemic Forms of Renal Tubular Acidosis: Clinical and Pathophysiological Aspects. *Adv Chronic Kidney Dis.* 2018;25(4):321-333. https://doi.org/10.1053/j.ackd.2018.05.004
-3. DuBose TD Jr. Hyperkalemic hyperchloremic metabolic acidosis: pathophysiologic insights. *Kidney Int.* 1997;51(2):591-602. https://doi.org/10.1038/ki.1997.85
-4. Hamm LL, Nakhoul N, Hering-Smith KS. Acid-Base Homeostasis. *Clin J Am Soc Nephrol.* 2015;10(12):2232-2242. https://doi.org/10.2215/CJN.07400715
-5. Weiner ID, Verlander JW. Ammonia Transporters and Their Role in Acid-Base Balance. *Physiol Rev.* 2017;97(2):465-494. https://doi.org/10.1152/physrev.00011.2016
-6. Weiner ID, Mitch WE, Sands JM. Urea and Ammonia Metabolism and the Control of Renal Nitrogen Excretion. *Clin J Am Soc Nephrol.* 2015;10(8):1444-1458. https://doi.org/10.2215/CJN.10311013
-7. Weiner ID, Verlander JW. Ammonia transport in the kidney by Rhesus glycoproteins. *Am J Physiol Renal Physiol.* 2014;306(10):F1107-F1120. https://doi.org/10.1152/ajprenal.00013.2014
-8. Weiner ID, Verlander JW. Emerging Features of Ammonia Metabolism and Transport in Acid-Base Balance. *Semin Nephrol.* 2019;39(4):394-405. https://doi.org/10.1016/j.semnephrol.2019.04.008
-9. Wagner CA, Devuyst O, Bourgeois S, Mohebbi N. Regulated acid-base transport in the collecting duct. *Pflugers Arch.* 2009;458(1):137-156. https://doi.org/10.1007/s00424-009-0657-z
-10. Winter C, Schulz N, Giebisch G, Geibel JP, Wagner CA. Nongenomic stimulation of vacuolar H+-ATPases in intercalated renal tubule cells by aldosterone. *Proc Natl Acad Sci U S A.* 2004;101(8):2636-2641. https://doi.org/10.1073/pnas.0307321101
-11. Winter C, Kampik NB, Vedovelli L, et al. Aldosterone stimulates vacuolar H+-ATPase activity in renal acid-secretory intercalated cells mainly via a protein kinase C-dependent pathway. *Am J Physiol Cell Physiol.* 2011;301(5):C1251-C1261. https://doi.org/10.1152/ajpcell.00076.2011
-12. Pearce D, Manis AD, Nesterov V, Korbmacher C. Regulation of distal tubule sodium transport: mechanisms and roles in homeostasis and pathophysiology. *Pflugers Arch.* 2022;474(8):869-884. https://doi.org/10.1007/s00424-022-02732-5
-13. Verrey F, Summa V, Heitzmann D, et al. Short-term aldosterone action on Na,K-ATPase surface expression: role of aldosterone-induced SGK1? *Ann N Y Acad Sci.* 2003;986:554-561. https://doi.org/10.1111/j.1749-6632.2003.tb07253.x
-14. Vallon V, Lang F. New insights into the role of serum- and glucocorticoid-inducible kinase SGK1 in the regulation of renal function and blood pressure. *Curr Opin Nephrol Hypertens.* 2005;14(1):59-66. https://doi.org/10.1097/00041552-200501000-00010
-15. Bens M, Chassin C, Vandewalle A. Regulation of NaCl transport in the renal collecting duct: lessons from cultured cells. *Pflugers Arch.* 2006;453(2):133-146. https://doi.org/10.1007/s00424-006-0123-0
-16. Palmer LG. Potassium secretion and the regulation of distal nephron K channels. *Am J Physiol.* 1999;277(6):F821-F825. https://doi.org/10.1152/ajprenal.1999.277.6.F821
-17. Palmer LG, Schnermann J. Integrated control of Na transport along the nephron. *Clin J Am Soc Nephrol.* 2015;10(4):676-687. https://doi.org/10.2215/CJN.12391213
-18. Palmer BF, Clegg DJ. Pathophysiology and clinical management of hyperkalemia in chronic kidney disease. *Minerva Med.* 2023;114(5):719-735. https://doi.org/10.23736/S0026-4806.23.08465-3
-19. Palmer BF, Clegg DJ. Extrarenal Effects of Aldosterone on Potassium Homeostasis. *Kidney360.* 2022;3(3):561-568. https://doi.org/10.34067/KID.0006762021
-20. Eladari D, Chambrey R, Peti-Peterdi J. A new look at electrolyte transport in the distal tubule. *Annu Rev Physiol.* 2012;74:325-349. https://doi.org/10.1146/annurev-physiol-020911-153225
-21. Edwards A, Crambert G. Versatility of NaCl transport mechanisms in the cortical collecting duct. *Am J Physiol Renal Physiol.* 2017;313(6):F1254-F1263. https://doi.org/10.1152/ajprenal.00369.2017
-22. Wall SM. Regulation of Blood Pressure and Salt Balance By Pendrin-Positive Intercalated Cells. *Hypertension.* 2022;79(4):706-716. https://doi.org/10.1161/HYPERTENSIONAHA.121.16492
-23. Batlle D, Ba Aqeel SH, Marquez A. The Urine Anion Gap in Context. *Clin J Am Soc Nephrol.* 2018;13(2):195-197. https://doi.org/10.2215/CJN.13791217
-24. Rehman MZ, et al. Urinary Ammonium in Clinical Medicine: Direct Measurement and the Urine Anion Gap as a Surrogate Marker During Metabolic Acidosis. *Adv Kidney Dis Health.* 2023;30(2):197-206. https://doi.org/10.1053/j.akdh.2022.12.006
-25. Berend K. Review of the Diagnostic Evaluation of Normal Anion Gap Metabolic Acidosis. *Kidney Dis (Basel).* 2017;3(4):149-159. https://doi.org/10.1159/000479279
-26. Adomako EA, Maalouf NM. Type 4 renal tubular acidosis and uric acid nephrolithiasis: two faces of the same coin? *Curr Opin Nephrol Hypertens.* 2023;32(2):145-152. https://doi.org/10.1097/MNH.0000000000000859
-27. Velázquez H, Perazella MA, Wright FS, Ellison DH. Renal mechanism of trimethoprim-induced hyperkalemia. *Ann Intern Med.* 1993;119(4):296-301. https://doi.org/10.7326/0003-4819-119-4-199308150-00008
-28. Hoorn EJ, Walsh SB, McCormick JA, et al. The calcineurin inhibitor tacrolimus activates the renal sodium chloride cotransporter to cause hypertension. *Nat Med.* 2011;17(10):1304-1309. https://doi.org/10.1038/nm.2497
-29. Unsal Y, et al. Calcineurin inhibitor-related hyperkalemia is caused by hyporeninemic hypoaldosteronism and fludrocortisone is an effective treatment. *Pediatr Transplant.* 2024;28(4):e14778. https://doi.org/10.1111/petr.14778
-30. Oster JR, Singer I, Fishman LM. Heparin-induced aldosterone suppression and hyperkalemia. *Am J Med.* 1995;98(6):575-586. https://doi.org/10.1016/s0002-9343(99)80017-5
-31. Sousa AG, et al. Hyporeninemic hypoaldosteronism and diabetes mellitus: Pathophysiology assumptions, clinical aspects and implications for management. *World J Diabetes.* 2016;7(5):101-111. https://doi.org/10.4239/wjd.v7.i5.101
-32. Wilczynski C, Shaw C, Alimohammadi M. Selective hypoaldosteronism: a review. *Endocr Pract.* 2015;21(8):957-965. https://doi.org/10.4158/EP14551.RA
-33. Adachi M, et al. Classification of pseudohypoaldosteronism type II as type IV renal tubular acidosis. *Endocr J.* 2023;70(7):723-729. https://doi.org/10.1507/endocrj.EJ22-0607
-37. Rodríguez Soriano J. Renal tubular acidosis: the clinical entity. *J Am Soc Nephrol.* 2002;13(8):2160-2170. https://doi.org/10.1097/01.asn.0000023430.92674.e5
-38. Karet FE. Inherited distal renal tubular acidosis. *J Am Soc Nephrol.* 2002;13(8):2178-2184. https://doi.org/10.1097/01.asn.0000023433.08833.88
+### Procedencia de la evidencia (revisión de especie, 2026-11-06)
+
+Se revisaron en PubMed las 35 referencias de artículos (las 3 restantes son libros) para saber en qué
+especie se obtuvo cada dato. Cada referencia lleva su etiqueta entre corchetes. Resumen:
+
+- **22 son clínicas o revisiones con datos humanos.** Todo lo diagnóstico y clínico de la acidosis
+  metabólica sin anion gap (tipos de ATR, brecha aniónica urinaria, amonio urinario, pH urinario,
+  hipoaldosteronismo, hiperkalemia, causas farmacológicas) está apoyado en humanos.
+- **3 no tienen tejido humano:** la 10 (ratón), la 13 (rata, línea celular y oocito de Xenopus) y la 15
+  (líneas celulares de ratón). Son referencias de mecanismo molecular fino.
+- **2 son mixtas por diseño:** la 27 (trimetoprim: 30 pacientes más 39 ratas; el efecto clínico se midió
+  en los pacientes, el voltaje luminal en la rata) y la 28 (tacrolimus: ratones más receptores de
+  trasplante humanos).
+- El resto son revisiones indexadas a la vez en humanos y en animales: el marco es humano, pero el
+  detalle molecular que citan procede en buena parte de roedor.
+
+**Lo que esto significa para la animación.** La *posición* exacta de cada canal y transportador (qué
+proteína en qué membrana de qué célula) se estableció sobre todo por inmunohistoquímica y micropunción en
+roedor; en humanos se confirma de forma indirecta, por las enfermedades genéticas que aparecen cuando esa
+proteína falla (por ejemplo las ATR distales hereditarias, referencia 38) y por la fisiología clínica. Esto
+es lo normal en fisiología renal: ese tipo de experimento no se puede hacer en personas sanas. La animación
+dibuja el consenso de los textos de fisiología renal humana (referencias 34 a 36), no un experimento
+concreto.
+
+**Puntos donde conviene tenerlo presente:**
+
+1. *La aldosterona estimula directamente la H⁺-ATPasa de la célula intercalada α* (la caja
+   «aldosterona/acidosis → H⁺-ATPasa» del dibujo). El trabajo original, la referencia 10, es solo de ratón;
+   pero la referencia 11, de los mismos autores, repitió el experimento **en túbulos colectores humanos** y
+   obtuvo lo mismo. Las dos tarjetas de la página que enseñan esto ya citan ambas.
+2. *SGK1 / Nedd4-2 insertan el ENaC, y la aldosterona también sube la Na⁺/K⁺-ATPasa* (referencias 13 y 15):
+   sin tejido humano. El mismo mecanismo se sostiene en humanos indirectamente, por el síndrome de Liddle
+   y por los pseudohipoaldosteronismos (referencia 33).
+3. *El trimetoprim bloquea el ENaC y baja el voltaje luminal* (referencia 27): la hiperkalemia se demostró
+   en 30 pacientes, pero la medida del voltaje, que es lo que dibuja la animación, se hizo en rata.
+
+No se encontró ninguna afirmación de la página que dependa **únicamente** de datos de animales sin
+respaldo humano al menos indirecto.
+
+1. Palmer BF, Kelepouris E, Clegg DJ. Renal Tubular Acidosis and Management Strategies: A Narrative Review. *Adv Ther.* 2021;38(2):949-968. https://doi.org/10.1007/s12325-020-01587-5 — *[Humanos]*
+2. Batlle D, Arruda J. Hyperkalemic Forms of Renal Tubular Acidosis: Clinical and Pathophysiological Aspects. *Adv Chronic Kidney Dis.* 2018;25(4):321-333. https://doi.org/10.1053/j.ackd.2018.05.004 — *[Humanos + animales (revisión)]*
+3. DuBose TD Jr. Hyperkalemic hyperchloremic metabolic acidosis: pathophysiologic insights. *Kidney Int.* 1997;51(2):591-602. https://doi.org/10.1038/ki.1997.85 — *[Humanos + animales (revisión)]*
+4. Hamm LL, Nakhoul N, Hering-Smith KS. Acid-Base Homeostasis. *Clin J Am Soc Nephrol.* 2015;10(12):2232-2242. https://doi.org/10.2215/CJN.07400715 — *[Humanos + animales (revisión)]*
+5. Weiner ID, Verlander JW. Ammonia Transporters and Their Role in Acid-Base Balance. *Physiol Rev.* 2017;97(2):465-494. https://doi.org/10.1152/physrev.00011.2016 — *[Humanos + animales (revisión; datos moleculares sobre todo de roedor)]*
+6. Weiner ID, Mitch WE, Sands JM. Urea and Ammonia Metabolism and the Control of Renal Nitrogen Excretion. *Clin J Am Soc Nephrol.* 2015;10(8):1444-1458. https://doi.org/10.2215/CJN.10311013 — *[Humanos + animales (revisión)]*
+7. Weiner ID, Verlander JW. Ammonia transport in the kidney by Rhesus glycoproteins. *Am J Physiol Renal Physiol.* 2014;306(10):F1107-F1120. https://doi.org/10.1152/ajprenal.00013.2014 — *[Humanos + animales (revisión; sobre todo ratón)]*
+8. Weiner ID, Verlander JW. Emerging Features of Ammonia Metabolism and Transport in Acid-Base Balance. *Semin Nephrol.* 2019;39(4):394-405. https://doi.org/10.1016/j.semnephrol.2019.04.008 — *[Humanos + animales (revisión)]*
+9. Wagner CA, Devuyst O, Bourgeois S, Mohebbi N. Regulated acid-base transport in the collecting duct. *Pflugers Arch.* 2009;458(1):137-156. https://doi.org/10.1007/s00424-009-0657-z — *[Humanos + animales (revisión)]*
+10. Winter C, Schulz N, Giebisch G, Geibel JP, Wagner CA. Nongenomic stimulation of vacuolar H+-ATPases in intercalated renal tubule cells by aldosterone. *Proc Natl Acad Sci U S A.* 2004;101(8):2636-2641. https://doi.org/10.1073/pnas.0307321101 — *[SOLO RATÓN (túbulos colectores aislados de ratón)]*
+11. Winter C, Kampik NB, Vedovelli L, et al. Aldosterone stimulates vacuolar H+-ATPase activity in renal acid-secretory intercalated cells mainly via a protein kinase C-dependent pathway. *Am J Physiol Cell Physiol.* 2011;301(5):C1251-C1261. https://doi.org/10.1152/ajpcell.00076.2011 — *[Ratón Y HUMANO (túbulos colectores aislados de ambos)]*
+12. Pearce D, Manis AD, Nesterov V, Korbmacher C. Regulation of distal tubule sodium transport: mechanisms and roles in homeostasis and pathophysiology. *Pflugers Arch.* 2022;474(8):869-884. https://doi.org/10.1007/s00424-022-02732-5 — *[Revisión; sin indexar por especie (mecanismos sobre todo de roedor)]*
+13. Verrey F, Summa V, Heitzmann D, et al. Short-term aldosterone action on Na,K-ATPase surface expression: role of aldosterone-induced SGK1? *Ann N Y Acad Sci.* 2003;986:554-561. https://doi.org/10.1111/j.1749-6632.2003.tb07253.x — *[Rata, línea celular y oocito de Xenopus (sin tejido humano)]*
+14. Vallon V, Lang F. New insights into the role of serum- and glucocorticoid-inducible kinase SGK1 in the regulation of renal function and blood pressure. *Curr Opin Nephrol Hypertens.* 2005;14(1):59-66. https://doi.org/10.1097/00041552-200501000-00010 — *[Revisión; mezcla datos humanos, líneas celulares y oocitos]*
+15. Bens M, Chassin C, Vandewalle A. Regulation of NaCl transport in the renal collecting duct: lessons from cultured cells. *Pflugers Arch.* 2006;453(2):133-146. https://doi.org/10.1007/s00424-006-0123-0 — *[Líneas celulares de ratón en cultivo (sin tejido humano)]*
+16. Palmer LG. Potassium secretion and the regulation of distal nephron K channels. *Am J Physiol.* 1999;277(6):F821-F825. https://doi.org/10.1152/ajprenal.1999.277.6.F821 — *[Humanos + animales (revisión)]*
+17. Palmer LG, Schnermann J. Integrated control of Na transport along the nephron. *Clin J Am Soc Nephrol.* 2015;10(4):676-687. https://doi.org/10.2215/CJN.12391213 — *[Humanos + animales (revisión)]*
+18. Palmer BF, Clegg DJ. Pathophysiology and clinical management of hyperkalemia in chronic kidney disease. *Minerva Med.* 2023;114(5):719-735. https://doi.org/10.23736/S0026-4806.23.08465-3 — *[Humanos]*
+19. Palmer BF, Clegg DJ. Extrarenal Effects of Aldosterone on Potassium Homeostasis. *Kidney360.* 2022;3(3):561-568. https://doi.org/10.34067/KID.0006762021 — *[Revisión; sin indexar por especie]*
+20. Eladari D, Chambrey R, Peti-Peterdi J. A new look at electrolyte transport in the distal tubule. *Annu Rev Physiol.* 2012;74:325-349. https://doi.org/10.1146/annurev-physiol-020911-153225 — *[Humanos + animales (revisión)]*
+21. Edwards A, Crambert G. Versatility of NaCl transport mechanisms in the cortical collecting duct. *Am J Physiol Renal Physiol.* 2017;313(6):F1254-F1263. https://doi.org/10.1152/ajprenal.00369.2017 — *[Humanos + animales (revisión)]*
+22. Wall SM. Regulation of Blood Pressure and Salt Balance By Pendrin-Positive Intercalated Cells. *Hypertension.* 2022;79(4):706-716. https://doi.org/10.1161/HYPERTENSIONAHA.121.16492 — *[Revisión; indexada en humanos, evidencia experimental sobre todo de ratón]*
+23. Batlle D, Ba Aqeel SH, Marquez A. The Urine Anion Gap in Context. *Clin J Am Soc Nephrol.* 2018;13(2):195-197. https://doi.org/10.2215/CJN.13791217 — *[Humanos]*
+24. Rehman MZ, et al. Urinary Ammonium in Clinical Medicine: Direct Measurement and the Urine Anion Gap as a Surrogate Marker During Metabolic Acidosis. *Adv Kidney Dis Health.* 2023;30(2):197-206. https://doi.org/10.1053/j.akdh.2022.12.006 — *[Humanos]*
+25. Berend K. Review of the Diagnostic Evaluation of Normal Anion Gap Metabolic Acidosis. *Kidney Dis (Basel).* 2017;3(4):149-159. https://doi.org/10.1159/000479279 — *[Humanos (clínica)]*
+26. Adomako EA, Maalouf NM. Type 4 renal tubular acidosis and uric acid nephrolithiasis: two faces of the same coin? *Curr Opin Nephrol Hypertens.* 2023;32(2):145-152. https://doi.org/10.1097/MNH.0000000000000859 — *[Humanos]*
+27. Velázquez H, Perazella MA, Wright FS, Ellison DH. Renal mechanism of trimethoprim-induced hyperkalemia. *Ann Intern Med.* 1993;119(4):296-301. https://doi.org/10.7326/0003-4819-119-4-199308150-00008 — *[HUMANOS Y RATA (30 pacientes + 39 ratas; el voltaje luminal se midió en rata)]*
+28. Hoorn EJ, Walsh SB, McCormick JA, et al. The calcineurin inhibitor tacrolimus activates the renal sodium chloride cotransporter to cause hypertension. *Nat Med.* 2011;17(10):1304-1309. https://doi.org/10.1038/nm.2497 — *[RATÓN Y HUMANO (ratones + receptores de trasplante)]*
+29. Unsal Y, et al. Calcineurin inhibitor-related hyperkalemia is caused by hyporeninemic hypoaldosteronism and fludrocortisone is an effective treatment. *Pediatr Transplant.* 2024;28(4):e14778. https://doi.org/10.1111/petr.14778 — *[Humanos (3 niños trasplantados)]*
+30. Oster JR, Singer I, Fishman LM. Heparin-induced aldosterone suppression and hyperkalemia. *Am J Med.* 1995;98(6):575-586. https://doi.org/10.1016/s0002-9343(99)80017-5 — *[Humanos + animales (revisión)]*
+31. Sousa AG, et al. Hyporeninemic hypoaldosteronism and diabetes mellitus: Pathophysiology assumptions, clinical aspects and implications for management. *World J Diabetes.* 2016;7(5):101-111. https://doi.org/10.4239/wjd.v7.i5.101 — *[Humanos (clínica)]*
+32. Wilczynski C, Shaw C, Alimohammadi M. Selective hypoaldosteronism: a review. *Endocr Pract.* 2015;21(8):957-965. https://doi.org/10.4158/EP14551.RA — *[Humanos]*
+33. Adachi M, et al. Classification of pseudohypoaldosteronism type II as type IV renal tubular acidosis. *Endocr J.* 2023;70(7):723-729. https://doi.org/10.1507/endocrj.EJ22-0607 — *[Humanos (46 casos genéticos)]*
+37. Rodríguez Soriano J. Renal tubular acidosis: the clinical entity. *J Am Soc Nephrol.* 2002;13(8):2160-2170. https://doi.org/10.1097/01.asn.0000023430.92674.e5 — *[Humanos]*
+38. Karet FE. Inherited distal renal tubular acidosis. *J Am Soc Nephrol.* 2002;13(8):2178-2184. https://doi.org/10.1097/01.asn.0000023433.08833.88 — *[Humanos + animales (revisión)]*
