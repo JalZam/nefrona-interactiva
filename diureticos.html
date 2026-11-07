@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diuréticos en la Nefrona</title>
+  <meta name="description" content="Mapa animado de la nefrona: la sangre entra por la arteriola aferente, se filtra en el glomérulo, recorre el túbulo y sale como orina. Dónde actúa cada clase de diurético." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="pagina-animacion">
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M8 6 C8 6 8 34 20 34 C32 34 32 6 32 6" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="8" cy="6" r="3.5" fill="#2563eb"/><circle cx="32" cy="6" r="3.5" fill="#0ea5e9"/>
+        <circle cx="20" cy="22" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+      </svg>
+      <div>
+        <div class="logo-title">Nefrona Interactiva</div>
+        <div class="logo-sub">Diuréticos · dónde actúa cada uno</div>
+      </div>
+    </div>
+    <nav class="header-right nav">
+      <a class="nav-link" href="index.html">Acidosis</a>
+      <a class="nav-link activo" href="diureticos.html">Diuréticos</a>
+      <span class="visit-counter" title="Visitas totales del sitio (hits.sh): cuenta cargas de página, no identifica personas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <img class="visit-badge" alt="visitas" src="https://hits.sh/nefrona-interactiva.com.svg?label=%20&amp;style=flat-square&amp;color=64748b">
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="dm-layout">
+
+  <section class="card dm-card">
+    <div class="dm-cab">
+      <h1 class="dm-titulo">Diuréticos en la nefrona</h1>
+      <p class="dm-sub">La sangre entra por la arteriola aferente, se filtra en el glomérulo y el filtrado
+        recorre el túbulo. Casi todo se reabsorbe y vuelve a la sangre; lo que queda sale como orina.</p>
+    </div>
+
+    <svg id="dm-svg" viewBox="0 0 1240 820" role="img"
+         aria-label="Esquema animado de la nefrona con los puntos donde actúa cada clase de diurético"></svg>
+
+    <div class="dm-contadores">
+      <div class="dm-cont"><b id="dm-c-filtrado">0</b><span>se filtró en el glomérulo</span></div>
+      <div class="dm-cont dm-cont-rojo"><b id="dm-c-reab">0</b><span>volvió a la sangre</span></div>
+      <div class="dm-cont dm-cont-ambar"><b id="dm-c-orina">0</b><span>salió como orina</span></div>
+    </div>
+    <p class="dm-nota">Las partículas son ilustrativas, no una medida. En la realidad se filtran unos 180 litros
+      al día y se reabsorbe más del 99 %.</p>
+  </section>
+
+  <aside class="panel dm-panel">
+    <h2 class="panel-title">Las seis clases</h2>
+    <p class="panel-hint">Cada una bloquea un transportador distinto, en un segmento distinto. Por eso
+      cambian cosas distintas en la sangre y en la orina.</p>
+    <div id="dm-lista" class="dm-lista"></div>
+    <div id="dm-detalle" class="dm-detalle"></div>
+  </aside>
+
+</main>
+
+<footer class="pie">
+  <p>Herramienta de aprendizaje. No es una calculadora clínica ni una guía de prescripción.
+     Dibujo propio; contenido basado en la investigación del repositorio
+     (<a href="INVESTIGACION_DIURETICOS.md">INVESTIGACION_DIURETICOS.md</a>, 23 referencias de PubMed).</p>
+  <p>Todo ocurre en su navegador: sin cookies, sin registro, sin envío de datos.</p>
+</footer>
+
+<script src="js/diureticos-mapa.js"></script>
+</body>
+</html>

@@ -439,3 +439,81 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .lab-c.bien span { color: #15803d; }
 
 .capa-particulas { pointer-events: none; }
+
+/* ============================================================
+   DIURÉTICOS — mapa de la nefrona (diureticos.html)
+   ============================================================ */
+.dm-layout { max-width: 1480px; margin: 0 auto; padding: 1rem 1.25rem 2rem;
+  display: grid; grid-template-columns: minmax(0,1fr) 340px; gap: 1rem; align-items: start; }
+.dm-card { padding: 1rem 1.1rem 1.2rem; }
+.dm-cab { margin-bottom: .4rem; }
+.dm-titulo { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800;
+  color: var(--dark); letter-spacing: -.4px; }
+.dm-sub { font-size: .88rem; color: var(--text-secondary); max-width: 70ch; margin-top: .25rem; }
+
+#dm-svg { width: 100%; height: auto; display: block; margin: .2rem 0 .4rem; }
+.dm-zona { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
+  fill: #b9ab96; letter-spacing: 1.2px; }
+.dm-rot { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; fill: #475569; }
+.dm-io { font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800; letter-spacing: .3px; }
+.dm-io-rojo { fill: #c62828; } .dm-io-azul { fill: #2f5fbe; } .dm-io-ambar { fill: #a9761a; }
+.dm-io-sub { font-family: 'Inter', sans-serif; font-size: 13px; fill: #8a94a3; }
+.dm-badge-n { font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800; fill: #fff; }
+.dm-badge { cursor: pointer; transition: opacity .2s; }
+.dm-badge:hover { opacity: .78; }
+.dm-badge.apagada { opacity: .3; }
+.dm-hit { cursor: pointer; }
+.dm-seg { transition: stroke .25s, opacity .25s; }
+.dm-seg-on { stroke: #ffe9a3; }
+.dm-seg-off { opacity: .45; }
+
+.dm-contadores { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .3rem; }
+.dm-cont { flex: 1 1 150px; background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: .5rem .7rem; }
+.dm-cont b { display: block; font-family: 'Outfit', sans-serif; font-size: 1.35rem;
+  font-weight: 800; color: var(--dark); font-variant-numeric: tabular-nums; }
+.dm-cont span { font-size: .74rem; color: var(--text-secondary); }
+.dm-cont-rojo b { color: #c62828; } .dm-cont-ambar b { color: #a9761a; }
+.dm-nota { font-size: .74rem; color: var(--text-muted); margin-top: .5rem; }
+
+.dm-panel { top: 72px; }
+.dm-lista { display: flex; flex-direction: column; gap: .35rem; }
+.dm-clase { display: flex; align-items: center; gap: .6rem; width: 100%; text-align: left;
+  font: inherit; cursor: pointer; background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: .5rem .6rem; transition: all .15s; }
+.dm-clase:hover { border-color: var(--primary-mid); background: var(--primary-light); }
+.dm-clase.activa { border-color: var(--primary); background: var(--primary-light);
+  box-shadow: 0 0 0 1px var(--primary) inset; }
+.dm-clase-n { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; color: #fff;
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: .88rem;
+  display: inline-flex; align-items: center; justify-content: center; }
+.dm-clase-txt { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.dm-clase-txt b { font-size: .82rem; font-weight: 700; color: var(--dark); }
+.dm-clase-txt i { font-style: normal; font-size: .72rem; color: var(--text-muted); }
+
+.dm-detalle { margin-top: .9rem; }
+.dm-vacio { font-size: .8rem; color: var(--text-muted); line-height: 1.45;
+  border-top: 1px dashed var(--border); padding-top: .9rem; }
+.dm-det-cab { display: flex; align-items: center; gap: .5rem; border-left: 4px solid;
+  padding: .1rem 0 .1rem .55rem; margin-bottom: .5rem; }
+.dm-det-cab b { font-family: 'Outfit', sans-serif; font-size: .92rem; color: var(--dark); line-height: 1.2; }
+.dm-det-seg { font-size: .76rem; color: var(--text-muted); margin-bottom: .5rem; }
+.dm-det-corto { font-size: .84rem; color: var(--text); line-height: 1.5; margin-bottom: .7rem; }
+.dm-det-datos { font-size: .78rem; display: grid; grid-template-columns: auto 1fr;
+  gap: .25rem .6rem; align-items: baseline; }
+.dm-det-datos dt { font-weight: 700; color: var(--text-secondary); }
+.dm-det-datos dd { color: var(--text); }
+
+.pie { max-width: 1480px; margin: 0 auto; padding: 1rem 1.25rem 2rem;
+  font-size: .75rem; color: var(--text-muted); line-height: 1.6; }
+.pie a { color: var(--text-secondary); }
+
+@media (max-width: 1080px) {
+  .dm-layout { grid-template-columns: 1fr; }
+  .dm-panel { position: static; max-height: none; }
+}
+@media (max-width: 560px) {
+  .dm-layout { padding: .6rem .7rem 1.5rem; }
+  .dm-titulo { font-size: 1.2rem; }
+}
+.dm-rot-chico { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; fill: #b98a8a; }
