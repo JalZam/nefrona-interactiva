@@ -510,11 +510,13 @@
       // ...&zoom=1 abre el acercamiento; &bloqueo=1 lo abre ya con el diurético
       if (par.get('zoom') === '1' && NI.diuZoom && NI.diuZoom.hay(c.id)) {
         abrirZoom(c);
+        if (location.hash === '#prueba' && NI.diuZoom.avanzar) NI.diuZoom.avanzar(30);
         if (par.get('bloqueo') === '1') {
           E.bloqueo = true;
           NI.diuZoom.setBloqueo(true);
           botonToggle(true);
           pintarPasos(true);
+          if (location.hash === '#prueba' && NI.diuZoom.avanzar) NI.diuZoom.avanzar(30);
         }
       }
     }

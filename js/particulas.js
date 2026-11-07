@@ -118,6 +118,8 @@
     esc.limpiar = function () {
       esc.particulas.forEach(p => p.el.remove()); esc.particulas = [];
       for (const id in esc.colas) { const q = esc.colas[id]; for (const s in q.slots) { q.slots[s].aparcadas.forEach(a => a.el.remove()); q.slots[s].aparcadas = []; q.slots[s].reservas = 0; } }
+      // Barre también lo que quedara a medio desvanecer, para no dejar fantasmas
+      capa.querySelectorAll('.particula').forEach(n => n.remove());
     };
 
     // ── Colas de espera con estequiometría ──
