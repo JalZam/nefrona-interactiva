@@ -48,7 +48,7 @@
     const btn = document.getElementById('ley-btn');
 
     function pintar() {
-      document.getElementById('ley-titulo').textContent = t('leyenda.titulo', 'Referencias');
+      document.getElementById('ley-titulo').textContent = t('leyenda.titulo', 'Referencias · qué es cada bolita');
       btn.innerHTML = '<span class="ley-btn-punto"></span>' + t('leyenda.boton', 'Referencias');
       const ul = document.getElementById('ley-lista');
       let h = '';

@@ -16,6 +16,9 @@
 
     'map.titulo': 'Diuréticos en la nefrona',
     'map.sub': 'La sangre entra por la arteriola aferente, se filtra en el glomérulo y el filtrado recorre el túbulo. Casi todo se reabsorbe y vuelve a la sangre; lo que queda sale como orina.',
+    'obra.titulo': 'En construcción.',
+    'obra.texto': 'Esta sección se está haciendo: por ahora solo el túbulo proximal tiene el acercamiento a la célula. Se aceptan sugerencias y correcciones.',
+    'obra.sigue': 'Escríbame por',
     'map.nota': 'Las partículas son ilustrativas, no una medida: en la realidad se filtran unos 180 litros al día y se reabsorbe más del 99 %.',
     'map.corteza': 'CORTEZA', 'map.medula': 'MÉDULA',
     'map.entraSangre': 'ENTRA SANGRE', 'map.aferente': 'arteriola aferente',
@@ -43,7 +46,7 @@
     'foot.2': '23 referencias de PubMed',
     'foot.3': 'Todo ocurre en su navegador: sin cookies, sin registro, sin envío de datos.',
 
-    'leyenda.titulo': 'Qué es cada bolita', 'leyenda.boton': 'Referencias',
+    'leyenda.titulo': 'Referencias · qué es cada bolita', 'leyenda.boton': 'Referencias',
     'leyenda.na': 'Sodio', 'leyenda.k': 'Potasio', 'leyenda.cl': 'Cloro',
     'leyenda.h': 'Hidrogenión (ácido)', 'leyenda.hco3': 'Bicarbonato',
     'leyenda.co2': 'Dióxido de carbono', 'leyenda.h2o': 'Agua',
@@ -137,6 +140,9 @@
 
     'map.titulo': 'Diuretics along the nephron',
     'map.sub': 'Blood enters through the afferent arteriole and is filtered at the glomerulus; the filtrate then travels down the tubule. Almost all of it is reabsorbed back into the blood, and what is left leaves as urine.',
+    'obra.titulo': 'Under construction.',
+    'obra.texto': 'This section is still being built: for now only the proximal tubule has the close-up of the cell. Suggestions and corrections are welcome.',
+    'obra.sigue': 'Write to me on',
     'map.nota': 'The particles are illustrative, not a measurement: in real life about 180 liters are filtered each day and more than 99 % is reabsorbed.',
     'map.corteza': 'CORTEX', 'map.medula': 'MEDULLA',
     'map.entraSangre': 'BLOOD IN', 'map.aferente': 'afferent arteriole',
@@ -164,7 +170,7 @@
     'foot.2': '23 PubMed references',
     'foot.3': 'Everything runs in your browser: no cookies, no sign-in, no data sent anywhere.',
 
-    'leyenda.titulo': 'What each dot is', 'leyenda.boton': 'Key',
+    'leyenda.titulo': 'Key · what each dot is', 'leyenda.boton': 'Key',
     'leyenda.na': 'Sodium', 'leyenda.k': 'Potassium', 'leyenda.cl': 'Chloride',
     'leyenda.h': 'Hydrogen ion', 'leyenda.hco3': 'Bicarbonate',
     'leyenda.co2': 'Carbon dioxide', 'leyenda.h2o': 'Water',

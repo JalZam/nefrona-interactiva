@@ -614,3 +614,14 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
   .ley-caja { width: auto; max-height: 42vh; }
   .ley-btn { justify-content: center; }
 }
+
+/* Aviso de sección en construcción */
+.dm-obra { display: flex; gap: .6rem; align-items: flex-start; margin-top: .7rem;
+  padding: .6rem .8rem; background: #fffbeb; border: 1px solid #fde68a;
+  border-radius: var(--radius-md); font-size: .8rem; line-height: 1.5; color: #78350f; }
+.dm-obra-icono { font-size: 1rem; line-height: 1.3; }
+.dm-obra b { color: #92400e; }
+.dm-obra-redes { display: block; margin-top: .35rem; font-size: .76rem; }
+.dm-obra-redes a { display: inline-block; margin-right: .5rem; color: #92400e;
+  font-weight: 700; text-decoration: none; border-bottom: 1px solid #fcd34d; }
+.dm-obra-redes a:hover { color: #7c2d12; border-bottom-color: #92400e; }
