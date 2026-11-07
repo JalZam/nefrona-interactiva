@@ -487,8 +487,15 @@
           }
         }
       });
-      const bl = document.getElementById('dm-lang');
-      if (bl) bl.addEventListener('click', () => NI.i18n.set(NI.i18n.lang === 'es' ? 'en' : 'es'));
+      const sw = document.getElementById('dm-lang');
+      if (sw) {
+        const marcar = () => sw.querySelectorAll('button').forEach(b =>
+          b.classList.toggle('activo', b.dataset.lang === NI.i18n.lang));
+        sw.querySelectorAll('button').forEach(b =>
+          b.addEventListener('click', () => NI.i18n.set(b.dataset.lang)));
+        NI.i18n.alCambiar(marcar);
+        marcar();
+      }
     }
 
     const volver = document.getElementById('dz-volver');

@@ -570,3 +570,13 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 @media (max-width: 1080px) {
   .dm-col { position: static; }
 }
+
+/* Interruptor de idioma */
+.lang-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 999px;
+  overflow: hidden; background: var(--white); }
+.lang-switch button { font: inherit; font-size: .72rem; font-weight: 800; letter-spacing: .4px;
+  padding: .36rem .62rem; border: 0; background: transparent; color: var(--text-muted);
+  cursor: pointer; transition: background .15s, color .15s; }
+.lang-switch button:hover { color: var(--primary-dark); background: var(--primary-light); }
+.lang-switch button.activo { background: var(--primary); color: var(--white); }
+.dm-resumen[hidden] { display: none; }
