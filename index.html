@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body class="pagina-animacion">
 
@@ -22,12 +22,16 @@
       </svg>
       <div>
         <div class="logo-title">Nefrona Interactiva</div>
-        <div class="logo-sub">Animación · Acidosis metabólica sin anion gap</div>
+        <div class="logo-sub" data-i18n="ac.logosub">Animación · Acidosis metabólica sin anion gap</div>
       </div>
     </div>
     <nav class="header-right nav">
-      <a class="nav-link activo" href="index.html">Acidosis</a>
-      <a class="nav-link" href="diureticos.html">Diuréticos</a>
+      <a class="nav-link activo" href="index.html" data-i18n="nav.acidosis">Acidosis</a>
+      <a class="nav-link" href="diureticos.html" data-i18n="nav.diureticos">Diuréticos</a>
+      <div class="lang-switch" id="dm-lang" role="group" data-i18n-title="lang.titulo" title="Idioma / Language">
+        <button type="button" data-lang="es">ES</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
       <span class="visit-counter" title="Visitas totales del sitio (hits.sh): cuenta cargas de página, no identifica personas">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         <img class="visit-badge" alt="visitas" src="https://hits.sh/nefrona-interactiva.com.svg?label=%20&amp;style=flat-square&amp;color=64748b"> visitas
@@ -41,32 +45,32 @@
   <section class="card anim-card" id="anim-card">
     <svg id="svg-nefron" viewBox="0 0 1720 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Las cuatro células del nefrón en fila, de proximal a distal, con la luz tubular arriba y la sangre abajo"></svg>
     <div class="lab-franja" id="lab-franja">
-      <div class="lab-fila"><span class="lab-titulo">Sangre</span><div class="lab-celdas" id="lab-sangre"></div></div>
-      <div class="lab-fila"><span class="lab-titulo">Orina</span><div class="lab-celdas" id="lab-orina"></div></div>
+      <div class="lab-fila"><span class="lab-titulo" data-i18n="ac.sangre">Sangre</span><div class="lab-celdas" id="lab-sangre"></div></div>
+      <div class="lab-fila"><span class="lab-titulo" data-i18n="ac.orina">Orina</span><div class="lab-celdas" id="lab-orina"></div></div>
     </div>
     <div class="leyenda grande">
-      <span><i class="sw circ pasivo"></i> transporte pasivo</span><span><i class="sw circ activo"></i> transporte activo (ATP)</span><span><i class="sw canalito"></i> canal</span>
-      <span><i class="sw parcial"></i> parcial</span><span><i class="sw off"></i> apagado · ✕ bloqueado</span><span><i class="sw espera"></i> esperando a completar la cuenta</span>
-      <span class="leyenda-sep">toca un canal, bomba o caja para leer qué lo activa</span>
+      <span><i class="sw circ pasivo"></i> <span data-i18n="ac.pasivo">transporte pasivo</span></span><span><i class="sw circ activo"></i> <span data-i18n="ac.activo">transporte activo (ATP)</span></span><span><i class="sw canalito"></i> <span data-i18n="ac.canal">canal</span></span>
+      <span><i class="sw parcial"></i> <span data-i18n="ac.parcial">parcial</span></span><span><i class="sw off"></i> <span data-i18n="ac.apagado">apagado · ✕ bloqueado</span></span><span><i class="sw espera"></i> <span data-i18n="ac.esperando">esperando a completar la cuenta</span></span>
+      <span class="leyenda-sep" data-i18n="ac.tocaCanal">toca un canal, bomba o caja para leer qué lo activa</span>
     </div>
   </section>
 
   <aside class="anim-panel" id="anim-panel">
     <section id="tarjeta" class="card tarjeta">
-      <p class="tarjeta-texto tarjeta-pista">¿Por qué? Toca un canal, bomba o caja del esquema y aquí sale qué lo activa, qué lo apaga y la referencia.</p>
+      <p class="tarjeta-texto tarjeta-pista"><span data-i18n="ac.porque">¿Por qué? Toca un canal, bomba o caja del esquema y aquí sale qué lo activa, qué lo apaga y la referencia.</span></p>
     </section>
 
     <section class="anim-controles card">
-      <div class="mec-label">Acidosis metabólica sin anion gap · toca una · luego toca cada número en orden (o usa ← →)</div>
+      <div class="mec-label"><span data-i18n="ac.elige">Acidosis metabólica sin anion gap · toca una · luego toca cada número en orden (o usa ← →)</span></div>
       <div class="atr-botones">
-        <button class="atr-btn activo" data-atr="normal">Funcionamiento normal</button>
-        <button class="atr-btn" data-atr="diarrea">Diarrea · riñón sano</button>
-        <button class="atr-btn" data-atr="atr2">ATR 2 · proximal</button>
-        <button class="atr-btn" data-atr="atr1">ATR 1 · distal</button>
-        <button class="atr-btn" data-atr="atr3">ATR 3 · mixta (CA II)</button>
-        <button class="atr-btn" data-atr="atr4h">ATR 4 · hipoaldo-steronismo</button>
-        <button class="atr-btn" data-atr="atr4r">ATR 4 · antagonista del MR</button>
-        <button class="atr-btn" data-atr="atr4v">ATR 4 · bloqueo de ENaC</button>
+        <button class="atr-btn activo" data-atr="normal" data-i18n="ac.btn.normal">Funcionamiento normal</button>
+        <button class="atr-btn" data-atr="diarrea" data-i18n="ac.btn.diarrea">Diarrea · riñón sano</button>
+        <button class="atr-btn" data-atr="atr2" data-i18n="ac.btn.atr2">ATR 2 · proximal</button>
+        <button class="atr-btn" data-atr="atr1" data-i18n="ac.btn.atr1">ATR 1 · distal</button>
+        <button class="atr-btn" data-atr="atr3" data-i18n="ac.btn.atr3">ATR 3 · mixta (CA II)</button>
+        <button class="atr-btn" data-atr="atr4h" data-i18n="ac.btn.atr4h">ATR 4 · hipoaldo-steronismo</button>
+        <button class="atr-btn" data-atr="atr4r" data-i18n="ac.btn.atr4r">ATR 4 · antagonista del MR</button>
+        <button class="atr-btn" data-atr="atr4v" data-i18n="ac.btn.atr4v">ATR 4 · bloqueo de ENaC</button>
       </div>
     </section>
 
@@ -80,17 +84,20 @@
 
 <footer class="site-footer">
   <details class="refs">
-    <summary>Bibliografía</summary>
+    <summary data-i18n="ac.biblio">Bibliografía</summary>
     <ol id="lista-refs"></ol>
   </details>
-  <p class="footer-firma">Nefrona Interactiva · Herramienta educativa · CiMedical · Esquemas dibujados según la convención de los textos clásicos de fisiología renal · Todo ocurre en el navegador; no se envía ni guarda ningún dato. Solo se cuenta el número de visitas (hits.sh), sin cookies ni identificación de personas.</p>
+  <p class="footer-firma" data-i18n="ac.pie">Nefrona Interactiva · Herramienta educativa · CiMedical · Esquemas dibujados según la convención de los textos clásicos de fisiología renal · Todo ocurre en el navegador; no se envía ni guarda ningún dato. Solo se cuenta el número de visitas (hits.sh), sin cookies ni identificación de personas.</p>
 </footer>
 
-<script src="js/particulas.js?v=7"></script>
-<script src="js/leyenda.js?v=7"></script>
-<script src="js/refs.js?v=7"></script>
-<script src="js/nefron-fila.js?v=7"></script>
-<script src="js/atr.js?v=7"></script>
+<script src="js/i18n.js?v=8"></script>
+<script src="js/particulas.js?v=8"></script>
+<script src="js/leyenda.js?v=8"></script>
+<script src="js/refs.js?v=8"></script>
+<script src="js/nefron-fila.js?v=8"></script>
+<script src="js/atr.js?v=8"></script>
+<script src="js/acidosis-en.js?v=8"></script>
+<script src="js/acidosis-i18n.js?v=8"></script>
 <script>
   // Referencias de las bolitas, flotante, visible mientras corre la animación
   NI.leyenda.crear({ iones: ['na','k','cl','h','hco3','nh4','nh3','gln','co2','hpo4','h2po4','aldo','angii','renina'] });

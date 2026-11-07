@@ -1,5 +1,5 @@
 /* ============================================================
-   DIURÉTICOS — textos en español e inglés.
+   IDIOMA — textos en español e inglés (las dos páginas).
    Todo texto visible de la página pasa por NI.i18n.t('clave').
    ============================================================ */
 (function (global) {
@@ -255,6 +255,9 @@
   };
 
   const DICC = { es: ES, en: EN };
+  // Traducción de literales sueltos: clave = el texto en español tal cual aparece
+  // en el código. Sirve para los rótulos que se vuelven a dibujar en cada cuadro.
+  const TEXTOS = { es: {}, en: {} };
   const oyentes = [];
   let lang = 'es';
 
@@ -268,6 +271,19 @@
     if (q === 'es' || q === 'en') lang = q;
   } catch (e) { /* nada */ }
   document.documentElement.setAttribute('lang', lang);
+
+  // Añade claves a los diccionarios (cada página aporta las suyas)
+  function extender(es, en, textos) {
+    Object.assign(ES, es || {});
+    Object.assign(EN, en || {});
+    if (textos) Object.assign(TEXTOS.en, textos);
+  }
+  // Traduce un literal escrito en español; si no está, lo devuelve igual
+  function tx(s) {
+    if (lang === 'es') return s;
+    const d = TEXTOS[lang];
+    return (d && d[s] != null) ? d[s] : s;
+  }
 
   function t(clave) {
     const d = DICC[lang] || ES;
@@ -294,5 +310,5 @@
     if (tit) tit.textContent = t('doc.titulo');
   }
 
-  NI.i18n = { t, set, alCambiar, pintarHTML, get lang() { return lang; } };
+  NI.i18n = { t, tx, set, extender, alCambiar, pintarHTML, get lang() { return lang; } };
 })(typeof window !== 'undefined' ? window : globalThis);

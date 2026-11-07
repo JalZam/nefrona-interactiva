@@ -24,6 +24,7 @@
     (children || []).forEach(c => n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c));
     return n;
   }
+  const T = (s) => (NI.i18n && NI.i18n.tx ? NI.i18n.tx(s) : s);
   const txt = (x, y, t, cls, extra) => { const n = el('text', Object.assign({ x, y, class: cls }, extra || {})); n.innerHTML = t; return n; };
 
   function celula(svg, x0, x1, titulo, tx, ty) {
@@ -484,7 +485,11 @@
       g.appendChild(txt(x, y + 4, col.corta || col.etiqueta, ''));
     }
   }
-  const fmt = (x, d = 1) => (+x).toFixed(d).replace('.', ',');
+  // Separador decimal según el idioma: coma en español, punto en inglés
+  const fmt = (x, d = 1) => {
+    const n = (+x).toFixed(d);
+    return (NI.i18n && NI.i18n.lang === 'en') ? n : n.replace('.', ',');
+  };
   function render(E) {
     const v = escActiva ? escActiva.voltaje() : E.voltaje;
     const vf = clamp(-v / 40, 0, 1);
@@ -495,11 +500,11 @@
     claseEstado('ch-rhcg-ap', E.nh3); claseEstado('ch-rhcg-bl', E.nh3);
     const cajaEstado = (id, a) => { const b = $(id); b.classList.remove('parcial', 'off'); if (a < 0.35) b.classList.add('off'); else if (a < 0.75) b.classList.add('parcial'); };
     cajaEstado('box-mito', E.glut); cajaEstado('box-ca-p', Math.min(E.ca2p, E.ca4)); cajaEstado('box-ca', E.ca2a);
-    $('mito-estado').textContent = `glutaminasa ${Math.round(E.glut * 100)} %`;
+    $('mito-estado').textContent = `${T('glutaminasa')} ${Math.round(E.glut * 100)} %`;
     const mrOn = E.aldo * (1 - E.mrBlock) > 0.4;
     $('box-mr').classList.toggle('apagada', !mrOn); $('box-sgk1').classList.toggle('apagada', !mrOn);
     $('box-nedd').classList.toggle('apagada', mrOn);
-    $('nedd-estado').textContent = mrOn ? 'inhibida por SGK1' : 'ACTIVA';
+    $('nedd-estado').textContent = mrOn ? T('inhibida por SGK1') : T('ACTIVA');
     $('nedd-estado').style.fill = mrOn ? '#57534e' : '#dc2626';
     ['fl-mr-nuc', 'fl-nuc-sgk', 'fl-sgk-nedd'].forEach(id => { $(id).style.opacity = mrOn ? 1 : 0.25; });
     $('fl-nedd-enac').style.opacity = mrOn ? 0.25 : 1;
@@ -510,7 +515,7 @@
     const n = clamp(Math.round(Math.abs(v) / 8), 0, 5);
     $('np-carga').textContent = '− '.repeat(n).trim() + (n < 5 ? ' ' + '· '.repeat(5 - n).trim() : '');
     $('np-carga').classList.toggle('perdida', Math.abs(v) < 20);
-    $('np-carga-txt').textContent = Math.abs(v) >= 20 ? `luz negativa ${fmt(v, 0)} mV` : `luz neutra ${fmt(v, 0)} mV`;
+    $('np-carga-txt').textContent = Math.abs(v) >= 20 ? `${T('luz negativa')} ${fmt(v, 0)} mV` : `${T('luz neutra')} ${fmt(v, 0)} mV`;
     if (escActiva) {
       const c = (q, s) => escActiva.cuenta(q, s);
       $('cola-ae1-txt').textContent = `AE1: HCO₃⁻ ${c('ae1', 'hco3')}/1 · Cl⁻ ${c('ae1', 'cl')}/1`;
@@ -527,7 +532,7 @@
     // estímulo directo de la H⁺-ATPasa: aldosterona (vía rápida, PKC) y acidosis (inserta bombas)
     const acidosis = E.hco3 < 21, estim = E.aldo > 0.4 || acidosis;
     $('box-aldo-a').classList.toggle('apagada', !estim);
-    $('aldo-a-estado').textContent = !estim ? 'sin estímulo' : acidosis && E.hatp > 1.2 ? '→ bombas ×1,6' : '→ más bombas H⁺';
+    $('aldo-a-estado').textContent = !estim ? T('sin estímulo') : acidosis && E.hatp > 1.2 ? T('→ bombas ×1,6') : T('→ más bombas H⁺');
     $('fl-aldo-hatp').style.opacity = estim ? 1 : 0.2;
     const hk = $('ch-hk'); hk.classList.remove('ok', 'parcial', 'off'); hk.classList.add(E.hk >= 0.6 ? 'ok' : 'parcial');
     $('np-deposito').setAttribute('opacity', (0.15 + 0.55 * clamp(E.nh3, 0, 1)).toFixed(2));
@@ -537,7 +542,7 @@
     $('orina-ph').textContent = `pH ${fmt(ph, 1)}` + (phAlto ? ' ↑' : '');
     $('orina-ph').style.fill = phAlto ? '#dc2626' : '#1f2937';
     const nh4u = E.trap * E.nh3;
-    $('orina-nh4').textContent = nh4u > 1.3 ? 'NH₄⁺ ALTO' : nh4u < 0.4 ? 'NH₄⁺ BAJO' : nh4u < 0.75 ? 'NH₄⁺ reducido' : 'NH₄⁺ normal';
+    $('orina-nh4').textContent = nh4u > 1.3 ? T('NH₄⁺ ALTO') : nh4u < 0.4 ? T('NH₄⁺ BAJO') : nh4u < 0.75 ? T('NH₄⁺ reducido') : T('NH₄⁺ normal');
     $('orina-nh4').style.fill = nh4u > 1.3 ? '#15803d' : nh4u < 0.75 ? '#dc2626' : '#57534e';
     $('orina-nh4b').textContent = nh4u > 1.3 ? 'brecha urinaria −' : nh4u < 0.4 ? 'brecha urinaria +' : phAlto ? 'no baja de 5,5' : '';
     $('orina-nh4b').style.fill = nh4u > 1.3 ? '#15803d' : '#dc2626';
@@ -549,14 +554,14 @@
     // valores aproximados en mEq/día (normal: NH₄⁺ ≈ 40, acidez titulable ≈ 30)
     // NH₄⁺: ≈ 40 normal, < 30 en las ATR, 100–200 cuando un riñón sano responde a la acidosis
     const vNh4 = Math.round((nh4u >= 1 ? 40 + (nh4u - 1) * 120 : 40 * (0.3 + 0.7 * nh4u)) / 5) * 5, vAt = Math.round(30 * at / 5) * 5;
-    $('nh4o-val').textContent = `${vNh4} mEq/día`;
+    $('nh4o-val').textContent = `${vNh4} ${T('mEq/día')}`;
     $('nh4o-val').style.fill = nh4u > 1.3 ? '#15803d' : nh4u < 0.75 ? '#dc2626' : '#1f2937';
-    $('ato-val').textContent = `${vAt} mEq/día`;
+    $('ato-val').textContent = `${vAt} ${T('mEq/día')}`;
     $('ato-val').style.fill = at < 0.6 ? '#dc2626' : '#1f2937';
     // excreción neta de ácido = NH₄⁺ + acidez titulable − HCO₃⁻ urinario (mEq/día; normal ≈ 70, igual al ácido de la dieta)
     const vHco3u = Math.round(60 * (E.hco3Orina || 0) / 5) * 5;
     const vEna = vNh4 + vAt - vHco3u;
-    $('orina-ena').textContent = `${vEna} mEq/día`;
+    $('orina-ena').textContent = `${vEna} ${T('mEq/día')}`;
     $('orina-ena').style.fill = vEna > 100 ? '#15803d' : vEna >= 55 ? '#1f2937' : '#dc2626';
     labs(E, vf, vNh4, vAt, vHco3u, vEna, ph);
 
@@ -575,27 +580,27 @@
   // con NH₄⁺ (≈ 0,75 × mEq/día) y ≈ 50 mEq/L de otros aniones (sulfato, fosfato, orgánicos).
   function celda(nombre, valor, normal, estado, ancha) {
     const flecha = estado === 'alto' ? ' ↑' : estado === 'bajo' ? ' ↓' : '';
-    return `<div class="lab-c ${estado || ''} ${ancha ? 'ancha' : ''}" title="Normal: ${normal}"><b>${nombre}</b><span>${valor}${flecha}</span><i>${normal}</i></div>`;
+    return `<div class="lab-c ${estado || ''} ${ancha ? 'ancha' : ''}" title="${T('Normal:')} ${normal}"><b>${nombre}</b><span>${valor}${flecha}</span><i>${normal}</i></div>`;
   }
   const rango = (v, lo, hi) => v < lo ? 'bajo' : v > hi ? 'alto' : '';
   function labs(E, vf, vNh4, vAt, vHco3u, vEna, ph) {
     const sangre = $('lab-sangre'), orina = $('lab-orina'); if (!sangre) return;
     const Na = 140, K = E.K, HCO3 = E.hco3, Cl = Math.round(128 - HCO3), AG = Math.round(Na - Cl - HCO3);
     sangre.innerHTML =
-      celda('Na⁺', Na, '135–145') + celda('K⁺', fmt(K), '3,5–5,0', rango(K, 3.5, 5.0)) +
-      celda('Cl⁻', Cl, '98–106', rango(Cl, 98, 107)) + celda('HCO₃⁻', fmt(HCO3, 0), '22–26', rango(HCO3, 22, 26)) +
-      celda('Anion gap', AG, '8–12 · Na⁺ − (Cl⁻ + HCO₃⁻)', rango(AG, 8, 12), true);
+      celda('Na⁺', Na, T('135–145')) + celda('K⁺', fmt(K), T('3,5–5,0'), rango(K, 3.5, 5.0)) +
+      celda('Cl⁻', Cl, T('98–106'), rango(Cl, 98, 107)) + celda('HCO₃⁻', fmt(HCO3, 0), T('22–26'), rango(HCO3, 22, 26)) +
+      celda(T('Anion gap'), AG, T('8–12 · Na⁺ − (Cl⁻ + HCO₃⁻)'), rango(AG, 8, 12), true);
     const naU = Math.round(clamp(80 + 80 * (E.naOrina - 0.15) - 50 * Math.max(0, E.renina - 1) - 40 * (E.diarrea || 0), 10, 160));
     const kU = Math.round(clamp(10 + 30 * Math.min(1.5, E.romk) * vf * (E.K / 4) + 30 * (E.kOrina || 0), 5, 120));
     const nh4U = vNh4 * 0.75, hco3U = 80 * (E.hco3Orina || 0);
     const clU = Math.round(clamp(naU + kU + nh4U - hco3U - 50, 10, 250));
     const bau = naU + kU - clU;
     orina.innerHTML =
-      celda('pH', fmt(ph), '5–6 · < 5,5 en acidosis', ph > 5.5 && E.acido > 0.2 ? 'alto' : '') +
-      celda('Na⁺', naU, '40–220 (dieta)') + celda('K⁺', kU, '25–120 (dieta)') + celda('Cl⁻', clU, '40–250 (dieta)') +
-      `<div class="lab-c ancha ${bau < 0 ? 'bien' : E.acido > 0.2 ? 'alto' : ''}" title="Brecha aniónica urinaria = Na⁺ + K⁺ − Cl⁻. Negativa: hay mucho NH₄⁺ (riñón responde). Positiva en acidosis: poco NH₄⁺ (ATR)."><b>Brecha aniónica urinaria</b><span>${bau > 0 ? '+' : ''}${bau}</span><i>Na⁺ + K⁺ − Cl⁻</i></div>` +
-      celda('NH₄⁺', vNh4, '≈ 40 mEq/día', vNh4 > 70 ? 'bien' : vNh4 < 30 ? 'bajo' : '') +
-      `<div class="lab-c ancha ${vEna > 100 ? 'bien' : vEna < 55 ? 'bajo' : ''}" title="Excreción neta de ácido = NH₄⁺ + acidez titulable − HCO₃⁻ urinario. Normal ≈ 70 mEq/día: lo mismo que produce la dieta."><b>Excreción neta de ácido</b><span>${vEna}${vEna < 55 ? ' ↓' : vEna > 100 ? ' ↑' : ''}</span><i>NH₄⁺ ${vNh4} + AT ${vAt} − HCO₃⁻ ${vHco3u} · ≈ 70 mEq/día</i></div>`;
+      celda('pH', fmt(ph), T('5–6 · < 5,5 en acidosis'), ph > 5.5 && E.acido > 0.2 ? 'alto' : '') +
+      celda('Na⁺', naU, T('40–220 (dieta)')) + celda('K⁺', kU, T('25–120 (dieta)')) + celda('Cl⁻', clU, T('40–250 (dieta)')) +
+      `<div class="lab-c ancha ${bau < 0 ? 'bien' : E.acido > 0.2 ? 'alto' : ''}" title="${T('Brecha aniónica urinaria = Na⁺ + K⁺ − Cl⁻. Negativa: hay mucho NH₄⁺ (riñón responde). Positiva en acidosis: poco NH₄⁺ (ATR).')}"><b>${T('Brecha aniónica urinaria')}</b><span>${bau > 0 ? '+' : ''}${bau}</span><i>Na⁺ + K⁺ − Cl⁻</i></div>` +
+      celda('NH₄⁺', vNh4, T('≈ 40 mEq/día'), vNh4 > 70 ? 'bien' : vNh4 < 30 ? 'bajo' : '') +
+      `<div class="lab-c ancha ${vEna > 100 ? 'bien' : vEna < 55 ? 'bajo' : ''}" title="${T('Excreción neta de ácido = NH₄⁺ + acidez titulable − HCO₃⁻ urinario. Normal ≈ 70 mEq/día: lo mismo que produce la dieta.')}"><b>${T('Excreción neta de ácido')}</b><span>${vEna}${vEna < 55 ? ' ↓' : vEna > 100 ? ' ↑' : ''}</span><i>NH₄⁺ ${vNh4} + ${T('AT')} ${vAt} − HCO₃⁻ ${vHco3u} · ${T('≈ 70 mEq/día')}</i></div>`;
   }
   function resaltar(ids) {
     document.querySelectorAll('#svg-nefron .np-halo.visible').forEach(h => h.classList.remove('visible'));
