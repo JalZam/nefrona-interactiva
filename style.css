@@ -541,3 +541,5 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .np-pila .np-pila-txt { transition: opacity .3s; text-anchor: middle; }
 .np-pila text.np-pila-txt { fill: #1f2937; font-size: 14px; font-weight: 800; }
 .enzima .x { font-size: 30px; }
+#dz-svg .np-pila text.np-pila-txt { paint-order: stroke; stroke: #fffbea; stroke-width: 5px;
+  stroke-linejoin: round; fill: #78350f; }

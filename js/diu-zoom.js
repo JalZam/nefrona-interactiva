@@ -102,40 +102,44 @@
       banda(svg, BL, H - BL, 'np-sangre', 'SANGRE / INTERSTICIO', 'sangre');
       celula(svg, 150, 1010, ['Célula del túbulo', 'contorneado proximal'], 248, 410);
 
-      // Caminos de la luz (de izquierda a derecha)
+      /* --- 1) Primero los caminos: las partículas viajan por ellos --- */
+
+      // La luz, de izquierda a derecha (pasa por detrás de la AC IV)
       flecha(svg, 'dz-luz-na',   `M 20 62 H 1046`, 'tenue');
       flecha(svg, 'dz-luz-hco3', `M 20 112 H 1046`, 'tenue');
 
-      // NHE3: Na+ entra, H+ sale
-      flecha(svg, 'dz-na-in',  `M 330 70 V ${AP - 36}`);
-      flecha(svg, 'dz-h-out',  `M 410 ${AP - 36} V 78`);
-      bomba(svg, { id: 'dz-nhe3', x: 370, y: AP, clase: 'pasivo', etiqueta: ['Na⁺', 'H⁺'], nombre: 'NHE3' });
+      // NHE3: Na⁺ entra, H⁺ sale
+      flecha(svg, 'dz-na-in', `M 330 70 V ${AP - 36}`);
+      flecha(svg, 'dz-h-out', `M 410 ${AP - 36} V 78`);
 
-      // Anhidrasa carbónica IV en la luz: H+ + HCO3- -> CO2 + H2O
-      flecha(svg, 'dz-hco3-ac4', `M 470 112 H 596`);
-      enzima(svg, { id: 'dz-ca4', x: 672, y: 108, nombre: 'AC IV', sub: 'H₂CO₃ → CO₂ + H₂O' });
+      // El HCO₃⁻ de la luz entra por detrás de la AC IV y allí desaparece
+      flecha(svg, 'dz-hco3-ac4', `M 470 112 H 672`);
 
-      // CO2 y H2O entran a la célula
+      // Lo que sale de la AC IV entra a la célula
       flecha(svg, 'dz-co2-in', `M 648 140 V 262`);
       flecha(svg, 'dz-h2o-in', `M 712 140 V 262`);
 
-      // Anhidrasa carbónica II dentro: CO2 + H2O -> H+ + HCO3-
-      enzima(svg, { id: 'dz-ca2', x: 680, y: 300, nombre: 'AC II', sub: 'CO₂ + H₂O → H⁺ + HCO₃⁻' });
-
-      // H+ vuelve al NHE3 ; HCO3- baja al NBCe1
+      // De la AC II: el H⁺ se recicla y el HCO₃⁻ se va a la sangre por el NBCe1
       flecha(svg, 'dz-h-recicla', `M 614 294 C 520 282, 430 268, 398 ${AP + 30}`);
-      flecha(svg, 'dz-hco3-nbc',  `M 736 322 C 790 360, 800 400, 790 ${BL - 36}`);
+      flecha(svg, 'dz-hco3-nbc',  `M 736 322 C 788 360, 806 430, 800 656`);
+      // El NBCe1 lleva 1 Na⁺ junto con los 3 HCO₃⁻
+      flecha(svg, 'dz-na-nbc', `M 762 392 V 656`);
 
-      // NBCe1 basolateral
+      // Bomba Na⁺/K⁺: saca 3 Na⁺ y mete 2 K⁺ (los dos pasan por ella)
+      flecha(svg, 'dz-na-bomba', `M 318 ${AP + 36} C 304 300, 302 430, 312 656`);
+      flecha(svg, 'dz-k-bomba',  `M 350 656 V 430`);
+
+      /* --- 2) El ancla: todo lo que venga después tapa a las partículas --- */
+      svg.appendChild(el('g', { id: 'capa-particulas-ancla' }));
+
+      /* --- 3) Canales, enzimas y rótulos: van por encima --- */
+      bomba(svg, { id: 'dz-nhe3', x: 370, y: AP, clase: 'pasivo', etiqueta: ['Na⁺', 'H⁺'], nombre: 'NHE3' });
+      enzima(svg, { id: 'dz-ca4', x: 672, y: 108, nombre: 'AC IV', sub: 'H₂CO₃ → CO₂ + H₂O' });
+      enzima(svg, { id: 'dz-ca2', x: 680, y: 300, nombre: 'AC II', sub: 'CO₂ + H₂O → H⁺ + HCO₃⁻' });
       bomba(svg, { id: 'dz-nbce1', x: 790, y: BL, clase: 'pasivo', r: 36,
         etiqueta: ['1 Na⁺', '3 HCO₃⁻'], nombre: 'NBCe1' });
-      flecha(svg, 'dz-hco3-sangre', `M 790 ${BL + 38} V 648`);
-
-      // Bomba Na/K basolateral
-      flecha(svg, 'dz-na-baja', `M 330 ${AP + 36} C 318 300, 318 400, 330 ${BL - 38}`);
       bomba(svg, { id: 'dz-nak', x: 330, y: BL, clase: 'activo', r: 38,
         etiqueta: ['3 Na⁺', '2 K⁺'], nombre: 'Na⁺/K⁺-ATPasa' });
-      flecha(svg, 'dz-na-sangre', `M 330 ${BL + 40} V 650`);
 
       // Cajón de orina
       svg.appendChild(el('rect', { x: 1072, y: 20, width: 172, height: 124, rx: 12, class: 'np-orina' }));
@@ -147,9 +151,6 @@
       // Pilas de acumulación en la luz (solo se llenan con el bloqueo)
       pila(svg, 'dz-pila-na', 930, 50, 'Na⁺ que sigue de largo');
       pila(svg, 'dz-pila-hco3', 930, 134, 'HCO₃⁻ que se pierde');
-
-      // Ancla: las partículas van por debajo de los rótulos
-      svg.appendChild(el('g', { id: 'capa-particulas-ancla' }));
     },
 
     corrientes(esc) {
@@ -161,10 +162,12 @@
       esc.agregar('co2In',    { path: 'dz-co2-in',   ion: 'co2',  tasa: 1.2, velocidad: 80 });
       esc.agregar('h2oIn',    { path: 'dz-h2o-in',   ion: 'h2o',  tasa: 1.2, velocidad: 80 });
       esc.agregar('hRecicla', { path: 'dz-h-recicla',ion: 'h',    tasa: 1.2, velocidad: 95 });
-      esc.agregar('hco3Nbc',  { path: 'dz-hco3-nbc', ion: 'hco3', tasa: 1.2, velocidad: 90 });
-      esc.agregar('hco3Sang', { path: 'dz-hco3-sangre', ion: 'hco3', tasa: 1.2, velocidad: 90 });
-      esc.agregar('naBaja',   { path: 'dz-na-baja',  ion: 'na',   tasa: 1.2, velocidad: 85 });
-      esc.agregar('naSang',   { path: 'dz-na-sangre',ion: 'na',   tasa: 1.2, velocidad: 85 });
+      // NBCe1: 3 HCO₃⁻ por cada 1 Na⁺
+      esc.agregar('hco3Nbc',  { path: 'dz-hco3-nbc', ion: 'hco3', tasa: 1.5, velocidad: 90 });
+      esc.agregar('naNbc',    { path: 'dz-na-nbc',   ion: 'na',   tasa: 0.5, velocidad: 90 });
+      // Bomba: 3 Na⁺ afuera por cada 2 K⁺ adentro
+      esc.agregar('naBomba',  { path: 'dz-na-bomba', ion: 'na',   tasa: 1.5, velocidad: 85 });
+      esc.agregar('kBomba',   { path: 'dz-k-bomba',  ion: 'k',    tasa: 1.0, velocidad: 85 });
     },
 
     // Flujo de cada corriente y estado de cada glifo, en normal (0) y con fármaco (1)
@@ -174,8 +177,9 @@
           luzNa: 1, luzHco3: 1,
           naIn: b ? 0.12 : 1, hOut: b ? 0.12 : 1,
           hco3Ac4: b ? 0 : 1, co2In: b ? 0 : 1, h2oIn: b ? 0 : 1,
-          hRecicla: b ? 0 : 1, hco3Nbc: b ? 0.15 : 1, hco3Sang: b ? 0.15 : 1,
-          naBaja: b ? 0.15 : 1, naSang: b ? 0.15 : 1
+          hRecicla: b ? 0 : 1,
+          hco3Nbc: b ? 0.15 : 1, naNbc: b ? 0.15 : 1,
+          naBomba: b ? 0.3 : 1, kBomba: b ? 0.3 : 1
         },
         glifos: {
           'dz-ca4': b ? 'off' : 'ok', 'dz-ca2': b ? 'off' : 'ok',
