@@ -48,8 +48,8 @@
     const btn = document.getElementById('ley-btn');
 
     function pintar() {
-      document.getElementById('ley-titulo').textContent = t('leyenda.titulo', 'Leyendas · qué es cada bolita');
-      btn.innerHTML = '<span class="ley-btn-punto"></span>' + t('leyenda.boton', 'Leyendas');
+      document.getElementById('ley-titulo').textContent = t('leyenda.titulo', 'Guía · qué es cada bolita');
+      btn.innerHTML = '<span class="ley-btn-punto"></span>' + t('leyenda.boton', 'Guía');
       const ul = document.getElementById('ley-lista');
       let h = '';
       const fila = (color, sigla, nombre) =>
