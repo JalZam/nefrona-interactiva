@@ -387,19 +387,14 @@
   const LEYENDA = ['na', 'k', 'cl', 'h', 'hco3', 'co2', 'h2o'];
 
   function leyenda() {
-    const cont = document.getElementById('dm-leyenda');
-    if (!cont) return;
-    const fila = (color, sigla, nombre, grande) =>
-      '<li><span class="dm-ley-bolita' + (grande ? ' grande' : '') + '" style="background:' + color + '">' +
-      sigla + '</span>' + nombre + '</li>';
-    let h = '';
-    LEYENDA.forEach(id => {
-      const ion = NI.iones[id];
-      h += fila(ion.color, ion.etiqueta, t('leyenda.' + id), ion.etiqueta.length >= 4);
+    if (!NI.leyenda) return;
+    NI.leyenda.crear({
+      iones: LEYENDA,
+      extras: [
+        { color: '#d93b3b', clave: 'leyenda.sangre', nombre: 'Sangre (en el mapa)' },
+        { color: '#c98a16', clave: 'leyenda.filtrado', nombre: 'Filtrado / orina (en el mapa)' }
+      ]
     });
-    h += fila('#d93b3b', '', t('leyenda.sangre'));
-    h += fila('#c98a16', '', t('leyenda.filtrado'));
-    cont.innerHTML = h;
   }
 
   /* ---------- Acercamiento a la célula ---------- */
@@ -477,7 +472,6 @@
         NI.i18n.pintarHTML();
         dibujar(document.getElementById('dm-svg'));
         panel();
-        leyenda();
         E.sel = null; seleccionar(sel);
         if (zm) {
           const c = CLASES.find(x => x.id === zm);
