@@ -7,13 +7,13 @@
 <!-- last-completed-step: phase-5 -->
 
 ## ¿Qué es este proyecto?
-Página web estática (HTML + CSS + JS puro + SVG) para **aprender viendo** la fisiología celular del nefrón y cómo se rompe en la **acidosis tubular renal tipo 4 (ATR4)**. Muestra el funcionamiento normal (canales, transportadores, qué los activa) y permite aplicar causas (medicamentos o enfermedades que bajan la aldosterona o bloquean su acción) y ver, **en tiempo real y con dinámica en días**, cómo cambian los canales de cada célula y los resultados de sangre y orina.
+Página web estática de una sola página (HTML + CSS + JS puro + SVG) para **aprender viendo** la **acidosis metabólica sin anion gap**: cómo el riñón maneja el ácido y el bicarbonato, y cómo falla en cada acidosis tubular renal. Muestra 4 células en fila (proximal, asa gruesa, principal, intercalada α) con sus canales y los iones como partículas, y 8 opciones (normal, diarrea con riñón sano, ATR 2, 1, 3 y tres formas de ATR 4) explicadas en una lista numerada; cada punto se aplica al tocarlo y cambia canales, sangre y orina.
 
-Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje; más adelante docencia. Visión futura: ATR 1 y 2, y un "riñón continuo" simulable.
+Dueño: Juan José Jaller (nefrólogo). Uso: herramienta personal de aprendizaje; más adelante docencia. 
 
 ## Estado Actual
 **Fase activa:** 2026-11-06: por decisión de Juanjo el sitio queda SOLO con la animación de la acidosis metabólica sin anion gap (index.html). Se quitaron el simulador cuantitativo y la vista en columna (recuperables desde git, commit 14605a3). Pendiente: revisión visual de Juanjo.
-**Progreso general:** 5 de 5 fases construidas
+**Progreso general:** 5 de 5 fases construidas; desde 2026-11-06 solo queda en el sitio la animación (antes Fase 5).
 
 ## Stack Técnico
 - HTML + CSS + JavaScript puro. SVG inline dibujado a mano. Sin framework, sin dependencias, sin compilación.
@@ -37,11 +37,10 @@ PLAN.md             fases y estado
 
 ## Decisiones Técnicas Importantes
 - **Solo la animación** (2026-11-06, decisión de Juanjo): se quitó el simulador cuantitativo en tiempo real y la vista en columna. Los valores de laboratorio de la página son ilustrativos, no predicciones para un paciente.
-- **Estilo visual de las células** (pedido de Juanjo 2026-10-23, referencia: Fig. 1 de Palmer 2021 / Comprehensive Clinical Nephrology): luz a la izquierda, célula color arena con borde derecho redondeado, intersticio a la derecha, círculos azules = transporte pasivo, verdes con ATP = activo, rayitas = canal, flechas negras finas con el ion. Todo en `js/celulas.js`.
-- **4 células dibujadas en v1** (pedido de Juanjo 2026-10-23): túbulo proximal, asa gruesa, célula principal, célula intercalada α, cada una con partículas animadas y dependencias encadenadas. Mapa del nefrón y eje RAAS siempre animados.
-- **8 causas → 5 entradas** del modelo (síntesis de aldosterona, renina, bloqueo MR, bloqueo ENaC, entrega distal de Na⁺) + TFG + dieta. Combinables.
-- El modelo debe mostrar que con **bloqueo directo de ENaC (amilorida/trimetoprim) el pH urinario sube (>5,5)** y con **deficiencia de aldosterona baja (<5,5)**. Es el punto de enseñanza más delicado.
-- Hiperkalemia → amoniogénesis: K⁺ 6,0 ≈ 50 % de producción. Calcineurina: NCC↑ + hiporreninismo parcial. Addison: solo aldosterona.
+- **Estilo visual de las células** (pedido de Juanjo 2026-10-23, referencia: Fig. 1 de Palmer 2021 / Comprehensive Clinical Nephrology): luz a la izquierda, célula color arena con borde derecho redondeado, intersticio a la derecha, círculos azules = transporte pasivo, verdes con ATP = activo, rayitas = canal, flechas negras finas con el ion. En la fila la luz quedó arriba y la sangre abajo para que la luz sea un conducto continuo; el resto del estilo se conserva. Todo en `js/nefron-fila.js`.
+- **4 células dibujadas en v1** (pedido de Juanjo 2026-10-23): túbulo proximal, asa gruesa, célula principal, célula intercalada α, cada una con partículas animadas y dependencias encadenadas. El eje RAAS (renina → angiotensina II → suprarrenal) va en la banda de sangre.
+- La animación debe mostrar que con **bloqueo directo de ENaC (amilorida/trimetoprim) el pH urinario sube (>5,5)** y con **deficiencia de aldosterona baja (<5,5)**. Es el punto de enseñanza más delicado.
+- Hiperkalemia → amoniogénesis: K⁺ alto frena la producción proximal de NH₄⁺ (eje de las ATR 4).
 - **Estequiometría visible** (pedido de Juanjo 2026-10-26): los transportadores con cuenta fija esperan a tener todos sus sustratos aparcados (las tres bombas Na⁺/K⁺ 3 : 2 —proximal, asa, principal—, NKCC2, NBCe1 1 Na⁺ : 3 HCO₃⁻, AE1 1 : 1, NHE3) y el sobrante se acumula o rebota; el Cl⁻ sale por ClC-Kb en asa y célula α, el K⁺ de las bombas se recicla por Kir4.1 / canal K⁺. El voltaje luminal de la animación se mide con los Na⁺ que entran por ENaC frente a los que pasan de largo (no es un valor fijado por el paso).
 - Sin publicidad, sin rastreo de valores, sin cookies. Contador de visitas hits.sh (imagen en la cabecera, una sola cuenta `nefrona-interactiva.com`; cuenta cargas, no personas; añadido 2026-10-26 a pedido de Juanjo). Si algún día quiere visitantes únicos: GoatCounter como en el Velocímetro.
 
@@ -50,10 +49,11 @@ PLAN.md             fases y estado
 - Publicar: `git add -A && git commit -m "..." && git push` (cada push a `main` actualiza el sitio en ~1 min; no hay ambiente de pruebas).
 
 ## Documentos del Proyecto
-- `INVESTIGATION.md` — Investigación (fisiología, modelo, referencias). Aprobada 2026-10-23.
+- `INVESTIGATION.md` — Investigación (fisiología, referencias; la Parte D describe el modelo del simulador ya quitado). Aprobada 2026-10-23.
 - `PLAN.md` — Plan de fases y estado. Aprobado 2026-10-23.
 - `CLAUDE.md` — Este archivo (contexto técnico).
 
 ## Deuda Técnica Activa
-- Fuera de v1: volumen extracelular y Na⁺ dinámicos, insulina, célula β/pendrina, fosfato/citrato, hiperkalemia aguda.
-- Añadidos 2026-10-26 : opción "diarrea con riñón sano", H⁺/K⁺-ATPasa, caja aldosterona/acidosis → H⁺-ATPasa, acidez titulable (fosfato en la luz del colector), Cl⁻ plasmático, cajón de heces, excreción neta de ácido en la orina, franja de laboratorio bajo el dibujo (sangre: Na⁺ fijo 140, K⁺, Cl⁻ = 128 − HCO₃⁻, HCO₃⁻, anion gap; orina: pH, Na⁺, K⁺, Cl⁻ por electroneutralidad, brecha aniónica urinaria, NH₄⁺, ENA; valores ilustrativos derivados del estado). Siguen fuera: BK, pendrina/célula β, acuaporina-2.
+- Fuera de la animación: volumen extracelular y Na⁺ dinámicos, insulina, fosfato/citrato más allá de la acidez titulable, hiperkalemia aguda.
+- Descartados por ahora por Juanjo: canal BK, pendrina/célula β, acuaporina-2.
+- `js/refs.js` conserva campos `estado` del simulador que leen `NI.sim` (no se llaman; limpiar si se toca el archivo).
