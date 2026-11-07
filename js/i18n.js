@@ -46,7 +46,7 @@
     'foot.2': '23 referencias de PubMed',
     'foot.3': 'Todo ocurre en su navegador: sin cookies, sin registro, sin envío de datos.',
 
-    'leyenda.titulo': 'Referencias · qué es cada bolita', 'leyenda.boton': 'Referencias',
+    'leyenda.titulo': 'Leyendas · qué es cada bolita', 'leyenda.boton': 'Leyendas',
     'leyenda.na': 'Sodio', 'leyenda.k': 'Potasio', 'leyenda.cl': 'Cloro',
     'leyenda.h': 'Hidrogenión (ácido)', 'leyenda.hco3': 'Bicarbonato',
     'leyenda.co2': 'Dióxido de carbono', 'leyenda.h2o': 'Agua',
@@ -170,7 +170,7 @@
     'foot.2': '23 PubMed references',
     'foot.3': 'Everything runs in your browser: no cookies, no sign-in, no data sent anywhere.',
 
-    'leyenda.titulo': 'Key · what each dot is', 'leyenda.boton': 'Key',
+    'leyenda.titulo': 'Legend · what each dot is', 'leyenda.boton': 'Legend',
     'leyenda.na': 'Sodium', 'leyenda.k': 'Potassium', 'leyenda.cl': 'Chloride',
     'leyenda.h': 'Hydrogen ion', 'leyenda.hco3': 'Bicarbonate',
     'leyenda.co2': 'Carbon dioxide', 'leyenda.h2o': 'Water',

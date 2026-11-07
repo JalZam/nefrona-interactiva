@@ -25,7 +25,7 @@
     'ac.tocaCanal': 'toca un canal, bomba o caja para leer qué lo activa',
     'ac.porque': '¿Por qué? Toca un canal, bomba o caja del esquema y aquí sale qué lo activa, qué lo apaga y la referencia.',
     'ac.elige': 'Acidosis metabólica sin anion gap · toca una · luego toca cada número en orden (o usa ← →)',
-    'ac.biblio': 'Bibliografía', 'ac.sangre': 'Sangre', 'ac.orina': 'Orina',
+    'ac.biblio': 'Referencias', 'ac.sangre': 'Sangre', 'ac.orina': 'Orina',
     'ac.refTarjeta': 'Referencias:',
     'doc.titulo': 'Nefrona Interactiva — Acidosis metabólica sin anion gap',
     'ac.pie': 'Nefrona Interactiva · Herramienta educativa · CiMedical · Esquemas dibujados según la convención de los textos clásicos de fisiología renal · Todo ocurre en el navegador; no se envía ni guarda ningún dato. Solo se cuenta el número de visitas (hits.sh), sin cookies ni identificación de personas.',
