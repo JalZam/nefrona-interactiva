@@ -325,11 +325,6 @@
         r: (3 + (1 - g.vida) * 4).toFixed(1), fill: 'none',
         stroke: g.color, 'stroke-width': 2, opacity: Math.max(0, g.vida).toFixed(2) }, c);
     }
-    // Contadores
-    const set = (id, v) => { const n = document.getElementById(id); if (n) n.textContent = v; };
-    set('dm-c-filtrado', E.cuenta.filtrado);
-    set('dm-c-reab', E.cuenta.reab);
-    set('dm-c-orina', E.cuenta.orina);
   }
 
   function bucle(ts) {

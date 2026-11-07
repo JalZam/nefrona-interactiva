@@ -467,13 +467,6 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .dm-seg-on { stroke: #ffe9a3; }
 .dm-seg-off { opacity: .45; }
 
-.dm-contadores { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .3rem; }
-.dm-cont { flex: 1 1 150px; background: var(--bg); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: .5rem .7rem; }
-.dm-cont b { display: block; font-family: 'Outfit', sans-serif; font-size: 1.35rem;
-  font-weight: 800; color: var(--dark); font-variant-numeric: tabular-nums; }
-.dm-cont span { font-size: .74rem; color: var(--text-secondary); }
-.dm-cont-rojo b { color: #c62828; } .dm-cont-ambar b { color: #a9761a; }
 .dm-nota { font-size: .74rem; color: var(--text-muted); margin-top: .5rem; }
 
 .dm-panel { top: 72px; }
