@@ -338,9 +338,6 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .anim-card { padding: .5rem; }
 /* alto fijado para que se vean al menos tres células a la vez; el ancho sale de la proporción */
 #svg-nefron { width: 100%; height: auto; display: block; margin: 0 auto; font-family: 'Inter', system-ui, sans-serif; }
-.anim-card.columna #svg-nefron { height: calc((100vh - 140px) / 0.69); width: auto; max-width: 100%; }
-.anim-card.columna[data-ver="2"] #svg-nefron { height: calc((100vh - 140px) / 0.48); }
-.anim-card.columna[data-ver="4"] #svg-nefron { height: auto; width: 100%; max-width: 980px; }
 .ver-barra { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; padding: .2rem .4rem .5rem; font-size: .78rem; color: var(--text-secondary); }
 .ver-label { font-weight: 700; text-transform: uppercase; letter-spacing: .4px; font-size: .7rem; color: var(--text-muted); }
 .ver-btn { font: inherit; font-size: .78rem; font-weight: 600; padding: .3rem .7rem; border-radius: 999px; border: 1px solid var(--border); background: var(--white); color: var(--dark); cursor: pointer; }
