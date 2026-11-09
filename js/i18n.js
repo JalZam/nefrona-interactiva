@@ -62,12 +62,12 @@
     'cls.iac.resumen': '<b>Acetazolamida.</b> Bloquea la anhidrasa carbónica del túbulo proximal, así que el bicarbonato filtrado no se recupera y se pierde en la orina junto con Na⁺ y agua. Produce orina alcalina y acidosis metabólica hiperclorémica. Es un diurético débil y autolimitado: al bajar el bicarbonato de la sangre se filtra menos y el fármaco se queda sin sustrato.',
 
     'cls.osm.nombre': 'Diuréticos osmóticos',
-    'cls.osm.seg': 'Túbulo proximal y rama descendente',
+    'cls.osm.seg': 'Túbulo proximal y rama descendente delgada (segmentos permeables al agua)',
     'cls.osm.diana': 'Ninguna proteína: actúan por osmolaridad',
     'cls.osm.corto': 'No se reabsorben: se quedan en la luz y retienen agua con ellos.',
     'cls.osm.pot': 'Variable; uso en presión intracraneal',
     'cls.osm.farm': 'Manitol · Glicerol',
-    'cls.osm.resumen': '<b>Manitol.</b> No se reabsorbe en ningún punto del túbulo: se queda en la luz y arrastra agua por osmolaridad. Se usa para bajar la presión intracraneal, no para el edema.',
+    'cls.osm.resumen': '<b>Manitol.</b> No se reabsorbe en ningún punto del túbulo: se queda en la luz y arrastra agua por osmolaridad. Actúa donde el túbulo es permeable al agua: sobre todo el <b>túbulo proximal</b> y, después, la rama descendente delgada del asa de Henle. Se usa para bajar la presión intracraneal, no para el edema.',
 
     'cls.asa.nombre': 'Diuréticos de asa',
     'cls.asa.seg': 'Rama ascendente gruesa',
@@ -149,9 +149,9 @@
     'z.osm.b1': 'El manitol se filtra libremente en el glomérulo y <b>no tiene transportador</b>: no se reabsorbe en ningún punto del túbulo. Aquí no se bloquea ningún canal.',
     'z.osm.b2': 'A medida que sale agua, el manitol se concentra en la luz y su fuerza osmótica <b>retiene agua</b> dentro del túbulo.',
     'z.osm.b3': 'Por la AQP1 pasa menos agua: la acuaporina funciona, pero falta la diferencia de concentración que mueve el agua.',
-    'z.osm.b4': 'El agua que se queda <b>diluye el Na⁺ de la luz</b>, que baja por debajo del plasma (en perros, el cociente luz/plasma del Na⁺ bajó de 0,99 a 0,93).',
+    'z.osm.b4': 'El agua que se queda <b>diluye el Na⁺ de la luz</b>, que baja por debajo de la del plasma.',
     'z.osm.b5': 'Con menos Na⁺ en la luz, el SGLT2 y los demás cotransportadores reciben menos: <b>cae la reabsorción de Na⁺</b>, y con ella la de agua.',
-    'z.osm.b6': 'Lo mismo ocurre en la rama descendente delgada, también permeable al agua por la AQP1. En los estudios de micropunción el efecto mayor está en el <b>asa de Henle</b>, no en el proximal.',
+    'z.osm.b6': 'Lo mismo sigue en la rama descendente delgada, también permeable al agua por la AQP1: el efecto empieza en el proximal y se suma a lo largo del <b>asa de Henle</b>.',
     'z.osm.b7': 'Parte de la urea de la médula se lava hacia la orina: el gradiente medular se reduce y el riñón concentra menos.',
     'z.osm.b8': 'En la orina: mucho volumen, más Na⁺ y K⁺, y todo el manitol filtrado. Se usa para la presión intracraneal, no para el edema; en dosis altas, sobre todo con la función renal baja, puede producir lesión renal (<b>nefrosis osmótica</b>).'
   };
@@ -212,12 +212,12 @@
     'cls.iac.resumen': '<b>Acetazolamide.</b> It blocks carbonic anhydrase in the proximal tubule, so filtered bicarbonate is not reabsorbed and is lost in the urine together with Na⁺ and water. It produces alkaline urine and hyperchloremic metabolic acidosis. It is a weak, self-limiting diuretic: as blood bicarbonate falls, less is filtered and the drug runs out of substrate.',
 
     'cls.osm.nombre': 'Osmotic diuretics',
-    'cls.osm.seg': 'Proximal tubule and descending limb',
+    'cls.osm.seg': 'Proximal tubule and thin descending limb (water-permeable segments)',
     'cls.osm.diana': 'No protein: they act by osmolality',
     'cls.osm.corto': 'They are not reabsorbed: they stay in the lumen and hold water with them.',
     'cls.osm.pot': 'Variable; used for intracranial pressure',
     'cls.osm.farm': 'Mannitol · Glycerol',
-    'cls.osm.resumen': '<b>Mannitol.</b> It is not reabsorbed anywhere along the tubule: it stays in the lumen and drags water with it by osmolality. It is used to lower intracranial pressure, not for edema.',
+    'cls.osm.resumen': '<b>Mannitol.</b> It is not reabsorbed anywhere along the tubule: it stays in the lumen and drags water with it by osmolality. It acts where the tubule is permeable to water: mainly the <b>proximal tubule</b> and then the thin descending limb of the loop of Henle. It is used to lower intracranial pressure, not for edema.',
 
     'cls.asa.nombre': 'Loop diuretics',
     'cls.asa.seg': 'Thick ascending limb',
@@ -299,9 +299,9 @@
     'z.osm.b1': 'Mannitol is freely filtered at the glomerulus and <b>has no transporter</b>: it is not reabsorbed anywhere along the tubule. No channel is blocked here.',
     'z.osm.b2': 'As water leaves, mannitol becomes concentrated in the lumen and its osmotic pull <b>holds water</b> inside the tubule.',
     'z.osm.b3': 'Less water crosses AQP1: the aquaporin works, but the concentration difference that drives water is missing.',
-    'z.osm.b4': 'The water left behind <b>dilutes luminal Na⁺</b>, which falls below plasma (in dogs, the tubular fluid-to-plasma Na⁺ ratio fell from 0.99 to 0.93).',
+    'z.osm.b4': 'The water left behind <b>dilutes luminal Na⁺</b>, which falls below the plasma level.',
     'z.osm.b5': 'With less Na⁺ in the lumen, SGLT2 and the other cotransporters receive less: <b>Na⁺ reabsorption falls</b>, and water reabsorption with it.',
-    'z.osm.b6': 'The same happens in the thin descending limb, which is also water-permeable through AQP1. In micropuncture studies the larger effect is in the <b>loop of Henle</b>, not in the proximal tubule.',
+    'z.osm.b6': 'The same continues in the thin descending limb, which is also water-permeable through AQP1: the effect starts in the proximal tubule and adds up along the <b>loop of Henle</b>.',
     'z.osm.b7': 'Some medullary urea is washed out into the urine: the medullary gradient shrinks and the kidney concentrates the urine less.',
     'z.osm.b8': 'In the urine: high volume, more Na⁺ and K⁺, and all the filtered mannitol. It is used for intracranial pressure, not for edema; at high doses, especially with reduced kidney function, it can injure the kidney (<b>osmotic nephrosis</b>).'
   };

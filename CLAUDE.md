@@ -97,6 +97,12 @@ PLAN.md               fases y estado
     (2 solutos → 1 H₂O, proporción ilustrativa). Con manitol la mitad de esa agua se queda en la luz y
     2 de cada 5 Na⁺ siguen de largo (dilución del Na⁺ luminal; Seely & Dirks 1969). El SGLT2 se dibuja como
     ejemplo de entrada de Na⁺; el texto aclara que la vía principal es el NHE3.
+  - **Mapa del manitol** (corrección de Juanjo 2026-11-08): su insignia va en el **túbulo proximal** (no en
+    la rama descendente, donde parecía que actuaba solo ahí), y al elegir una clase sus segmentos se tiñen
+    con el color de la clase (proximal + rama descendente + vértice del asa).
+- **No mencionar datos de animales en los textos visibles** (pedido de Juanjo 2026-11-08): nada de «en
+  perros», «en ratas»… en pasos, pies o tarjetas. Las referencias del pie sí se quedan, y la especie se
+  anota solo en los documentos de investigación.
 - **Las partículas van DEBAJO** de canales, enzimas y rótulos: el ancla `#capa-particulas-ancla` se inserta
   en el SVG **antes** de dibujar los glifos. Si se dibuja después, las bolitas tapan los nombres.
 - **Estilo visual de las células** (pedido de Juanjo 2026-10-23, referencia: Fig. 1 de Palmer 2021 /

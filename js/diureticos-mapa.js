@@ -57,8 +57,9 @@
   /* ---------- Las seis clases de diurético ---------- */
 
   const CLASES = [
-    { n: 1, id: 'iac', color: '#0ea5e9', seg: ['prox'], badge: { seg: 'prox', t: 0.5 } },
-    { n: 2, id: 'osm', color: '#8b5cf6', seg: ['prox', 'desc', 'asaU'], badge: { seg: 'desc', t: 0.34 } },
+    { n: 1, id: 'iac', color: '#0ea5e9', seg: ['prox'], badge: { seg: 'prox', t: 0.3 } },
+    // El osmótico actúa sobre todo en el proximal: su insignia va ahí (no en la rama descendente)
+    { n: 2, id: 'osm', color: '#8b5cf6', seg: ['prox', 'desc', 'asaU'], badge: { seg: 'prox', t: 0.74 } },
     { n: 3, id: 'asa', color: '#dc2626', seg: ['asc'], badge: { seg: 'asc', t: 0.5 } },
     { n: 4, id: 'tia', color: '#16a34a', seg: ['dist'], badge: { seg: 'dist', t: 0.5 } },
     { n: 5, id: 'ahk', color: '#d97706', seg: ['colCort'], badge: { seg: 'colCort', t: 0.62 } },
@@ -339,6 +340,8 @@
       const dentro = c && c.seg.includes(s.id);
       n.classList.toggle('dm-seg-on', !!dentro);
       n.classList.toggle('dm-seg-off', !!c && !dentro);
+      // Los segmentos donde actúa la clase se tiñen con su color, para que se vean todos
+      n.style.stroke = dentro ? 'color-mix(in srgb, ' + c.color + ' 32%, #fff)' : '';
     });
 
     const caja = document.getElementById('dm-detalle');
