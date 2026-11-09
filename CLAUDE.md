@@ -140,8 +140,8 @@ PLAN.md               fases y estado
   `social_clicked`, `cookies_accepted`, `cookies_rejected` (todos llevan `pagina` e `idioma`). Si PostHog no
   carga, la página funciona igual. Política en `privacidad.html` (+ `js/privacidad.js`): responsable Juan
   José Jaller (persona natural), 12 meses, Ley 1581/2012, Decreto 1377/2013 y RGPD; el correo se arma con JS
-  (`[data-correo]`). Clave pública `phc_qAq3…`, host `https://eu.i.posthog.com`. Pendiente en el panel de
-  PostHog (Juanjo): retención de 12 meses y encender la grabación de sesiones. El contador hits.sh de la cabecera se queda por ahora.
+  (`[data-correo]`). Clave pública `phc_qAq3…`, host `https://eu.i.posthog.com`. Panel de PostHog
+  configurado por Juanjo (2026-11-08): retención de 12 meses y grabación de sesiones encendida. El contador hits.sh de la cabecera se queda por ahora.
 
 ## Cómo Correr y Probar
 - Local: `python3 -m http.server 8080` en la carpeta (o doble clic en el HTML).

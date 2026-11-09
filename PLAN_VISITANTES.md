@@ -2,8 +2,8 @@
 
 Estado: **PUBLICADO** (2026-11-08, commits fc2e867 y 06052f1). Verificado en el sitio: carga el script de
 PostHog (servidor UE), la clave responde y el contador hits.sh sigue sumando.
-Pendiente en el panel de PostHog (lo hace Juanjo): fijar la retención en 12 meses y encender la grabación de
-sesiones (la página ya la pide cuando el visitante acepta).
+Panel de PostHog listo (Juanjo, 2026-11-08): retención en 12 meses y grabación de sesiones encendida
+(verificada desde afuera: /flags devuelve sessionRecording activo).
 
 ## Qué quiere saber Juanjo (2026-11-08)
 - Desde dónde entran (país, ciudad, desde qué página o red social).
@@ -56,7 +56,7 @@ abandonan.
 ## Lo que falta decidir (Juanjo)
 1. ✅ Responsable de los datos: **Juan José Jaller, como persona natural** (decidido 2026-11-08).
 2. ✅ Correo de contacto: **juanjallerch@cimedical.co** (decidido 2026-11-08).
-3. ✅ Conservación de los datos: **12 meses** (decidido 2026-11-08). Configurar la retención en PostHog.
+3. ✅ Conservación de los datos: **12 meses** (decidido y configurado en PostHog 2026-11-08).
 4. ✅ Cuenta creada (2026-11-08) en el servidor de **Europa** (verificado con /decide: eu responde, us
    rechaza). Project API key (pública, va en la página): `phc_qAq3VixFDjysd75E8RDH2gNZiKq4MFuawpykMzr6FPeh`,
    api_host `https://eu.i.posthog.com`.
