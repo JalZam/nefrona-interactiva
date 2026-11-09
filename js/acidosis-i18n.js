@@ -28,7 +28,7 @@
     'ac.biblio': 'Referencias', 'ac.sangre': 'Sangre', 'ac.orina': 'Orina',
     'ac.refTarjeta': 'Referencias:',
     'doc.titulo': 'Nefrona Interactiva — Acidosis metabólica sin anion gap',
-    'ac.pie': 'Nefrona Interactiva · Herramienta educativa · CiMedical · Esquemas dibujados según la convención de los textos clásicos de fisiología renal · Todo ocurre en el navegador; no se envía ni guarda ningún dato. Solo se cuenta el número de visitas (hits.sh), sin cookies ni identificación de personas.',
+    'ac.pie': 'Nefrona Interactiva · Herramienta educativa · CiMedical · Esquemas dibujados según la convención de los textos clásicos de fisiología renal · Sin publicidad. Se cuentan las visitas con PostHog (servidor en Europa); las cookies, solo con su permiso.',
     'leyenda.nh4': 'Amonio', 'leyenda.nh3': 'Amoniaco', 'leyenda.gln': 'Glutamina',
     'leyenda.hpo4': 'Fosfato', 'leyenda.h2po4': 'Fosfato ácido (acidez titulable)',
     'leyenda.aldo': 'Aldosterona', 'leyenda.angii': 'Angiotensina II', 'leyenda.renina': 'Renina'
@@ -45,7 +45,7 @@
     'ac.biblio': 'References', 'ac.sangre': 'Blood', 'ac.orina': 'Urine',
     'ac.refTarjeta': 'References:',
     'doc.titulo': 'Nefrona Interactiva — Normal anion gap metabolic acidosis',
-    'ac.pie': 'Nefrona Interactiva · Learning tool · CiMedical · Diagrams drawn following the convention of the classic renal physiology texts · Everything runs in your browser; no data is sent or stored. Only the number of page loads is counted (hits.sh), with no cookies and no identification of people.',
+    'ac.pie': 'Nefrona Interactiva · Learning tool · CiMedical · Diagrams drawn following the convention of the classic renal physiology texts · No advertising. Visits are counted with PostHog (servers in Europe); cookies only with your permission.',
     'leyenda.nh4': 'Ammonium', 'leyenda.nh3': 'Ammonia', 'leyenda.gln': 'Glutamine',
     'leyenda.hpo4': 'Phosphate', 'leyenda.h2po4': 'Acid phosphate (titratable acid)',
     'leyenda.aldo': 'Aldosterone', 'leyenda.angii': 'Angiotensin II', 'leyenda.renina': 'Renin'

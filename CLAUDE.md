@@ -63,6 +63,7 @@ con `js/acidosis-en.js` (traducción) y `js/acidosis-i18n.js` (los aplica en cal
 ## Estructura de Archivos Clave
 ```
 index.html            ACIDOSIS: animación en fila, panel de ATR, laboratorio, referencias
+privacidad.html       política de tratamiento de datos (ES/EN, textos en js/privacidad.js)
 diureticos.html       DIURÉTICOS: mapa de la nefrona, panel de las 6 clases, acercamiento
 style.css             estilos de las dos páginas (paleta y tipografías del Velocímetro Renal)
 
@@ -70,6 +71,7 @@ js/particulas.js      motor de partículas: caminos SVG, cadenas, COLAS con este
                       (cola/aparcar/hayCupo/reservar/intentarCompletar) y rebotes ✕
 js/i18n.js            idioma común: t(), tx(), extender(), alCambiar(), pintarHTML()
 js/leyenda.js         botón flotante «Guía» con el color y la sigla de cada bolita
+js/analitica.js       PostHog UE con consentimiento, aviso de cookies y eventos propios
 
 js/nefron-fila.js     acidosis: las 4 células, cajones de orina y heces, laboratorio, render(E)
 js/atr.js             acidosis: las 8 opciones y sus listas numeradas
@@ -126,7 +128,20 @@ PLAN.md               fases y estado
   La terminología inglesa se toma de las referencias del proyecto (revistas estadounidenses): *type 1–4
   RTA, thick ascending limb, type A intercalated cell, lumen-negative voltage, ammoniagenesis, titratable
   acid, net acid excretion, urine anion gap*; grafía americana.
-- Sin publicidad, sin rastreo, sin cookies. Contador hits.sh en la cabecera (cuenta cargas, no personas).
+- **Analítica: PostHog (servidor de Europa) con consentimiento, sin publicidad** (aprobado por Juanjo
+  2026-11-08; reemplaza la regla «sin rastreo, sin cookies»). Todo vive en `js/analitica.js` (carga después
+  de `i18n.js` en cada página): arranca con `persistence: 'memory'` y sin grabación (cuenta la visita sin
+  cookies); al **Aceptar** pasa a `'localStorage+cookie'` con `set_config` y `startSessionRecording()`
+  (entradas enmascaradas); al **Rechazar** o revocar sigue en memoria y borra cookies/claves `ph_*`. La
+  elección va en `localStorage['ni-cookies']` ('si'/'no'); el enlace «Cookies» del pie (`[data-cookies]`)
+  reabre el aviso. Eventos propios en inglés snake_case por `NI.analitica.evento()`: `atr_option_selected`,
+  `atr_step_clicked`, `why_card_opened`, `reference_opened`, `references_expanded`,
+  `diuretic_class_selected`, `cell_zoom_opened`, `diuretic_toggled`, `language_changed`, `key_toggled`,
+  `social_clicked`, `cookies_accepted`, `cookies_rejected` (todos llevan `pagina` e `idioma`). Si PostHog no
+  carga, la página funciona igual. Política en `privacidad.html` (+ `js/privacidad.js`): responsable Juan
+  José Jaller (persona natural), 12 meses, Ley 1581/2012, Decreto 1377/2013 y RGPD; el correo se arma con JS
+  (`[data-correo]`). Clave pública `phc_qAq3…`, host `https://eu.i.posthog.com`. Pendiente: configurar en
+  PostHog la retención de 12 meses. El contador hits.sh de la cabecera se queda por ahora.
 
 ## Cómo Correr y Probar
 - Local: `python3 -m http.server 8080` en la carpeta (o doble clic en el HTML).
@@ -138,6 +153,9 @@ PLAN.md               fases y estado
 - Si la extensión de Chrome no alcanza el servidor local (el sandbox lo aísla), probar con Chrome sin ventana:
   `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --virtual-time-budget=4000
   --screenshot=<archivo>.png "http://127.0.0.1:8080/diureticos.html?clase=osm&zoom=1#prueba"`.
+- Chrome sin ventana tiene **ancho mínimo de 500 px**: para ver el celular (390 px) meter la página en un
+  `<iframe width=390>` servido desde el mismo origen. Para revisar cookies/eventos, una página de prueba en
+  el mismo origen que carga la página en un iframe y lee `document.cookie` y `posthog.config`.
 - Chrome sin ventana congela `requestAnimationFrame`: usar `#prueba` (llama a `avanzar()`) para que la
   captura muestre la animación en marcha.
 - **Un iframe de prueba debe servirse del MISMO puerto** que la página, o no puede guiarla (mismo origen).

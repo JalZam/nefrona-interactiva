@@ -72,6 +72,9 @@
   const C = (c, campo) => t('cls.' + c.id + '.' + campo);
   // Solo las clases listas abren el acercamiento
   const tieneZoom = c => !!c && c.lista && !!NI.diuZoom && NI.diuZoom.hay(c.id);
+  // Analítica (js/analitica.js); si no está, no pasa nada
+  const ev = (n, p) => { try { if (NI.analitica) NI.analitica.evento(n, p); } catch (e) { /* nada */ } };
+  const evClase = (c, origen) => { if (c) ev('diuretic_class_selected', { clase: c.id, lista: !!c.lista, origen }); };
 
   /* ---------- Estado ---------- */
 
@@ -153,7 +156,7 @@
         class: 'dm-hit', 'data-seg': s.id }, gTubulo);
       hit.addEventListener('click', () => {
         const c = CLASES.find(c => c.seg.includes(s.id));
-        if (c) seleccionar(c.id);
+        if (c) { seleccionar(c.id); if (E.sel) evClase(c, 'segmento'); }
       });
     });
 
@@ -197,7 +200,7 @@
       const t = el('text', { x: pt.x.toFixed(1), y: (pt.y + 6).toFixed(1),
         'text-anchor': 'middle', class: 'dm-badge-n' }, g);
       t.textContent = c.n;
-      g.addEventListener('click', () => { seleccionar(c.id); if (tieneZoom(c)) abrirZoom(c); });
+      g.addEventListener('click', () => { seleccionar(c.id); if (E.sel) evClase(c, 'insignia'); if (tieneZoom(c)) { abrirZoom(c); ev('cell_zoom_opened', { clase: c.id, origen: 'insignia' }); } });
     });
 
     /* --- Medir las rutas --- */
@@ -328,7 +331,7 @@
         '</span>' +
         '<span class="dm-estado ' + (c.lista ? 'lista' : 'obra') + '">' +
           t(c.lista ? 'est.lista' : 'est.obra') + '</span>';
-      d.addEventListener('click', () => seleccionar(c.id));
+      d.addEventListener('click', () => { seleccionar(c.id); if (E.sel) evClase(c, 'lista'); });
       cont.appendChild(d);
     });
   }
@@ -378,7 +381,7 @@
         : '<p class="dm-pronto">' + t('det.pronto') + '</p>');
     resumen(c);
     const b = document.getElementById('dm-ver-cerca');
-    if (b) b.addEventListener('click', () => abrirZoom(c));
+    if (b) b.addEventListener('click', () => { abrirZoom(c); ev('cell_zoom_opened', { clase: c.id, origen: 'boton' }); });
   }
 
   /* ---------- Clases en construcción: la obra reemplaza al riñón ---------- */
@@ -542,6 +545,7 @@
       NI.diuZoom.setBloqueo(E.bloqueo);
       botonToggle(E.bloqueo);
       pintarPasos(E.bloqueo);
+      ev('diuretic_toggled', { clase: E.zoom, estado: E.bloqueo ? 'diuretico' : 'normal' });
     });
     if (location.hash === '#prueba') avanzar(40);
     // Enlace directo a una clase: diureticos.html?clase=tia
