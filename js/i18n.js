@@ -111,7 +111,7 @@
     'cls.acu.corto': 'Sin la señal V2 no se pone la acuaporina-2: se pierde agua sola, sin sal. Sube el Na⁺ de la sangre.',
     'cls.acu.pot': 'Solo agua; sube la natremia',
     'cls.acu.farm': 'Tolvaptán · Conivaptán',
-    'cls.acu.resumen': '<b>Tolvaptán.</b> Bloquea el receptor V2 de la vasopresina: sin acuaporina-2 se excreta agua libre sin sal, así que sube el sodio de la sangre. Sirve para la hiponatremia, no para descongestionar.',
+    'cls.acu.resumen': '<b>Tolvaptán.</b> Bloquea el receptor V2 de la vasopresina: sin acuaporina-2 se excreta agua libre sin sal, así que sube el sodio de la sangre. Aumenta la eliminación de agua libre.',
 
     'z.iac.titulo': 'Túbulo contorneado proximal',
     'z.iac.farmaco': 'Acetazolamida',
@@ -273,7 +273,7 @@
     'cls.acu.corto': 'Without the V2 signal, aquaporin-2 is not inserted: free water is excreted without salt and serum Na⁺ rises.',
     'cls.acu.pot': 'Water only; raises serum sodium',
     'cls.acu.farm': 'Tolvaptan · Conivaptan',
-    'cls.acu.resumen': '<b>Tolvaptan.</b> It blocks the vasopressin V2 receptor: without aquaporin-2, free water is excreted without salt, so blood sodium rises. It is used for hyponatremia, not for decongestion.',
+    'cls.acu.resumen': '<b>Tolvaptan.</b> It blocks the vasopressin V2 receptor: without aquaporin-2, free water is excreted without salt, so blood sodium rises. It increases free water excretion.',
 
     'z.iac.titulo': 'Proximal convoluted tubule',
     'z.iac.farmaco': 'Acetazolamide',
