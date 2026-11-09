@@ -55,8 +55,8 @@
     'foot.3': 'Sin publicidad. Se cuentan las visitas con PostHog (servidor en Europa); las cookies, solo con su permiso.',
     'leg.privacidad': 'Política de tratamiento de datos', 'leg.cookies': 'Cookies',
     'ck.titulo': 'Aviso de cookies',
-    'ck.texto': 'Contamos las visitas con PostHog (servidor en Europa) para mejorar la página, sin cookies. Si acepta, también guardamos una cookie para saber si vuelve y grabamos la sesión de forma anónima.',
-    'ck.mas': 'Política de datos', 'ck.aceptar': 'Aceptar', 'ck.rechazar': 'Rechazar',
+    'ck.texto': 'Usamos cookies para mejorar la página.',
+    'ck.mas': 'Más información', 'ck.aceptar': 'Aceptar', 'ck.rechazar': 'Rechazar',
 
     'leyenda.titulo': 'Guía · qué es cada bolita', 'leyenda.boton': 'Guía',
     'leyenda.na': 'Sodio', 'leyenda.k': 'Potasio', 'leyenda.cl': 'Cloro',
@@ -217,8 +217,8 @@
     'foot.3': 'No advertising. Visits are counted with PostHog (servers in Europe); cookies only with your permission.',
     'leg.privacidad': 'Data processing policy', 'leg.cookies': 'Cookies',
     'ck.titulo': 'Cookie notice',
-    'ck.texto': 'We count visits with PostHog (servers in Europe) to improve the site, without cookies. If you accept, we also store a cookie to know if you come back and record the session anonymously.',
-    'ck.mas': 'Data policy', 'ck.aceptar': 'Accept', 'ck.rechazar': 'Reject',
+    'ck.texto': 'We use cookies to improve this site.',
+    'ck.mas': 'More information', 'ck.aceptar': 'Accept', 'ck.rechazar': 'Reject',
 
     'leyenda.titulo': 'Key · what each dot is', 'leyenda.boton': 'Key',
     'leyenda.na': 'Sodium', 'leyenda.k': 'Potassium', 'leyenda.cl': 'Chloride',
