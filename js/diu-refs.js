@@ -1,4 +1,4 @@
-/* Las 23 referencias de PubMed que sustentan la sección de diuréticos.
+/* Las 26 referencias (1–25 y la 14b) de PubMed que sustentan la sección de diuréticos.
    Misma numeración que INVESTIGACION_DIURETICOS.md. */
 window.DIU_REFS = [
  {
@@ -115,5 +115,20 @@ window.DIU_REFS = [
   "n": "22",
   "cita": "Schrier RW, Gross P, Gheorghiade M, et al. Tolvaptan, a selective oral vasopressin V2-receptor antagonist, for hyponatremia (SALT-1 y SALT-2). N Engl J Med. 2006;355(20):2099-2112.",
   "doi": "https://doi.org/10.1056/NEJMoa065181"
+ },
+ {
+  "n": "23",
+  "cita": "Seely JF, Dirks JH. Micropuncture study of hypertonic mannitol diuresis in the proximal and distal tubule of the dog kidney. J Clin Invest. 1969;48(12):2330-2340.",
+  "doi": "https://doi.org/10.1172/JCI106199"
+ },
+ {
+  "n": "24",
+  "cita": "Atherton JC, Hai MA, Thomas S. Effects of water diuresis and osmotic (mannitol) diuresis on urinary solute excretion by the conscious rat. J Physiol. 1968;197(2):395-410.",
+  "doi": "https://doi.org/10.1113/jphysiol.1968.sp008566"
+ },
+ {
+  "n": "25",
+  "cita": "Visweswaran P, Massin EK, Dubose TD. Mannitol-induced acute renal failure. J Am Soc Nephrol. 1997;8(6):1028-1033.",
+  "doi": "https://doi.org/10.1681/ASN.V861028"
  }
 ];

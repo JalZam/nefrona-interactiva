@@ -11,7 +11,7 @@ Sitio educativo de fisiología renal, en español e inglés, con dos secciones:
 - **Diuréticos** (`diureticos.html`) — mapa animado de la nefrona entera (la sangre entra, se filtra,
   recorre el túbulo y sale como orina) con las seis clases de diurético situadas en su segmento, y
   acercamiento a la célula con el mecanismo normal y el bloqueo del fármaco. **En construcción:** por ahora
-  solo el túbulo proximal.
+  tienen acercamiento la acetazolamida y el manitol.
 
 Herramienta de aprendizaje; no es una calculadora clínica. Responsable: **Juan José Jaller (CiMedical)**.
 
@@ -43,11 +43,11 @@ js/acidosis-en.js     acidosis: traducción al inglés
 js/acidosis-i18n.js   acidosis: aplica el idioma en caliente
 
 js/diureticos-mapa.js diuréticos: mapa, las 6 clases, resumen
-js/diu-zoom.js        diuréticos: acercamiento a la célula (hoy el proximal)
-js/diu-refs.js        diuréticos: las 23 referencias de PubMed
+js/diu-zoom.js        diuréticos: acercamiento a la célula (acetazolamida y manitol)
+js/diu-refs.js        diuréticos: las 26 referencias de PubMed
 
 INVESTIGATION.md              acidosis: fisiología y 38 referencias (con su especie)
-INVESTIGACION_DIURETICOS.md   diuréticos: mecanismo por clase y 23 referencias
+INVESTIGACION_DIURETICOS.md   diuréticos: mecanismo por clase y 26 referencias
 PLAN.md / CLAUDE.md           gestión del proyecto
 ```
 
@@ -55,7 +55,7 @@ Sin framework, sin dependencias ni compilación. Scripts clásicos (no ES module
 
 ## Enlaces útiles
 
-`?lang=en` abre en inglés · `?clase=iac&zoom=1` abre el acercamiento del proximal ·
+`?lang=en` abre en inglés · `?clase=iac&zoom=1` abre el acercamiento del proximal · `?clase=osm&zoom=1` el del manitol ·
 añadir `&bloqueo=1` lo abre ya con el diurético puesto.
 
 ## Probar en local
@@ -77,6 +77,8 @@ sirve las tipografías.
 
 - **2026-11-07** — Las dos páginas en inglés con interruptor ES|EN; botón flotante «Guía»; revisión de
   exactitud de las 33 tarjetas contra PubMed (2 errores corregidos); las 23 referencias al pie de diuréticos.
+- **2026-11-08** — Diuréticos: acercamiento de los osmóticos (manitol): SGLT2, GLUT2, bomba Na⁺/K⁺ y AQP1;
+  el manitol retiene agua en la luz, diluye el Na⁺ y cae su reabsorción. 3 referencias nuevas (26 en total).
 - **2026-11-06** — Sección de diuréticos: mapa de la nefrona con las 6 clases y acercamiento al túbulo
   proximal (acetazolamida), con estequiometría estricta en todos los canales y enzimas. Se quitan el
   simulador cuantitativo y la vista en columna.

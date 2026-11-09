@@ -17,7 +17,7 @@
     'map.titulo': 'Diuréticos en la nefrona',
     'map.sub': 'La sangre entra por la arteriola aferente, se filtra en el glomérulo y el filtrado recorre el túbulo. Casi todo se reabsorbe y vuelve a la sangre; lo que queda sale como orina.',
     'obra.titulo': 'En construcción.',
-    'obra.texto': 'Esta sección se está haciendo: por ahora solo el túbulo proximal tiene el acercamiento a la célula. Se aceptan sugerencias y correcciones.',
+    'obra.texto': 'Esta sección se está haciendo: por ahora tienen acercamiento a la célula los inhibidores de la anhidrasa carbónica y los osmóticos. Se aceptan sugerencias y correcciones.',
     'obra.sigue': 'Escríbame por',
     'map.nota': 'Las partículas son ilustrativas, no una medida: en la realidad se filtran unos 180 litros al día y se reabsorbe más del 99 %.',
     'map.corteza': 'CORTEZA', 'map.medula': 'MÉDULA',
@@ -50,6 +50,7 @@
     'leyenda.na': 'Sodio', 'leyenda.k': 'Potasio', 'leyenda.cl': 'Cloro',
     'leyenda.h': 'Hidrogenión (ácido)', 'leyenda.hco3': 'Bicarbonato',
     'leyenda.co2': 'Dióxido de carbono', 'leyenda.h2o': 'Agua',
+    'leyenda.glu': 'Glucosa', 'leyenda.man': 'Manitol',
     'leyenda.sangre': 'Sangre (en el mapa)', 'leyenda.filtrado': 'Filtrado / orina (en el mapa)',
 
     'cls.iac.nombre': 'Inhibidores de la anhidrasa carbónica',
@@ -127,7 +128,32 @@
     'z.iac.b5': 'El Na⁺ y el HCO₃⁻ siguen de largo por el túbulo, y el <b>agua va detrás</b>: el paciente orina más.',
     'z.iac.b6': 'Llega menos HCO₃⁻ a la sangre por el NBCe1.',
     'z.iac.b7': 'En la orina: más bicarbonato, pH alcalino. En la sangre: baja el HCO₃⁻ y sube el Cl⁻ → <b>acidosis metabólica hiperclorémica</b>.',
-    'z.iac.b8': 'Es autolimitado: al bajar el HCO₃⁻ de la sangre se filtra menos, y el fármaco se queda sin sustrato.'
+    'z.iac.b8': 'Es autolimitado: al bajar el HCO₃⁻ de la sangre se filtra menos, y el fármaco se queda sin sustrato.',
+
+    'z.osm.titulo': 'Túbulo proximal (y rama descendente delgada)',
+    'z.osm.farmaco': 'Manitol',
+    'z.uNa': 'Na⁺:', 'z.uMan': 'Manitol:',
+    'z.v.poco': 'poco', 'z.v.ninguno': 'ninguno', 'z.v.muyAumentado': 'muy aumentado', 'z.v.todoFiltrado': 'todo el filtrado',
+    'z.pilaH2o': 'H₂O retenida en la luz',
+    'z.osm.naLuzN': 'Na⁺ en la luz ≈ el del plasma',
+    'z.osm.naLuzB': 'Na⁺ en la luz < el del plasma (diluido)',
+    'z.osm.pieN': 'Toca «Ver con el diurético» para añadir manitol al filtrado.',
+    'z.osm.pieB': 'El manitol (morado) no tiene transportador: se queda en la luz y retiene agua. No se bloquea ningún canal.',
+    'z.osm.n1': 'El filtrado llega al túbulo proximal con Na⁺, glucosa y agua, con la misma concentración de Na⁺ que el plasma.',
+    'z.osm.n2': 'El Na⁺ entra a la célula por cotransportadores de la membrana apical. Aquí se dibuja el <b>SGLT2</b>, que mete 1 Na⁺ con 1 glucosa; la vía principal es el NHE3, que se ve en el acercamiento de la acetazolamida.',
+    'z.osm.n3': 'La glucosa sale a la sangre por el <b>GLUT2</b>, sin gastar energía.',
+    'z.osm.n4': 'La bomba Na⁺/K⁺ saca 3 Na⁺ a la sangre y mete 2 K⁺; el K⁺ vuelve a salir por su canal.',
+    'z.osm.n5': 'Los solutos que pasan a la sangre dejan el intersticio un poco más concentrado que la luz, y el <b>agua los sigue</b> por la acuaporina-1 (AQP1) de las dos membranas.',
+    'z.osm.n6': 'Como el agua sale junto con la sal, el líquido de la luz conserva la misma concentración de Na⁺ que el plasma: la reabsorción del proximal es <b>isoosmótica</b>.',
+    'z.osm.n7': 'Resultado: el proximal recupera cerca de dos tercios del Na⁺ y del agua filtrados.',
+    'z.osm.b1': 'El manitol se filtra libremente en el glomérulo y <b>no tiene transportador</b>: no se reabsorbe en ningún punto del túbulo. Aquí no se bloquea ningún canal.',
+    'z.osm.b2': 'A medida que sale agua, el manitol se concentra en la luz y su fuerza osmótica <b>retiene agua</b> dentro del túbulo.',
+    'z.osm.b3': 'Por la AQP1 pasa menos agua: la acuaporina funciona, pero falta la diferencia de concentración que mueve el agua.',
+    'z.osm.b4': 'El agua que se queda <b>diluye el Na⁺ de la luz</b>, que baja por debajo del plasma (en perros, el cociente luz/plasma del Na⁺ bajó de 0,99 a 0,93).',
+    'z.osm.b5': 'Con menos Na⁺ en la luz, el SGLT2 y los demás cotransportadores reciben menos: <b>cae la reabsorción de Na⁺</b>, y con ella la de agua.',
+    'z.osm.b6': 'Lo mismo ocurre en la rama descendente delgada, también permeable al agua por la AQP1. En los estudios de micropunción el efecto mayor está en el <b>asa de Henle</b>, no en el proximal.',
+    'z.osm.b7': 'Parte de la urea de la médula se lava hacia la orina: el gradiente medular se reduce y el riñón concentra menos.',
+    'z.osm.b8': 'En la orina: mucho volumen, más Na⁺ y K⁺, y todo el manitol filtrado. Se usa para la presión intracraneal, no para el edema; en dosis altas, sobre todo con la función renal baja, puede producir lesión renal (<b>nefrosis osmótica</b>).'
   };
 
   const EN = {
@@ -141,7 +167,7 @@
     'map.titulo': 'Diuretics along the nephron',
     'map.sub': 'Blood enters through the afferent arteriole and is filtered at the glomerulus; the filtrate then travels down the tubule. Almost all of it is reabsorbed back into the blood, and what is left leaves as urine.',
     'obra.titulo': 'Under construction.',
-    'obra.texto': 'This section is still being built: for now only the proximal tubule has the close-up of the cell. Suggestions and corrections are welcome.',
+    'obra.texto': 'This section is still being built: for now only the carbonic anhydrase inhibitors and the osmotic diuretics have a close-up of the cell. Suggestions and corrections are welcome.',
     'obra.sigue': 'Write to me on',
     'map.nota': 'The particles are illustrative, not a measurement: in real life about 180 liters are filtered each day and more than 99 % is reabsorbed.',
     'map.corteza': 'CORTEX', 'map.medula': 'MEDULLA',
@@ -174,6 +200,7 @@
     'leyenda.na': 'Sodium', 'leyenda.k': 'Potassium', 'leyenda.cl': 'Chloride',
     'leyenda.h': 'Hydrogen ion', 'leyenda.hco3': 'Bicarbonate',
     'leyenda.co2': 'Carbon dioxide', 'leyenda.h2o': 'Water',
+    'leyenda.glu': 'Glucose', 'leyenda.man': 'Mannitol',
     'leyenda.sangre': 'Blood (in the map)', 'leyenda.filtrado': 'Filtrate / urine (in the map)',
 
     'cls.iac.nombre': 'Carbonic anhydrase inhibitors',
@@ -251,7 +278,32 @@
     'z.iac.b5': 'Na⁺ and HCO₃⁻ carry on down the tubule and <b>water follows</b>: the patient passes more urine.',
     'z.iac.b6': 'Less HCO₃⁻ reaches the blood through NBCe1.',
     'z.iac.b7': 'In the urine: more bicarbonate, alkaline pH. In the blood: HCO₃⁻ falls and Cl⁻ rises → <b>hyperchloremic metabolic acidosis</b>.',
-    'z.iac.b8': 'It is self-limiting: as blood HCO₃⁻ falls, less is filtered and the drug runs out of substrate.'
+    'z.iac.b8': 'It is self-limiting: as blood HCO₃⁻ falls, less is filtered and the drug runs out of substrate.',
+
+    'z.osm.titulo': 'Proximal tubule (and thin descending limb)',
+    'z.osm.farmaco': 'Mannitol',
+    'z.uNa': 'Na⁺:', 'z.uMan': 'Mannitol:',
+    'z.v.poco': 'low', 'z.v.ninguno': 'none', 'z.v.muyAumentado': 'greatly increased', 'z.v.todoFiltrado': 'all that was filtered',
+    'z.pilaH2o': 'H₂O held in the lumen',
+    'z.osm.naLuzN': 'Luminal Na⁺ ≈ plasma Na⁺',
+    'z.osm.naLuzB': 'Luminal Na⁺ < plasma Na⁺ (diluted)',
+    'z.osm.pieN': 'Tap “Show with the diuretic” to add mannitol to the filtrate.',
+    'z.osm.pieB': 'Mannitol (purple) has no transporter: it stays in the lumen and holds water. No channel is blocked.',
+    'z.osm.n1': 'The filtrate reaches the proximal tubule carrying Na⁺, glucose and water, with the same Na⁺ concentration as plasma.',
+    'z.osm.n2': 'Na⁺ enters the cell through cotransporters in the apical membrane. Shown here is <b>SGLT2</b>, which carries 1 Na⁺ with 1 glucose; the main route is NHE3, shown in the acetazolamide close-up.',
+    'z.osm.n3': 'Glucose leaves to the blood through <b>GLUT2</b>, with no energy cost.',
+    'z.osm.n4': 'The Na⁺/K⁺ pump sends 3 Na⁺ out to the blood and brings in 2 K⁺; the K⁺ leaves again through its channel.',
+    'z.osm.n5': 'The solutes reaching the blood leave the interstitium slightly more concentrated than the lumen, and <b>water follows them</b> through aquaporin-1 (AQP1) in both membranes.',
+    'z.osm.n6': 'Because water leaves together with salt, the luminal fluid keeps the same Na⁺ concentration as plasma: proximal reabsorption is <b>isosmotic</b>.',
+    'z.osm.n7': 'Result: the proximal tubule reclaims about two thirds of the filtered Na⁺ and water.',
+    'z.osm.b1': 'Mannitol is freely filtered at the glomerulus and <b>has no transporter</b>: it is not reabsorbed anywhere along the tubule. No channel is blocked here.',
+    'z.osm.b2': 'As water leaves, mannitol becomes concentrated in the lumen and its osmotic pull <b>holds water</b> inside the tubule.',
+    'z.osm.b3': 'Less water crosses AQP1: the aquaporin works, but the concentration difference that drives water is missing.',
+    'z.osm.b4': 'The water left behind <b>dilutes luminal Na⁺</b>, which falls below plasma (in dogs, the tubular fluid-to-plasma Na⁺ ratio fell from 0.99 to 0.93).',
+    'z.osm.b5': 'With less Na⁺ in the lumen, SGLT2 and the other cotransporters receive less: <b>Na⁺ reabsorption falls</b>, and water reabsorption with it.',
+    'z.osm.b6': 'The same happens in the thin descending limb, which is also water-permeable through AQP1. In micropuncture studies the larger effect is in the <b>loop of Henle</b>, not in the proximal tubule.',
+    'z.osm.b7': 'Some medullary urea is washed out into the urine: the medullary gradient shrinks and the kidney concentrates the urine less.',
+    'z.osm.b8': 'In the urine: high volume, more Na⁺ and K⁺, and all the filtered mannitol. It is used for intracranial pressure, not for edema; at high doses, especially with reduced kidney function, it can injure the kidney (<b>osmotic nephrosis</b>).'
   };
 
   const DICC = { es: ES, en: EN };

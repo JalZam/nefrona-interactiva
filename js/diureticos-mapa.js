@@ -382,7 +382,7 @@
       '<span>' + C(c, 'resumen') + '</span>';
   }
 
-  /* ---------- Referencias (las 23 de PubMed) ---------- */
+  /* ---------- Referencias (las 26 de PubMed) ---------- */
 
   function pintarRefs() {
     const ol = document.getElementById('dm-lista-refs');
@@ -395,7 +395,7 @@
 
   /* ---------- Leyenda de colores ---------- */
 
-  const LEYENDA = ['na', 'k', 'cl', 'h', 'hco3', 'co2', 'h2o'];
+  const LEYENDA = ['na', 'k', 'cl', 'h', 'hco3', 'co2', 'h2o', 'glu', 'man'];
 
   function leyenda() {
     if (!NI.leyenda) return;
@@ -440,7 +440,10 @@
     const n = document.getElementById('dz-toggle');
     n.textContent = b ? t('btn.normal') : t('btn.conDiuretico');
     n.classList.toggle('btn-rojo', !b);
-    document.getElementById('dz-pie').textContent = b ? t('pie.bloqueo') : t('pie.normal');
+    // Cada acercamiento puede traer su propio pie (el manitol no bloquea nada)
+    const info = E.zoom && NI.diuZoom ? NI.diuZoom.info(E.zoom) : null;
+    const pie = b ? (info && info.pieBloqueo) || t('pie.bloqueo') : (info && info.pieNormal) || t('pie.normal');
+    document.getElementById('dz-pie').textContent = pie;
   }
 
   function pintarPasos(b) {

@@ -115,6 +115,13 @@ Parte del beneficio cardiovascular es directo sobre el miocardio y no depende de
 - **Tolvaptán:** antagonista del receptor V2 de la vasopresina en la célula principal. Sin la señal V2 → AMPc, la acuaporina-2 no se inserta: se excreta **agua libre sin sal**. Por eso **sube el Na⁺ sérico** (Schrier 2006, ensayos SALT) y no sirve para descongestionar. Su indicación es la hiponatremia hipervolémica o euvolémica; hay que vigilar la velocidad de corrección.
 - **Manitol:** no se reabsorbe; retiene agua en la luz por osmolaridad a lo largo de todo el nefrón. Se usa para la presión intracraneal, no para el edema. Si se acumula puede producir hiponatremia por desplazamiento y lesión renal osmótica.
 
+**Manitol con más detalle** (añadido 2026-11-08 para el acercamiento a la célula; refs. 23–25):
+- Se filtra libremente y no tiene transportador. Al reabsorberse agua en los segmentos permeables (túbulo proximal y rama descendente delgada, ambos con AQP1), el manitol se concentra en la luz y su fuerza osmótica retiene agua.
+- El agua retenida **diluye el Na⁺ luminal**: en la micropunción en perros (Seely & Dirks 1969), el cociente líquido tubular/plasma del Na⁺ en el proximal bajó de 0,99 a 0,93 y la reabsorción fraccional proximal cayó 5 % para el Na⁺ y 10 % para el agua. El efecto inhibitorio **mayor estuvo en el asa de Henle**: la fracción no reabsorbida al llegar al distal subió a 32 % para el agua y 26 % para el Na⁺ y el K⁺. La excreción fraccional de K⁺ también aumentó mucho.
+- En ratas conscientes (Atherton 1968) la diuresis por manitol subió la excreción de Na⁺ y K⁺, atribuida a la menor concentración luminal de solutos y al mayor flujo tubular; parte del aumento agudo de urea se atribuyó al **lavado de la urea medular**.
+- En humanos, las dosis altas, sobre todo con función renal reducida, producen **nefrosis osmótica** con insuficiencia renal aguda reversible al suspenderlo; la brecha osmolar sirve para vigilarlo (Visweswaran 1997).
+- Especie: refs. 23 (perro) y 24 (rata) son experimentales; la 25 es humana (caso con biopsia y revisión). La fisiología de base (reabsorción isoosmótica del proximal, AQP1, SGLT2 1 Na⁺ : 1 glucosa) es la de los libros de referencia.
+
 ---
 
 ## 8. Resistencia a los diuréticos: por qué deja de funcionar
@@ -212,6 +219,11 @@ Según PubMed:
 
 **Acuaréticos**
 22. Schrier RW, Gross P, Gheorghiade M, et al. Tolvaptan, a selective oral vasopressin V2-receptor antagonist, for hyponatremia (SALT-1 y SALT-2). *N Engl J Med.* 2006;355(20):2099-2112. [DOI](https://doi.org/10.1056/NEJMoa065181)
+
+**Diuréticos osmóticos (manitol)**
+23. Seely JF, Dirks JH. Micropuncture study of hypertonic mannitol diuresis in the proximal and distal tubule of the dog kidney. *J Clin Invest.* 1969;48(12):2330-2340. [DOI](https://doi.org/10.1172/JCI106199) — perro
+24. Atherton JC, Hai MA, Thomas S. Effects of water diuresis and osmotic (mannitol) diuresis on urinary solute excretion by the conscious rat. *J Physiol.* 1968;197(2):395-410. [DOI](https://doi.org/10.1113/jphysiol.1968.sp008566) — rata
+25. Visweswaran P, Massin EK, Dubose TD. Mannitol-induced acute renal failure. *J Am Soc Nephrol.* 1997;8(6):1028-1033. [DOI](https://doi.org/10.1681/ASN.V861028) — humano
 
 **Libros de referencia (no indexados en PubMed, usados para la fisiología de base)**
 - Rose BD, Post TW. *Clinical Physiology of Acid-Base and Electrolyte Disorders*, 5.ª ed.

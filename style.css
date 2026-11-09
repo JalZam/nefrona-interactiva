@@ -537,6 +537,7 @@ body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color
 .glifo .x { display: none; font-size: 26px; font-weight: 900; fill: var(--rojo); text-anchor: middle; }
 .glifo.off .x { display: block; }
 .dz-orina-l { font-size: 14px; font-weight: 700; fill: #78350f; }
+.dz-naluz { font-size: 13px; font-weight: 700; fill: #6d28d9; }
 .np-pila.vacia .np-pila-txt { opacity: 0; }
 .np-pila .np-pila-txt { transition: opacity .3s; text-anchor: middle; }
 .np-pila text.np-pila-txt { fill: #1f2937; font-size: 14px; font-weight: 800; }

@@ -12,7 +12,7 @@
   const NOMBRES = {
     na: 'Sodio', k: 'Potasio', cl: 'Cloro', h: 'Hidrogenión (ácido)',
     hco3: 'Bicarbonato', nh4: 'Amonio', nh3: 'Amoniaco', gln: 'Glutamina',
-    co2: 'Dióxido de carbono', h2o: 'Agua',
+    co2: 'Dióxido de carbono', h2o: 'Agua', glu: 'Glucosa', man: 'Manitol',
     hpo4: 'Fosfato', h2po4: 'Fosfato ácido (acidez titulable)',
     aldo: 'Aldosterona', angii: 'Angiotensina II', renina: 'Renina'
   };

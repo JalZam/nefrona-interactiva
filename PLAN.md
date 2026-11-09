@@ -120,13 +120,19 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 - [x] Quitada la franja de contadores (pedido de Juanjo)
 
 ### Fase 7: Diuréticos — acercamiento a la célula
-**Estado:** [~] En curso. Hecho el túbulo proximal; faltan las otras 5 clases
+**Estado:** [~] En curso. Hechos el proximal (acetazolamida, revisado por Juanjo 2026-11-08) y los osmóticos (manitol, 2026-11-08, pendiente de su revisión); faltan 4 clases
 - [x] `js/diu-zoom.js`: célula del proximal con NHE3, AC IV, AC II, NBCe1, bomba Na⁺/K⁺ y canal de K⁺
 - [x] Botón que alterna mecanismo normal ↔ bloqueo por acetazolamida, con pasos numerados a la derecha
 - [x] **Estequiometría estricta** en todos los canales y enzimas (pedido de Juanjo): nada funciona sin su
       cuenta completa; al bloquear no escapa ninguna partícula (verificado)
 - [x] Partículas por debajo de canales y rótulos; bolitas más grandes para las siglas largas
-- [ ] Osmóticos, de asa, tiazídicos, ahorradores de K⁺, acuaréticos
+- [x] Juanjo aprueba el acercamiento del proximal (2026-11-08)
+- [x] **Osmóticos (manitol)** 2026-11-08: célula del proximal con SGLT2 (1 Na⁺ : 1 glucosa), GLUT2, bomba
+      Na⁺/K⁺, canal de K⁺ y AQP1 en las dos membranas. El agua cruza la AQP1 solo después de que pasan
+      solutos a la sangre (2 → 1 H₂O, ilustrativo). Con manitol no se bloquea nada: el manitol va por la luz,
+      la mitad del agua se queda retenida, el Na⁺ de la luz se diluye y 2 de cada 5 Na⁺ siguen de largo.
+      Refs. 23–25 nuevas (Seely & Dirks 1969, Atherton 1968, Visweswaran 1997). Pendiente revisión de Juanjo
+- [ ] De asa, tiazídicos, ahorradores de K⁺, acuaréticos
 
 ### Fase 8: Bilingüe y presentación
 **Estado:** [x] Completada 2026-11-07
@@ -135,7 +141,7 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 - [x] Terminología tomada de las referencias del proyecto; separador decimal según idioma
 - [x] Botón flotante «Guía» con el color y la sigla de cada bolita, en las dos páginas
 - [x] Aviso de «en construcción» con las redes para sugerencias
-- [x] Las 23 referencias de PubMed al pie de diuréticos
+- [x] Las 23 referencias de PubMed al pie de diuréticos (26 desde 2026-11-08, con las del manitol)
 
 ### Fase 9: Revisión de exactitud
 **Estado:** [x] Completada 2026-11-07
@@ -153,3 +159,4 @@ Nota técnica: el reloj usa `requestAnimationFrame`, que el navegador pausa cuan
 - 2026-11-06: exige estequiometría estricta en canales, bombas y enzimas; al bloquear no debe pasar nada.
 - 2026-11-07: pide idioma inglés en toda la página, leyenda flotante (la llama «Guía») y revisión de
   exactitud de las acidosis. Deja pendiente ampliar la tarjeta de la vía paracelular.
+- 2026-11-08: Juanjo aprueba el acercamiento del proximal y pide seguir con los osmóticos.

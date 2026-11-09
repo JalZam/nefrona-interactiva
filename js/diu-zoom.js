@@ -81,6 +81,13 @@
   function flecha(svg, id, d, cls) {
     svg.appendChild(el('path', { id, class: 'np-flecha ' + (cls || ''), d, 'marker-end': 'url(#dz-punta)' }));
   }
+  // Cajón de orina con tres filas: etiquetas fijas, valores que cambia estado()
+  function cajon(svg, etiquetas) {
+    svg.appendChild(el('rect', { x: 1072, y: 20, width: 172, height: 124, rx: 12, class: 'np-orina' }));
+    svg.appendChild(txt(1158, 46, t('z.orina'), 'np-banda-titulo', { 'text-anchor': 'middle' }));
+    etiquetas.forEach((e, i) =>
+      svg.appendChild(txt(1158, 76 + i * 24, e + ' <tspan id="dz-u-' + i + '"></tspan>', 'dz-orina-l', { 'text-anchor': 'middle' })));
+  }
   function pila(svg, id, x, y, etiqueta) {
     const g = el('g', { id, class: 'np-pila vacia', transform: `translate(${x},${y})` });
     g.appendChild(txt(0, -26, etiqueta, 'np-pila-txt', { 'text-anchor': 'middle' }));
@@ -148,11 +155,7 @@
       canal(svg, { id: 'dz-kcanal', x: 476, y: BL, nombre: t('z.kcanal') });
 
       // Cajón de orina
-      svg.appendChild(el('rect', { x: 1072, y: 20, width: 172, height: 124, rx: 12, class: 'np-orina' }));
-      svg.appendChild(txt(1158, 46, t('z.orina'), 'np-banda-titulo', { 'text-anchor': 'middle' }));
-      svg.appendChild(txt(1158, 76, t('z.uHco3') + ' <tspan id="dz-u-hco3"></tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
-      svg.appendChild(txt(1158, 100, t('z.uPh') + ' <tspan id="dz-u-ph"></tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
-      svg.appendChild(txt(1158, 124, t('z.uVol') + ' <tspan id="dz-u-vol"></tspan>', 'dz-orina-l', { 'text-anchor': 'middle' }));
+      cajon(svg, [t('z.uHco3'), t('z.uPh'), t('z.uVol')]);
 
       pila(svg, 'dz-pila-na', 930, 50, t('z.pilaNa'));
       pila(svg, 'dz-pila-hco3', 930, 136, t('z.pilaHco3'));
@@ -284,13 +287,168 @@
           'dz-nak': 'ok', 'dz-kcanal': 'ok'
         },
         orina: b
-          ? { hco3: t('z.v.mucho'), ph: t('z.v.alcalino'), vol: t('z.v.aumentado') }
-          : { hco3: t('z.v.casiNada'), ph: t('z.v.acido'), vol: t('z.v.normal') }
+          ? [t('z.v.mucho'), t('z.v.alcalino'), t('z.v.aumentado')]
+          : [t('z.v.casiNada'), t('z.v.acido'), t('z.v.normal')]
       };
     }
   };
 
-  const ZOOMS = { iac: PROXIMAL };
+  /* ============================================================
+     Clase 2 — diuréticos osmóticos (manitol): túbulo proximal
+     Aquí no se bloquea ninguna proteína. El manitol se filtra, no tiene
+     transportador y se queda en la luz: retiene agua, diluye el Na⁺ de la
+     luz y por eso cae la reabsorción de Na⁺ y de agua.
+     Cuentas: SGLT2 = 1 Na⁺ + 1 glucosa; bomba = 3 Na⁺ + 2 K⁺; GLUT2 y
+     canal de K⁺ = 1:1. El agua solo cruza la AQP1 cuando antes pasaron
+     solutos a la sangre (2 solutos → 1 H₂O, proporción ilustrativa).
+     ============================================================ */
+
+  const OSMOTICO = {
+    id: 'osm',
+    get titulo() { return t('z.osm.titulo'); },
+    get farmaco() { return t('z.osm.farmaco'); },
+    get diana() { return t('cls.osm.diana'); },
+    get pieNormal() { return t('z.osm.pieN'); },
+    get pieBloqueo() { return t('z.osm.pieB'); },
+    get normal() { return [1, 2, 3, 4, 5, 6, 7].map(i => t('z.osm.n' + i)); },
+    get bloqueo() { return [1, 2, 3, 4, 5, 6, 7, 8].map(i => t('z.osm.b' + i)); },
+
+    dibujar(svg) {
+      banda(svg, 0, AP, 'np-luz', t('z.luz'));
+      banda(svg, BL, H - BL, 'np-sangre', t('z.sangre'), 'sangre');
+      celula(svg, 150, 1010, [t('z.celula1'), t('z.celula2')], 890, 252);
+      svg.appendChild(txt(22, 158, '', 'dz-naluz', { id: 'dz-osm-naluz' }));
+
+      /* --- Caminos --- */
+      flecha(svg, 'dz-luz-man', 'M 20 50 H 1046', 'tenue');
+      flecha(svg, 'dz-luz-na',  'M 20 78 H 1046', 'tenue');
+      flecha(svg, 'dz-luz-h2o', 'M 20 106 H 1046', 'tenue');
+      flecha(svg, 'dz-luz-h2oRet', 'M 724 106 H 1046', 'tenue');
+
+      // Entradas al SGLT2 desde la luz
+      flecha(svg, 'p-naAlSglt',  'M 262 78 V 116');
+      flecha(svg, 'p-gluAlSglt', 'M 338 0 V 116');
+      // Del SGLT2: Na⁺ a la bomba, glucosa al GLUT2
+      flecha(svg, 'p-naAlaBomba', 'M 286 206 C 270 290, 252 370, 248 430');
+      flecha(svg, 'p-gluAGlut',   'M 322 206 C 400 300, 540 372, 560 440');
+      flecha(svg, 'p-gluASangre', 'M 560 556 V 664');
+      // Bomba y reciclaje del K⁺
+      flecha(svg, 'p-kAlBomba',   'M 390 668 V 606');
+      flecha(svg, 'p-naASangre',  'M 282 558 V 664');
+      flecha(svg, 'p-kAlaCelula', 'M 322 480 C 356 452, 420 452, 442 486');
+      flecha(svg, 'p-kASangre',   'M 450 556 V 664');
+      // Agua: luz → AQP1 apical → célula → AQP1 basolateral → sangre
+      flecha(svg, 'p-agua', 'M 720 106 V 664');
+
+      svg.appendChild(el('g', { id: 'capa-particulas-ancla' }));
+
+      /* --- Transportadores y canales --- */
+      bomba(svg, { id: 'dz-sglt2', x: 300, y: AP, clase: 'pasivo', r: 36, etiqueta: ['1 Na⁺', '1 Glu'], nombre: 'SGLT2' });
+      canal(svg, { id: 'dz-aqp1a', x: 720, y: AP, nombre: 'AQP1' });
+      bomba(svg, { id: 'dz-nak', x: 300, y: BL, clase: 'activo', r: 38, etiqueta: ['3 Na⁺', '2 K⁺'], nombre: t('z.nak') });
+      canal(svg, { id: 'dz-kcanal', x: 450, y: BL, nombre: t('z.kcanal') });
+      bomba(svg, { id: 'dz-glut2', x: 560, y: BL, clase: 'pasivo', r: 30, etiqueta: ['Glu'], nombre: 'GLUT2' });
+      canal(svg, { id: 'dz-aqp1b', x: 720, y: BL, nombre: 'AQP1' });
+
+      cajon(svg, [t('z.uVol'), t('z.uNa'), t('z.uMan')]);
+      pila(svg, 'dz-pila-na', 930, 50, t('z.pilaNa'));
+      pila(svg, 'dz-pila-h2o', 930, 136, t('z.pilaH2o'));
+    },
+
+    colas(esc, api) {
+      // SGLT2: 1 Na⁺ + 1 glucosa de la luz → entran juntos
+      esc.cola('sglt2', {
+        slots: {
+          na:  { x: 262, y: 120, n: 1, tope: 2, cols: 1, dy: -24 },
+          glu: { x: 338, y: 120, n: 1, tope: 2, cols: 1, dy: -24 }
+        },
+        // El sitio en la bomba ya se reservó al mandar el Na⁺: no se pierde ninguno
+        alCompletar: () => { esc.emitir('p-naAlaBomba'); esc.emitir('p-gluAGlut'); }
+      });
+      // Bomba Na⁺/K⁺: 3 Na⁺ de dentro + 2 K⁺ de la sangre
+      esc.cola('nak', {
+        slots: {
+          na: { x: 246, y: 428, n: 3, tope: 5, cols: 1, dy: -26 },
+          k:  { x: 390, y: 600, n: 2, tope: 3, cols: 1, dy: 26 }
+        },
+        alCompletar: () => { api.varias('p-naASangre', 3, 0.16); api.varias('p-kAlaCelula', 2, 0.2); }
+      });
+    },
+
+    corrientes(esc, api) {
+      const A = (cola, slot) => (e, p) => { e.aparcar(cola, slot, p.c.ion, true); };
+      const soluto = () => { api.acum.osm = (api.acum.osm || 0) + 1; };
+
+      esc.agregar('luzMan', { path: 'dz-luz-man', ion: 'man', tasa: 1.6, velocidad: 105, flujo: 0 });
+      esc.agregar('luzNa',  { path: 'dz-luz-na',  ion: 'na',  tasa: 1.0, velocidad: 115 });
+      esc.agregar('luzH2o', { path: 'dz-luz-h2o', ion: 'h2o', tasa: 1.0, velocidad: 115 });
+      esc.agregar('h2oRet', { path: 'dz-luz-h2oRet', ion: 'h2o', modo: 'cadena', velocidad: 100 });
+
+      esc.agregar('p-naAlSglt',  { path: 'p-naAlSglt',  ion: 'na',  modo: 'cadena', velocidad: 80, alLlegar: A('sglt2', 'na') });
+      esc.agregar('p-gluAlSglt', { path: 'p-gluAlSglt', ion: 'glu', modo: 'cadena', velocidad: 80, alLlegar: A('sglt2', 'glu') });
+      esc.agregar('p-naAlaBomba', { path: 'p-naAlaBomba', ion: 'na', modo: 'cadena', velocidad: 85, alLlegar: A('nak', 'na') });
+      // GLUT2 es 1:1 y pasivo: la glucosa que llega sale a la sangre
+      esc.agregar('p-gluAGlut',   { path: 'p-gluAGlut', ion: 'glu', modo: 'cadena', velocidad: 85,
+        alLlegar: e => e.emitir('p-gluASangre') });
+      esc.agregar('p-gluASangre', { path: 'p-gluASangre', ion: 'glu', modo: 'cadena', velocidad: 90, alLlegar: soluto });
+      esc.agregar('p-kAlBomba',   { path: 'p-kAlBomba',  ion: 'k',  modo: 'cadena', velocidad: 85, alLlegar: A('nak', 'k') });
+      esc.agregar('p-naASangre',  { path: 'p-naASangre', ion: 'na', modo: 'cadena', velocidad: 90, alLlegar: soluto });
+      esc.agregar('p-kAlaCelula', { path: 'p-kAlaCelula', ion: 'k', modo: 'cadena', velocidad: 85,
+        alLlegar: e => e.emitir('p-kASangre') });
+      esc.agregar('p-kASangre',   { path: 'p-kASangre', ion: 'k', modo: 'cadena', velocidad: 90 });
+      esc.agregar('p-agua',       { path: 'p-agua', ion: 'h2o', modo: 'cadena', velocidad: 95 });
+    },
+
+    paso(esc, dt, manitol, api) {
+      const a = api.acum;
+      esc.setFlujo('luzMan', manitol ? 1 : 0);
+      a.na  = (a.na  || 0) + dt * 1.9;
+      a.glu = (a.glu || 0) + dt * 1.9;
+      a.k   = (a.k   || 0) + dt * 1.3;
+
+      // Con manitol el agua que se queda diluye el Na⁺ de la luz:
+      // de cada 5 Na⁺ que llegarían al SGLT2, 2 siguen de largo
+      while (a.na >= 1) {
+        a.na -= 1;
+        const turno = (a.turnoNa = (a.turnoNa || 0) + 1) % 5;
+        if (manitol && (turno === 1 || turno === 3)) { api.pila('dz-pila-na', 'na'); continue; }
+        if (esc.hayCupo('sglt2', 'na') && esc.hayCupo('nak', 'na')) {
+          esc.reservar('sglt2', 'na'); esc.reservar('nak', 'na'); esc.emitir('p-naAlSglt');
+        }
+      }
+      while (a.glu >= 1) {
+        a.glu -= 1;
+        if (esc.hayCupo('sglt2', 'glu')) { esc.reservar('sglt2', 'glu'); esc.emitir('p-gluAlSglt'); }
+      }
+      while (a.k >= 1) {
+        a.k -= 1;
+        if (esc.hayCupo('nak', 'k')) { esc.reservar('nak', 'k'); esc.emitir('p-kAlBomba'); }
+      }
+      // El agua sigue a los solutos que ya llegaron a la sangre (2 → 1 H₂O).
+      // Con manitol, la mitad de esa agua se queda retenida en la luz.
+      while ((a.osm || 0) >= 2) {
+        a.osm -= 2;
+        const turno = (a.turnoAgua = (a.turnoAgua || 0) + 1) % 2;
+        if (manitol && turno === 1) { esc.emitir('h2oRet'); api.pila('dz-pila-h2o', 'h2o'); }
+        else esc.emitir('p-agua');
+      }
+    },
+
+    estado(b) {
+      return {
+        glifos: {
+          'dz-sglt2': b ? 'parcial' : 'ok', 'dz-aqp1a': b ? 'parcial' : 'ok', 'dz-aqp1b': b ? 'parcial' : 'ok',
+          'dz-nak': 'ok', 'dz-kcanal': 'ok', 'dz-glut2': 'ok'
+        },
+        orina: b
+          ? [t('z.v.muyAumentado'), t('z.v.aumentado'), t('z.v.todoFiltrado')]
+          : [t('z.v.normal'), t('z.v.poco'), t('z.v.ninguno')],
+        textos: { 'dz-osm-naluz': b ? t('z.osm.naLuzB') : t('z.osm.naLuzN') }
+      };
+    }
+  };
+
+  const ZOOMS = { iac: PROXIMAL, osm: OSMOTICO };
 
   /* ---------- Motor de la vista ---------- */
 
@@ -386,9 +544,8 @@
   }
   function vaciarPilas() {
     if (!Z.svg) return;
-    ['dz-pila-na', 'dz-pila-hco3'].forEach(id => {
-      const g = Z.svg.querySelector('#' + id);
-      if (g) { g.querySelectorAll('circle').forEach(c => c.remove()); g.classList.add('vacia'); }
+    Z.svg.querySelectorAll('.np-pila').forEach(g => {
+      g.querySelectorAll('circle').forEach(c => c.remove()); g.classList.add('vacia');
     });
   }
 
@@ -401,7 +558,8 @@
       n.classList.add(e.glifos[id]);
     }
     const set = (id, v) => { const n = Z.svg.querySelector('#' + id); if (n) n.textContent = v; };
-    set('dz-u-hco3', e.orina.hco3); set('dz-u-ph', e.orina.ph); set('dz-u-vol', e.orina.vol);
+    e.orina.forEach((v, i) => set('dz-u-' + i, v));
+    for (const id in (e.textos || {})) set(id, e.textos[id]);
   }
 
   function setBloqueo(b) {

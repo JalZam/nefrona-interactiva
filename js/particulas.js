@@ -23,6 +23,8 @@
     hpo4: { color: '#a16207', texto: '#fff', etiqueta: 'HPO₄²⁻', corta: 'HPO₄' },
     h2po4:{ color: '#713f12', texto: '#fff', etiqueta: 'H₂PO₄⁻', corta: 'H₂PO₄' },
     h2o:  { color: '#0ea5e9', texto: '#fff', etiqueta: 'H₂O' },
+    glu:  { color: '#db2777', texto: '#fff', etiqueta: 'Glu' },
+    man:  { color: '#8b5cf6', texto: '#fff', etiqueta: 'Man' },
     aldo: { color: '#7c3aed', texto: '#fff', etiqueta: 'Aldo' },
     angii:{ color: '#9333ea', texto: '#fff', etiqueta: 'AngII' },
     renina:{ color: '#a21caf', texto: '#fff', etiqueta: 'Ren' }

@@ -4,7 +4,7 @@
 <!-- initialized: 2026-10-23 -->
 <!-- version: 2.0 -->
 <!-- status: active -->
-<!-- last-completed-step: diureticos-proximal -->
+<!-- last-completed-step: diureticos-osmoticos -->
 
 ## ¿Qué es este proyecto?
 Sitio web estático (HTML + CSS + JS puro + SVG) para **aprender viendo** fisiología renal, con dos secciones:
@@ -15,16 +15,17 @@ Sitio web estático (HTML + CSS + JS puro + SVG) para **aprender viendo** fisiol
    se aplica al tocarlo y cambia canales, sangre y orina. **Terminada.**
 2. **Diuréticos** (`diureticos.html`) — mapa animado de la nefrona entera con las 6 clases de diurético, y
    acercamiento a la célula de cada segmento con el mecanismo normal y el bloqueo del fármaco.
-   **EN CONSTRUCCIÓN:** solo está hecho el túbulo proximal (acetazolamida).
+   **EN CONSTRUCCIÓN:** hechos el túbulo proximal (acetazolamida) y los osmóticos (manitol).
 
 Las dos están en **español e inglés**, con un interruptor ES|EN en la cabecera.
 
 Dueño: Juan José Jaller (nefrólogo). Uso: herramienta de aprendizaje y, más adelante, docencia.
 
 ## Estado Actual
-**Fase activa:** sección de diuréticos. Hecho el acercamiento del **túbulo proximal / inhibidores de la
-anhidrasa carbónica**; faltan las otras cinco clases (osmóticos, de asa, tiazídicos, ahorradores de K⁺,
-acuaréticos). Juanjo revisa y corrige antes de pasar a la siguiente.
+**Fase activa:** sección de diuréticos. **Proximal / acetazolamida** revisado y aprobado por Juanjo
+(2026-11-08). **Osmóticos / manitol** construido 2026-11-08, **pendiente de su revisión**. Faltan cuatro
+clases (de asa, tiazídicos, ahorradores de K⁺, acuaréticos). Juanjo revisa y corrige antes de pasar a la
+siguiente.
 **Acidosis:** terminada y revisada contra PubMed (2026-11-07).
 
 ## Stack Técnico
@@ -44,7 +45,10 @@ canales, acumula sustancias en pilas y pinta la franja de laboratorio. `js/refs.
 y las 33 tarjetas «¿por qué?».
 
 **Diuréticos.** `js/diureticos-mapa.js` dibuja el mapa de la nefrona y las 6 clases; al tocar un segmento
-abre `js/diu-zoom.js`, el acercamiento a la célula, con un botón que alterna normal ↔ bloqueo.
+abre `js/diu-zoom.js`, el acercamiento a la célula, con un botón que alterna normal ↔ bloqueo. Cada clase
+es un objeto en `ZOOMS` (`iac`, `osm`) con `dibujar/colas/corrientes/paso/estado`; `estado()` devuelve los
+glifos, las 3 filas del cajón de orina (`orina: [...]`) y textos sueltos (`textos: {id: valor}`). Una clase
+puede traer su propio pie (`pieNormal/pieBloqueo`), como el manitol, que no bloquea ningún canal.
 
 **Motor común.** `js/particulas.js` mueve los iones por caminos SVG con **colas de estequiometría**.
 
@@ -69,11 +73,11 @@ js/acidosis-en.js     acidosis: traducción al inglés (8 ATR, 64 pasos, 33 tarj
 js/acidosis-i18n.js   acidosis: aplica el idioma en caliente sin perder la opción elegida
 
 js/diureticos-mapa.js diuréticos: mapa de la nefrona, 6 clases, resumen, enlace al acercamiento
-js/diu-zoom.js        diuréticos: acercamiento a la célula (hoy solo el proximal)
-js/diu-refs.js        diuréticos: las 23 referencias de PubMed del pie
+js/diu-zoom.js        diuréticos: acercamiento a la célula (acetazolamida y manitol)
+js/diu-refs.js        diuréticos: las 26 referencias de PubMed del pie (1–25 y la 14b)
 
 INVESTIGATION.md          acidosis: fisiología, cascada, 38 referencias con su especie
-INVESTIGACION_DIURETICOS.md  diuréticos: mecanismo por clase, resistencia, 23 referencias
+INVESTIGACION_DIURETICOS.md  diuréticos: mecanismo por clase, resistencia, 26 referencias
 PLAN.md               fases y estado
 ```
 
@@ -88,6 +92,11 @@ PLAN.md               fases y estado
     `Z.salidas`, que se vacía en el tic.
   - La cadena del proximal es un círculo (el NHE3 necesita el H⁺ que fabrica la AC II): hay que **sembrar**
     un H⁺ o no arranca nunca.
+  - **Manitol:** el SGLT2 (1 Na⁺ : 1 glucosa) solo recibe Na⁺ si ya hay sitio reservado en la bomba, para
+    que ningún Na⁺ desaparezca. El agua solo cruza la AQP1 cuando antes llegaron solutos a la sangre
+    (2 solutos → 1 H₂O, proporción ilustrativa). Con manitol la mitad de esa agua se queda en la luz y
+    2 de cada 5 Na⁺ siguen de largo (dilución del Na⁺ luminal; Seely & Dirks 1969). El SGLT2 se dibuja como
+    ejemplo de entrada de Na⁺; el texto aclara que la vía principal es el NHE3.
 - **Las partículas van DEBAJO** de canales, enzimas y rótulos: el ancla `#capa-particulas-ancla` se inserta
   en el SVG **antes** de dibujar los glifos. Si se dibuja después, las bolitas tapan los nombres.
 - **Estilo visual de las células** (pedido de Juanjo 2026-10-23, referencia: Fig. 1 de Palmer 2021 /
@@ -110,7 +119,11 @@ PLAN.md               fases y estado
 - Publicar: `git add -A && git commit -m "..." && git push`. Cada push actualiza el sitio en ~1 min; **no
   hay ambiente de pruebas**. Subir el `?v=N` de los scripts.
 - **Enlaces de prueba** (sirven también para compartir):
-  `?lang=en` · `?clase=iac&zoom=1` · `?clase=iac&zoom=1&bloqueo=1` · `#prueba` adelanta la animación.
+  `?lang=en` · `?clase=iac&zoom=1` · `?clase=iac&zoom=1&bloqueo=1` · `?clase=osm&zoom=1&bloqueo=1` ·
+  `#prueba` adelanta la animación.
+- Si la extensión de Chrome no alcanza el servidor local (el sandbox lo aísla), probar con Chrome sin ventana:
+  `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --virtual-time-budget=4000
+  --screenshot=<archivo>.png "http://127.0.0.1:8080/diureticos.html?clase=osm&zoom=1#prueba"`.
 - Chrome sin ventana congela `requestAnimationFrame`: usar `#prueba` (llama a `avanzar()`) para que la
   captura muestre la animación en marcha.
 - **Un iframe de prueba debe servirse del MISMO puerto** que la página, o no puede guiarla (mismo origen).
@@ -119,11 +132,13 @@ PLAN.md               fases y estado
 - `INVESTIGATION.md` — acidosis: fisiología y referencias, cada una **etiquetada con su especie**
   (revisión 2026-11-06: de 35 artículos, 3 sin tejido humano y 2 mixtos; ninguna afirmación de la página
   depende solo de animales).
-- `INVESTIGACION_DIURETICOS.md` — diuréticos: documento independiente, 23 referencias de PubMed.
+- `INVESTIGACION_DIURETICOS.md` — diuréticos: documento independiente, 26 referencias de PubMed (las del
+  manitol, 23 y 24, son de perro y rata; la 25 es humana).
 - `PLAN.md` — fases y estado. `CLAUDE.md` — este archivo.
 
 ## Deuda Técnica Activa
-- **Diuréticos: faltan 5 de las 6 clases** (osmóticos, de asa, tiazídicos, ahorradores de K⁺, acuaréticos).
+- **Diuréticos: faltan 4 de las 6 clases** (de asa, tiazídicos, ahorradores de K⁺, acuaréticos).
+- **Manitol pendiente de revisión de Juanjo** (2026-11-08).
 - **Tarjeta `paracelular`**: se queda corta. La vía paracelular explica (a) por qué la acidosis es
   hiperclorémica —el Cl⁻ sigue al HCO₃⁻ reabsorbido en el proximal— y (b) el **cortocircuito de cloro** que
   disipa el voltaje y produce ATR 4 sin fallo de aldosterona (síndrome de Gordon / PHA2, uropatía
