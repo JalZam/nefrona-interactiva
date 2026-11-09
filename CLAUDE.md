@@ -49,6 +49,11 @@ abre `js/diu-zoom.js`, el acercamiento a la célula, con un botón que alterna n
 es un objeto en `ZOOMS` (`iac`, `osm`) con `dibujar/colas/corrientes/paso/estado`; `estado()` devuelve los
 glifos, las 3 filas del cajón de orina (`orina: [...]`) y textos sueltos (`textos: {id: valor}`). Una clase
 puede traer su propio pie (`pieNormal/pieBloqueo`), como el manitol, que no bloquea ningún canal.
+**Clases en construcción** (pedido de Juanjo 2026-11-08): cada clase de `CLASES` en `js/diureticos-mapa.js`
+lleva `lista: true/false`. Con `false`, al elegirla se esconde el riñón y se ve `#dm-obra-vista` (nefrona que se
+dibuja a trazos, conos y barra de avance; SVG y CSS propios en `diureticos.html` y `style.css`), con
+«Pronto: …» (`cls.X.pronto` en `i18n.js`) y las redes; no abre acercamiento (ni con `?zoom=1`). La lista
+muestra «Lista» / «En construcción». **Al terminar una clase: poner `lista: true` y añadir su zoom en `ZOOMS`.**
 
 **Motor común.** `js/particulas.js` mueve los iones por caminos SVG con **colas de estequiometría**.
 

@@ -56,17 +56,22 @@
 
   /* ---------- Las seis clases de diurético ---------- */
 
+  // lista: true = clase construida (mapa animado + acercamiento a la célula).
+  // lista: false = en construcción: en vez del riñón se ve la animación de obra.
+  // Al terminar una clase solo hay que cambiar su marca a true.
   const CLASES = [
-    { n: 1, id: 'iac', color: '#0ea5e9', seg: ['prox'], badge: { seg: 'prox', t: 0.5 } },
+    { n: 1, id: 'iac', lista: true, color: '#0ea5e9', seg: ['prox'], badge: { seg: 'prox', t: 0.5 } },
     // El osmótico actúa en el proximal y en el asa; el efecto mayor está en el asa: la insignia va ahí
-    { n: 2, id: 'osm', color: '#8b5cf6', seg: ['prox', 'desc', 'asaU'], badge: { seg: 'desc', t: 0.34 } },
-    { n: 3, id: 'asa', color: '#dc2626', seg: ['asc'], badge: { seg: 'asc', t: 0.5 } },
-    { n: 4, id: 'tia', color: '#16a34a', seg: ['dist'], badge: { seg: 'dist', t: 0.5 } },
-    { n: 5, id: 'ahk', color: '#d97706', seg: ['colCort'], badge: { seg: 'colCort', t: 0.62 } },
-    { n: 6, id: 'acu', color: '#2563eb', seg: ['colMed'], badge: { seg: 'colMed', t: 0.5 } }
+    { n: 2, id: 'osm', lista: true, color: '#8b5cf6', seg: ['prox', 'desc', 'asaU'], badge: { seg: 'desc', t: 0.34 } },
+    { n: 3, id: 'asa', lista: false, color: '#dc2626', seg: ['asc'], badge: { seg: 'asc', t: 0.5 } },
+    { n: 4, id: 'tia', lista: false, color: '#16a34a', seg: ['dist'], badge: { seg: 'dist', t: 0.5 } },
+    { n: 5, id: 'ahk', lista: false, color: '#d97706', seg: ['colCort'], badge: { seg: 'colCort', t: 0.62 } },
+    { n: 6, id: 'acu', lista: false, color: '#2563eb', seg: ['colMed'], badge: { seg: 'colMed', t: 0.5 } }
   ];
   // Textos de cada clase, siempre en el idioma activo
   const C = (c, campo) => t('cls.' + c.id + '.' + campo);
+  // Solo las clases listas abren el acercamiento
+  const tieneZoom = c => !!c && c.lista && !!NI.diuZoom && NI.diuZoom.hay(c.id);
 
   /* ---------- Estado ---------- */
 
@@ -192,7 +197,7 @@
       const t = el('text', { x: pt.x.toFixed(1), y: (pt.y + 6).toFixed(1),
         'text-anchor': 'middle', class: 'dm-badge-n' }, g);
       t.textContent = c.n;
-      g.addEventListener('click', () => { seleccionar(c.id); if (NI.diuZoom && NI.diuZoom.hay(c.id)) abrirZoom(c); });
+      g.addEventListener('click', () => { seleccionar(c.id); if (tieneZoom(c)) abrirZoom(c); });
     });
 
     /* --- Medir las rutas --- */
@@ -320,7 +325,9 @@
         '<span class="dm-clase-txt">' +
           '<b>' + C(c, 'nombre') + '</b>' +
           '<i>' + C(c, 'seg') + '</i>' +
-        '</span>';
+        '</span>' +
+        '<span class="dm-estado ' + (c.lista ? 'lista' : 'obra') + '">' +
+          t(c.lista ? 'est.lista' : 'est.obra') + '</span>';
       d.addEventListener('click', () => seleccionar(c.id));
       cont.appendChild(d);
     });
@@ -344,6 +351,8 @@
       n.style.stroke = dentro ? 'color-mix(in srgb, ' + c.color + ' 32%, #fff)' : '';
     });
 
+    obra(c && !c.lista ? c : null);
+
     const caja = document.getElementById('dm-detalle');
     if (!caja) return;
     if (!c) {
@@ -351,7 +360,7 @@
       resumen(null);
       return;
     }
-    const hayZoom = NI.diuZoom && NI.diuZoom.hay(c.id);
+    const hayZoom = tieneZoom(c);
     caja.innerHTML =
       '<div class="dm-det-cab" style="border-color:' + c.color + '">' +
         '<span class="dm-clase-n" style="background:' + c.color + '">' + c.n + '</span>' +
@@ -370,6 +379,21 @@
     resumen(c);
     const b = document.getElementById('dm-ver-cerca');
     if (b) b.addEventListener('click', () => abrirZoom(c));
+  }
+
+  /* ---------- Clases en construcción: la obra reemplaza al riñón ---------- */
+
+  function obra(c) {
+    const v = document.getElementById('dm-obra-vista');
+    if (!v) return;
+    const enObra = !!c;
+    v.hidden = !enObra;
+    E.svg.style.display = enObra ? 'none' : '';
+    const nota = document.getElementById('dm-nota');
+    if (nota) nota.hidden = enObra;
+    const p = document.getElementById('dm-obra-pronto');
+    if (p) p.innerHTML = enObra ? t('obraV.pronto') + ' ' + C(c, 'pronto') : '';
+    if (enObra) { v.classList.remove('obra-entra'); void v.offsetWidth; v.classList.add('obra-entra'); }
   }
 
   /* ---------- Resumen del diurético (bajo el título) ---------- */
@@ -414,7 +438,7 @@
   /* ---------- Acercamiento a la célula ---------- */
 
   function abrirZoom(c) {
-    if (!NI.diuZoom || !NI.diuZoom.hay(c.id)) return;
+    if (!tieneZoom(c)) return;
     const svg = document.getElementById('dz-svg');
     if (!NI.diuZoom.construir(svg, c.id)) return;
     E.zoom = c.id;
@@ -527,7 +551,7 @@
     if (c) {
       seleccionar(c.id);
       // ...&zoom=1 abre el acercamiento; &bloqueo=1 lo abre ya con el diurético
-      if (par.get('zoom') === '1' && NI.diuZoom && NI.diuZoom.hay(c.id)) {
+      if (par.get('zoom') === '1' && tieneZoom(c)) {
         abrirZoom(c);
         if (location.hash === '#prueba' && NI.diuZoom.avanzar) NI.diuZoom.avanzar(30);
         if (par.get('bloqueo') === '1') {

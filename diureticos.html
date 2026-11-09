@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=14" />
+  <link rel="stylesheet" href="style.css?v=15" />
 </head>
 <body class="pagina-animacion">
 
@@ -70,8 +70,50 @@
       <svg id="dm-svg" viewBox="0 0 1240 820" role="img"
            aria-label="Esquema animado de la nefrona con los puntos donde actúa cada clase de diurético"></svg>
 
-      <p class="dm-nota" data-i18n="map.nota">Las partículas son ilustrativas, no una medida: en la
+      <p class="dm-nota" id="dm-nota" data-i18n="map.nota">Las partículas son ilustrativas, no una medida: en la
         realidad se filtran unos 180 litros al día y se reabsorbe más del 99 %.</p>
+
+      <!-- Clases sin construir: en vez del riñón, una obra en construcción -->
+      <div id="dm-obra-vista" class="dm-obra-vista" hidden>
+        <svg class="obra-svg" viewBox="0 0 640 300" aria-hidden="true">
+          <defs>
+            <pattern id="obra-cuad" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e7e0d6" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="640" height="300" fill="url(#obra-cuad)"/>
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path class="obra-guia" d="M 92 112 m -30 0 a 30 30 0 1 0 60 0 a 30 30 0 1 0 -60 0
+              M 122 112 C 150 140, 160 86, 192 112 C 220 136, 236 84, 266 110 L 266 236
+              C 266 270, 314 270, 314 236 L 314 104 C 340 80, 356 130, 384 106 C 410 84, 426 128, 452 108
+              C 476 110, 486 128, 486 152 L 486 262"/>
+            <path class="obra-trazo" pathLength="1" d="M 92 112 m -30 0 a 30 30 0 1 0 60 0 a 30 30 0 1 0 -60 0
+              M 122 112 C 150 140, 160 86, 192 112 C 220 136, 236 84, 266 110 L 266 236
+              C 266 270, 314 270, 314 236 L 314 104 C 340 80, 356 130, 384 106 C 410 84, 426 128, 452 108
+              C 476 110, 486 128, 486 152 L 486 262"/>
+          </g>
+          <g class="obra-cono" transform="translate(556 262)">
+            <path d="M -16 0 L -5 -46 L 5 -46 L 16 0 Z" fill="#f59e0b"/>
+            <path d="M -11 -18 L -8 -30 L 8 -30 L 11 -18 Z" fill="#fff"/>
+            <rect x="-22" y="0" width="44" height="6" rx="2" fill="#b45309"/>
+          </g>
+          <g class="obra-cono" transform="translate(600 262) scale(.8)">
+            <path d="M -16 0 L -5 -46 L 5 -46 L 16 0 Z" fill="#f59e0b"/>
+            <path d="M -11 -18 L -8 -30 L 8 -30 L 11 -18 Z" fill="#fff"/>
+            <rect x="-22" y="0" width="44" height="6" rx="2" fill="#b45309"/>
+          </g>
+        </svg>
+        <div class="obra-barra" aria-hidden="true"><i></i></div>
+        <p class="obra-titulo" data-i18n="obraV.titulo">En construcción</p>
+        <p class="obra-pronto" id="dm-obra-pronto"></p>
+        <p class="obra-texto" data-i18n="obraV.texto">Esta clase todavía no tiene su animación. Mientras
+          tanto, a la derecha están su diana, su potencia y sus fármacos.</p>
+        <p class="obra-redes dm-obra-redes"><span data-i18n="obra.sigue">Escríbame por</span>
+          <a href="https://www.instagram.com/kidneyedu" target="_blank" rel="noopener">Instagram @kidneyedu</a>
+          <a href="https://x.com/juajal" target="_blank" rel="noopener">X @juajal</a>
+          <a href="https://www.tiktok.com/@glomerulo_1610" target="_blank" rel="noopener">TikTok @glomerulo_1610</a>
+        </p>
+      </div>
     </div>
 
     <div id="dm-vista-zoom" hidden>
@@ -110,11 +152,11 @@
   <p data-i18n="foot.3">Todo ocurre en su navegador: sin cookies, sin registro, sin envío de datos.</p>
 </footer>
 
-<script src="js/particulas.js?v=14"></script>
-<script src="js/leyenda.js?v=14"></script>
-<script src="js/diu-refs.js?v=14"></script>
-<script src="js/i18n.js?v=14"></script>
-<script src="js/diu-zoom.js?v=14"></script>
-<script src="js/diureticos-mapa.js?v=14"></script>
+<script src="js/particulas.js?v=15"></script>
+<script src="js/leyenda.js?v=15"></script>
+<script src="js/diu-refs.js?v=15"></script>
+<script src="js/i18n.js?v=15"></script>
+<script src="js/diu-zoom.js?v=15"></script>
+<script src="js/diureticos-mapa.js?v=15"></script>
 </body>
 </html>
