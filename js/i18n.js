@@ -62,12 +62,12 @@
     'cls.iac.resumen': '<b>Acetazolamida.</b> Bloquea la anhidrasa carbónica del túbulo proximal, así que el bicarbonato filtrado no se recupera y se pierde en la orina junto con Na⁺ y agua. Produce orina alcalina y acidosis metabólica hiperclorémica. Es un diurético débil y autolimitado: al bajar el bicarbonato de la sangre se filtra menos y el fármaco se queda sin sustrato.',
 
     'cls.osm.nombre': 'Diuréticos osmóticos',
-    'cls.osm.seg': 'Túbulo proximal y rama descendente delgada (segmentos permeables al agua)',
+    'cls.osm.seg': 'Túbulo proximal y asa de Henle (el efecto mayor está en el asa)',
     'cls.osm.diana': 'Ninguna proteína: actúan por osmolaridad',
     'cls.osm.corto': 'No se reabsorben: se quedan en la luz y retienen agua con ellos.',
     'cls.osm.pot': 'Variable; uso en presión intracraneal',
     'cls.osm.farm': 'Manitol · Glicerol',
-    'cls.osm.resumen': '<b>Manitol.</b> No se reabsorbe en ningún punto del túbulo: se queda en la luz y arrastra agua por osmolaridad. Actúa donde el túbulo es permeable al agua: sobre todo el <b>túbulo proximal</b> y, después, la rama descendente delgada del asa de Henle. Se usa para bajar la presión intracraneal, no para el edema.',
+    'cls.osm.resumen': '<b>Manitol.</b> No se reabsorbe en ningún punto del túbulo: se queda en la luz y arrastra agua por osmolaridad. Actúa en el túbulo proximal y en el asa de Henle; el <b>efecto mayor está en el asa</b> (rama descendente delgada y lavado de la médula). Se usa para bajar la presión intracraneal, no para el edema.',
 
     'cls.asa.nombre': 'Diuréticos de asa',
     'cls.asa.seg': 'Rama ascendente gruesa',
@@ -151,8 +151,8 @@
     'z.osm.b3': 'Por la AQP1 pasa menos agua: la acuaporina funciona, pero falta la diferencia de concentración que mueve el agua.',
     'z.osm.b4': 'El agua que se queda <b>diluye el Na⁺ de la luz</b>, que baja por debajo de la del plasma.',
     'z.osm.b5': 'Con menos Na⁺ en la luz, el SGLT2 y los demás cotransportadores reciben menos: <b>cae la reabsorción de Na⁺</b>, y con ella la de agua.',
-    'z.osm.b6': 'Lo mismo sigue en la rama descendente delgada, también permeable al agua por la AQP1: el efecto empieza en el proximal y se suma a lo largo del <b>asa de Henle</b>.',
-    'z.osm.b7': 'Parte de la urea de la médula se lava hacia la orina: el gradiente medular se reduce y el riñón concentra menos.',
+    'z.osm.b6': 'Lo mismo sigue en la rama descendente delgada, también permeable al agua por la AQP1: se extrae menos agua del asa. El efecto en el proximal es real pero modesto; el <b>efecto mayor está en el asa de Henle</b>.',
+    'z.osm.b7': 'Además aumenta el flujo de sangre de la médula y se <b>lava el gradiente medular</b> (sale urea de la médula hacia la orina): el asa gruesa reabsorbe menos NaCl y el riñón concentra menos la orina.',
     'z.osm.b8': 'En la orina: mucho volumen, más Na⁺ y K⁺, y todo el manitol filtrado. Se usa para la presión intracraneal, no para el edema; en dosis altas, sobre todo con la función renal baja, puede producir lesión renal (<b>nefrosis osmótica</b>).'
   };
 
@@ -212,12 +212,12 @@
     'cls.iac.resumen': '<b>Acetazolamide.</b> It blocks carbonic anhydrase in the proximal tubule, so filtered bicarbonate is not reabsorbed and is lost in the urine together with Na⁺ and water. It produces alkaline urine and hyperchloremic metabolic acidosis. It is a weak, self-limiting diuretic: as blood bicarbonate falls, less is filtered and the drug runs out of substrate.',
 
     'cls.osm.nombre': 'Osmotic diuretics',
-    'cls.osm.seg': 'Proximal tubule and thin descending limb (water-permeable segments)',
+    'cls.osm.seg': 'Proximal tubule and loop of Henle (the larger effect is in the loop)',
     'cls.osm.diana': 'No protein: they act by osmolality',
     'cls.osm.corto': 'They are not reabsorbed: they stay in the lumen and hold water with them.',
     'cls.osm.pot': 'Variable; used for intracranial pressure',
     'cls.osm.farm': 'Mannitol · Glycerol',
-    'cls.osm.resumen': '<b>Mannitol.</b> It is not reabsorbed anywhere along the tubule: it stays in the lumen and drags water with it by osmolality. It acts where the tubule is permeable to water: mainly the <b>proximal tubule</b> and then the thin descending limb of the loop of Henle. It is used to lower intracranial pressure, not for edema.',
+    'cls.osm.resumen': '<b>Mannitol.</b> It is not reabsorbed anywhere along the tubule: it stays in the lumen and drags water with it by osmolality. It acts in the proximal tubule and in the loop of Henle; the <b>larger effect is in the loop</b> (thin descending limb and medullary washout). It is used to lower intracranial pressure, not for edema.',
 
     'cls.asa.nombre': 'Loop diuretics',
     'cls.asa.seg': 'Thick ascending limb',
@@ -301,8 +301,8 @@
     'z.osm.b3': 'Less water crosses AQP1: the aquaporin works, but the concentration difference that drives water is missing.',
     'z.osm.b4': 'The water left behind <b>dilutes luminal Na⁺</b>, which falls below the plasma level.',
     'z.osm.b5': 'With less Na⁺ in the lumen, SGLT2 and the other cotransporters receive less: <b>Na⁺ reabsorption falls</b>, and water reabsorption with it.',
-    'z.osm.b6': 'The same continues in the thin descending limb, which is also water-permeable through AQP1: the effect starts in the proximal tubule and adds up along the <b>loop of Henle</b>.',
-    'z.osm.b7': 'Some medullary urea is washed out into the urine: the medullary gradient shrinks and the kidney concentrates the urine less.',
+    'z.osm.b6': 'The same continues in the thin descending limb, which is also water-permeable through AQP1: less water is extracted from the loop. The proximal effect is real but modest; the <b>larger effect is in the loop of Henle</b>.',
+    'z.osm.b7': 'Medullary blood flow also rises and the <b>medullary gradient is washed out</b> (urea leaves the medulla into the urine): the thick ascending limb reabsorbs less NaCl and the kidney concentrates the urine less.',
     'z.osm.b8': 'In the urine: high volume, more Na⁺ and K⁺, and all the filtered mannitol. It is used for intracranial pressure, not for edema; at high doses, especially with reduced kidney function, it can injure the kidney (<b>osmotic nephrosis</b>).'
   };
 

@@ -97,9 +97,12 @@ PLAN.md               fases y estado
     (2 solutos → 1 H₂O, proporción ilustrativa). Con manitol la mitad de esa agua se queda en la luz y
     2 de cada 5 Na⁺ siguen de largo (dilución del Na⁺ luminal; Seely & Dirks 1969). El SGLT2 se dibuja como
     ejemplo de entrada de Na⁺; el texto aclara que la vía principal es el NHE3.
-  - **Mapa del manitol** (corrección de Juanjo 2026-11-08): su insignia va en el **túbulo proximal** (no en
-    la rama descendente, donde parecía que actuaba solo ahí), y al elegir una clase sus segmentos se tiñen
-    con el color de la clase (proximal + rama descendente + vértice del asa).
+  - **Mapa del manitol** (ajuste aprobado por Juanjo 2026-11-08, tras dos vueltas): actúa en el proximal
+    (efecto real pero modesto) **y en el asa de Henle, donde está el efecto mayor** (menos extracción de agua
+    en la rama descendente delgada + lavado medular por más flujo medular, que reduce la reabsorción de NaCl
+    en el asa gruesa; Brenner & Rector, Goodman & Gilman, micropunción). La insignia 2 va en la **rama
+    descendente** (t 0.34); al elegir una clase sus segmentos se tiñen con su color (proximal + rama
+    descendente + vértice del asa). Los textos nunca deben dar a entender que actúa solo en uno de los dos.
 - **No mencionar datos de animales en los textos visibles** (pedido de Juanjo 2026-11-08): nada de «en
   perros», «en ratas»… en pasos, pies o tarjetas. Las referencias del pie sí se quedan, y la especie se
   anota solo en los documentos de investigación.

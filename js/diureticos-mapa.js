@@ -57,9 +57,9 @@
   /* ---------- Las seis clases de diurético ---------- */
 
   const CLASES = [
-    { n: 1, id: 'iac', color: '#0ea5e9', seg: ['prox'], badge: { seg: 'prox', t: 0.3 } },
-    // El osmótico actúa sobre todo en el proximal: su insignia va ahí (no en la rama descendente)
-    { n: 2, id: 'osm', color: '#8b5cf6', seg: ['prox', 'desc', 'asaU'], badge: { seg: 'prox', t: 0.74 } },
+    { n: 1, id: 'iac', color: '#0ea5e9', seg: ['prox'], badge: { seg: 'prox', t: 0.5 } },
+    // El osmótico actúa en el proximal y en el asa; el efecto mayor está en el asa: la insignia va ahí
+    { n: 2, id: 'osm', color: '#8b5cf6', seg: ['prox', 'desc', 'asaU'], badge: { seg: 'desc', t: 0.34 } },
     { n: 3, id: 'asa', color: '#dc2626', seg: ['asc'], badge: { seg: 'asc', t: 0.5 } },
     { n: 4, id: 'tia', color: '#16a34a', seg: ['dist'], badge: { seg: 'dist', t: 0.5 } },
     { n: 5, id: 'ahk', color: '#d97706', seg: ['colCort'], badge: { seg: 'colCort', t: 0.62 } },
