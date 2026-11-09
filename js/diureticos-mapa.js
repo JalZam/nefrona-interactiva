@@ -409,7 +409,7 @@
       '<span>' + C(c, 'resumen') + '</span>';
   }
 
-  /* ---------- Referencias (las 26 de PubMed) ---------- */
+  /* ---------- Referencias (las 27 de PubMed) ---------- */
 
   function pintarRefs() {
     const ol = document.getElementById('dm-lista-refs');

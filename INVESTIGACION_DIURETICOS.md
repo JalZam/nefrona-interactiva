@@ -115,14 +115,15 @@ Parte del beneficio cardiovascular es directo sobre el miocardio y no depende de
 - **Tolvaptán:** antagonista del receptor V2 de la vasopresina en la célula principal. Sin la señal V2 → AMPc, la acuaporina-2 no se inserta: se excreta **agua libre sin sal**. Por eso **sube el Na⁺ sérico** (Schrier 2006, ensayos SALT) y no sirve para descongestionar. Su indicación es la hiponatremia hipervolémica o euvolémica; hay que vigilar la velocidad de corrección.
 - **Manitol:** no se reabsorbe; retiene agua en la luz por osmolaridad a lo largo de todo el nefrón. Se usa para la presión intracraneal, no para el edema. Si se acumula puede producir hiponatremia por desplazamiento y lesión renal osmótica.
 
-**Manitol con más detalle** (añadido 2026-11-08 para el acercamiento a la célula; refs. 23–25):
+**Manitol con más detalle** (añadido 2026-11-08 para el acercamiento a la célula; refs. 23–26):
 - Se filtra libremente y no tiene transportador. Al reabsorberse agua en los segmentos permeables (túbulo proximal y rama descendente delgada, ambos con AQP1), el manitol se concentra en la luz y su fuerza osmótica retiene agua.
 - El agua retenida **diluye el Na⁺ luminal**: en la micropunción en perros (Seely & Dirks 1969), el cociente líquido tubular/plasma del Na⁺ en el proximal bajó de 0,99 a 0,93 y la reabsorción fraccional proximal cayó 5 % para el Na⁺ y 10 % para el agua. El efecto inhibitorio **mayor estuvo en el asa de Henle**: la fracción no reabsorbida al llegar al distal subió a 32 % para el agua y 26 % para el Na⁺ y el K⁺. La excreción fraccional de K⁺ también aumentó mucho.
 - En ratas conscientes (Atherton 1968) la diuresis por manitol subió la excreción de Na⁺ y K⁺, atribuida a la menor concentración luminal de solutos y al mayor flujo tubular; parte del aumento agudo de urea se atribuyó al **lavado de la urea medular**.
 - En humanos, las dosis altas, sobre todo con función renal reducida, producen **nefrosis osmótica** con insuficiencia renal aguda reversible al suspenderlo; la brecha osmolar sirve para vigilarlo (Visweswaran 1997).
 - Ubicación (ajuste aprobado por Juanjo 2026-11-08, según Brenner & Rector y Goodman & Gilman): efecto real pero modesto en el proximal y **efecto mayor en el asa de Henle** — menos extracción de agua en la rama descendente delgada y lavado medular por aumento del flujo sanguíneo medular, que además reduce la reabsorción de NaCl en el asa gruesa.
+- Buerkert 1981 (ref. 26, rata, micropunción; añadida 2026-11-08 con aprobación de Juanjo): en las nefronas profundas cae la **extracción de agua antes de la curva del asa**, aumenta el **flujo de plasma de la médula interna** en proporción al flujo renal y baja la osmolalidad de la papila. Es la única de las referencias que muestra directamente la parte del asa y del flujo medular; la caída de la reabsorción de NaCl en el asa gruesa por ese lavado sigue apoyándose en los libros.
 - **En la página no se mencionan datos de animales** (pedido de Juanjo 2026-11-08): los datos de perro y rata sustentan el texto, pero no se citan como tales en los pasos visibles.
-- Especie: refs. 23 (perro) y 24 (rata) son experimentales; la 25 es humana (caso con biopsia y revisión). La fisiología de base (reabsorción isoosmótica del proximal, AQP1, SGLT2 1 Na⁺ : 1 glucosa) es la de los libros de referencia.
+- Especie: refs. 23 (perro), 24 y 26 (rata) son experimentales; la 25 es humana (caso con biopsia y revisión). La fisiología de base (reabsorción isoosmótica del proximal, AQP1, SGLT2 1 Na⁺ : 1 glucosa) es la de los libros de referencia.
 
 ---
 
@@ -226,6 +227,7 @@ Según PubMed:
 23. Seely JF, Dirks JH. Micropuncture study of hypertonic mannitol diuresis in the proximal and distal tubule of the dog kidney. *J Clin Invest.* 1969;48(12):2330-2340. [DOI](https://doi.org/10.1172/JCI106199) — perro
 24. Atherton JC, Hai MA, Thomas S. Effects of water diuresis and osmotic (mannitol) diuresis on urinary solute excretion by the conscious rat. *J Physiol.* 1968;197(2):395-410. [DOI](https://doi.org/10.1113/jphysiol.1968.sp008566) — rata
 25. Visweswaran P, Massin EK, Dubose TD. Mannitol-induced acute renal failure. *J Am Soc Nephrol.* 1997;8(6):1028-1033. [DOI](https://doi.org/10.1681/ASN.V861028) — humano
+26. Buerkert J, Martin D, Prasad J, Trigg D. Role of deep nephrons and the terminal collecting duct in a mannitol-induced diuresis. *Am J Physiol.* 1981;240(5):F411-F422. [DOI](https://doi.org/10.1152/ajprenal.1981.240.5.F411) — rata (micropunción)
 
 **Libros de referencia (no indexados en PubMed, usados para la fisiología de base)**
 - Rose BD, Post TW. *Clinical Physiology of Acid-Base and Electrolyte Disorders*, 5.ª ed.

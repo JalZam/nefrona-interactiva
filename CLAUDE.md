@@ -79,10 +79,10 @@ js/acidosis-i18n.js   acidosis: aplica el idioma en caliente sin perder la opci�
 
 js/diureticos-mapa.js diuréticos: mapa de la nefrona, 6 clases, resumen, enlace al acercamiento
 js/diu-zoom.js        diuréticos: acercamiento a la célula (acetazolamida y manitol)
-js/diu-refs.js        diuréticos: las 26 referencias de PubMed del pie (1–25 y la 14b)
+js/diu-refs.js        diuréticos: las 27 referencias de PubMed del pie (1–26 y la 14b)
 
 INVESTIGATION.md          acidosis: fisiología, cascada, 38 referencias con su especie
-INVESTIGACION_DIURETICOS.md  diuréticos: mecanismo por clase, resistencia, 26 referencias
+INVESTIGACION_DIURETICOS.md  diuréticos: mecanismo por clase, resistencia, 27 referencias
 PLAN.md               fases y estado
 ```
 
@@ -146,8 +146,8 @@ PLAN.md               fases y estado
 - `INVESTIGATION.md` — acidosis: fisiología y referencias, cada una **etiquetada con su especie**
   (revisión 2026-11-06: de 35 artículos, 3 sin tejido humano y 2 mixtos; ninguna afirmación de la página
   depende solo de animales).
-- `INVESTIGACION_DIURETICOS.md` — diuréticos: documento independiente, 26 referencias de PubMed (las del
-  manitol, 23 y 24, son de perro y rata; la 25 es humana).
+- `INVESTIGACION_DIURETICOS.md` — diuréticos: documento independiente, 27 referencias de PubMed (las del
+  manitol: 23 perro, 24 y 26 rata, 25 humana).
 - `PLAN.md` — fases y estado. `CLAUDE.md` — este archivo.
 
 ## Deuda Técnica Activa

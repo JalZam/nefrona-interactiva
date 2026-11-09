@@ -1,4 +1,4 @@
-/* Las 26 referencias (1–25 y la 14b) de PubMed que sustentan la sección de diuréticos.
+/* Las 27 referencias (1–26 y la 14b) de PubMed que sustentan la sección de diuréticos.
    Misma numeración que INVESTIGACION_DIURETICOS.md. */
 window.DIU_REFS = [
  {
@@ -130,5 +130,10 @@ window.DIU_REFS = [
   "n": "25",
   "cita": "Visweswaran P, Massin EK, Dubose TD. Mannitol-induced acute renal failure. J Am Soc Nephrol. 1997;8(6):1028-1033.",
   "doi": "https://doi.org/10.1681/ASN.V861028"
+ },
+ {
+  "n": "26",
+  "cita": "Buerkert J, Martin D, Prasad J, Trigg D. Role of deep nephrons and the terminal collecting duct in a mannitol-induced diuresis. Am J Physiol. 1981;240(5):F411-F422.",
+  "doi": "https://doi.org/10.1152/ajprenal.1981.240.5.F411"
  }
 ];

@@ -160,7 +160,7 @@
     'z.osm.b4': 'El agua que se queda <b>diluye el Na⁺ de la luz</b>, que baja por debajo de la del plasma.',
     'z.osm.b5': 'Con menos Na⁺ en la luz, el SGLT2 y los demás cotransportadores reciben menos: <b>cae la reabsorción de Na⁺</b>, y con ella la de agua.',
     'z.osm.b6': 'Lo mismo sigue en la rama descendente delgada, también permeable al agua por la AQP1: se extrae menos agua del asa. El efecto en el proximal es real pero modesto; el <b>efecto mayor está en el asa de Henle</b>.',
-    'z.osm.b7': 'Además aumenta el flujo de sangre de la médula y se <b>lava el gradiente medular</b> (sale urea de la médula hacia la orina): el asa gruesa reabsorbe menos NaCl y el riñón concentra menos la orina.',
+    'z.osm.b7': 'Además aumenta el flujo de sangre de la médula y se <b>lava el gradiente medular</b> (sale urea de la médula hacia la orina): el asa gruesa reabsorbe menos NaCl y el riñón concentra menos la orina (ref. 26).',
     'z.osm.b8': 'En la orina: mucho volumen, más Na⁺ y K⁺, y todo el manitol filtrado. Se usa para la presión intracraneal, no para el edema; en dosis altas, sobre todo con la función renal baja, puede producir lesión renal (<b>nefrosis osmótica</b>).'
   };
 
@@ -318,7 +318,7 @@
     'z.osm.b4': 'The water left behind <b>dilutes luminal Na⁺</b>, which falls below the plasma level.',
     'z.osm.b5': 'With less Na⁺ in the lumen, SGLT2 and the other cotransporters receive less: <b>Na⁺ reabsorption falls</b>, and water reabsorption with it.',
     'z.osm.b6': 'The same continues in the thin descending limb, which is also water-permeable through AQP1: less water is extracted from the loop. The proximal effect is real but modest; the <b>larger effect is in the loop of Henle</b>.',
-    'z.osm.b7': 'Medullary blood flow also rises and the <b>medullary gradient is washed out</b> (urea leaves the medulla into the urine): the thick ascending limb reabsorbs less NaCl and the kidney concentrates the urine less.',
+    'z.osm.b7': 'Medullary blood flow also rises and the <b>medullary gradient is washed out</b> (urea leaves the medulla into the urine): the thick ascending limb reabsorbs less NaCl and the kidney concentrates the urine less (ref. 26).',
     'z.osm.b8': 'In the urine: high volume, more Na⁺ and K⁺, and all the filtered mannitol. It is used for intracranial pressure, not for edema; at high doses, especially with reduced kidney function, it can injure the kidney (<b>osmotic nephrosis</b>).'
   };
 
