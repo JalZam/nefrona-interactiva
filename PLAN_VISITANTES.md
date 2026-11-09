@@ -1,7 +1,9 @@
 # Plan: analítica de visitantes con PostHog
 
-Estado: **IMPLEMENTADO EN LOCAL, SIN PUBLICAR** (2026-11-08). Commit local; falta que Juanjo lo revise y
-autorice el push. Pasos 2–6 hechos; el 7 queda en «enseñárselo a Juanjo y publicar».
+Estado: **PUBLICADO** (2026-11-08, commits fc2e867 y 06052f1). Verificado en el sitio: carga el script de
+PostHog (servidor UE), la clave responde y el contador hits.sh sigue sumando.
+Pendiente en el panel de PostHog (lo hace Juanjo): fijar la retención en 12 meses y encender la grabación de
+sesiones (la página ya la pide cuando el visitante acepta).
 
 ## Qué quiere saber Juanjo (2026-11-08)
 - Desde dónde entran (país, ciudad, desde qué página o red social).

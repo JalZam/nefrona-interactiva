@@ -694,3 +694,10 @@ body.con-aviso .ley-flota { bottom: calc(var(--aviso-h, 0px) + 28px); }
 .pv-card ul { padding-left: 1.2rem; margin: .3rem 0; list-style: disc; }
 .pv-card a { color: var(--primary-dark); }
 @media (max-width: 640px) { .pv-card { padding: 1.1rem 1rem; } .pv-titulo { font-size: 1.3rem; } }
+
+/* ── Cabecera en celular: los botones pasan a una segunda fila (antes se salían de la pantalla) ── */
+@media (max-width: 600px) {
+  .header-inner { flex-wrap: wrap; row-gap: .5rem; }
+  .header-right.nav { width: 100%; flex-wrap: wrap; align-items: center; gap: .4rem; }
+  .header-right .visit-counter { margin-left: auto; }
+}
