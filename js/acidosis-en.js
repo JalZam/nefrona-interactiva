@@ -138,7 +138,7 @@ window.ACIDOSIS_EN = {
     },
     {
      "t": "The urine cannot be acidified: pH > 5.5 even with acidosis",
-     "x": "This is the diagnostic defect: with spontaneous acidemia or after an acid load (NH₄Cl, or furosemide with fludrocortisone), the urine pH never falls below 5.5. And since there is no H⁺ in the lumen, the NH₃ that leaves through Rhcg is not trapped as NH₄⁺ and goes back: low urine NH₄⁺ and a positive urine anion gap."
+     "x": "This is the diagnostic defect: with spontaneous acidemia or after an acid load (NH₄Cl, or furosemide with fludrocortisone), the urine pH never falls below 5.5. And since there is no H⁺ in the lumen, the NH₃ that leaves through Rhcg is not trapped as NH₄⁺: it can diffuse back into the interstitium, so very little reaches the urine. Low urine NH₄⁺ and a positive urine anion gap."
     },
     {
      "t": "The acid from the diet accumulates and plasma HCO₃⁻ falls unchecked",

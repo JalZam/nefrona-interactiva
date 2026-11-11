@@ -154,7 +154,7 @@
           texto: 'La anhidrasa carbónica II solo produce el par H⁺ + HCO₃⁻ si la bomba se lleva el H⁺. AE1 queda con el Cl⁻ aparcado afuera y sin HCO₃⁻ que intercambiar; cuando ya no cabe más Cl⁻, rebota. La ganancia neta de base del organismo (regenerar el HCO₃⁻ que gastó el ácido de la dieta) se pierde.',
           estado: { ae1: 0.3 }, resaltar: ['box-ca', 'ch-ae1'] },
         { titulo: 'La orina no puede acidificarse: pH > 5,5 aunque haya acidosis',
-          texto: 'Es el defecto diagnóstico: con acidemia espontánea o tras una carga ácida (NH₄Cl, o furosemida con fludrocortisona), el pH urinario nunca baja de 5,5. Y como no hay H⁺ en la luz, el NH₃ que sale por Rhcg no se atrapa como NH₄⁺ y se devuelve: NH₄⁺ urinario bajo y brecha aniónica urinaria positiva.',
+          texto: 'Es el defecto diagnóstico: con acidemia espontánea o tras una carga ácida (NH₄Cl, o furosemida con fludrocortisona), el pH urinario nunca baja de 5,5. Y como no hay H⁺ en la luz, el NH₃ que sale por Rhcg no queda atrapado como NH₄⁺: puede volver a difundir hacia el intersticio, así que pasa muy poco a la orina. NH₄⁺ urinario bajo y brecha aniónica urinaria positiva.',
           estado: { trap: 0.1, phOrina: 6.8 }, resaltar: ['orina-ph', 'ch-rhcg-ap', 'orina-nh4'] },
         { titulo: 'El ácido de la dieta se acumula y el HCO₃⁻ plasmático cae sin freno',
           texto: 'A diferencia de la ATR2, aquí no hay umbral de rescate: cada día se retienen los 50–100 mEq de ácido de la dieta y el HCO₃⁻ puede bajar de 10 mEq/L. Acidosis metabólica hiperclorémica con anion gap normal, a veces grave.',
