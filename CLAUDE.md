@@ -28,6 +28,34 @@ clases (de asa, tiazídicos, ahorradores de K⁺, acuaréticos). Juanjo revisa y
 siguiente.
 **Acidosis:** terminada y revisada contra PubMed (2026-11-07).
 
+## Para retomar (guardado 2026-11-17)
+Publicado y verificado en vivo: vista lado a lado de la acidosis + textos nuevos de ATR 4 hipoaldo.
+**Lo siguiente, en este orden:**
+1. **Paso 6 de ATR 4 hipoaldo** (`ATR.atr4h.pasos[5]` en `js/atr.js`, EN en `js/acidosis-en.js`). Juanjo no
+   entendió la caja «Aldo · acidosis». Propuesta ya mostrada, **falta su sí** y que diga si también se
+   renombra la caja (`box-aldo-a` en `js/nefron-fila.js` → «Aldosterona o acidosis»; afecta a todas las vistas):
+   - Título: «La bomba de H⁺ de la célula α pierde sus dos ayudas».
+   - Texto: la H⁺-ATPasa saca el ácido con dos ayudas: el voltaje negativo de la luz (perdido en el paso
+     anterior) y la aldosterona, que ordena poner más bombas (la caja queda apagada, «sin estímulo»). Sin
+     ellas parte de los H⁺ rebotan y vuelven a la sangre; por cada H⁺ que no sale no nace un HCO₃⁻ nuevo
+     (AE1 espera con el Cl⁻ afuera); el ácido de la dieta se retiene. Cuando el HCO₃⁻ baje de 21 la caja se
+     vuelve a encender, ahora por la acidosis, pero sin voltaje ni aldosterona no compensa. Se conserva la
+     frase final de las partículas de aldosterona que reaparecen por el K⁺ alto.
+   - Solo para hipoaldo: el texto del paso es compartido (`cascada4`) con antagonista del MR y bloqueo de ENaC.
+2. Juanjo debe mirar la vista lado a lado **en su celular** (solo se probó simulada a 390 px) y decir si le
+   sirve la mención de los antagonistas del MR en el paso 1 de hipoaldo.
+3. Revisar con el mismo criterio (el texto dice lo que la animación muestra) las demás: atr4r, atr4v, atr1,
+   atr2, atr3, diarrea. Ya visto: el paso del colector de 4v dice que los H⁺ «bajan el pH urinario» aunque
+   en 4v el pH queda > 5,5.
+4. Sin respuesta de antes: animación del NH₃ que se devuelve en ATR 1; revisión del manitol; siguiente
+   clase de diurético; si la comparación lado a lado se lleva también a diuréticos (mock `mock-comparar.html`).
+5. Mocks locales fuera de git (`.git/info/exclude`): `mock-comparar.html`, `mock-acidosis.html`,
+   `mock-acidosis-celda.html`, `mock-publicar.html`, `PLAN_LADO_A_LADO.md`. Los de acidosis ya cumplieron;
+   borrar (con `trash`) cuando Juanjo lo diga.
+**Probar la vista lado a lado:** Chrome sin ventana con `--timeout=16000` para capturas; para clics, página
+auxiliar del mismo origen con `--virtual-time-budget` (funciona con ATR 1/2; se atasca con las ATR 4, que
+cargan 10 iframes).
+
 ## Stack Técnico
 - HTML + CSS + JavaScript puro. SVG inline dibujado a mano. Sin framework, sin dependencias, sin compilación.
 - Scripts clásicos (`<script src>`), **no ES modules**, para que abra desde `file://`. Un solo objeto global `NI`.
@@ -44,7 +72,7 @@ siguiente.
 canales, acumula sustancias en pilas y pinta la franja de laboratorio. `js/refs.js` tiene las 38 referencias
 y las 33 tarjetas «¿por qué?».
 
-**Acidosis · vista lado a lado** (pedido de Juanjo 2026-11-17; en local, pendiente de publicar). «Funcionamiento
+**Acidosis · vista lado a lado** (pedido de Juanjo 2026-11-17; PUBLICADA ese día, commit 7ca83a8, `?v=20`). «Funcionamiento
 normal» se ve en la fila de 4 células; al elegir una enfermedad `js/acidosis-comparar.js` abre `#cmp-vista`:
 por cada célula que se daña (en orden) la célula NORMAL, la ENFERMA y sus pasos. Cada célula es `celda.html`
 en un iframe (la fila completa recortada a una célula; parámetros `atr`, `celula`, `paso`, `ver`, `lang`), con
