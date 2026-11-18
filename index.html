@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nefrona Interactiva — Acidosis metabólica sin anion gap</title>
-  <meta name="description" content="Animación educativa: las cuatro células del nefrón de proximal a distal, los iones viajando por sus canales, y qué se daña (y en qué orden) en cada acidosis tubular renal: tipos 1, 2, 3 y 4." />
+  <meta name="description" content="Animación educativa: las cuatro células del nefrón de proximal a distal, los iones viajando por sus canales, y qué se daña (y en qué orden) en cada acidosis tubular renal: tipos 1, 2, 3 y 4, con la célula normal junto a la enferma." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=19" />
+  <link rel="stylesheet" href="style.css?v=20" />
 </head>
 <body class="pagina-animacion">
 
@@ -82,6 +82,32 @@
   </aside>
 </main>
 
+<!-- Vista «normal junto a la enfermedad»: se abre al elegir una enfermedad (js/acidosis-comparar.js) -->
+<div class="cmp-vista" id="cmp-vista">
+  <section class="card cmp-barra">
+    <div class="mec-label"><span data-i18n="cmp.elige">Acidosis metabólica sin anion gap · toca una · luego toca cada paso en orden</span></div>
+    <div class="cmp-botones">
+      <button class="atr-btn" data-atr="normal" data-i18n="ac.btn.normal">Funcionamiento normal</button>
+      <button class="atr-btn" data-atr="diarrea" data-i18n="ac.btn.diarrea">Diarrea · riñón sano</button>
+      <button class="atr-btn" data-atr="atr2" data-i18n="ac.btn.atr2">ATR 2 · proximal</button>
+      <button class="atr-btn" data-atr="atr1" data-i18n="ac.btn.atr1">ATR 1 · distal</button>
+      <button class="atr-btn" data-atr="atr3" data-i18n="ac.btn.atr3">ATR 3 · mixta (CA II)</button>
+      <button class="atr-btn" data-atr="atr4h" data-i18n="ac.btn.atr4h">ATR 4 · hipoaldo-steronismo</button>
+      <button class="atr-btn" data-atr="atr4r" data-i18n="ac.btn.atr4r">ATR 4 · antagonista del MR</button>
+      <button class="atr-btn" data-atr="atr4v" data-i18n="ac.btn.atr4v">ATR 4 · bloqueo de ENaC</button>
+      <label class="cmp-check"><input type="checkbox" id="cmp-resaltar" checked /> <span data-i18n="cmp.resaltar">Resaltar lo afectado</span></label>
+    </div>
+  </section>
+  <section class="card cmp-cab">
+    <h1 id="cmp-nombre">—</h1>
+    <p id="cmp-causas"></p>
+    <p class="cmp-toca" data-i18n="ac.tocaCanal">toca un canal, bomba o caja para leer qué lo activa</p>
+  </section>
+  <div id="cmp-etapas"></div>
+  <div id="cmp-sondas"></div>
+  <section class="card tarjeta cmp-tarjeta" id="cmp-tarjeta" hidden></section>
+</div>
+
 <footer class="site-footer">
   <details class="refs">
     <summary data-i18n="ac.biblio">Referencias</summary>
@@ -97,10 +123,11 @@
 <script src="js/particulas.js?v=18"></script>
 <script src="js/leyenda.js?v=18"></script>
 <script src="js/refs.js?v=18"></script>
-<script src="js/nefron-fila.js?v=18"></script>
-<script src="js/atr.js?v=19"></script>
-<script src="js/acidosis-en.js?v=19"></script>
-<script src="js/acidosis-i18n.js?v=19"></script>
+<script src="js/nefron-fila.js?v=20"></script>
+<script src="js/atr.js?v=20"></script>
+<script src="js/acidosis-en.js?v=20"></script>
+<script src="js/acidosis-i18n.js?v=20"></script>
+<script src="js/acidosis-comparar.js?v=20"></script>
 <script>
   // Referencias de las bolitas, flotante, visible mientras corre la animación
   NI.leyenda.crear({ iones: ['na','k','cl','h','hco3','nh4','nh3','gln','co2','hpo4','h2po4','aldo','angii','renina'] });

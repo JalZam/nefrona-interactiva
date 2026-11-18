@@ -44,6 +44,14 @@ siguiente.
 canales, acumula sustancias en pilas y pinta la franja de laboratorio. `js/refs.js` tiene las 38 referencias
 y las 33 tarjetas «¿por qué?».
 
+**Acidosis · vista lado a lado** (pedido de Juanjo 2026-11-17; en local, pendiente de publicar). «Funcionamiento
+normal» se ve en la fila de 4 células; al elegir una enfermedad `js/acidosis-comparar.js` abre `#cmp-vista`:
+por cada célula que se daña (en orden) la célula NORMAL, la ENFERMA y sus pasos. Cada célula es `celda.html`
+en un iframe (la fila completa recortada a una célula; parámetros `atr`, `celula`, `paso`, `ver`, `lang`), con
+su propio motor. Solo se dibujan las piezas que participan (`resaltar` de los pasos + mapa `APOYO`). La fila
+de arriba queda en normal y en pausa (`NI.pausa`); las células fuera de pantalla también se pausan. Enlace
+directo: `?atr=atr1`. Las enfermedades ya NO se ven en la fila de 4 células.
+
 **Diuréticos.** `js/diureticos-mapa.js` dibuja el mapa de la nefrona y las 6 clases; al tocar un segmento
 abre `js/diu-zoom.js`, el acercamiento a la célula, con un botón que alterna normal ↔ bloqueo. Cada clase
 es un objeto en `ZOOMS` (`iac`, `osm`) con `dibujar/colas/corrientes/paso/estado`; `estado()` devuelve los
@@ -78,6 +86,8 @@ js/atr.js             acidosis: las 8 opciones y sus listas numeradas
 js/refs.js            acidosis: 38 referencias + 33 tarjetas «¿por qué?»
 js/acidosis-en.js     acidosis: traducción al inglés (8 ATR, 64 pasos, 33 tarjetas, 70 rótulos)
 js/acidosis-i18n.js   acidosis: aplica el idioma en caliente sin perder la opción elegida
+js/acidosis-comparar.js acidosis: vista «normal junto a la enfermedad» (usa celda.html en iframes)
+celda.html            acidosis: una sola célula de la fila, para los iframes de la vista lado a lado
 
 js/diureticos-mapa.js diuréticos: mapa de la nefrona, 6 clases, resumen, enlace al acercamiento
 js/diu-zoom.js        diuréticos: acercamiento a la célula (acetazolamida y manitol)

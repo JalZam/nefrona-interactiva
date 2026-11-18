@@ -589,7 +589,7 @@
     sangre.innerHTML =
       celda('Na⁺', Na, T('135–145')) + celda('K⁺', fmt(K), T('3,5–5,0'), rango(K, 3.5, 5.0)) +
       celda('Cl⁻', Cl, T('98–106'), rango(Cl, 98, 107)) + celda('HCO₃⁻', fmt(HCO3, 0), T('22–26'), rango(HCO3, 22, 26)) +
-      celda(T('Anion gap'), AG, T('8–12 · Na⁺ − (Cl⁻ + HCO₃⁻)'), rango(AG, 8, 12), true);
+      celda(T('Anion gap'), AG, T('8–12 · Na⁺ menos (Cl⁻ + HCO₃⁻)'), rango(AG, 8, 12), true);
     const naU = Math.round(clamp(80 + 80 * (E.naOrina - 0.15) - 50 * Math.max(0, E.renina - 1) - 40 * (E.diarrea || 0), 10, 160));
     const kU = Math.round(clamp(10 + 30 * Math.min(1.5, E.romk) * vf * (E.K / 4) + 30 * (E.kOrina || 0), 5, 120));
     const nh4U = vNh4 * 0.75, hco3U = 80 * (E.hco3Orina || 0);

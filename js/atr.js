@@ -26,7 +26,8 @@
         estado: { volt: 0.2, voltaje: -10, romk: 0.4, K: 5.5, naOrina: 0.7 }, resaltar: ['np-carga', 'ch-romk', 'ch-kir', 'pila-na'] },
       { titulo: 'La célula α pierde el empuje para secretar H⁺',
         texto: 'La H⁺-ATPasa es electrogénica: la ayudaba el mismo voltaje negativo. Sin él, parte de los H⁺ rebotan en la bomba y se devuelven a la sangre (en el hipoaldosteronismo además se apaga el estímulo directo de la aldosterona sobre la bomba: mira la caja «Aldo · acidosis»). Por cada H⁺ que no sale, tampoco nace un HCO₃⁻ nuevo: AE1 se queda esperando con el Cl⁻ aparcado afuera y no hay intercambio. El ácido de la dieta empieza a retenerse.',
-        estado: { hatp: 0.6, acido: 0.3, hco3: 22 }, resaltar: ['ch-hatp', 'box-aldo-a', 'ch-ae1', 'pila-h'] },
+        // con voltaje perdido pero bomba sana el pH urinario baja (no es «defecto de voltaje»)
+        estado: Object.assign({ hatp: 0.6, acido: 0.3, hco3: 22 }, phFinal < 5.5 ? { phOrina: 5.5 } : {}), resaltar: ['ch-hatp', 'box-aldo-a', 'ch-ae1', 'pila-h'] },
       { titulo: 'El K⁺ alto entra al túbulo proximal y frena la glutaminasa',
         texto: 'El K⁺ entra a la célula proximal a cambio de H⁺; el citosol se alcaliniza y la glutaminasa y la PEPCK bajan su actividad. La glutamina sigue llegando por SNAT3 pero rebota en la mitocondria sin procesarse: se fabrica menos NH₄⁺ y menos HCO₃⁻ nuevo. Este es el eslabón central de la ATR4: la acidosis es consecuencia de la hiperkalemia.',
         estado: { glut: 0.45, K: 5.8 }, resaltar: ['box-mito', 'ch-k-p', 'ch-nhe3'] },
@@ -34,8 +35,9 @@
         texto: 'El NH₄⁺ y el K⁺ usan el mismo sitio del cotransportador: NKCC2 solo tiene un puesto para K⁺ o NH₄⁺ por ciclo. Con K⁺ luminal alto (mira cuántos K⁺ llegan ahora por la luz) ese puesto casi siempre lo ocupa el K⁺: el NH₄⁺ rebota y sigue de largo sin construir el gradiente medular. Llega menos NH₄⁺ por NHE4/KCC4 al intersticio y el depósito de NH₃ se vacía.',
         estado: { pK: 0.4, nh3: 0.45 }, resaltar: ['ch-nkcc2', 'ch-nh4-salida', 'np-deposito'] },
       { titulo: 'Llega poco NH₃ al colector: se atrapa poco NH₄⁺',
-        texto: 'Con el depósito medular vacío, Rhcg tiene poco NH₃ que pasar a la luz. Los pocos H⁺ secretados bajan el pH urinario, pero no hay amortiguador que los convierta en NH₄⁺: la excreción neta de ácido cae y el HCO₃⁻ plasmático baja día a día.',
-        estado: { trap: 0.5, acido: 0.7, hco3: 18, phOrina: phFinal }, resaltar: ['ch-rhcg-bl', 'ch-rhcg-ap', 'pila-h', 'orina-nh4'] },
+        texto: 'Con el depósito medular vacío, Rhcg tiene poco NH₃ que pasar a la luz. Los pocos H⁺ secretados bajan el pH urinario, pero no hay amortiguador que los convierta en NH₄⁺: la excreción neta de ácido cae y el HCO₃⁻ plasmático baja día a día.' + (phFinal < 5.5 ? ' El poco NH₃ que llega sí queda atrapado como NH₄⁺, porque la orina está ácida: el NH₄⁺ urinario es bajo porque llega poco NH₃, no porque se escape.' : ''),
+        // orina ácida: todo el NH₃ que llega se atrapa (llega poco); con defecto de voltaje, parte escapa
+        estado: Object.assign({ acido: 0.7, hco3: 18, phOrina: phFinal }, phFinal < 5.5 ? { nh3: 0.36 } : { trap: 0.5 }), resaltar: ['ch-rhcg-bl', 'ch-rhcg-ap', 'pila-h', 'orina-nh4'] },
       { titulo: 'Resultado: ATR tipo 4',
         texto: `Hiperkalemia (K⁺ ≈ ${kFinal.toFixed(1).replace('.', ',')}), acidosis metabólica hiperclorémica con anion gap normal (HCO₃⁻ ≈ ${hco3Final}), pH urinario ${phFinal < 5.5 ? 'bajo (< 5,5)' : 'que no baja de 5,5'}, NH₄⁺ urinario bajo y brecha aniónica urinaria positiva. La acidosis saca más K⁺ de las células y cierra el círculo vicioso.${extraTexto ? ' ' + extraTexto : ''}`,
         estado: { K: kFinal, hco3: hco3Final, acido: 0.85 }, resaltar: ['pila-k', 'pila-h', 'orina-ph'] }
@@ -92,7 +94,7 @@
           texto: 'Las secreciones intestinales y pancreáticas son ricas en HCO₃⁻, y en la diarrea el colon lo intercambia por Cl⁻. Se pierden 30–100 mEq de HCO₃⁻ al día por las heces (mira la flecha de la sangre a la caja «HECES»). La orina ya empieza a acidificarse, pero el riñón todavía no ha puesto en marcha su respuesta grande, la del NH₄⁺.',
           estado: { diarrea: 1, hco3: 20, acido: 0.3, renina: 1.3, phOrina: 5.4 }, resaltar: ['pila-heces', 'pila-h'] },
         { titulo: 'El Cl⁻ sube lo mismo que baja el HCO₃⁻: el anion gap no cambia',
-          texto: 'El Cl⁻ que el intestino reabsorbe a cambio del HCO₃⁻ ocupa su lugar en la sangre. Na⁺ − (Cl⁻ + HCO₃⁻) se mantiene en ≈ 12: acidosis hiperclorémica con anion gap normal, igual que en las ATR. El anion gap plasmático no distingue la causa; hay que mirar la orina.',
+          texto: 'El Cl⁻ que el intestino reabsorbe a cambio del HCO₃⁻ ocupa su lugar en la sangre. Na⁺ menos (Cl⁻ + HCO₃⁻) se mantiene en ≈ 12: acidosis hiperclorémica con anion gap normal, igual que en las ATR. El anion gap plasmático no distingue la causa; hay que mirar la orina.',
           estado: { hco3: 17, acido: 0.5 }, resaltar: ['pila-h'] },
         { titulo: 'La acidosis enciende la amoniogénesis del túbulo proximal',
           texto: 'En 2–5 días la acidosis multiplica la glutaminasa, la GDH, la PEPCK y la entrada de glutamina por SNAT3. Mira cómo entra el doble de glutamina y salen el doble de NH₄⁺ a la luz por NHE3 y de HCO₃⁻ nuevo a la sangre por NBCe1. La hipokalemia que acompaña a la diarrea la estimula todavía más.',
@@ -197,16 +199,16 @@
       nombre: 'ATR tipo 4 · hipoaldosteronismo',
       causas: 'Nefropatía diabética (hiporreninismo), AINE, IECA y ARA2, heparina, inhibidores de calcineurina, enfermedad de Addison. La forma más frecuente de todas las ATR.',
       pasos: [
-        { titulo: 'Hay menos angiotensina II o no actúa',
-          texto: 'En la nefropatía diabética y con AINE o inhibidores de calcineurina el riñón produce poca renina (hiporreninismo); con IECA no se forma angiotensina II; con ARA2 se forma pero el receptor AT1 de la suprarrenal está bloqueado y la angiotensina II rebota. En Addison la glándula está destruida y la renina está muy alta.',
-          estado: { angiiBlock: 1, renina: 1.2 }, resaltar: ['box-renina', 'box-angii', 'box-suprarrenal'] },
-        { titulo: 'La suprarrenal deja de producir aldosterona',
-          texto: 'Sin el estímulo de la angiotensina II, la zona glomerulosa deja de liberar aldosterona: las partículas de aldosterona dejan de aparecer en la sangre. Al MR no le llega nada. La heparina, además, atrofia la zona glomerulosa.',
-          estado: { aldo: 0.1 }, resaltar: ['box-suprarrenal', 'g-aldo', 'box-mr'] },
-        { titulo: 'Con el MR vacío, Nedd4-2 retira ENaC',
-          texto: 'Sin aldosterona el MR no enciende SGK1; sin SGK1, Nedd4-2 queda activa y marca a ENaC para que la célula lo retire. En horas la membrana apical se queda casi sin ENaC: el Na⁺ que baja por la luz rebota y se pierde en la orina.',
-          estado: { enac: 0.15, naOrina: 0.4 }, resaltar: ['box-sgk1', 'box-nedd', 'ch-enac'] },
-        ...cascada4(5.5, 19, 5.2, 'Como la aldosterona baja pero el voltaje no es el único problema, el pH urinario sí baja de 5,5 (los pocos H⁺ no tienen NH₃ que los amortigüe). En hipoaldosteronismo por ARA2 la hiperkalemia suele ser más leve que en Addison: el K⁺ alto estimula por sí mismo algo de aldosterona (vía directa, sin angiotensina II), que se ve como las partículas de aldosterona que reaparecen.')
+        { titulo: 'Falta aldosterona: el receptor MR se queda sin estímulo',
+          texto: 'La angiotensina II es la señal que hace que la suprarrenal libere aldosterona. Aquí esa señal falla: mira cómo la angiotensina II rebota en la suprarrenal, las partículas de aldosterona dejan de salir y al receptor de mineralocorticoides (MR) de la célula principal ya no le llega nada. La animación muestra el caso de un ARA2, que bloquea el receptor AT1 de la suprarrenal. Se llega a lo mismo con poca renina (nefropatía diabética, AINE, inhibidores de calcineurina), con IECA (no se forma angiotensina II), con heparina (atrofia la zona glomerulosa) y en la enfermedad de Addison (la glándula está destruida). Los antagonistas del receptor de mineralocorticoides (espironolactona, eplerenona, finerenona) dejan al MR sin estímulo por otro camino: la aldosterona sí llega, pero encuentra el receptor ocupado; eso se ve en el botón «ATR 4 · antagonista del MR».',
+          estado: { angiiBlock: 1, renina: 1.2, aldo: 0.1 }, resaltar: ['box-angii', 'box-suprarrenal', 'g-aldo', 'box-mr'] },
+        { titulo: 'Con el MR vacío se apaga SGK1 y Nedd4-2 queda activa',
+          texto: 'Cuando la aldosterona ocupa el MR, este entra al núcleo y hace que la célula fabrique SGK1, la enzima que mantiene frenada a Nedd4-2. Sin aldosterona esa cadena se apaga: mira cómo el MR y SGK1 quedan en gris, las flechas que los unen se desvanecen y el rótulo de Nedd4-2 cambia a «ACTIVA».',
+          estado: {}, resaltar: ['box-mr', 'box-sgk1', 'box-nedd'] },
+        { titulo: 'Nedd4-2 retira ENaC de la membrana: el Na⁺ ya no entra',
+          texto: 'Nedd4-2 activa marca a ENaC para que la célula lo retire y lo destruya. En horas la membrana apical se queda casi sin canales: mira cómo el Na⁺ que baja por la luz rebota en ENaC y sigue de largo hacia la orina.',
+          estado: { enac: 0.15, naOrina: 0.4 }, resaltar: ['box-nedd', 'ch-enac'] },
+        ...cascada4(5.5, 19, 5.2, 'A diferencia del bloqueo de ENaC, aquí la orina sí se acidifica: los pocos H⁺ que se secretan no encuentran NH₃ que los amortigüe y el pH urinario baja de 5,5. Con ARA2 la hiperkalemia suele ser más leve que en la enfermedad de Addison, porque la suprarrenal sana todavía responde un poco al K⁺ alto (las partículas de aldosterona que reaparecen).')
       ]
     },
 
@@ -243,6 +245,7 @@
   };
   // en hipoaldosteronismo, desde que sube el K⁺ reaparece algo de aldosterona por vía directa
   ATR.atr4h.pasos.forEach((p, i) => { if (i >= 5) p.estado = Object.assign({ aldoK: 0.35 }, p.estado); });
+  ATR.atr4h.pasos[5].texto += ' Fíjate también en que reaparecen algunas partículas de aldosterona: el K⁺ alto estimula directamente la suprarrenal, sin pasar por la angiotensina II. Es muy poca y no alcanza a reactivar el MR.';
 
   // ───────── Motor ─────────
   const svg = $('svg-nefron');
@@ -299,7 +302,13 @@
     $('atr-pasos').querySelectorAll('li').forEach(li => li.addEventListener('click', () => irA(+li.dataset.i, true)));
     irA(0);
   }
-  document.querySelectorAll('.atr-btn').forEach(b => b.addEventListener('click', () => elegir(b.dataset.atr)));
+  // «Normal» se ve en la fila de cuatro células; una enfermedad abre la vista lado a lado (acidosis-comparar.js)
+  document.querySelectorAll('.atr-btn').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.atr, C = NI.comparar;
+    if (C && id !== 'normal') { C.abrir(id); return; }
+    if (C) C.cerrar();
+    elegir(id);
+  }));
   // cuántas células se ven a la vez (se recuerda en este navegador)
   function verCelulas(n) {
     if (!document.querySelector('.ver-btn')) return;
@@ -314,6 +323,8 @@
   // transición suave hacia el objetivo + animación
   let ultimo = null;
   function bucle(ts) {
+    // NI.pausa: la fila no se ve (está abierta la vista lado a lado, o la célula quedó fuera de pantalla)
+    if (NI.pausa) { ultimo = null; requestAnimationFrame(bucle); return; }
     if (ultimo !== null) {
       const dt = Math.min(0.05, (ts - ultimo) / 1000);
       const k = 1 - Math.exp(-dt * 1.6);
@@ -344,5 +355,5 @@
   document.querySelectorAll('#lista-refs li').forEach(li => { li.id = 'ref-' + li.getAttribute('value'); });
 
   elegir('normal');
-  NI.atrAPI = { irA, elegir, estado: () => actual, objetivo: () => objetivo, escena, ATR };
+  NI.atrAPI = { irA, elegir, estado: () => actual, objetivo: () => objetivo, escena, ATR, id: () => atrId };
 })(window);

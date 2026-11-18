@@ -147,8 +147,7 @@
     }
 
     NI.i18n.alCambiar(() => {
-      const sel = document.querySelector('.atr-btn.activo');
-      const cual = sel ? sel.dataset.atr : 'normal';
+      const cual = api.id ? api.id() : 'normal';
       NI.i18n.pintarHTML();
       aplicarDatos(NI.i18n.lang === 'en');
       rotulosSVG();
@@ -162,7 +161,7 @@
     if (NI.i18n.lang === 'en') {
       aplicarDatos(true);
       rotulosSVG();
-      try { api.elegir(document.querySelector('.atr-btn.activo')?.dataset.atr || 'normal'); } catch (e) { /* nada */ }
+      try { api.elegir(api.id ? api.id() : 'normal'); } catch (e) { /* nada */ }
     }
   }
 

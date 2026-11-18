@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Nefrona Interactiva · una célula</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="style.css?v=20" />
+<style>
+  html, body { margin: 0; background: #fff; overflow: hidden; height: 100%; }
+  #svg-nefron { width: 100vw !important; height: 100vh !important; }
+  /* el rótulo del voltaje cabe dentro de la célula sin moverse */
+  #np-carga-txt { font-size: 11px !important; }
+  /* Canal afectado: halo fijo + pulso. Lo que no cambia se atenúa. */
+  .cmp-on .cmp-cambia { animation: mk-halo 1.4s ease-in-out infinite; }
+  @keyframes mk-halo {
+    0%, 100% { filter: drop-shadow(0 0 3px #f59e0b) drop-shadow(0 0 2px #f59e0b); }
+    50% { filter: drop-shadow(0 0 12px #f59e0b) drop-shadow(0 0 6px #f59e0b) drop-shadow(0 0 3px #dc2626); }
+  }
+</style>
+</head>
+<body class="pagina-animacion">
+<!-- Una sola fila de acidosis, recortada a una célula. La usa index.html (js/acidosis-comparar.js)
+     dentro de un iframe para la vista «normal junto a la enfermedad».
+     Parámetros: atr, celula (prox|asa|prin|alfa), paso, ver (piezas que se dibujan), lang.
+     Sin analitica.js: los eventos los manda la página que la contiene. -->
+<svg id="svg-nefron" viewBox="0 0 1720 720" xmlns="http://www.w3.org/2000/svg"></svg>
+<div hidden>
+  <div id="lab-sangre"></div><div id="lab-orina"></div>
+  <section id="tarjeta"></section>
+  <section id="atr-card"><div id="atr-nombre"></div><p id="atr-causas"></p><ol id="atr-pasos"></ol></section>
+  <ol id="lista-refs"></ol>
+</div>
+<script src="js/i18n.js?v=19"></script>
+<script src="js/particulas.js?v=18"></script>
+<script src="js/refs.js?v=18"></script>
+<script src="js/nefron-fila.js?v=20"></script>
+<script src="js/atr.js?v=20"></script>
+<script src="js/acidosis-en.js?v=20"></script>
+<script src="js/acidosis-i18n.js?v=20"></script>
+<script>
+// Corre después de que acidosis-i18n.js haya puesto el idioma (su arranque también va en DOMContentLoaded)
+document.addEventListener('DOMContentLoaded', function () {
+  NI.i18n.extender(null, null, { 'LUZ TUBULAR': 'LUMEN', 'SANGRE': 'BLOOD' });
+  const par = new URLSearchParams(location.search);
+  const atr = par.get('atr') || 'normal';
+  const cel = par.get('celula') || 'prox';
+  const API = NI.atrAPI;
+  const svg = document.getElementById('svg-nefron');
+  const esc = API.escena;
+
+  // Las bolitas pasan POR DETRÁS de canales, bombas y cajas (para leer siempre el nombre)
+  const capa = svg.querySelector('.capa-particulas');
+  const primera = svg.querySelector('.glifo, .caja');
+  if (capa && primera) primera.parentNode.insertBefore(capa, primera);
+
+  // ?ver=id1,id2…  → solo se dibujan esos canales, bombas y cajas; los demás se quitan,
+  // junto con sus flechas, sus bolitas y sus rótulos.
+  if (par.has('ver')) {
+    const keep = new Set(par.get('ver').split(',').filter(Boolean));
+    const tr = n => { const m = /translate\(\s*([-\d.]+)[ ,]+([-\d.]+)/.exec(n.getAttribute('transform') || ''); return m ? [+m[1], +m[2]] : [0, 0]; };
+    const piezas = [...svg.querySelectorAll('.glifo[id], .caja[id]')].map(n => {
+      const esCaja = n.classList.contains('caja');
+      const [tx, ty] = tr(n);
+      let c;
+      if (esCaja) { const b = n.getBBox(); c = { x: b.x + b.width / 2, y: b.y + b.height / 2, hw: b.width / 2, hh: b.height / 2 }; }
+      else c = { x: tx, y: ty, hw: 0, hh: 0 };
+      return { n, fuera: !keep.has(n.id), esCaja, c };
+    });
+    // distancia de un punto a una pieza (0 si está dentro de una caja)
+    const dist = (p, x, y) => Math.hypot(Math.max(0, Math.abs(x - p.c.x) - p.c.hw), Math.max(0, Math.abs(y - p.c.y) - p.c.hh));
+    const cercana = (x, y, max) => { let m = null, dm = max; piezas.forEach(p => { const d = dist(p, x, y); if (d < dm) { dm = d; m = p; } }); return m; };
+    // Flechas: se quitan las que solo tocan piezas quitadas (la luz, y < 118, no cuenta)
+    svg.querySelectorAll('path.np-flecha').forEach(path => {
+      const len = path.getTotalLength();
+      if (len > 520) return;
+      let toca = false, tocaFuera = false;
+      for (let d = 0; d <= len; d += 10) {
+        const pt = path.getPointAtLength(d);
+        if (pt.y < 118) continue;
+        piezas.forEach(p => { if (dist(p, pt.x, pt.y) < 44) { if (p.fuera) tocaFuera = true; else toca = true; } });
+      }
+      if (tocaFuera && !toca) { path.style.display = 'none'; path.dataset.oculto = '1'; }
+    });
+    // Bolitas de esas flechas
+    const emitir0 = esc.emitir;
+    esc.emitir = function (id, extra, ion) {
+      const p = emitir0(id, extra, ion);
+      if (p && p.c.path.dataset.oculto) p.el.style.display = 'none';
+      return p;
+    };
+    // Bolitas que esperan junto a una pieza quitada, y rebotes ✕
+    const aparcar0 = esc.aparcar;
+    esc.aparcar = function (colaId, slot, ion, res) {
+      const ok = aparcar0(colaId, slot, ion, res);
+      const q = esc.colas[colaId], sl = q && q.slots[slot];
+      if (sl) { const m = cercana(sl.x, sl.y, 130); if (m && m.fuera) sl.aparcadas.forEach(a => { a.el.style.display = 'none'; }); }
+      return ok;
+    };
+    const rebote0 = esc.rebote;
+    esc.rebote = function (x, y, ion, t) { const m = cercana(x, y, 130); if (m && m.fuera) return; return rebote0(x, y, ion, t); };
+    // Rótulos sueltos pegados a una pieza quitada
+    [...svg.children].filter(n => n.tagName === 'text').forEach(t => {
+      if (/np-banda-titulo|np-celula-titulo|np-pila-txt/.test(t.getAttribute('class') || '')) return;
+      if (/^(orina|pila|np-carga|nh4o|ato)/.test(t.id || '')) return;
+      const b = t.getBBox(); const x = b.x + b.width / 2, y = b.y + b.height / 2;
+      if (x > 1600) return;
+      const m = cercana(x, y, 85);
+      if (m && m.fuera) t.style.display = 'none';
+    });
+    piezas.forEach(p => { if (p.fuera) p.n.style.display = 'none'; });
+    // El núcleo solo pinta si participa la vía MR → SGK1
+    if (!keep.has('box-sgk1')) svg.querySelectorAll('.nucleo').forEach(n => { n.style.display = 'none'; });
+  }
+
+  // El eje renina → angiotensina solo se dibuja en la célula principal (en las demás quedaba cortado)
+  if (cel !== 'prin') {
+    ['g-renina', 'g-angii'].forEach(id => { const n = document.getElementById(id); if (n) n.style.display = 'none'; });
+    const em = esc.emitir;
+    esc.emitir = function (id, extra, ion) { const p = em(id, extra, ion); if (p && (id === 'renina' || id === 'angii')) p.el.style.display = 'none'; return p; };
+  }
+  // En la célula principal la angiotensina II llega desde la izquierda: aparece entera, nunca partida por el borde
+  if (cel === 'prin') {
+    const borde = [];
+    const em = esc.emitir;
+    esc.emitir = function (id, extra, ion) { const p = em(id, extra, ion); if (p && id === 'angii') borde.push(p.el); return p; };
+    const tick0 = esc.tick;
+    esc.tick = function (dt) {
+      const r = tick0(dt);
+      for (let i = borde.length - 1; i >= 0; i--) {
+        const n = borde[i];
+        if (!n.isConnected) { borde.splice(i, 1); continue; }
+        const m = /translate\(\s*([-\d.]+)/.exec(n.getAttribute('transform') || '');
+        n.style.visibility = m && +m[1] < 820 ? 'hidden' : '';
+      }
+      return r;
+    };
+  }
+  // SNAT3: su nombre va arriba a la derecha del canal, donde no lo tapa la bomba Na⁺/K⁺
+  (function () {
+    const t = document.querySelector('#ch-snat3 .glifo-nombre');
+    if (t) { t.setAttribute('x', 14); t.setAttribute('y', -40); t.style.textAnchor = 'start'; }
+  })();
+  // Las heces solo aparecen si la enfermedad las usa (diarrea)
+  if (par.has('ver') && !par.get('ver').split(',').includes('pila-heces')) {
+    svg.querySelectorAll('.np-heces, text.heces, #pila-heces, #pila-heces-txt, #g-hco3-heces').forEach(n => { n.style.display = 'none'; });
+  }
+
+  API.elegir(atr);
+  API.irA(par.has('paso') ? +par.get('paso') : API.ATR[atr].pasos.length - 1);
+  // Salta directo al estado final (sin la transición lenta) y deja correr las partículas un rato
+  Object.assign(API.estado(), API.objetivo());
+  esc.limpiar();
+  for (let i = 0; i < 900; i++) { esc.actualizar(1 / 60); esc.tick(1 / 60); }
+  NI.np.render(API.estado());
+  NI.np.resaltar([]);
+  // Recorte: solo esta célula (la α incluye el cajón de orina)
+  const CROP = { prox: [0, 410], asa: [410, 800], prin: [800, 1190], alfa: [1190, 1720] };
+  const [a, b] = CROP[cel];
+  svg.setAttribute('viewBox', `${a} 0 ${b - a} 720`);
+  // El nombre de la célula va encima de las bolitas, para que nunca quede tapado
+  svg.querySelectorAll('.np-celula-titulo').forEach(t => svg.appendChild(t));
+  // Tapa lo que queda fuera del recorte (todas las células usan un marco del mismo tamaño)
+  [[a - 3000, 3000], [b, 3000]].forEach(([x, w]) => {
+    const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    r.setAttribute('x', x); r.setAttribute('y', -1000); r.setAttribute('width', w); r.setAttribute('height', 3000);
+    r.setAttribute('fill', '#fff'); svg.appendChild(r);
+  });
+  // El voltaje es de la LUZ: su rótulo y sus signos van en la luz, no dentro de la célula
+  (function () {
+    const t = document.getElementById('np-carga-txt'), c = document.getElementById('np-carga');
+    if (!t || !c) return;
+    t.setAttribute('x', 1184); t.setAttribute('y', 19); t.style.textAnchor = 'end';
+    c.setAttribute('x', 1014); c.setAttribute('y', 21); c.style.textAnchor = 'middle';
+  })();
+  // ── Rótulos: nada cortado en el borde, y «LUZ TUBULAR» / «SANGRE» en cada célula ──
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const visible = n => n.style.display !== 'none';
+  // cajas cortadas por el borde del recorte: se quitan
+  svg.querySelectorAll('.caja[id]').forEach(n => {
+    if (!visible(n)) return;
+    const q = n.getBBox(); const m = /translate\(\s*([-\d.]+)/.exec(n.getAttribute('transform') || ''); const x = q.x + (m ? +m[1] : 0);
+    if ((x < a && x + q.width > a) || (x < b && x + q.width > b)) n.style.display = 'none';
+  });
+  // pared de la célula de este recorte
+  let pared = null;
+  svg.querySelectorAll('.np-celula').forEach(n => { const q = n.getBBox(); const cx = q.x + q.width / 2; if (cx > a && cx < b) pared = q; });
+  const grupos = {};
+  [...svg.children].filter(n => n.tagName === 'text' && visible(n)).forEach(t => {
+    const cls = t.getAttribute('class') || '';
+    if (/np-banda-titulo/.test(cls) && !/heces/.test(cls) && +t.getAttribute('x') < 1600) { t.style.display = 'none'; return; }
+    const q = t.getBBox(); if (!q.width) return;
+    const cx = q.x + q.width / 2, cy = q.y + q.height / 2;
+    if (cx < a || cx > b) { t.style.display = 'none'; return; }
+    const dentro = pared && cy > pared.y && cy < pared.y + pared.height && cx > pared.x && cx < pared.x + pared.width;
+    const izq = dentro ? pared.x + 10 : a + 6, der = dentro ? pared.x + pared.width - 10 : b - 6;
+    const dx = q.x < izq ? izq - q.x : q.x + q.width > der ? der - (q.x + q.width) : 0;
+    const k = cls + '|' + t.getAttribute('x');
+    (grupos[k] = grupos[k] || []).push({ t, dx });
+  });
+  Object.values(grupos).forEach(g => {
+    const dx = g.reduce((m, o) => Math.abs(o.dx) > Math.abs(m) ? o.dx : m, 0);
+    if (dx) g.forEach(o => o.t.setAttribute('transform', `translate(${dx.toFixed(1)},0)`));
+  });
+  const rotulo = (x, y, s, cls, anc) => { const t = document.createElementNS(SVGNS, 'text'); t.setAttribute('x', x); t.setAttribute('y', y); t.setAttribute('class', cls); t.setAttribute('style', 'text-anchor:' + anc); t.textContent = s; svg.appendChild(t); };
+  rotulo(a + 10, 20, NI.i18n.tx('LUZ TUBULAR'), 'np-banda-titulo', 'start');
+  if (cel === 'prin') rotulo(1094, 616, NI.i18n.tx('SANGRE'), 'np-banda-titulo sangre', 'end');
+  else rotulo(Math.min(b - 10, 1390), 716, NI.i18n.tx('SANGRE'), 'np-banda-titulo sangre', 'end');
+  // «¿Por qué?»: la tarjeta la pinta la página que contiene esta célula
+  svg.querySelectorAll('[data-porque]').forEach(n => n.addEventListener('click', () => {
+    try { const C = parent !== window && parent.NI && parent.NI.comparar; if (C) C.porque(n.dataset.porque); } catch (e) { /* suelta: nada */ }
+  }));
+  window.CELDA_LISTA = true;
+});
+</script>
+</body>
+</html>

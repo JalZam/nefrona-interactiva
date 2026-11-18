@@ -62,7 +62,7 @@ window.ACIDOSIS_EN = {
     },
     {
      "t": "Cl⁻ rises as much as HCO₃⁻ falls: the anion gap does not change",
-     "x": "The Cl⁻ that the gut reabsorbs in exchange for HCO₃⁻ takes its place in the blood. Na⁺ − (Cl⁻ + HCO₃⁻) stays at ≈ 12: hyperchloremic (normal anion gap) acidosis, the same as in the RTAs. The plasma anion gap does not distinguish the cause; you have to look at the urine."
+     "x": "The Cl⁻ that the gut reabsorbs in exchange for HCO₃⁻ takes its place in the blood. Na⁺ minus (Cl⁻ + HCO₃⁻) stays at ≈ 12: hyperchloremic (normal anion gap) acidosis, the same as in the RTAs. The plasma anion gap does not distinguish the cause; you have to look at the urine."
     },
     {
      "t": "Acidosis turns on ammoniagenesis in the proximal tubule",
@@ -189,16 +189,16 @@ window.ACIDOSIS_EN = {
    "causas": "Diabetic nephropathy (hyporeninism), NSAIDs, ACE inhibitors and ARBs, heparin, calcineurin inhibitors, Addison disease. The most common of all the RTAs.",
    "pasos": [
     {
-     "t": "There is less angiotensin II, or it does not act",
-     "x": "In diabetic nephropathy and with NSAIDs or calcineurin inhibitors the kidney produces little renin (hyporeninism); with ACE inhibitors angiotensin II is not formed; with ARBs it is formed but the AT1 receptor of the adrenal gland is blocked and angiotensin II bounces off. In Addison the gland is destroyed and renin is very high."
+     "t": "Aldosterone is missing: the MR is left without a stimulus",
+     "x": "Angiotensin II is the signal that makes the adrenal gland release aldosterone. Here that signal fails: watch how angiotensin II bounces off the adrenal gland, the aldosterone particles stop coming out and nothing reaches the mineralocorticoid receptor (MR) of the principal cell any more. The animation shows the case of an ARB, which blocks the AT1 receptor of the adrenal gland. The same happens with low renin (diabetic nephropathy, NSAIDs, calcineurin inhibitors), with ACE inhibitors (angiotensin II is not formed), with heparin (it atrophies the zona glomerulosa) and in Addison disease (the gland is destroyed). Mineralocorticoid receptor antagonists (spironolactone, eplerenone, finerenone) leave the MR without a stimulus by another route: aldosterone does arrive, but finds the receptor occupied; that is shown under the “RTA 4 · MR antagonist” button."
     },
     {
-     "t": "The adrenal gland stops producing aldosterone",
-     "x": "Without the stimulus of angiotensin II, the zona glomerulosa stops releasing aldosterone: the aldosterone particles stop appearing in the blood. Nothing reaches the MR. Heparin, in addition, atrophies the zona glomerulosa."
+     "t": "With the MR empty, SGK1 switches off and Nedd4-2 stays active",
+     "x": "When aldosterone occupies the MR, the receptor enters the nucleus and makes the cell produce SGK1, the enzyme that keeps Nedd4-2 restrained. Without aldosterone that chain switches off: watch how the MR and SGK1 turn grey, the arrows linking them fade and the Nedd4-2 label changes to “ACTIVE”."
     },
     {
-     "t": "With the MR empty, Nedd4-2 removes ENaC",
-     "x": "Without aldosterone the MR does not turn on SGK1; without SGK1, Nedd4-2 stays active and tags ENaC so the cell removes it. Within hours the apical membrane is left almost without ENaC: the Na⁺ that comes down the lumen bounces off and is lost in the urine."
+     "t": "Nedd4-2 removes ENaC from the membrane: Na⁺ no longer enters",
+     "x": "Active Nedd4-2 tags ENaC so the cell removes and destroys it. Within hours the apical membrane is left almost without channels: watch how the Na⁺ coming down the lumen bounces off ENaC and goes on by towards the urine."
     },
     {
      "t": "With no Na⁺ entering, the Na⁺/K⁺-ATPase stalls",
@@ -210,7 +210,7 @@ window.ACIDOSIS_EN = {
     },
     {
      "t": "The type A cell loses the push to secrete H⁺",
-     "x": "The H⁺-ATPase is electrogenic: that same negative voltage helped it. Without it, some of the H⁺ bounce off the pump and go back to the blood (in hypoaldosteronism the direct stimulus of aldosterone on the pump is switched off as well: look at the \"Aldo · acidosis\" box). For every H⁺ that does not leave, no new HCO₃⁻ is born either: AE1 is left waiting with Cl⁻ parked outside and there is no exchange. The acid from the diet starts to be retained."
+     "x": "The H⁺-ATPase is electrogenic: that same negative voltage helped it. Without it, some of the H⁺ bounce off the pump and go back to the blood (in hypoaldosteronism the direct stimulus of aldosterone on the pump is switched off as well: look at the \"Aldo · acidosis\" box). For every H⁺ that does not leave, no new HCO₃⁻ is born either: AE1 is left waiting with Cl⁻ parked outside and there is no exchange. The acid from the diet starts to be retained. Notice too that a few aldosterone particles reappear: the high K⁺ stimulates the adrenal gland directly, without going through angiotensin II. It is very little and not enough to reactivate the MR."
     },
     {
      "t": "The high K⁺ enters the proximal tubule and brakes glutaminase",
@@ -222,11 +222,11 @@ window.ACIDOSIS_EN = {
     },
     {
      "t": "Little NH₃ reaches the collecting duct: little NH₄⁺ is trapped",
-     "x": "With the medullary pool empty, Rhcg has little NH₃ to move into the lumen. The few H⁺ secreted lower the urine pH, but there is no buffer to turn them into NH₄⁺: net acid excretion falls and plasma HCO₃⁻ drops day by day."
+     "x": "With the medullary pool empty, Rhcg has little NH₃ to move into the lumen. The few H⁺ secreted lower the urine pH, but there is no buffer to turn them into NH₄⁺: net acid excretion falls and plasma HCO₃⁻ drops day by day. The little NH₃ that arrives is indeed trapped as NH₄⁺, because the urine is acidic: urine NH₄⁺ is low because little NH₃ arrives, not because it escapes."
     },
     {
      "t": "Result: type 4 RTA",
-     "x": "Hyperkalemia (K⁺ ≈ 5.5), hyperchloremic (normal anion gap) metabolic acidosis (HCO₃⁻ ≈ 19), low urine pH (< 5.5), low urine NH₄⁺ and a positive urine anion gap. The acidosis pulls more K⁺ out of the cells and closes the vicious circle. Since aldosterone is low but the voltage is not the only problem, the urine pH does fall below 5.5 (the few H⁺ have no NH₃ to buffer them). In hypoaldosteronism from ARBs the hyperkalemia is usually milder than in Addison: the high K⁺ by itself stimulates some aldosterone (a direct pathway, without angiotensin II), which is seen as the aldosterone particles reappearing."
+     "x": "Hyperkalemia (K⁺ ≈ 5.5), hyperchloremic (normal anion gap) metabolic acidosis (HCO₃⁻ ≈ 19), low urine pH (< 5.5), low urine NH₄⁺ and a positive urine anion gap. The acidosis pulls more K⁺ out of the cells and closes the vicious circle. Unlike ENaC blockade, here the urine does acidify: the few H⁺ that are secreted find no NH₃ to buffer them and the urine pH falls below 5.5. With ARBs the hyperkalemia is usually milder than in Addison disease, because the healthy adrenal gland still responds a little to the high K⁺ (the aldosterone particles that reappear)."
     }
    ]
   },
@@ -264,7 +264,7 @@ window.ACIDOSIS_EN = {
     },
     {
      "t": "Little NH₃ reaches the collecting duct: little NH₄⁺ is trapped",
-     "x": "With the medullary pool empty, Rhcg has little NH₃ to move into the lumen. The few H⁺ secreted lower the urine pH, but there is no buffer to turn them into NH₄⁺: net acid excretion falls and plasma HCO₃⁻ drops day by day."
+     "x": "With the medullary pool empty, Rhcg has little NH₃ to move into the lumen. The few H⁺ secreted lower the urine pH, but there is no buffer to turn them into NH₄⁺: net acid excretion falls and plasma HCO₃⁻ drops day by day. The little NH₃ that arrives is indeed trapped as NH₄⁺, because the urine is acidic: urine NH₄⁺ is low because little NH₃ arrives, not because it escapes."
     },
     {
      "t": "Result: type 4 RTA",
@@ -486,7 +486,7 @@ window.ACIDOSIS_EN = {
   "Anion gap": "Anion gap",
   "Brecha aniónica urinaria": "Urine anion gap",
   "Excreción neta de ácido": "Net acid excretion",
-  "8–12 · Na⁺ − (Cl⁻ + HCO₃⁻)": "8–12 · Na⁺ − (Cl⁻ + HCO₃⁻)",
+  "8–12 · Na⁺ menos (Cl⁻ + HCO₃⁻)": "8–12 · Na⁺ minus (Cl⁻ + HCO₃⁻)",
   "5–6 · < 5,5 en acidosis": "5–6 · < 5.5 in acidosis",
   "40–220 (dieta)": "40–220 (diet)",
   "25–120 (dieta)": "25–120 (diet)",
