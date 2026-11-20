@@ -727,6 +727,10 @@ body.con-aviso .ley-flota { bottom: calc(var(--aviso-h, 0px) + 28px); }
 .cmp-etq { display: inline-block; font: 800 .72rem 'Outfit', sans-serif; letter-spacing: .06em; padding: .2rem .6rem; border-radius: 999px; background: var(--primary); color: #fff; margin-bottom: .35rem; }
 .fx > .cmp-etq { background: #dc2626; }
 .cmp-lado iframe { display: block; border: 0; border-radius: 6px; width: 100%; aspect-ratio: 530 / 720; }
+/* mientras la célula se arma: recuadro gris con «Cargando…» */
+.cmp-lado { position: relative; }
+.cmp-espera .cmp-lado iframe { background: #f3f4f6; }
+.cmp-espera .cmp-lado::after { content: attr(data-cargando); position: absolute; left: 0; right: 0; top: 50%; text-align: center; font: 600 .85rem 'Inter', sans-serif; color: var(--text-muted); pointer-events: none; }
 .cmp-exp { min-width: 0; }
 .cmp-exp ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
 .cmp-exp li { border: 1px solid #e5e7eb; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: .4rem .55rem; cursor: pointer; background: #fff; }

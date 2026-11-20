@@ -49,7 +49,7 @@
     'ch-nkcc2': ['ch-nh4-salida', 'ch-nak-t'], 'ch-nh4-salida': ['ch-nkcc2']
   };
 
-  let actual = null, gen = 0, celDeId = null, obs = null;
+  let actual = null, gen = 0, celDeId = null, obs = null, obsCarga = null;
   const api = () => NI.atrAPI;
 
   function cuandoCargue(f) {
@@ -154,6 +154,17 @@
       try { e.target.contentWindow.NI.pausa = !e.isIntersecting; } catch (err) { /* cargando */ }
     }), { rootMargin: '150px' }) : null;
 
+    // Carga por tandas: solo se arma lo que está a la vista o por entrar; lo demás, al bajar.
+    // (Cada célula es una página entera: cargarlas todas de golpe congelaba la vista varios segundos.)
+    if (obsCarga) obsCarga.disconnect();
+    obsCarga = 'IntersectionObserver' in global ? new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      obsCarga.unobserve(e.target);
+      const f = e.target._cargar; e.target._cargar = null;
+      if (f) f();
+    }), { rootMargin: '500px' }) : null;
+    const alAcercarse = (nodo, f) => { if (obsCarga) { nodo._cargar = f; obsCarga.observe(nodo); } else f(); };
+
     $('cmp-nombre').textContent = a.nombre;
     $('cmp-causas').textContent = a.causas || '';
     // Etapas: pasos seguidos que ocurren en la misma célula, en el orden en que ocurren.
@@ -200,27 +211,32 @@
         q('sn').innerHTML = $('lab-sangre').innerHTML;
         q('on').innerHTML = $('lab-orina').innerHTML;
         // laboratorio de la enfermedad: una fila oculta llevada al último paso
-        const sx = document.createElement('iframe');
-        sx.className = 'cmp-sonda'; sx.src = url(atr, 'prox'); sx.setAttribute('aria-hidden', 'true'); sx.tabIndex = -1;
-        $('cmp-sondas').appendChild(sx);
-        cuandoCargue(sx).then(() => {
+        alAcercarse(sec, () => {
           if (g !== gen) return;
-          q('sx').innerHTML = sx.contentDocument.getElementById('lab-sangre').innerHTML;
-          q('ox').innerHTML = sx.contentDocument.getElementById('lab-orina').innerHTML;
-          sx.remove();
+          const sx = document.createElement('iframe');
+          sx.className = 'cmp-sonda'; sx.src = url(atr, 'prox'); sx.setAttribute('aria-hidden', 'true'); sx.tabIndex = -1;
+          $('cmp-sondas').appendChild(sx);
+          cuandoCargue(sx).then(() => {
+            if (g !== gen) return;
+            q('sx').innerHTML = sx.contentDocument.getElementById('lab-sangre').innerHTML;
+            q('ox').innerHTML = sx.contentDocument.getElementById('lab-orina').innerHTML;
+            sx.remove();
+          });
         });
         return;
       }
       const ini = e.pasos[0], nom = t('cmp.cel.' + e.cel);
       sec.className = 'card cmp-etapa';
       sec.innerHTML = `<h2><span class="cmp-orden">${orden(k + 1)}</span>${nom}</h2>
-        <div class="cmp-lado"><span class="cmp-etq">${t('cmp.normal')}</span>
-          <iframe title="${nom} · ${t('cmp.normal')}" src="${url('normal', e.cel, ver)}"></iframe></div>
-        <div class="cmp-lado fx"><span class="cmp-etq">${corto}</span>
-          <iframe title="${nom} · ${corto}" src="${url(atr, e.cel, '&paso=' + ini + ver)}"></iframe></div>
+        <div class="cmp-lado" data-cargando="${t('cmp.cargando')}"><span class="cmp-etq">${t('cmp.normal')}</span>
+          <iframe title="${nom} · ${t('cmp.normal')}" data-src="${url('normal', e.cel, ver)}"></iframe></div>
+        <div class="cmp-lado fx" data-cargando="${t('cmp.cargando')}"><span class="cmp-etq">${corto}</span>
+          <iframe title="${nom} · ${corto}" data-src="${url(atr, e.cel, '&paso=' + ini + ver)}"></iframe></div>
         <div class="cmp-exp">${e.pasos.length > 1 ? `<p class="cmp-pista">${t('cmp.pista')}</p>` : ''}<ol>${lista}</ol></div>`;
       cont.appendChild(sec);
       const [fN, fX] = sec.querySelectorAll('iframe');
+      sec.classList.add('cmp-espera');
+      alAcercarse(sec, () => { if (g !== gen) return; fN.src = fN.dataset.src; fX.src = fX.dataset.src; });
       const lis = [...sec.querySelectorAll('li')];
       const irPaso = (i, mover) => {
         lis.forEach(li => {
@@ -237,6 +253,7 @@
       };
       Promise.all([cuandoCargue(fN), cuandoCargue(fX)]).then(() => {
         if (g !== gen) return;
+        sec.classList.remove('cmp-espera');
         irPaso(ini, false);
         lis.forEach(li => li.addEventListener('click', () => {
           irPaso(+li.dataset.i, true);
@@ -253,6 +270,7 @@
     if (!actual && !document.body.classList.contains('cmp-abierta')) return;
     actual = null; gen++;
     if (obs) { obs.disconnect(); obs = null; }
+    if (obsCarga) { obsCarga.disconnect(); obsCarga = null; }
     $('cmp-etapas').innerHTML = ''; $('cmp-sondas').innerHTML = '';
     cerrarTarjeta();
     document.body.classList.remove('cmp-abierta');
