@@ -79,6 +79,15 @@ en un iframe (la fila completa recortada a una célula; parámetros `atr`, `celu
 su propio motor. Solo se dibujan las piezas que participan (`resaltar` de los pasos + mapa `APOYO`). La fila
 de arriba queda en normal y en pausa (`NI.pausa`); las células fuera de pantalla también se pausan. Enlace
 directo: `?atr=atr1`. Las enfermedades ya NO se ven en la fila de 4 células.
+**Carga por tandas** (2026-11-20, commit efe3258, `?v=21`): los iframes nacen con `data-src` y solo reciben `src`
+cuando su etapa se acerca a la pantalla (`alAcercarse`, IntersectionObserver con margen de 500 px); mientras tanto
+se ve «Cargando…» (clase `cmp-espera`). El iframe oculto del laboratorio final también espera a que se acerque
+su etapa. Medido en el Mac mini: ATR 4 hipoaldo de 9,4 s a 4,2 s (la página sola tarda 2,8 s).
+**Causa medida del retraso que queda:** de los ~780 ms de cada célula, ~700 ms son el adelanto de 900 tics de
+`celda.html`, y casi todo es `posicionar()` (getPointAtLength + setAttribute por bolita y por tic). Probado en una
+copia aparte: saltarse el dibujo durante el adelanto y colocar las bolitas una sola vez al final lo baja a ~20 ms
+(célula completa ~85 ms). **Propuesto a Juanjo, falta su sí.** Al hacerlo, recalcular al final la visibilidad de
+la AngII del borde en la célula principal.
 
 **Diuréticos.** `js/diureticos-mapa.js` dibuja el mapa de la nefrona y las 6 clases; al tocar un segmento
 abre `js/diu-zoom.js`, el acercamiento a la célula, con un botón que alterna normal ↔ bloqueo. Cada clase
