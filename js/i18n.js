@@ -337,10 +337,17 @@
   const oyentes = [];
   let lang = 'es';
 
+  // Primera visita: el idioma del navegador o del teléfono (español si está en español; si no, inglés).
+  // Pedido de Juanjo 2026-11-23: la mayoría de los visitantes tiene el teléfono en inglés.
+  try {
+    const nav = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+    if (nav && !/^es\b/i.test(nav)) lang = 'en';
+  } catch (e) { /* sin dato: español */ }
+  // Lo que la persona eligió con el interruptor ES|EN manda sobre el navegador
   try {
     const g = localStorage.getItem('ni-lang');
     if (g === 'es' || g === 'en') lang = g;
-  } catch (e) { /* almacenamiento bloqueado: se queda en español */ }
+  } catch (e) { /* almacenamiento bloqueado: se queda con el del navegador */ }
   // ?lang=en manda sobre lo guardado (sirve para enlazar la página en un idioma)
   try {
     const q = new URLSearchParams(location.search).get('lang');
