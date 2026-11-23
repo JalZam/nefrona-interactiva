@@ -121,6 +121,7 @@ js/particulas.js      motor de partículas: caminos SVG, cadenas, COLAS con este
 js/i18n.js            idioma común: t(), tx(), extender(), alCambiar(), pintarHTML()
 js/leyenda.js         botón flotante «Guía» con el color y la sigla de cada bolita
 js/analitica.js       PostHog UE con consentimiento, aviso de cookies y eventos propios
+js/buzon.js           buzón de sugerencias: botón en la cabecera y [data-buzon]; envía a PostHog
 
 js/nefron-fila.js     acidosis: las 4 células, cajones de orina y heces, laboratorio, render(E)
 js/atr.js             acidosis: las 8 opciones y sus listas numeradas
@@ -193,6 +194,19 @@ PLAN.md               fases y estado
   José Jaller (persona natural), 12 meses, Ley 1581/2012, Decreto 1377/2013 y RGPD; el correo se arma con JS
   (`[data-correo]`). Clave pública `phc_qAq3…`, host `https://eu.i.posthog.com`. Panel de PostHog
   configurado por Juanjo (2026-11-08): retención de 12 meses y grabación de sesiones encendida. El contador hits.sh de la cabecera se queda por ahora.
+
+- **Buzón de sugerencias** (pedido de Juanjo 2026-11-23, `js/buzon.js`, en las tres páginas): botón ámbar
+  «Sugerencias» en la cabecera + enlace en el pie (`[data-buzon]`); `?buzon=1` lo abre una vez y se borra de la
+  dirección. Guarda en PostHog el evento `suggestion_sent` (`texto`, `contacto` opcional, `ruta`) y
+  `suggestion_box_opened`; no hay otro servicio. Si PostHog no cargó, avisa y no borra el texto. La política de
+  privacidad lo declara (`pv.que.7`). **Leer el buzón:** consulta HogQL con la llave de solo lectura
+  (`~/.config/posthog/llave_lectura`, proyecto 341082): `select timestamp, properties.texto, properties.contacto,
+  properties.ruta from events where event = 'suggestion_sent' and properties.$host = 'nefrona-interactiva.com'`.
+  PostHog tarda cerca de un minuto en mostrar un evento recién enviado.
+- **Idioma inicial según el navegador** (2026-11-23, `js/i18n.js`): español si `navigator.languages[0]` empieza
+  por `es`; si no, inglés. Lo elegido con ES|EN (`localStorage['ni-lang']`) y `?lang=` mandan.
+- **Aviso de cookies oscuro** (2026-11-23): fondo `--dark`, franja naranja; los dos botones pesan igual a
+  propósito (RGPD: rechazar tan fácil como aceptar).
 
 ## Cómo Correr y Probar
 - Local: `python3 -m http.server 8080` en la carpeta (o doble clic en el HTML).
