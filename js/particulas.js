@@ -87,6 +87,9 @@
     };
 
     function posicionar(p) {
+      // esc.sinDibujar: adelanto «a ciegas» (celda.html). Se calcula todo igual, pero no se coloca cada
+      // bolita en cada tic; al terminar, un tick(0) las coloca todas una sola vez.
+      if (esc.sinDibujar) return;
       const d = p.c.reverso ? p.c.len - p.dist : p.dist;
       const pt = p.c.path.getPointAtLength(Math.max(0, Math.min(p.c.len, d)));
       p.el.setAttribute('transform', `translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})`);

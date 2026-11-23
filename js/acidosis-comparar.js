@@ -63,7 +63,7 @@
     });
   }
   function url(atr, cel, extra) {
-    return `${CELDA}?atr=${atr}&celula=${cel}&lang=${NI.i18n.lang}${extra || ''}`;
+    return `${CELDA}?v=22&atr=${atr}&celula=${cel}&lang=${NI.i18n.lang}${extra || ''}`;
   }
 
   // En qué célula está cada pieza, según su posición horizontal en la fila.
