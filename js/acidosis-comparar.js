@@ -63,7 +63,7 @@
     });
   }
   function url(atr, cel, extra) {
-    return `${CELDA}?v=22&atr=${atr}&celula=${cel}&lang=${NI.i18n.lang}${extra || ''}`;
+    return `${CELDA}?v=23&atr=${atr}&celula=${cel}&lang=${NI.i18n.lang}${extra || ''}`;
   }
 
   // En qué célula está cada pieza, según su posición horizontal en la fila.
@@ -107,7 +107,37 @@
   function resaltarEn(f, ids) {
     const d = f.contentDocument;
     d.querySelectorAll('.cmp-cambia').forEach(n => n.classList.remove('cmp-cambia'));
-    ids.forEach(id => { const n = d.getElementById(id); if (n) n.classList.add('cmp-cambia'); });
+    d.querySelectorAll('.cmp-anillo').forEach(n => n.remove());
+    const sueltas = [];
+    ids.forEach(id => {
+      const n = d.getElementById(id); if (!n) return;
+      n.classList.add('cmp-cambia');
+      // Sin anillo propio (pilas, rótulos, depósito): se le pone uno alrededor
+      if (!n.querySelector('.np-halo') && n.ownerSVGElement) {
+        const r = d.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        r.setAttribute('class', 'cmp-anillo'); r.setAttribute('rx', 10);
+        n.ownerSVGElement.appendChild(r);
+        sueltas.push([n, r]);
+      }
+    });
+    f._anillos = sueltas;
+    ajustarAnillos(f);
+  }
+  // Los anillos sueltos siguen a su pieza (una pila crece mientras se llena)
+  function ajustarAnillos(f) {
+    (f._anillos || []).forEach(([n, r]) => {
+      let b = null;
+      try { if (n.style.display !== 'none') b = n.getBBox(); } catch (e) { /* no se puede medir */ }
+      const vb = n.ownerSVGElement.viewBox.baseVal;
+      const m = /translate\(\s*([-\d.]+)[ ,]+([-\d.]+)/.exec(n.getAttribute('transform') || '');
+      const x = b ? b.x + (m ? +m[1] : 0) : 0, y = b ? b.y + (m ? +m[2] : 0) : 0;
+      const cx = b ? x + b.width / 2 : 0;
+      // sin anillo: lo que no se ve, lo que cae fuera del recorte y los caminos largos (p. ej. el de la aldosterona)
+      if (!b || !b.width || !b.height || b.width > 180 || b.height > 130 || cx < vb.x || cx > vb.x + vb.width) { r.style.display = 'none'; return; }
+      r.style.display = '';
+      r.setAttribute('x', (x - 7).toFixed(1)); r.setAttribute('y', (y - 6).toFixed(1));
+      r.setAttribute('width', (b.width + 14).toFixed(1)); r.setAttribute('height', (b.height + 12).toFixed(1));
+    });
   }
   function marcarBotones(id) {
     document.querySelectorAll('.atr-btn').forEach(b => b.classList.toggle('activo', b.dataset.atr === id));
@@ -283,6 +313,7 @@
     if (!api()) { setTimeout(init, 60); return; }
     if (!$('cmp-vista')) return;
     $('cmp-resaltar').addEventListener('change', aplicarHalo);
+    setInterval(() => { if (actual) document.querySelectorAll('#cmp-etapas iframe').forEach(f => { try { ajustarAnillos(f); } catch (e) { /* cargando */ } }); }, 500);
     // Al cambiar de idioma se vuelve a armar la vista (este oyente corre después del de acidosis-i18n.js)
     NI.i18n.alCambiar(() => { if (actual) abrir(actual); });
     let q = null;

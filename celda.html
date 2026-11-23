@@ -16,6 +16,18 @@
     0%, 100% { filter: drop-shadow(0 0 3px #f59e0b) drop-shadow(0 0 2px #f59e0b); }
     50% { filter: drop-shadow(0 0 12px #f59e0b) drop-shadow(0 0 6px #f59e0b) drop-shadow(0 0 3px #dc2626); }
   }
+  /* Safari no dibuja el filtro de arriba dentro de un SVG: además, un anillo naranja que late.
+     En canales, bombas y cajas es su propio .np-halo; en lo demás (pilas, rótulos) lo pone
+     acidosis-comparar.js como .cmp-anillo. */
+  .cmp-anillo { fill: none; stroke: #f59e0b; stroke-width: 4; pointer-events: none; visibility: hidden; }
+  .cmp-on .cmp-anillo { visibility: visible; }
+  /* !important: las cajas apagadas pintan de gris todos sus rectángulos, y el anillo debe seguir naranja */
+  .cmp-on .cmp-cambia .np-halo { opacity: 1 !important; stroke: #f59e0b !important; fill: none !important; stroke-dasharray: none; }
+  .cmp-on .cmp-cambia .np-halo, .cmp-on .cmp-anillo { animation: mk-anillo 1.4s ease-in-out infinite; }
+  @keyframes mk-anillo {
+    0%, 100% { stroke-width: 3; stroke-opacity: .6; }
+    50% { stroke-width: 8; stroke-opacity: 1; }
+  }
 </style>
 </head>
 <body class="pagina-animacion">
