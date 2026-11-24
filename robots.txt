@@ -1,0 +1,22 @@
+# Nefrona Interactiva — herramienta educativa gratuita de fisiología renal.
+# Todos los buscadores y asistentes de IA son bienvenidos.
+User-agent: *
+Allow: /
+Disallow: /celda.html
+
+# Asistentes de IA (búsqueda y lectura): permitidos de forma explícita
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+Disallow: /celda.html
+
+Sitemap: https://nefrona-interactiva.com/sitemap.xml

@@ -1,0 +1,21 @@
+# Nefrona Interactiva
+
+> Free, bilingual (Spanish / English) learning tool for renal physiology. It animates the cells of the nephron channel by channel, with strict stoichiometry, and shows what fails, and in what order, in each normal anion gap metabolic acidosis (diarrhea and renal tubular acidosis types 1, 2, 3 and 4). A second section, under construction, maps where each class of diuretic acts along the nephron. Written by Juan José Jaller, MD, nephrologist. No advertising. It is a learning tool, not a diagnostic or prescribing guide.
+
+Herramienta educativa gratuita y bilingüe de fisiología renal: anima las células de la nefrona canal por canal y muestra qué se daña, y en qué orden, en cada acidosis metabólica sin anion gap (diarrea y acidosis tubular renal tipos 1, 2, 3 y 4).
+
+The animations need JavaScript. The two text guides below contain the complete explanation as plain HTML and are the best pages to read or cite.
+
+## Text guides (full content, no JavaScript needed)
+
+- [Renal tubular acidosis types 1, 2, 3 and 4: step-by-step mechanism (English)](https://nefrona-interactiva.com/renal-tubular-acidosis.html): normal acidification, diarrhea, type 2 (proximal), type 1 (distal), type 3 (carbonic anhydrase II deficiency) and three forms of type 4 (hypoaldosteronism, aldosterone resistance, ENaC blockade); what each channel, pump and transporter does; 38 references with DOI.
+- [Acidosis tubular renal tipos 1, 2, 3 y 4: mecanismo paso a paso (español)](https://nefrona-interactiva.com/acidosis-tubular-renal.html): el mismo contenido en español.
+
+## Interactive animations
+
+- [Acidosis animation](https://nefrona-interactiva.com/): the normal cell next to the diseased one, step by step. Add `?lang=en` for English and `?atr=` to open one scenario: `normal`, `diarrea`, `atr2`, `atr1`, `atr3`, `atr4h`, `atr4r`, `atr4v`.
+- [Diuretics along the nephron](https://nefrona-interactiva.com/diureticos.html): where each class acts (under construction).
+
+## Optional
+
+- [Data processing policy](https://nefrona-interactiva.com/privacidad.html)

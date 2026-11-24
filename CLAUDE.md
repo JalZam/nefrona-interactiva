@@ -247,3 +247,11 @@ PLAN.md               fases y estado
 - Cabecera en celular: desde 2026-11-08 los botones pasan a una segunda fila por debajo de 600 px (antes se
   salían de la pantalla a 390 px).
 - Pendiente de Juanjo: revisar la traducción al inglés (es mía) y confirmar los usuarios de las redes.
+
+## Buscadores y asistentes de IA (SEO) — 2026-11-24
+- **Problema de fondo:** casi todo el texto vive en JS y solo aparece al tocar; los robots de IA no ejecutan JS. Por eso hay dos **guías en texto**: `acidosis-tubular-renal.html` (ES) y `renal-tubular-acidosis.html` (EN).
+- Las guías son **generadas**: no editarlas a mano. Tras cambiar textos en `js/atr.js`, `js/refs.js` o `js/acidosis-en.js`, correr `node tools/generar-guia.js` (falla si español e inglés no tienen los mismos pasos) y publicar las dos.
+- `<html data-lang-fijo="es|en">` fija el idioma de una página (lo lee `js/i18n.js`); `data-i18n-href` traduce un enlace; `doc.desc` traduce la meta descripción.
+- `robots.txt` (todos permitidos, incluidos los de IA; `celda.html` fuera), `sitemap.xml` (actualizar `lastmod` y añadir páginas nuevas), `llms.txt` (resumen para IA; actualizar al añadir secciones).
+- Cada página lleva canónica, Open Graph (`img/og.png`, 1200×630), icono (`img/icono.svg`) y datos estructurados JSON-LD.
+- Pendiente de Juanjo: dar de alta el sitio en Google Search Console y Bing Webmaster Tools; guía en texto de diuréticos cuando la sección esté terminada.

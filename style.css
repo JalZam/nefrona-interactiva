@@ -811,3 +811,34 @@ body.bz-abierto { overflow: hidden; }
   .bz-fondo { align-items: flex-end; padding: 0; }
   .bz-caja { width: 100%; border-radius: var(--radius-lg) var(--radius-lg) 0 0; max-height: 92vh; }
 }
+
+/* ============================================================
+   Guías en texto (acidosis-tubular-renal.html / renal-tubular-acidosis.html) y título de cabecera
+   ============================================================ */
+.logo-h1 { font: inherit; display: flex; flex-direction: column; }
+a.logo { text-decoration: none; }
+.cmp-cab h2 { font: 800 1.25rem 'Outfit', sans-serif; margin: 0 0 .2rem; color: var(--dark); }
+.pie-guia { text-align: center; font-size: .84rem; margin-top: .9rem; }
+.pie-guia a { color: var(--primary-dark); font-weight: 700; }
+.lang-switch a.gt-lang { font-size: .72rem; font-weight: 800; letter-spacing: .4px; padding: .36rem .62rem;
+  color: var(--text-muted); text-decoration: none; }
+.lang-switch a.gt-lang.activo { background: var(--primary); color: var(--white); }
+.gt section { margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--border); scroll-margin-top: 4.5rem; }
+.gt section > h2 { font-size: 1.25rem; margin-top: 0; }
+.gt h3 { font: 700 .95rem 'Outfit', sans-serif; color: var(--dark); margin: .2rem 0 .15rem; }
+.gt-causas { font-style: italic; color: var(--text-secondary); }
+.gt-pasos { padding-left: 1.4rem; margin: .6rem 0; }
+.gt-pasos > li { margin-bottom: .8rem; }
+.gt-pasos > li::marker { font-weight: 800; color: var(--primary-dark); }
+.gt-ver a { font-weight: 700; }
+.gt-aviso { margin-top: .5rem; font-size: .8rem !important; color: var(--text-muted) !important; }
+.gt-indice { margin-top: 1rem; padding: .8rem 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+.gt-indice h2 { margin-top: 0; }
+.gt-indice ol { padding-left: 1.3rem; }
+.gt-pieza { margin: .7rem 0; scroll-margin-top: 4.5rem; }
+.gt-cita { font-size: .8em; white-space: nowrap; }
+.gt-refs { padding-left: 1.8rem; }
+.gt-refs li { font-size: .82rem !important; margin-bottom: .35rem; scroll-margin-top: 4.5rem; overflow-wrap: anywhere; }
+.nav-link.nav-expl { border-color: var(--primary-mid); color: var(--primary-dark); }
+.nav-link.nav-expl::before { content: "📖 "; }
+.nav-link.nav-expl.activo { color: var(--white); }

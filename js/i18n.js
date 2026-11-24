@@ -7,7 +7,7 @@
   const NI = global.NI || (global.NI = {});
 
   const ES = {
-    'doc.titulo': 'Diuréticos en la nefrona',
+    'doc.titulo': 'Diuréticos en la nefrona: dónde actúa cada uno — Nefrona Interactiva',
     'doc.desc': 'Mapa animado de la nefrona: la sangre entra por la arteriola aferente, se filtra en el glomérulo, recorre el túbulo y sale como orina. Dónde actúa cada clase de diurético.',
     'nav.acidosis': 'Acidosis', 'nav.diureticos': 'Diuréticos',
     'nav.visitas': 'Visitas totales del sitio: cuenta cargas de página, no identifica personas',
@@ -169,7 +169,7 @@
   };
 
   const EN = {
-    'doc.titulo': 'Diuretics along the nephron',
+    'doc.titulo': 'Diuretics along the nephron: where each class acts — Nefrona Interactiva',
     'doc.desc': 'Animated nephron map: blood enters through the afferent arteriole, is filtered at the glomerulus, travels down the tubule and leaves as urine. Where each class of diuretic acts.',
     'nav.acidosis': 'Acidosis', 'nav.diureticos': 'Diuretics',
     'nav.visitas': 'Total site visits: counts page loads, does not identify people',
@@ -353,6 +353,11 @@
     const q = new URLSearchParams(location.search).get('lang');
     if (q === 'es' || q === 'en') lang = q;
   } catch (e) { /* nada */ }
+  // Páginas escritas en un solo idioma (las guías en texto): <html data-lang-fijo="en"> manda sobre todo
+  try {
+    const fijo = document.documentElement.getAttribute('data-lang-fijo');
+    if (fijo === 'es' || fijo === 'en') lang = fijo;
+  } catch (e) { /* nada */ }
   document.documentElement.setAttribute('lang', lang);
 
   // Añade claves a los diccionarios (cada página aporta las suyas)
@@ -389,8 +394,14 @@
     document.querySelectorAll('[data-i18n-title]').forEach(n => {
       n.setAttribute('title', t(n.getAttribute('data-i18n-title')));
     });
+    document.querySelectorAll('[data-i18n-href]').forEach(n => {
+      n.setAttribute('href', t(n.getAttribute('data-i18n-href')));
+    });
     const tit = document.querySelector('title');
     if (tit) tit.textContent = t('doc.titulo');
+    // la descripción para buscadores, también en el idioma que se está viendo
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc && t('doc.desc') !== 'doc.desc') desc.setAttribute('content', t('doc.desc'));
   }
 
   NI.i18n = { t, tx, set, extender, alCambiar, pintarHTML, get lang() { return lang; } };

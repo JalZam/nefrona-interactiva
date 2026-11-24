@@ -3,12 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nefrona Interactiva — Acidosis metabólica sin anion gap</title>
+  <title>Nefrona Interactiva — Acidosis tubular renal animada (acidosis metabólica sin anion gap)</title>
   <meta name="description" content="Animación educativa: las cuatro células del nefrón de proximal a distal, los iones viajando por sus canales, y qué se daña (y en qué orden) en cada acidosis tubular renal: tipos 1, 2, 3 y 4, con la célula normal junto a la enferma." />
+  <link rel="canonical" href="https://nefrona-interactiva.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nefrona Interactiva" />
+  <meta property="og:title" content="Nefrona Interactiva — Acidosis tubular renal animada (acidosis metabólica sin anion gap)" />
+  <meta property="og:description" content="Animación educativa: las cuatro células del nefrón de proximal a distal, los iones viajando por sus canales, y qué se daña (y en qué orden) en cada acidosis tubular renal: tipos 1, 2, 3 y 4, con la célula normal junto a la enferma." />
+  <meta property="og:url" content="https://nefrona-interactiva.com/" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://nefrona-interactiva.com/img/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="img/icono.svg" type="image/svg+xml" />
+  <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://nefrona-interactiva.com/#sitio", "name": "Nefrona Interactiva", "url": "https://nefrona-interactiva.com/", "inLanguage": ["es", "en"], "description": "Animaciones educativas de fisiología renal: acidosis tubular renal y diuréticos, canal por canal.", "author": {"@type": "Person", "name": "Juan José Jaller", "jobTitle": "Médico nefrólogo", "url": "https://www.instagram.com/kidneyedu/"}}, {"@context": "https://schema.org", "@type": ["WebApplication", "LearningResource"], "name": "Nefrona Interactiva: acidosis tubular renal animada", "url": "https://nefrona-interactiva.com/", "description": "Animación educativa: las cuatro células del nefrón de proximal a distal, los iones viajando por sus canales, y qué se daña (y en qué orden) en cada acidosis tubular renal: tipos 1, 2, 3 y 4, con la célula normal junto a la enferma.", "inLanguage": ["es", "en"], "applicationCategory": "EducationalApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "learningResourceType": "Animación interactiva", "educationalLevel": "Estudiantes de medicina, residentes y médicos", "audience": {"@type": "MedicalAudience", "audienceType": "Clinician"}, "about": [{"@type": "MedicalCondition", "name": "Acidosis tubular renal", "alternateName": "Renal tubular acidosis"}, {"@type": "MedicalCondition", "name": "Acidosis metabólica sin anion gap", "alternateName": "Normal anion gap metabolic acidosis"}], "author": {"@type": "Person", "name": "Juan José Jaller", "jobTitle": "Médico nefrólogo", "url": "https://www.instagram.com/kidneyedu/"}, "isPartOf": {"@id": "https://nefrona-interactiva.com/#sitio"}, "image": "https://nefrona-interactiva.com/img/og.png", "subjectOf": [{"@type": "WebPage", "url": "https://nefrona-interactiva.com/acidosis-tubular-renal.html", "inLanguage": "es"}, {"@type": "WebPage", "url": "https://nefrona-interactiva.com/renal-tubular-acidosis.html", "inLanguage": "en"}]}]</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=23" />
+  <link rel="stylesheet" href="style.css?v=24" />
 </head>
 <body class="pagina-animacion">
 
@@ -21,13 +35,14 @@
         <circle cx="20" cy="22" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/>
       </svg>
       <div>
-        <div class="logo-title">Nefrona Interactiva</div>
-        <div class="logo-sub" data-i18n="ac.logosub">Animación · Acidosis metabólica sin anion gap</div>
+        <h1 class="logo-h1"><span class="logo-title">Nefrona Interactiva</span>
+        <span class="logo-sub" data-i18n="ac.logosub">Animación · Acidosis metabólica sin anion gap</span></h1>
       </div>
     </div>
     <nav class="header-right nav">
       <a class="nav-link activo" href="index.html" data-i18n="nav.acidosis">Acidosis</a>
       <a class="nav-link" href="diureticos.html" data-i18n="nav.diureticos">Diuréticos</a>
+      <a class="nav-link nav-expl" href="acidosis-tubular-renal.html" data-i18n="ac.expl" data-i18n-href="ac.guiaUrl">Explicación</a>
       <div class="lang-switch" id="dm-lang" role="group" data-i18n-title="lang.titulo" title="Idioma / Language">
         <button type="button" data-lang="es">ES</button>
         <button type="button" data-lang="en">EN</button>
@@ -99,7 +114,7 @@
     </div>
   </section>
   <section class="card cmp-cab">
-    <h1 id="cmp-nombre">—</h1>
+    <h2 id="cmp-nombre">—</h2>
     <p id="cmp-causas"></p>
     <p class="cmp-toca" data-i18n="ac.tocaCanal">toca un canal, bomba o caja para leer qué lo activa</p>
   </section>
@@ -114,12 +129,13 @@
     <ol id="lista-refs"></ol>
   </details>
   <p class="footer-firma" data-i18n="ac.pie">Nefrona Interactiva · Herramienta educativa · CiMedical · Esquemas dibujados según la convención de los textos clásicos de fisiología renal · Sin publicidad. Se cuentan las visitas con PostHog (servidor en Europa); las cookies, solo con su permiso.</p>
+  <p class="pie-guia"><a href="acidosis-tubular-renal.html" data-i18n="ac.guia" data-i18n-href="ac.guiaUrl">Leer toda la explicación en texto</a></p>
   <p class="pie-legal"><a href="privacidad.html" data-i18n="leg.privacidad">Política de tratamiento de datos</a>
     · <a href="#" data-cookies data-i18n="leg.cookies">Cookies</a>
     · <a href="#" data-buzon data-i18n="bz.boton">Sugerencias</a></p>
 </footer>
 
-<script src="js/i18n.js?v=20"></script>
+<script src="js/i18n.js?v=21"></script>
 <script src="js/analitica.js?v=18"></script>
 <script src="js/buzon.js?v=2"></script>
 <script src="js/particulas.js?v=19"></script>
@@ -128,8 +144,8 @@
 <script src="js/nefron-fila.js?v=20"></script>
 <script src="js/atr.js?v=20"></script>
 <script src="js/acidosis-en.js?v=20"></script>
-<script src="js/acidosis-i18n.js?v=20"></script>
-<script src="js/acidosis-comparar.js?v=23"></script>
+<script src="js/acidosis-i18n.js?v=21"></script>
+<script src="js/acidosis-comparar.js?v=24"></script>
 <script>
   // Referencias de las bolitas, flotante, visible mientras corre la animación
   NI.leyenda.crear({ iones: ['na','k','cl','h','hco3','nh4','nh3','gln','co2','hpo4','h2po4','aldo','angii','renina'] });
