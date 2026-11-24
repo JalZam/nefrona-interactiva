@@ -13,6 +13,10 @@ Sitio educativo de fisiología renal, en español e inglés, con dos secciones:
   acercamiento a la célula con el mecanismo normal y el bloqueo del fármaco. **En construcción:** por ahora
   tienen acercamiento la acetazolamida y el manitol.
 
+Además: dos **guías en texto** de la acidosis para leer, buscar y citar
+([español](https://nefrona-interactiva.com/acidosis-tubular-renal.html),
+[inglés](https://nefrona-interactiva.com/renal-tubular-acidosis.html)) y un buzón de sugerencias.
+
 Herramienta de aprendizaje; no es una calculadora clínica. Responsable: **Juan José Jaller (CiMedical)**.
 
 ## La regla que gobierna las animaciones
@@ -29,18 +33,25 @@ el amonio, no la bomba de H⁺); con bloqueo directo de ENaC no baja de 5,5 (fal
 
 ```
 index.html            acidosis: animación, panel de ATR, laboratorio, referencias
+celda.html            acidosis: una sola célula (para la vista «normal junto a la enferma»)
+acidosis-tubular-renal.html / renal-tubular-acidosis.html
+                      guías en texto ES / EN (generadas por tools/generar-guia.js; no editar a mano)
+privacidad.html       política de tratamiento de datos
 diureticos.html       diuréticos: mapa de la nefrona, las 6 clases, acercamiento
 style.css             estilos de las dos páginas
 
 js/particulas.js      motor de partículas: caminos SVG, cadenas y colas con estequiometría
 js/i18n.js            idioma común (ES/EN)
 js/leyenda.js         botón flotante «Guía»: color y sigla de cada bolita
+js/analitica.js       estadística de uso (PostHog, Europa) con aviso de cookies
+js/buzon.js           buzón de sugerencias
 
 js/nefron-fila.js     acidosis: las 4 células, cajones de orina y heces, laboratorio
 js/atr.js             acidosis: las 8 opciones y sus listas numeradas
 js/refs.js            acidosis: 38 referencias y 33 tarjetas «¿por qué?»
 js/acidosis-en.js     acidosis: traducción al inglés
 js/acidosis-i18n.js   acidosis: aplica el idioma en caliente
+js/acidosis-comparar.js acidosis: célula normal junto a la enferma
 
 js/diureticos-mapa.js diuréticos: mapa, las 6 clases, resumen
 js/diu-zoom.js        diuréticos: acercamiento a la célula (acetazolamida y manitol)
@@ -49,18 +60,20 @@ js/diu-refs.js        diuréticos: las 27 referencias de PubMed
 INVESTIGATION.md              acidosis: fisiología y 38 referencias (con su especie)
 INVESTIGACION_DIURETICOS.md   diuréticos: mecanismo por clase y 27 referencias
 PLAN.md / CLAUDE.md           gestión del proyecto
+robots.txt, sitemap.xml, llms.txt   para buscadores y asistentes de IA
 ```
 
 Sin framework, sin dependencias ni compilación. Scripts clásicos (no ES modules) para que abra desde disco.
 
 ## Enlaces útiles
 
-`?lang=en` abre en inglés · `?clase=iac&zoom=1` abre el acercamiento del proximal · `?clase=osm&zoom=1` el del manitol ·
+`?lang=en` abre en inglés · `?atr=atr1` abre una acidosis (`diarrea`, `atr2`, `atr1`, `atr3`, `atr4h`, `atr4r`, `atr4v`) · `?clase=iac&zoom=1` abre el acercamiento del proximal · `?clase=osm&zoom=1` el del manitol ·
 añadir `&bloqueo=1` lo abre ya con el diurético puesto.
 
 ## Probar en local
 
-- Doble clic en `index.html`, o `python3 -m http.server 8080` en la carpeta y abrir http://localhost:8080.
+- `python3 -m http.server 8080` en la carpeta y abrir http://localhost:8080 (la vista lado a lado necesita servidor).
+- Tras cambiar textos de la acidosis: `node tools/generar-guia.js` rehace las dos guías en texto.
 - El reloj usa `requestAnimationFrame`: el navegador lo pausa cuando la pestaña no está visible.
 
 ## Publicación
@@ -70,11 +83,20 @@ pruebas: revisar en local antes de subir. Commits y push los hace Claude Code (d
 
 ## Privacidad
 
-Todo ocurre en el navegador. No hay cookies, almacenamiento ni envío de datos. La única llamada externa es el contador de visitas de hits.sh (una imagen SVG en la cabecera, clave `nefrona-interactiva.com`): cuenta cargas de página, no identifica personas. Google Fonts
-sirve las tipografías.
+Sin publicidad. La estadística de uso va a PostHog (servidor en Europa): sin permiso se cuenta la visita sin
+cookies; con permiso se usan cookies y se graba la sesión con los campos de texto enmascarados. Las sugerencias
+del buzón se guardan en el mismo sitio. La cabecera lleva además el contador hits.sh (cuenta cargas de página)
+y Google Fonts sirve las tipografías. Detalle en la
+[política de tratamiento de datos](https://nefrona-interactiva.com/privacidad.html).
 
 ## Historial
 
+- **2026-11-24** — Guías en texto de la acidosis (ES/EN) y botón «Explicación»; robots.txt, mapa del sitio,
+  llms.txt, datos estructurados e imagen de vista previa, para buscadores y asistentes de IA.
+- **2026-11-23** — Buzón de sugerencias; idioma inicial según el navegador; aviso de cookies más visible; la
+  vista lado a lado carga mucho más rápido y el resaltado de lo afectado también se ve en Safari.
+- **2026-11-17** — Acidosis: célula normal junto a la enferma, etapa por etapa.
+- **2026-11-08 (noche)** — Estadística de uso con PostHog (Europa), aviso de cookies y política de datos.
 - **2026-11-07** — Las dos páginas en inglés con interruptor ES|EN; botón flotante «Guía»; revisión de
   exactitud de las 33 tarjetas contra PubMed (2 errores corregidos); las 23 referencias al pie de diuréticos.
 - **2026-11-08 (tarde)** — Diuréticos: las clases sin construir muestran una animación de obra en lugar del riñón
@@ -84,7 +106,6 @@ sirve las tipografías.
 - **2026-11-06** — Sección de diuréticos: mapa de la nefrona con las 6 clases y acercamiento al túbulo
   proximal (acetazolamida), con estequiometría estricta en todos los canales y enzimas. Se quitan el
   simulador cuantitativo y la vista en columna.
-- **2026-11-06** — Se quitan el simulador cuantitativo (`simulador.html`, con su modelo y pruebas) y la vista en columna; queda solo la animación de la acidosis sin anion gap. Recuperables desde el historial de git (commit 14605a3).
 - **2026-10-26** — Balance ácido-base completo: diarrea con riñón sano, H⁺/K⁺-ATPasa, estímulo de la aldosterona y la acidosis sobre la bomba de H⁺, acidez titulable con fosfato, Cl⁻ plasmático, cajón de heces y excreción neta de ácido en la orina.
 - **2026-10-26** — Página principal con todas las ATR (1, 2, 3 y tres formas de 4) en lista numerada sin temporizador; células en fila con cajón de orina; recuperación proximal del HCO₃⁻ filtrado (CA IV, CA II, NBCe1); vista en columna aparte.
 - **2026-10-26 (noche)** — Dominio propio nefrona-interactiva.com; reorganización de rótulos para que ningún texto quede bajo un camino de partículas (detector de solapamientos: 0 choques); H₂O visible junto a la anhidrasa carbónica.
@@ -99,4 +120,5 @@ sirve las tipografías.
 
 ## Pendiente / futuro
 
+- Diuréticos: faltan de asa, tiazídicos, ahorradores de K⁺ y acuaréticos. Ver `PLAN.md`.
 - Descartados por ahora: canal BK, pendrina/célula β, acuaporina-2.

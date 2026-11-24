@@ -4,7 +4,7 @@
 <!-- initialized: 2026-10-23 -->
 <!-- version: 2.0 -->
 <!-- status: active -->
-<!-- last-completed-step: diureticos-osmoticos -->
+<!-- last-completed-step: seo-y-guias-en-texto -->
 
 ## ¿Qué es este proyecto?
 Sitio web estático (HTML + CSS + JS puro + SVG) para **aprender viendo** fisiología renal, con dos secciones:
@@ -17,21 +17,35 @@ Sitio web estático (HTML + CSS + JS puro + SVG) para **aprender viendo** fisiol
    acercamiento a la célula de cada segmento con el mecanismo normal y el bloqueo del fármaco.
    **EN CONSTRUCCIÓN:** hechos el túbulo proximal (acetazolamida) y los osmóticos (manitol).
 
-Las dos están en **español e inglés**, con un interruptor ES|EN en la cabecera.
+Las dos están en **español e inglés**, con un interruptor ES|EN en la cabecera. Además hay dos **guías en
+texto** de la acidosis (`acidosis-tubular-renal.html`, `renal-tubular-acidosis.html`) para buscadores e IA,
+y un **buzón de sugerencias**.
 
 Dueño: Juan José Jaller (nefrólogo). Uso: herramienta de aprendizaje y, más adelante, docencia.
 
-## Estado Actual
-**Fase activa:** sección de diuréticos. **Proximal / acetazolamida** revisado y aprobado por Juanjo
-(2026-11-08). **Osmóticos / manitol** construido 2026-11-08, **pendiente de su revisión**. Faltan cuatro
-clases (de asa, tiazídicos, ahorradores de K⁺, acuaréticos). Juanjo revisa y corrige antes de pasar a la
-siguiente.
-**Acidosis:** terminada y revisada contra PubMed (2026-11-07).
+## Estado Actual (2026-11-24)
+**Todo lo construido está publicado**; no hay nada a medias en la copia local.
+- **Acidosis:** terminada. Vista lado a lado (célula normal junto a la enferma) publicada 2026-11-17 y
+  acelerada 2026-11-20/23. Revisada contra PubMed (2026-11-07).
+- **Diuréticos:** en construcción. Hechos proximal/acetazolamida (aprobado por Juanjo 2026-11-08) y
+  osmóticos/manitol (**pendiente de su revisión**). Faltan 4 clases: de asa, tiazídicos, ahorradores de K⁺,
+  acuaréticos. Juanjo revisa y corrige cada una antes de pasar a la siguiente.
+- **Alrededor de las animaciones (publicado):** analítica PostHog con aviso de cookies (2026-11-08), buzón de
+  sugerencias e idioma inicial según el navegador (2026-11-23), guías en texto + SEO (2026-11-24).
 
-## Para retomar (guardado 2026-11-17)
-Publicado y verificado en vivo: vista lado a lado de la acidosis + textos nuevos de ATR 4 hipoaldo.
+## Para retomar (guardado 2026-11-24)
+**Forma de trabajo con Juanjo:** primero en la copia local (ya suele haber un servidor en `127.0.0.1:8080`;
+abrirle la prueba en **ventana nueva** de Chrome), y solo se publica cuando dice «publícalo».
+
 **Lo siguiente, en este orden:**
-1. **Paso 6 de ATR 4 hipoaldo** (`ATR.atr4h.pasos[5]` en `js/atr.js`, EN en `js/acidosis-en.js`). Juanjo no
+1. **Dar de alta el sitio en Google Search Console y en Bing Webmaster Tools** (lo hace Juanjo en esos
+   paneles, un paso por mensaje; él no sabía qué era, ya se le explicó). Google le dará un archivo o código
+   de verificación → ponerlo en el sitio y publicar; luego entregar `https://nefrona-interactiva.com/sitemap.xml`.
+   Es lo que más acelera aparecer en buscadores y en ChatGPT (usa Bing). El 2026-11-24 el sitio no salía en
+   ninguna búsqueda.
+2. **Decisión abierta: fundir las tres ATR 4.** Juanjo opina que son lo mismo y solo cambia la causa. Opciones
+   que se le dieron: un botón «ATR 4» con selector de causa, dos botones, o dejarlas como están. **No ha decidido.**
+3. **Paso 6 de ATR 4 hipoaldo** (`ATR.atr4h.pasos[5]` en `js/atr.js`, EN en `js/acidosis-en.js`). Juanjo no
    entendió la caja «Aldo · acidosis». Propuesta ya mostrada, **falta su sí** y que diga si también se
    renombra la caja (`box-aldo-a` en `js/nefron-fila.js` → «Aldosterona o acidosis»; afecta a todas las vistas):
    - Título: «La bomba de H⁺ de la célula α pierde sus dos ayudas».
@@ -42,19 +56,27 @@ Publicado y verificado en vivo: vista lado a lado de la acidosis + textos nuevos
      vuelve a encender, ahora por la acidosis, pero sin voltaje ni aldosterona no compensa. Se conserva la
      frase final de las partículas de aldosterona que reaparecen por el K⁺ alto.
    - Solo para hipoaldo: el texto del paso es compartido (`cascada4`) con antagonista del MR y bloqueo de ENaC.
-2. Juanjo debe mirar la vista lado a lado **en su celular** (solo se probó simulada a 390 px) y decir si le
-   sirve la mención de los antagonistas del MR en el paso 1 de hipoaldo.
-3. Revisar con el mismo criterio (el texto dice lo que la animación muestra) las demás: atr4r, atr4v, atr1,
+   - **Tras cambiar cualquier texto: `node tools/generar-guia.js`** para rehacer las guías.
+4. Revisar con el mismo criterio (el texto dice lo que la animación muestra) las demás: atr4r, atr4v, atr1,
    atr2, atr3, diarrea. Ya visto: el paso del colector de 4v dice que los H⁺ «bajan el pH urinario» aunque
    en 4v el pH queda > 5,5.
-4. Sin respuesta de antes: animación del NH₃ que se devuelve en ATR 1; revisión del manitol; siguiente
-   clase de diurético; si la comparación lado a lado se lleva también a diuréticos (mock `mock-comparar.html`).
-5. Mocks locales fuera de git (`.git/info/exclude`): `mock-comparar.html`, `mock-acidosis.html`,
-   `mock-acidosis-celda.html`, `mock-publicar.html`, `PLAN_LADO_A_LADO.md`. Los de acidosis ya cumplieron;
-   borrar (con `trash`) cuando Juanjo lo diga.
+5. **Diuréticos:** revisión del manitol por Juanjo; siguiente clase (los más pedidos en la analítica: de asa
+   y tiazídicos); al terminar la sección, su guía en texto. Idea sin decidir: comparación lado a lado también
+   en diuréticos (`PLAN_LADO_A_LADO.md` + `mock-comparar.html`, locales, fuera de git).
+6. **Celular:** el 78 % de las visitas es iPhone/Safari y más de la mitad no toca nada; la respuesta al toque
+   es lenta (INP p90 ≈ 4,6 s medido antes de las mejoras de velocidad). Juanjo aún no ha revisado la vista
+   lado a lado en su celular. Volver a medir en PostHog hacia el 2026-12-08.
+7. Sin respuesta de antes: animación del NH₃ que se devuelve en ATR 1; quitar o no el contador hits.sh;
+   ocultar o no del sitio público los documentos internos (`CLAUDE.md`, `PLAN.md`… hoy se pueden abrir por
+   su dirección; no tienen claves).
+
+**Analítica y buzón:** llave de solo lectura en `~/.config/posthog/llave_lectura` (no imprimirla), proyecto
+`341082`, consultas HogQL por `POST https://eu.posthog.com/api/projects/341082/query/`. Filtrar mis pruebas
+(`$host = '127.0.0.1:8080'`) y robots. «Léeme el buzón» = consulta de la sección del buzón, más abajo.
+
 **Probar la vista lado a lado:** Chrome sin ventana con `--timeout=16000` para capturas; para clics, página
 auxiliar del mismo origen con `--virtual-time-budget` (funciona con ATR 1/2; se atasca con las ATR 4, que
-cargan 10 iframes).
+cargan 10 iframes). Safari no se puede probar desde aquí.
 
 ## Stack Técnico
 - HTML + CSS + JavaScript puro. SVG inline dibujado a mano. Sin framework, sin dependencias, sin compilación.
@@ -112,6 +134,11 @@ con `js/acidosis-en.js` (traducción) y `js/acidosis-i18n.js` (los aplica en cal
 ## Estructura de Archivos Clave
 ```
 index.html            ACIDOSIS: animación en fila, panel de ATR, laboratorio, referencias
+acidosis-tubular-renal.html / renal-tubular-acidosis.html
+                      guías en texto ES / EN — GENERADAS por tools/generar-guia.js, no editar a mano
+tools/generar-guia.js genera las dos guías desde js/atr.js, js/refs.js y js/acidosis-en.js
+robots.txt · sitemap.xml · llms.txt   para buscadores y asistentes de IA
+img/og.png · img/icono.svg            vista previa al compartir e icono de pestaña
 privacidad.html       política de tratamiento de datos (ES/EN, textos en js/privacidad.js)
 diureticos.html       DIURÉTICOS: mapa de la nefrona, panel de las 6 clases, acercamiento
 style.css             estilos de las dos páginas (paleta y tipografías del Velocímetro Renal)
@@ -137,7 +164,7 @@ js/diu-refs.js        diuréticos: las 27 referencias de PubMed del pie (1–26 
 
 INVESTIGATION.md          acidosis: fisiología, cascada, 38 referencias con su especie
 INVESTIGACION_DIURETICOS.md  diuréticos: mecanismo por clase, resistencia, 27 referencias
-PLAN.md               fases y estado
+PLAN.md               qué está hecho y qué falta (resumen por fases)
 ```
 
 ## Decisiones Técnicas Importantes
@@ -209,9 +236,13 @@ PLAN.md               fases y estado
   propósito (RGPD: rechazar tan fácil como aceptar).
 
 ## Cómo Correr y Probar
-- Local: `python3 -m http.server 8080` en la carpeta (o doble clic en el HTML).
-- Publicar: `git add -A && git commit -m "..." && git push`. Cada push actualiza el sitio en ~1 min; **no
-  hay ambiente de pruebas**. Subir el `?v=N` de los scripts.
+- Local (es la «copia de prueba»): `python3 -m http.server 8080` en la carpeta; suele haber ya uno corriendo
+  en `127.0.0.1:8080`. Las visitas locales llegan a PostHog con ese host: filtrarlas en los análisis.
+- Publicar (solo con el sí de Juanjo): subir el `?v=N` de lo que cambió, `git add` de los archivos concretos
+  (no `-A`: hay mocks locales), commit y push. El sitio se actualiza en ~1 min y GitHub guarda el HTML 10 min
+  en caché. **Verificar desde afuera con `curl`** antes de decir que quedó.
+- Si cambió algún texto de la acidosis: `node tools/generar-guia.js` y publicar también las dos guías; poner
+  la fecha de hoy en `sitemap.xml`.
 - **Enlaces de prueba** (sirven también para compartir):
   `?lang=en` · `?clase=iac&zoom=1` · `?clase=iac&zoom=1&bloqueo=1` · `?clase=osm&zoom=1&bloqueo=1` ·
   `#prueba` adelanta la animación.
@@ -226,12 +257,16 @@ PLAN.md               fases y estado
 - **Un iframe de prueba debe servirse del MISMO puerto** que la página, o no puede guiarla (mismo origen).
 
 ## Documentos del Proyecto
+- `CLAUDE.md` — este archivo: estado, cómo retomar y decisiones técnicas. **Es la fuente de verdad.**
+- `PLAN.md` — resumen de fases hechas y pendientes. `README.md` — presentación pública del repositorio.
 - `INVESTIGATION.md` — acidosis: fisiología y referencias, cada una **etiquetada con su especie**
   (revisión 2026-11-06: de 35 artículos, 3 sin tejido humano y 2 mixtos; ninguna afirmación de la página
   depende solo de animales).
 - `INVESTIGACION_DIURETICOS.md` — diuréticos: documento independiente, 27 referencias de PubMed (las del
   manitol: 23 perro, 24 y 26 rata, 25 humana).
-- `PLAN.md` — fases y estado. `CLAUDE.md` — este archivo.
+- Locales, fuera de git: `PLAN_LADO_A_LADO.md` y `mock-comparar.html` (idea de comparar en diuréticos).
+- Retirados el 2026-11-24 por cumplidos (se recuperan del historial de git): `PLAN_VISITANTES.md` (analítica,
+  publicada) y los mocks de la vista lado a lado de la acidosis.
 
 ## Deuda Técnica Activa
 - **Diuréticos: faltan 4 de las 6 clases** (de asa, tiazídicos, ahorradores de K⁺, acuaréticos).
@@ -244,14 +279,23 @@ PLAN.md               fases y estado
   se conectaron). `bk` y `aqp2` son restos de canales que Juanjo descartó: borrar o conectar.
 - `js/refs.js` conserva campos `estado` que leen `NI.sim` (restos del simulador; no se llaman).
 - Fuera del alcance: volumen extracelular y Na⁺ dinámicos, insulina, pendrina/célula β, hiperkalemia aguda.
-- Cabecera en celular: desde 2026-11-08 los botones pasan a una segunda fila por debajo de 600 px (antes se
-  salían de la pantalla a 390 px).
+- Cabecera en celular: los botones ocupan dos renglones (son cuatro desde que existe «Explicación»).
+- La página base tarda ~2,8 s en abrir en el Mac mini (sin investigar: fuentes de Google, hits.sh, PostHog).
+- Las guías en texto solo cubren la acidosis; la de diuréticos se hará al terminar esa sección.
 - Pendiente de Juanjo: revisar la traducción al inglés (es mía) y confirmar los usuarios de las redes.
 
-## Buscadores y asistentes de IA (SEO) — 2026-11-24
-- **Problema de fondo:** casi todo el texto vive en JS y solo aparece al tocar; los robots de IA no ejecutan JS. Por eso hay dos **guías en texto**: `acidosis-tubular-renal.html` (ES) y `renal-tubular-acidosis.html` (EN).
-- Las guías son **generadas**: no editarlas a mano. Tras cambiar textos en `js/atr.js`, `js/refs.js` o `js/acidosis-en.js`, correr `node tools/generar-guia.js` (falla si español e inglés no tienen los mismos pasos) y publicar las dos.
-- `<html data-lang-fijo="es|en">` fija el idioma de una página (lo lee `js/i18n.js`); `data-i18n-href` traduce un enlace; `doc.desc` traduce la meta descripción.
-- `robots.txt` (todos permitidos, incluidos los de IA; `celda.html` fuera), `sitemap.xml` (actualizar `lastmod` y añadir páginas nuevas), `llms.txt` (resumen para IA; actualizar al añadir secciones).
-- Cada página lleva canónica, Open Graph (`img/og.png`, 1200×630), icono (`img/icono.svg`) y datos estructurados JSON-LD.
-- Pendiente de Juanjo: dar de alta el sitio en Google Search Console y Bing Webmaster Tools; guía en texto de diuréticos cuando la sección esté terminada.
+## Buscadores y asistentes de IA (SEO) — publicado 2026-11-24 (commit 181301b)
+- **Problema de fondo:** casi todo el texto vive en JS y solo aparece al tocar; los robots de IA no ejecutan
+  JS. Por eso existen las dos **guías en texto** (~8.000 palabras cada una: las 8 opciones paso a paso, las 33
+  tarjetas y las 38 referencias, con los textos tal cual de la animación). Se llega por el botón
+  **«📖 Explicación»** de la cabecera de la acidosis (`.nav-expl`) y por un enlace al pie.
+- Las guías son **generadas**: no editarlas a mano (`node tools/generar-guia.js`; falla si español e inglés
+  no tienen los mismos pasos). Autor visible: «Juan José Jaller, médico nefrólogo» (aprobado por él).
+- `<html data-lang-fijo="es|en">` fija el idioma de una página (lo lee `js/i18n.js`); `data-i18n-href`
+  traduce un enlace; `doc.titulo` y `doc.desc` traducen título y descripción.
+- `robots.txt` (todos permitidos, incluidos los de IA; `celda.html` fuera), `sitemap.xml` (actualizar
+  `lastmod` y añadir páginas nuevas), `llms.txt` (resumen para IA; actualizar al añadir secciones).
+- Cada página lleva canónica, Open Graph (`img/og.png`, 1200×630), icono y datos estructurados JSON-LD.
+  Las animaciones no llevan `hreflang` (una sola dirección para los dos idiomas); las guías sí.
+- **Falta** (ver «Para retomar»): alta en Google y Bing, enlaces desde otros sitios y redes, guía de diuréticos.
+
