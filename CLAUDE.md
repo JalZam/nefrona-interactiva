@@ -38,11 +38,11 @@ Dueño: Juan José Jaller (nefrólogo). Uso: herramienta de aprendizaje y, más 
 abrirle la prueba en **ventana nueva** de Chrome), y solo se publica cuando dice «publícalo».
 
 **Lo siguiente, en este orden:**
-1. **Dar de alta el sitio en Google Search Console y en Bing Webmaster Tools** (lo hace Juanjo en esos
-   paneles, un paso por mensaje; él no sabía qué era, ya se le explicó). Google le dará un archivo o código
-   de verificación → ponerlo en el sitio y publicar; luego entregar `https://nefrona-interactiva.com/sitemap.xml`.
-   Es lo que más acelera aparecer en buscadores y en ChatGPT (usa Bing). El 2026-11-24 el sitio no salía en
-   ninguna búsqueda.
+1. **Alta en buscadores: HECHA el 2026-11-25.** Google Search Console (propiedad `https://nefrona-interactiva.com`,
+   verificada con la etiqueta `google-site-verification` de `index.html` — **no borrar esa línea**) y Bing
+   Webmaster Tools (importado desde Google). Juanjo entra a los dos con su Gmail personal. `sitemap.xml`
+   entregado en ambos; indexación pedida a mano para la guía en español. Falta solo esperar (días a semanas)
+   y **revisar hacia 2026-12-09** si ya aparece en búsquedas; él puede poner el enlace en sus redes.
 2. **Decisión abierta: fundir las tres ATR 4.** Juanjo opina que son lo mismo y solo cambia la causa. Opciones
    que se le dieron: un botón «ATR 4» con selector de causa, dos botones, o dejarlas como están. **No ha decidido.**
 3. **Paso 6 de ATR 4 hipoaldo** (`ATR.atr4h.pasos[5]` en `js/atr.js`, EN en `js/acidosis-en.js`). Juanjo no
@@ -297,5 +297,6 @@ PLAN.md               qué está hecho y qué falta (resumen por fases)
   `lastmod` y añadir páginas nuevas), `llms.txt` (resumen para IA; actualizar al añadir secciones).
 - Cada página lleva canónica, Open Graph (`img/og.png`, 1200×630), icono y datos estructurados JSON-LD.
   Las animaciones no llevan `hreflang` (una sola dirección para los dos idiomas); las guías sí.
-- **Falta** (ver «Para retomar»): alta en Google y Bing, enlaces desde otros sitios y redes, guía de diuréticos.
+- Alta en Google Search Console y Bing Webmaster Tools hecha el 2026-11-25 (ver «Para retomar»).
+- **Falta**: enlaces desde otros sitios y redes, guía de diuréticos.
 

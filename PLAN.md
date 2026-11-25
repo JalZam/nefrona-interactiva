@@ -35,7 +35,7 @@ su estequiometría estricta, y qué se daña, y en qué orden, en cada enfermeda
 Cada clase: Juanjo la revisa y corrige antes de pasar a la siguiente.
 
 ## Pendiente
-1. Dar de alta el sitio en Google Search Console y Bing Webmaster Tools (Juanjo, guiado).
+1. ~~Alta en Google Search Console y Bing Webmaster Tools~~ — hecha el 2026-11-25; revisar hacia 2026-12-09 si ya aparece en búsquedas.
 2. Decidir si las tres ATR 4 se funden en una (un botón con selector de causa, dos botones, o igual).
 3. Reescribir el paso 6 de ATR 4 hipoaldosteronismo (propuesta lista, falta el sí de Juanjo).
 4. Revisar los textos de las demás acidosis contra lo que muestra la animación.
