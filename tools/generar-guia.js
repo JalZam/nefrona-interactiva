@@ -59,7 +59,8 @@ const L = {
     hRefs: 'Referencias', refs: 'Referencias',
     aviso: 'Herramienta de aprendizaje. No es una guía de diagnóstico ni de tratamiento.',
     pie: ['Animación de acidosis', 'Diuréticos', 'Política de tratamiento de datos', 'Cookies', 'Sugerencias'],
-    cambio: 'Read this page in English', lang: ''
+    cambio: 'Read this page in English', lang: '',
+    hermana: 'Del mismo autor: <a href="https://velocimetrorenal.com/?lang=es">Velocímetro Renal</a>, calculadora de TFG y riesgo KDIGO'
   },
   en: {
     archivo: 'renal-tubular-acidosis.html', otro: 'acidosis-tubular-renal.html', html: 'en', og: 'en_US',
@@ -76,7 +77,8 @@ const L = {
     hRefs: 'References', refs: 'References',
     aviso: 'A learning tool. It is not a guide for diagnosis or treatment.',
     pie: ['Acidosis animation', 'Diuretics', 'Data processing policy', 'Cookies', 'Feedback'],
-    cambio: 'Leer esta página en español', lang: '?lang=en'
+    cambio: 'Leer esta página en español', lang: '?lang=en',
+    hermana: 'By the same author: <a href="https://velocimetrorenal.com/?lang=en">Velocímetro Renal</a>, GFR and KDIGO risk calculator'
   }
 };
 
@@ -226,6 +228,7 @@ ${refs}
     · <a href="privacidad.html${T.lang}">${T.pie[2]}</a>
     · <a href="#" data-cookies>${T.pie[3]}</a>
     · <a href="#" data-buzon>${T.pie[4]}</a></p>
+  <p class="pie-legal">${T.hermana}</p>
 </footer>
 
 <script src="js/i18n.js?v=${ver('i18n.js')}"></script>

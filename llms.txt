@@ -16,6 +16,10 @@ The animations need JavaScript. The two text guides below contain the complete e
 - [Acidosis animation](https://nefrona-interactiva.com/): the normal cell next to the diseased one, step by step. Add `?lang=en` for English and `?atr=` to open one scenario: `normal`, `diarrea`, `atr2`, `atr1`, `atr3`, `atr4h`, `atr4r`, `atr4v`.
 - [Diuretics along the nephron](https://nefrona-interactiva.com/diureticos.html): where each class acts (under construction).
 
+## Related site by the same author
+
+- [Velocímetro Renal](https://velocimetrorenal.com/): GFR speedometer, CKD-EPI 2021 calculator and KDIGO 2024 risk grid to explain chronic kidney disease to the patient, in Spanish and English.
+
 ## Optional
 
 - [Data processing policy](https://nefrona-interactiva.com/privacidad.html)

@@ -37,6 +37,9 @@ Dueño: Juan José Jaller (nefrólogo). Uso: herramienta de aprendizaje y, más 
 **Forma de trabajo con Juanjo:** primero en la copia local (ya suele haber un servidor en `127.0.0.1:8080`;
 abrirle la prueba en **ventana nueva** de Chrome), y solo se publica cuando dice «publícalo».
 
+**Publicado el 2026-11-26:** enlace «Del mismo autor: Velocímetro Renal» en el pie de `index.html`,
+`diureticos.html`, las dos guías y `llms.txt`; el Velocímetro enlaza de vuelta a Nefrona.
+
 **Lo siguiente, en este orden:**
 1. **Alta en buscadores: HECHA el 2026-11-25.** Google Search Console (propiedad `https://nefrona-interactiva.com`,
    verificada con la etiqueta `google-site-verification` de `index.html` — **no borrar esa línea**) y Bing
